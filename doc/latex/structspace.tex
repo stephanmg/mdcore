@@ -1,0 +1,211 @@
+\hypertarget{structspace}{\section{space Struct Reference}
+\label{structspace}\index{space@{space}}
+}
+
+
+{\ttfamily \#include $<$space.\-h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{structspace_ac45d92a78e958d1bdbce22331b752147}{dim} \mbox{[}3\mbox{]}
+\item 
+double \hyperlink{structspace_a61c2e65573374fec6a4c402febbade84}{origin} \mbox{[}3\mbox{]}
+\item 
+int \hyperlink{structspace_abc41c92f496aa850c7dfa0359158d69a}{cdim} \mbox{[}3\mbox{]}
+\item 
+int \hyperlink{structspace_adf1e7911214d724d3d08b3c46e6a6a7a}{span} \mbox{[}3\mbox{]}
+\item 
+double \hyperlink{structspace_a98c9ffdf27710977bcfc00488fa9727c}{h} \mbox{[}3\mbox{]}
+\item 
+double \hyperlink{structspace_ac7c56c7d8f3b0a41e13e2656e22afe37}{ih} \mbox{[}3\mbox{]}
+\item 
+double \hyperlink{structspace_a034fbedcce0aee66ee125138543e2703}{cutoff}
+\item 
+double \hyperlink{structspace_ae52bffc8951344766241cba3826c70ad}{cutoff2}
+\item 
+unsigned int \hyperlink{structspace_a528ce5558d238708bc2cb7e5a71ad961}{period}
+\item 
+int \hyperlink{structspace_aa6e3b6f5feb3d1004ca3803fb6bfa6dd}{nr\-\_\-cells}
+\item 
+int $\ast$ \hyperlink{structspace_a4cc50029da279d1cef5439fbf0bdc354}{cid\-\_\-real}
+\item 
+int $\ast$ \hyperlink{structspace_a27fdd82c93e1319f1270cd6a84d2c245}{cid\-\_\-ghost}
+\item 
+int $\ast$ \hyperlink{structspace_afb53b22e386b55484f3e4bdab0b52b48}{cid\-\_\-marked}
+\item 
+int \hyperlink{structspace_a8b23aef7c564942ddcb33255a09a6cf9}{nr\-\_\-real}
+\item 
+int \hyperlink{structspace_a2ba1ca0768f11c20f4581eff56bc3f95}{nr\-\_\-ghost}
+\item 
+int \hyperlink{structspace_abb0eaf746daf1a24f0844a5312bc108a}{nr\-\_\-marked}
+\item 
+struct \hyperlink{structcell}{cell} $\ast$ \hyperlink{structspace_a5fcdf8d2c127017ce4b6e64090d1cd73}{cells}
+\item 
+int \hyperlink{structspace_a02f48908e70244064a7b68a055b9ae2c}{nr\-\_\-tasks}
+\item 
+int \hyperlink{structspace_a51ba14384309b40c30d6a908b8caab5d}{tasks\-\_\-size}
+\item 
+struct \hyperlink{structtask}{task} $\ast$ \hyperlink{structspace_ace3a87c7e253bce95072d59dfcb2622f}{tasks}
+\item 
+pthread\-\_\-mutex\-\_\-t \hyperlink{structspace_a733e78f89bc6e3cd82d2248ae5c38992}{tasks\-\_\-mutex}
+\item 
+pthread\-\_\-cond\-\_\-t \hyperlink{structspace_aed87af14b8cd94b2bbc6ce0e3f6b489f}{tasks\-\_\-avail}
+\item 
+char $\ast$ \hyperlink{structspace_af860b180149142663caba8550e2405cb}{cells\-\_\-taboo}
+\item 
+char $\ast$ \hyperlink{structspace_a5d59d4f2d4e53bd50dfc8464b74f1964}{cells\-\_\-owner}
+\item 
+int \hyperlink{structspace_a5152553ed5afee9e5396a8263b0e3600}{nr\-\_\-swaps}
+\item 
+int \hyperlink{structspace_a2dbcd77d069cc25923e3c909b0c2d978}{nr\-\_\-stalls}
+\item 
+struct \hyperlink{structpart}{part} $\ast$$\ast$ \hyperlink{structspace_acbc3d878bac5d0776f53e8f208d143f6}{partlist}
+\item 
+struct \hyperlink{structcell}{cell} $\ast$$\ast$ \hyperlink{structspace_a32ca6cb42b7d1a9053d50077fba94fe0}{celllist}
+\item 
+int \hyperlink{structspace_ac4dd7e5fa976280ea5c88ef8206c2d5b}{nr\-\_\-parts}
+\item 
+int \hyperlink{structspace_a40717ee7b6746d1305b707e53b83665e}{size\-\_\-parts}
+\item 
+int \hyperlink{structspace_a767fceff621253e5a779078970a5973b}{verlet\-\_\-rebuild}
+\item 
+\hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{structspace_af95a2d78a1e550c6602480b8afb4d9ff}{maxdx}
+\item 
+double \hyperlink{structspace_a3e050eccabbd5322482d7f63e45f038d}{epot}
+\item 
+double \hyperlink{structspace_a6ed20d960a8500fd893f49042778b87d}{epot\-\_\-nonbond}
+\item 
+double \hyperlink{structspace_a7f960eb873757cb71ba74f9575dfcc3d}{epot\-\_\-bond}
+\item 
+double \hyperlink{structspace_a13161f6f83303cc16b2f447181f82e59}{epot\-\_\-angle}
+\item 
+double \hyperlink{structspace_aab31fcdff2c60c9ccdda04ce05779152}{epot\-\_\-dihedral}
+\item 
+double \hyperlink{structspace_a97dac668d1649b9ce547e6831444de48}{epot\-\_\-exclusion}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The space structure 
+
+\subsection{Field Documentation}
+\hypertarget{structspace_abc41c92f496aa850c7dfa0359158d69a}{\index{space@{space}!cdim@{cdim}}
+\index{cdim@{cdim}!space@{space}}
+\subsubsection[{cdim}]{\setlength{\rightskip}{0pt plus 5cm}int cdim\mbox{[}3\mbox{]}}}\label{structspace_abc41c92f496aa850c7dfa0359158d69a}
+Space dimension in cells. \hypertarget{structspace_a32ca6cb42b7d1a9053d50077fba94fe0}{\index{space@{space}!celllist@{celllist}}
+\index{celllist@{celllist}!space@{space}}
+\subsubsection[{celllist}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf cell}$\ast$$\ast$ celllist}}\label{structspace_a32ca6cb42b7d1a9053d50077fba94fe0}
+Array of pointers to the \hyperlink{structcell}{cell} of individual parts, sorted by their I\-D. \hypertarget{structspace_a5fcdf8d2c127017ce4b6e64090d1cd73}{\index{space@{space}!cells@{cells}}
+\index{cells@{cells}!space@{space}}
+\subsubsection[{cells}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf cell}$\ast$ cells}}\label{structspace_a5fcdf8d2c127017ce4b6e64090d1cd73}
+Array of cells spanning the space. \hypertarget{structspace_a5d59d4f2d4e53bd50dfc8464b74f1964}{\index{space@{space}!cells\-\_\-owner@{cells\-\_\-owner}}
+\index{cells\-\_\-owner@{cells\-\_\-owner}!space@{space}}
+\subsubsection[{cells\-\_\-owner}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ cells\-\_\-owner}}\label{structspace_a5d59d4f2d4e53bd50dfc8464b74f1964}
+Id of \hyperlink{structrunner}{runner} owning each cell. \hypertarget{structspace_af860b180149142663caba8550e2405cb}{\index{space@{space}!cells\-\_\-taboo@{cells\-\_\-taboo}}
+\index{cells\-\_\-taboo@{cells\-\_\-taboo}!space@{space}}
+\subsubsection[{cells\-\_\-taboo}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ cells\-\_\-taboo}}\label{structspace_af860b180149142663caba8550e2405cb}
+Taboo-\/list for collision avoidance \hypertarget{structspace_a27fdd82c93e1319f1270cd6a84d2c245}{\index{space@{space}!cid\-\_\-ghost@{cid\-\_\-ghost}}
+\index{cid\-\_\-ghost@{cid\-\_\-ghost}!space@{space}}
+\subsubsection[{cid\-\_\-ghost}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ cid\-\_\-ghost}}\label{structspace_a27fdd82c93e1319f1270cd6a84d2c245}
+\hypertarget{structspace_afb53b22e386b55484f3e4bdab0b52b48}{\index{space@{space}!cid\-\_\-marked@{cid\-\_\-marked}}
+\index{cid\-\_\-marked@{cid\-\_\-marked}!space@{space}}
+\subsubsection[{cid\-\_\-marked}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ cid\-\_\-marked}}\label{structspace_afb53b22e386b55484f3e4bdab0b52b48}
+\hypertarget{structspace_a4cc50029da279d1cef5439fbf0bdc354}{\index{space@{space}!cid\-\_\-real@{cid\-\_\-real}}
+\index{cid\-\_\-real@{cid\-\_\-real}!space@{space}}
+\subsubsection[{cid\-\_\-real}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ cid\-\_\-real}}\label{structspace_a4cc50029da279d1cef5439fbf0bdc354}
+I\-Ds of real, ghost and marked cells. \hypertarget{structspace_a034fbedcce0aee66ee125138543e2703}{\index{space@{space}!cutoff@{cutoff}}
+\index{cutoff@{cutoff}!space@{space}}
+\subsubsection[{cutoff}]{\setlength{\rightskip}{0pt plus 5cm}double cutoff}}\label{structspace_a034fbedcce0aee66ee125138543e2703}
+The cutoff and the cutoff squared. \hypertarget{structspace_ae52bffc8951344766241cba3826c70ad}{\index{space@{space}!cutoff2@{cutoff2}}
+\index{cutoff2@{cutoff2}!space@{space}}
+\subsubsection[{cutoff2}]{\setlength{\rightskip}{0pt plus 5cm}double cutoff2}}\label{structspace_ae52bffc8951344766241cba3826c70ad}
+\hypertarget{structspace_ac45d92a78e958d1bdbce22331b752147}{\index{space@{space}!dim@{dim}}
+\index{dim@{dim}!space@{space}}
+\subsubsection[{dim}]{\setlength{\rightskip}{0pt plus 5cm}double dim\mbox{[}3\mbox{]}}}\label{structspace_ac45d92a78e958d1bdbce22331b752147}
+Real dimensions. \hypertarget{structspace_a3e050eccabbd5322482d7f63e45f038d}{\index{space@{space}!epot@{epot}}
+\index{epot@{epot}!space@{space}}
+\subsubsection[{epot}]{\setlength{\rightskip}{0pt plus 5cm}double epot}}\label{structspace_a3e050eccabbd5322482d7f63e45f038d}
+Potential energy collected by the space itself. \hypertarget{structspace_a13161f6f83303cc16b2f447181f82e59}{\index{space@{space}!epot\-\_\-angle@{epot\-\_\-angle}}
+\index{epot\-\_\-angle@{epot\-\_\-angle}!space@{space}}
+\subsubsection[{epot\-\_\-angle}]{\setlength{\rightskip}{0pt plus 5cm}double epot\-\_\-angle}}\label{structspace_a13161f6f83303cc16b2f447181f82e59}
+\hypertarget{structspace_a7f960eb873757cb71ba74f9575dfcc3d}{\index{space@{space}!epot\-\_\-bond@{epot\-\_\-bond}}
+\index{epot\-\_\-bond@{epot\-\_\-bond}!space@{space}}
+\subsubsection[{epot\-\_\-bond}]{\setlength{\rightskip}{0pt plus 5cm}double epot\-\_\-bond}}\label{structspace_a7f960eb873757cb71ba74f9575dfcc3d}
+\hypertarget{structspace_aab31fcdff2c60c9ccdda04ce05779152}{\index{space@{space}!epot\-\_\-dihedral@{epot\-\_\-dihedral}}
+\index{epot\-\_\-dihedral@{epot\-\_\-dihedral}!space@{space}}
+\subsubsection[{epot\-\_\-dihedral}]{\setlength{\rightskip}{0pt plus 5cm}double epot\-\_\-dihedral}}\label{structspace_aab31fcdff2c60c9ccdda04ce05779152}
+\hypertarget{structspace_a97dac668d1649b9ce547e6831444de48}{\index{space@{space}!epot\-\_\-exclusion@{epot\-\_\-exclusion}}
+\index{epot\-\_\-exclusion@{epot\-\_\-exclusion}!space@{space}}
+\subsubsection[{epot\-\_\-exclusion}]{\setlength{\rightskip}{0pt plus 5cm}double epot\-\_\-exclusion}}\label{structspace_a97dac668d1649b9ce547e6831444de48}
+\hypertarget{structspace_a6ed20d960a8500fd893f49042778b87d}{\index{space@{space}!epot\-\_\-nonbond@{epot\-\_\-nonbond}}
+\index{epot\-\_\-nonbond@{epot\-\_\-nonbond}!space@{space}}
+\subsubsection[{epot\-\_\-nonbond}]{\setlength{\rightskip}{0pt plus 5cm}double epot\-\_\-nonbond}}\label{structspace_a6ed20d960a8500fd893f49042778b87d}
+\hypertarget{structspace_a98c9ffdf27710977bcfc00488fa9727c}{\index{space@{space}!h@{h}}
+\index{h@{h}!space@{space}}
+\subsubsection[{h}]{\setlength{\rightskip}{0pt plus 5cm}double h\mbox{[}3\mbox{]}}}\label{structspace_a98c9ffdf27710977bcfc00488fa9727c}
+Cell edge lengths and their inverse. \hypertarget{structspace_ac7c56c7d8f3b0a41e13e2656e22afe37}{\index{space@{space}!ih@{ih}}
+\index{ih@{ih}!space@{space}}
+\subsubsection[{ih}]{\setlength{\rightskip}{0pt plus 5cm}double ih\mbox{[}3\mbox{]}}}\label{structspace_ac7c56c7d8f3b0a41e13e2656e22afe37}
+\hypertarget{structspace_af95a2d78a1e550c6602480b8afb4d9ff}{\index{space@{space}!maxdx@{maxdx}}
+\index{maxdx@{maxdx}!space@{space}}
+\subsubsection[{maxdx}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-P\-T\-Y\-P\-E} maxdx}}\label{structspace_af95a2d78a1e550c6602480b8afb4d9ff}
+The maximum particle displacement over all cells. \hypertarget{structspace_aa6e3b6f5feb3d1004ca3803fb6bfa6dd}{\index{space@{space}!nr\-\_\-cells@{nr\-\_\-cells}}
+\index{nr\-\_\-cells@{nr\-\_\-cells}!space@{space}}
+\subsubsection[{nr\-\_\-cells}]{\setlength{\rightskip}{0pt plus 5cm}int nr\-\_\-cells}}\label{structspace_aa6e3b6f5feb3d1004ca3803fb6bfa6dd}
+Total nr of cells in this space. \hypertarget{structspace_a2ba1ca0768f11c20f4581eff56bc3f95}{\index{space@{space}!nr\-\_\-ghost@{nr\-\_\-ghost}}
+\index{nr\-\_\-ghost@{nr\-\_\-ghost}!space@{space}}
+\subsubsection[{nr\-\_\-ghost}]{\setlength{\rightskip}{0pt plus 5cm}int nr\-\_\-ghost}}\label{structspace_a2ba1ca0768f11c20f4581eff56bc3f95}
+\hypertarget{structspace_abb0eaf746daf1a24f0844a5312bc108a}{\index{space@{space}!nr\-\_\-marked@{nr\-\_\-marked}}
+\index{nr\-\_\-marked@{nr\-\_\-marked}!space@{space}}
+\subsubsection[{nr\-\_\-marked}]{\setlength{\rightskip}{0pt plus 5cm}int nr\-\_\-marked}}\label{structspace_abb0eaf746daf1a24f0844a5312bc108a}
+\hypertarget{structspace_ac4dd7e5fa976280ea5c88ef8206c2d5b}{\index{space@{space}!nr\-\_\-parts@{nr\-\_\-parts}}
+\index{nr\-\_\-parts@{nr\-\_\-parts}!space@{space}}
+\subsubsection[{nr\-\_\-parts}]{\setlength{\rightskip}{0pt plus 5cm}int nr\-\_\-parts}}\label{structspace_ac4dd7e5fa976280ea5c88ef8206c2d5b}
+Number of parts in this space and size of the buffers partlist and celllist. \hypertarget{structspace_a8b23aef7c564942ddcb33255a09a6cf9}{\index{space@{space}!nr\-\_\-real@{nr\-\_\-real}}
+\index{nr\-\_\-real@{nr\-\_\-real}!space@{space}}
+\subsubsection[{nr\-\_\-real}]{\setlength{\rightskip}{0pt plus 5cm}int nr\-\_\-real}}\label{structspace_a8b23aef7c564942ddcb33255a09a6cf9}
+\hypertarget{structspace_a2dbcd77d069cc25923e3c909b0c2d978}{\index{space@{space}!nr\-\_\-stalls@{nr\-\_\-stalls}}
+\index{nr\-\_\-stalls@{nr\-\_\-stalls}!space@{space}}
+\subsubsection[{nr\-\_\-stalls}]{\setlength{\rightskip}{0pt plus 5cm}int nr\-\_\-stalls}}\label{structspace_a2dbcd77d069cc25923e3c909b0c2d978}
+\hypertarget{structspace_a5152553ed5afee9e5396a8263b0e3600}{\index{space@{space}!nr\-\_\-swaps@{nr\-\_\-swaps}}
+\index{nr\-\_\-swaps@{nr\-\_\-swaps}!space@{space}}
+\subsubsection[{nr\-\_\-swaps}]{\setlength{\rightskip}{0pt plus 5cm}int nr\-\_\-swaps}}\label{structspace_a5152553ed5afee9e5396a8263b0e3600}
+Counter for the number of swaps in every step. \hypertarget{structspace_a02f48908e70244064a7b68a055b9ae2c}{\index{space@{space}!nr\-\_\-tasks@{nr\-\_\-tasks}}
+\index{nr\-\_\-tasks@{nr\-\_\-tasks}!space@{space}}
+\subsubsection[{nr\-\_\-tasks}]{\setlength{\rightskip}{0pt plus 5cm}int nr\-\_\-tasks}}\label{structspace_a02f48908e70244064a7b68a055b9ae2c}
+The total number of tasks. \hypertarget{structspace_a61c2e65573374fec6a4c402febbade84}{\index{space@{space}!origin@{origin}}
+\index{origin@{origin}!space@{space}}
+\subsubsection[{origin}]{\setlength{\rightskip}{0pt plus 5cm}double origin\mbox{[}3\mbox{]}}}\label{structspace_a61c2e65573374fec6a4c402febbade84}
+Location of origin. \hypertarget{structspace_acbc3d878bac5d0776f53e8f208d143f6}{\index{space@{space}!partlist@{partlist}}
+\index{partlist@{partlist}!space@{space}}
+\subsubsection[{partlist}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf part}$\ast$$\ast$ partlist}}\label{structspace_acbc3d878bac5d0776f53e8f208d143f6}
+Array of pointers to the individual parts, sorted by their I\-D. \hypertarget{structspace_a528ce5558d238708bc2cb7e5a71ad961}{\index{space@{space}!period@{period}}
+\index{period@{period}!space@{space}}
+\subsubsection[{period}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int period}}\label{structspace_a528ce5558d238708bc2cb7e5a71ad961}
+Periodicities. \hypertarget{structspace_a40717ee7b6746d1305b707e53b83665e}{\index{space@{space}!size\-\_\-parts@{size\-\_\-parts}}
+\index{size\-\_\-parts@{size\-\_\-parts}!space@{space}}
+\subsubsection[{size\-\_\-parts}]{\setlength{\rightskip}{0pt plus 5cm}int size\-\_\-parts}}\label{structspace_a40717ee7b6746d1305b707e53b83665e}
+\hypertarget{structspace_adf1e7911214d724d3d08b3c46e6a6a7a}{\index{space@{space}!span@{span}}
+\index{span@{span}!space@{space}}
+\subsubsection[{span}]{\setlength{\rightskip}{0pt plus 5cm}int span\mbox{[}3\mbox{]}}}\label{structspace_adf1e7911214d724d3d08b3c46e6a6a7a}
+Number of cells within cutoff in each dimension. \hypertarget{structspace_ace3a87c7e253bce95072d59dfcb2622f}{\index{space@{space}!tasks@{tasks}}
+\index{tasks@{tasks}!space@{space}}
+\subsubsection[{tasks}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf task}$\ast$ tasks}}\label{structspace_ace3a87c7e253bce95072d59dfcb2622f}
+Array of tasks. \hypertarget{structspace_aed87af14b8cd94b2bbc6ce0e3f6b489f}{\index{space@{space}!tasks\-\_\-avail@{tasks\-\_\-avail}}
+\index{tasks\-\_\-avail@{tasks\-\_\-avail}!space@{space}}
+\subsubsection[{tasks\-\_\-avail}]{\setlength{\rightskip}{0pt plus 5cm}pthread\-\_\-cond\-\_\-t tasks\-\_\-avail}}\label{structspace_aed87af14b8cd94b2bbc6ce0e3f6b489f}
+\hypertarget{structspace_a733e78f89bc6e3cd82d2248ae5c38992}{\index{space@{space}!tasks\-\_\-mutex@{tasks\-\_\-mutex}}
+\index{tasks\-\_\-mutex@{tasks\-\_\-mutex}!space@{space}}
+\subsubsection[{tasks\-\_\-mutex}]{\setlength{\rightskip}{0pt plus 5cm}pthread\-\_\-mutex\-\_\-t tasks\-\_\-mutex}}\label{structspace_a733e78f89bc6e3cd82d2248ae5c38992}
+Condition/mutex to signal task availability. \hypertarget{structspace_a51ba14384309b40c30d6a908b8caab5d}{\index{space@{space}!tasks\-\_\-size@{tasks\-\_\-size}}
+\index{tasks\-\_\-size@{tasks\-\_\-size}!space@{space}}
+\subsubsection[{tasks\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int tasks\-\_\-size}}\label{structspace_a51ba14384309b40c30d6a908b8caab5d}
+\hypertarget{structspace_a767fceff621253e5a779078970a5973b}{\index{space@{space}!verlet\-\_\-rebuild@{verlet\-\_\-rebuild}}
+\index{verlet\-\_\-rebuild@{verlet\-\_\-rebuild}!space@{space}}
+\subsubsection[{verlet\-\_\-rebuild}]{\setlength{\rightskip}{0pt plus 5cm}int verlet\-\_\-rebuild}}\label{structspace_a767fceff621253e5a779078970a5973b}
+Trigger re-\/building the cells/sorts. 
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/\hyperlink{space_8h}{space.\-h}\end{DoxyCompactItemize}

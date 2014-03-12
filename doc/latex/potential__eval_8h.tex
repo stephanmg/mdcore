@@ -1,0 +1,300 @@
+\hypertarget{potential__eval_8h}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/potential\-\_\-eval.h File Reference}
+\label{potential__eval_8h}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/potential\-\_\-eval.\-h@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/potential\-\_\-eval.\-h}}
+}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{potential__eval_8h_a2eb6f9e0395b47b8d5e3eeae4fe0c116}{I\-N\-L\-I\-N\-E}~inline
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{potential__eval_8h_acadbf02d75421a2721269c08a393e650}{\-\_\-\-\_\-attribute\-\_\-\-\_\-} ((always\-\_\-inline)) \hyperlink{potential__eval_8h_a2eb6f9e0395b47b8d5e3eeae4fe0c116}{I\-N\-L\-I\-N\-E} void potential\-\_\-eval(struct \hyperlink{structpotential}{potential} $\ast$p
+\begin{DoxyCompactList}\small\item\em Evaluates the given potential at the given point (interpolated). \end{DoxyCompactList}\item 
+\hyperlink{potential__eval_8h_a76e9c4e9a6df22827932d310ea22ab51}{for} (k=4;k$<$ \hyperlink{potential_8h_af27f5e9b27b6bd801b5146b817a21be1}{potential\-\_\-chunk};k++)
+\item 
+\hyperlink{potential__eval_8h_a590d2a745ebd0df4813f76613f576440}{if} (p-\/$>$flags \&\hyperlink{potential_8h_a6bbed82d7124d87e7a2391e91c11314a}{potential\-\_\-flag\-\_\-\-L\-J126})
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{potential__eval_8h_aaa7f6ac275af5eb6de39bc858a218035}{r2}
+\item 
+\hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$ \hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e} = \hyperlink{potential__eval_8h_a943e2493231a18a517a97b313f79fb79}{ee}
+\item 
+\hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$ \hyperlink{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}{f}
+\item 
+\hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{x} = (\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r} -\/ \hyperlink{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{c}\mbox{[}0\mbox{]}) $\ast$ \hyperlink{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{c}\mbox{[}1\mbox{]}
+\item 
+\hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{potential__eval_8h_a943e2493231a18a517a97b313f79fb79}{ee} = \hyperlink{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{c}\mbox{[}2\mbox{]} $\ast$ \hyperlink{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{x} + \hyperlink{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{c}\mbox{[}3\mbox{]}
+\item 
+\hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{potential__eval_8h_a07e4e7506998350394e25dcc524f4cc6}{eff} = \hyperlink{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{c}\mbox{[}2\mbox{]}
+\item 
+\hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$ \hyperlink{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{c} = \&(p-\/$>$c\mbox{[}\hyperlink{potential__eval_8h_aa1a517e3e42b3d109bc480c74e3a655c}{ind} $\ast$ \hyperlink{potential_8h_af27f5e9b27b6bd801b5146b817a21be1}{potential\-\_\-chunk}\mbox{]})
+\item 
+\hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r} = \hyperlink{fptype_8h_a139ef21e38bea4b2244c032204504489}{F\-P\-T\-Y\-P\-E\-\_\-\-S\-Q\-R\-T}(\hyperlink{potential__eval_8h_aaa7f6ac275af5eb6de39bc858a218035}{r2})
+\item 
+\hyperlink{potential__eval_8h_aa1a517e3e42b3d109bc480c74e3a655c}{ind} = \hyperlink{fptype_8h_a00cbd43b8a5171ce23509422db65aa5a}{F\-P\-T\-Y\-P\-E\-\_\-\-F\-M\-A\-X}( \hyperlink{fptype_8h_a544068c9044a93d25aec046279212165}{F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} , p-\/$>$alpha\mbox{[}0\mbox{]} + \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r} $\ast$ (p-\/$>$alpha\mbox{[}1\mbox{]} + \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r} $\ast$ p-\/$>$alpha\mbox{[}2\mbox{]}) )
+\item 
+const \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{potential__eval_8h_a92aaed300d50590bc36b14bc871fca42}{kappa} = 3.\-0
+\item 
+\hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{potential__eval_8h_a2e270fe7ac67bf46f76c75a43b8c130f}{ir} = 1.\-0 / \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}
+\item 
+\hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{potential__eval_8h_a517f865abbf34e3779793f939eff8bb6}{ir2} = \hyperlink{potential__eval_8h_a2e270fe7ac67bf46f76c75a43b8c130f}{ir} $\ast$ \hyperlink{potential__eval_8h_a2e270fe7ac67bf46f76c75a43b8c130f}{ir}
+\item 
+\hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{potential__eval_8h_a986bc39e889b4b37c4a0c1627db91dd4}{ir4}
+\item 
+\hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{potential__eval_8h_af31065e8cc6f5493bca25da25021bf99}{ir6}
+\item 
+\hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{potential__eval_8h_a62b01ce0f237c5a6af10885d6a3c1726}{ir12}
+\item 
+\hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{potential__eval_8h_a1e79a72229dc3352be90725b35775d43}{t1}
+\item 
+\hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{potential__eval_8h_a4dfb31114bc4164aaec2364fa4fa25b1}{t2}
+\item 
+float $\ast$ \hyperlink{potential__eval_8h_adc70e74963b96026291476dfda93d244}{r\-\_\-in}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{potential__eval_8h_a2eb6f9e0395b47b8d5e3eeae4fe0c116}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!I\-N\-L\-I\-N\-E@{I\-N\-L\-I\-N\-E}}
+\index{I\-N\-L\-I\-N\-E@{I\-N\-L\-I\-N\-E}!potential_eval.h@{potential\-\_\-eval.\-h}}
+\subsubsection[{I\-N\-L\-I\-N\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-N\-L\-I\-N\-E~inline}}\label{potential__eval_8h_a2eb6f9e0395b47b8d5e3eeae4fe0c116}
+
+
+\subsection{Function Documentation}
+\hypertarget{potential__eval_8h_acadbf02d75421a2721269c08a393e650}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}!potential_eval.h@{potential\-\_\-eval.\-h}}
+\subsubsection[{\-\_\-\-\_\-attribute\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-attribute\-\_\-\-\_\- (
+\begin{DoxyParamCaption}
+\item[{(always\-\_\-inline)}]{}
+\end{DoxyParamCaption}
+)}}\label{potential__eval_8h_acadbf02d75421a2721269c08a393e650}
+
+
+Evaluates the given potential at the given point (interpolated). 
+
+Evaluates the given potential at a set of points (interpolated).
+
+Evaluates the given potential at the given radius explicitly.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & The \hyperlink{structpotential}{potential} to be evaluated. \\
+\hline
+{\em r2} & The radius at which it is to be evaluated, squared. \\
+\hline
+{\em e} & Pointer to a floating-\/point value in which to store the interaction energy. \\
+\hline
+{\em f} & Pointer to a floating-\/point value in which to store the magnitude of the interaction force divided by r.\\
+\hline
+\end{DoxyParams}
+Note that for efficiency reasons, this function does not check if any of the parameters are {\ttfamily N\-U\-L\-L} or if {\ttfamily sqrt(r2)} is within the interval of the \hyperlink{structpotential}{potential} {\ttfamily p}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & The \hyperlink{structpotential}{potential} to be evaluated. \\
+\hline
+{\em r} & The radius at which it is to be evaluated. \\
+\hline
+{\em e} & Pointer to a floating-\/point value in which to store the interaction energy. \\
+\hline
+{\em f} & Pointer to a floating-\/point value in which to store the magnitude of the interaction force.\\
+\hline
+\end{DoxyParams}
+Note that for efficiency reasons, this function does not check if any of the parameters are {\ttfamily N\-U\-L\-L} or if {\ttfamily sqrt(r2)} is within the interval of the \hyperlink{structpotential}{potential} {\ttfamily p}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & The \hyperlink{structpotential}{potential} to be evaluated. \\
+\hline
+{\em r2} & The radius squared. \\
+\hline
+{\em e} & A pointer to a floating point value in which to store the interaction energy. \\
+\hline
+{\em f} & A pointer to a floating point value in which to store the magnitude of the interaction force\\
+\hline
+\end{DoxyParams}
+Assumes that the parameters for the potential forms given in the value {\ttfamily flags} of the \hyperlink{structpotential}{potential} {\ttfamily p} are stored in the array {\ttfamily alpha} of {\ttfamily p}.
+
+This way of evaluating a potential is not extremely efficient and is intended for comparison and debugging purposes.
+
+Note that for performance reasons, this function does not check its input arguments for {\ttfamily N\-U\-L\-L}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Pointer to an array of pointers to the \#potentials to be evaluated. \\
+\hline
+{\em r2} & Pointer to an array of the radii at which the potentials are to be evaluated, squared. \\
+\hline
+{\em e} & Pointer to an array of floating-\/point values in which to store the interaction energies. \\
+\hline
+{\em f} & Pointer to an array of floating-\/point values in which to store the magnitude of the interaction forces.\\
+\hline
+\end{DoxyParams}
+Note that for efficiency reasons, this function does not check if any of the parameters are {\ttfamily N\-U\-L\-L} or if {\ttfamily sqrt(r2)} is within the interval of the \hyperlink{structpotential}{potential} {\ttfamily p}.
+
+Computes four single-\/precision interactions simultaneously using vectorized instructions.
+
+This function is only available if mdcore was compiled with S\-S\-E or Alti\-Vec and single precision! If {\ttfamily mdcore} was not compiled with S\-S\-E or Alti\-Vec, this function simply calls \#potential\-\_\-eval on each entry.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Pointer to an array of pointers to the \#potentials to be evaluated. \\
+\hline
+{\em r\-\_\-in} & Pointer to an array of the radii at which the potentials are to be evaluated. \\
+\hline
+{\em e} & Pointer to an array of floating-\/point values in which to store the interaction energies. \\
+\hline
+{\em f} & Pointer to an array of floating-\/point values in which to store the magnitude of the interaction forces.\\
+\hline
+\end{DoxyParams}
+Note that for efficiency reasons, this function does not check if any of the parameters are {\ttfamily N\-U\-L\-L} or if {\ttfamily sqrt(r2)} is within the interval of the \hyperlink{structpotential}{potential} {\ttfamily p}.
+
+Computes four single-\/precision interactions simultaneously using vectorized instructions.
+
+This function is only available if mdcore was compiled with S\-S\-E or Alti\-Vec and single precision! If {\ttfamily mdcore} was not compiled with S\-S\-E or Alti\-Vec, this function simply calls \#potential\-\_\-eval on each entry.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Pointer to an array of pointers to the \#potentials to be evaluated. \\
+\hline
+{\em r2} & Pointer to an array of the radii at which the potentials are to be evaluated, squared. \\
+\hline
+{\em e} & Pointer to an array of floating-\/point values in which to store the interaction energies. \\
+\hline
+{\em f} & Pointer to an array of floating-\/point values in which to store the magnitude of the interaction forces.\\
+\hline
+\end{DoxyParams}
+Note that for efficiency reasons, this function does not check if any of the parameters are {\ttfamily N\-U\-L\-L} or if {\ttfamily sqrt(r2)} is within the interval of the \hyperlink{structpotential}{potential} {\ttfamily p}.
+
+Computes eight single-\/precision interactions simultaneously using vectorized instructions.
+
+This function is only available if mdcore was compiled with S\-S\-E or Alti\-Vec and single precision! If {\ttfamily mdcore} was not compiled with S\-S\-E or Alti\-Vec, this function simply calls \#potential\-\_\-eval on each entry.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Pointer to an array of pointers to the \#potentials to be evaluated. \\
+\hline
+{\em r2} & Pointer to an array of the radii at which the potentials are to be evaluated, squared. \\
+\hline
+{\em e} & Pointer to an array of floating-\/point values in which to store the interaction energies. \\
+\hline
+{\em f} & Pointer to an array of floating-\/point values in which to store the magnitude of the interaction forces.\\
+\hline
+\end{DoxyParams}
+Note that for efficiency reasons, this function does not check if any of the parameters are {\ttfamily N\-U\-L\-L} or if {\ttfamily sqrt(r2)} is within the interval of the \hyperlink{structpotential}{potential} {\ttfamily p}.
+
+Computes two double-\/precision interactions simultaneously using vectorized instructions.
+
+This function is only available if mdcore was compiled with S\-S\-E2 and double precision! If {\ttfamily mdcore} was not compiled with S\-S\-E2 enabled, this function simply calls \#potential\-\_\-eval on each entry.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Pointer to an array of pointers to the \#potentials to be evaluated. \\
+\hline
+{\em r2} & Pointer to an array of the radii at which the potentials are to be evaluated, squared. \\
+\hline
+{\em e} & Pointer to an array of floating-\/point values in which to store the interaction energies. \\
+\hline
+{\em f} & Pointer to an array of floating-\/point values in which to store the magnitude of the interaction forces.\\
+\hline
+\end{DoxyParams}
+Note that for efficiency reasons, this function does not check if any of the parameters are {\ttfamily N\-U\-L\-L} or if {\ttfamily sqrt(r2)} is within the interval of the \hyperlink{structpotential}{potential} {\ttfamily p}.
+
+Computes four double-\/precision interactions simultaneously using vectorized instructions.
+
+This function is only available if mdcore was compiled with S\-S\-E2 and double precision! If {\ttfamily mdcore} was not compiled with S\-S\-E2 enabled, this function simply calls \#potential\-\_\-eval on each entry.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Pointer to an array of pointers to the \#potentials to be evaluated. \\
+\hline
+{\em r} & Pointer to an array of the radii at which the potentials are to be evaluated. \\
+\hline
+{\em e} & Pointer to an array of floating-\/point values in which to store the interaction energies. \\
+\hline
+{\em f} & Pointer to an array of floating-\/point values in which to store the magnitude of the interaction forces.\\
+\hline
+\end{DoxyParams}
+Note that for efficiency reasons, this function does not check if any of the parameters are {\ttfamily N\-U\-L\-L} or if {\ttfamily sqrt(r2)} is within the interval of the \hyperlink{structpotential}{potential} {\ttfamily p}.
+
+Computes four double-\/precision interactions simultaneously using vectorized instructions.
+
+This function is only available if mdcore was compiled with S\-S\-E2 and double precision! If {\ttfamily mdcore} was not compiled with S\-S\-E2 enabled, this function simply calls \#potential\-\_\-eval on each entry. \hypertarget{potential__eval_8h_a76e9c4e9a6df22827932d310ea22ab51}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!for@{for}}
+\index{for@{for}!potential_eval.h@{potential\-\_\-eval.\-h}}
+\subsubsection[{for}]{\setlength{\rightskip}{0pt plus 5cm}for (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{potential__eval_8h_a76e9c4e9a6df22827932d310ea22ab51}
+\hypertarget{potential__eval_8h_a590d2a745ebd0df4813f76613f576440}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!if@{if}}
+\index{if@{if}!potential_eval.h@{potential\-\_\-eval.\-h}}
+\subsubsection[{if}]{\setlength{\rightskip}{0pt plus 5cm}if (
+\begin{DoxyParamCaption}
+\item[{p-\/$>$flags \&}]{potential\-\_\-flag\-\_\-\-L\-J126}
+\end{DoxyParamCaption}
+)}}\label{potential__eval_8h_a590d2a745ebd0df4813f76613f576440}
+
+
+\subsection{Variable Documentation}
+\hypertarget{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!c@{c}}
+\index{c@{c}!potential_eval.h@{potential\-\_\-eval.\-h}}
+\subsubsection[{c}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-P\-T\-Y\-P\-E} $\ast$ c = \&(p-\/$>$c\mbox{[}{\bf ind} $\ast$ {\bf potential\-\_\-chunk}\mbox{]})}}\label{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}
+\hypertarget{potential__eval_8h_ac54d1391e6657558123088943f721021}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!e@{e}}
+\index{e@{e}!potential_eval.h@{potential\-\_\-eval.\-h}}
+\subsubsection[{e}]{\setlength{\rightskip}{0pt plus 5cm}\& e = {\bf ee}}}\label{potential__eval_8h_ac54d1391e6657558123088943f721021}
+\hypertarget{potential__eval_8h_a943e2493231a18a517a97b313f79fb79}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!ee@{ee}}
+\index{ee@{ee}!potential_eval.h@{potential\-\_\-eval.\-h}}
+\subsubsection[{ee}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-P\-T\-Y\-P\-E} ee = {\bf c}\mbox{[}2\mbox{]} $\ast$ {\bf x} + {\bf c}\mbox{[}3\mbox{]}}}\label{potential__eval_8h_a943e2493231a18a517a97b313f79fb79}
+\hypertarget{potential__eval_8h_a07e4e7506998350394e25dcc524f4cc6}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!eff@{eff}}
+\index{eff@{eff}!potential_eval.h@{potential\-\_\-eval.\-h}}
+\subsubsection[{eff}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-P\-T\-Y\-P\-E} eff = {\bf c}\mbox{[}2\mbox{]}}}\label{potential__eval_8h_a07e4e7506998350394e25dcc524f4cc6}
+\hypertarget{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!f@{f}}
+\index{f@{f}!potential_eval.h@{potential\-\_\-eval.\-h}}
+\subsubsection[{f}]{\setlength{\rightskip}{0pt plus 5cm}\& f}}\label{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+\{
+
+    \textcolor{keywordtype}{int} \hyperlink{potential__eval_8h_aa1a517e3e42b3d109bc480c74e3a655c}{ind}, k
+\end{DoxyCode}
+\hypertarget{potential__eval_8h_aa1a517e3e42b3d109bc480c74e3a655c}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!ind@{ind}}
+\index{ind@{ind}!potential_eval.h@{potential\-\_\-eval.\-h}}
+\subsubsection[{ind}]{\setlength{\rightskip}{0pt plus 5cm}ind = {\bf F\-P\-T\-Y\-P\-E\-\_\-\-F\-M\-A\-X}( {\bf F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} , p-\/$>$alpha\mbox{[}0\mbox{]} + {\bf r} $\ast$ (p-\/$>$alpha\mbox{[}1\mbox{]} + {\bf r} $\ast$ p-\/$>$alpha\mbox{[}2\mbox{]}) )}}\label{potential__eval_8h_aa1a517e3e42b3d109bc480c74e3a655c}
+\hypertarget{potential__eval_8h_a2e270fe7ac67bf46f76c75a43b8c130f}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!ir@{ir}}
+\index{ir@{ir}!potential_eval.h@{potential\-\_\-eval.\-h}}
+\subsubsection[{ir}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-P\-T\-Y\-P\-E} ir = 1.\-0 / {\bf r}}}\label{potential__eval_8h_a2e270fe7ac67bf46f76c75a43b8c130f}
+\hypertarget{potential__eval_8h_a62b01ce0f237c5a6af10885d6a3c1726}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!ir12@{ir12}}
+\index{ir12@{ir12}!potential_eval.h@{potential\-\_\-eval.\-h}}
+\subsubsection[{ir12}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-P\-T\-Y\-P\-E} ir12}}\label{potential__eval_8h_a62b01ce0f237c5a6af10885d6a3c1726}
+\hypertarget{potential__eval_8h_a517f865abbf34e3779793f939eff8bb6}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!ir2@{ir2}}
+\index{ir2@{ir2}!potential_eval.h@{potential\-\_\-eval.\-h}}
+\subsubsection[{ir2}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-P\-T\-Y\-P\-E} ir2 = {\bf ir} $\ast$ {\bf ir}}}\label{potential__eval_8h_a517f865abbf34e3779793f939eff8bb6}
+\hypertarget{potential__eval_8h_a986bc39e889b4b37c4a0c1627db91dd4}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!ir4@{ir4}}
+\index{ir4@{ir4}!potential_eval.h@{potential\-\_\-eval.\-h}}
+\subsubsection[{ir4}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-P\-T\-Y\-P\-E} ir4}}\label{potential__eval_8h_a986bc39e889b4b37c4a0c1627db91dd4}
+\hypertarget{potential__eval_8h_af31065e8cc6f5493bca25da25021bf99}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!ir6@{ir6}}
+\index{ir6@{ir6}!potential_eval.h@{potential\-\_\-eval.\-h}}
+\subsubsection[{ir6}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-P\-T\-Y\-P\-E} ir6}}\label{potential__eval_8h_af31065e8cc6f5493bca25da25021bf99}
+\hypertarget{potential__eval_8h_a92aaed300d50590bc36b14bc871fca42}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!kappa@{kappa}}
+\index{kappa@{kappa}!potential_eval.h@{potential\-\_\-eval.\-h}}
+\subsubsection[{kappa}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf F\-P\-T\-Y\-P\-E} kappa = 3.\-0}}\label{potential__eval_8h_a92aaed300d50590bc36b14bc871fca42}
+\hypertarget{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!r@{r}}
+\index{r@{r}!potential_eval.h@{potential\-\_\-eval.\-h}}
+\subsubsection[{r}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-P\-T\-Y\-P\-E} r = {\bf F\-P\-T\-Y\-P\-E\-\_\-\-S\-Q\-R\-T}({\bf r2})}}\label{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}
+\hypertarget{potential__eval_8h_aaa7f6ac275af5eb6de39bc858a218035}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!r2@{r2}}
+\index{r2@{r2}!potential_eval.h@{potential\-\_\-eval.\-h}}
+\subsubsection[{r2}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-P\-T\-Y\-P\-E} $\ast$ r2}}\label{potential__eval_8h_aaa7f6ac275af5eb6de39bc858a218035}
+\hypertarget{potential__eval_8h_adc70e74963b96026291476dfda93d244}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!r\-\_\-in@{r\-\_\-in}}
+\index{r\-\_\-in@{r\-\_\-in}!potential_eval.h@{potential\-\_\-eval.\-h}}
+\subsubsection[{r\-\_\-in}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-P\-T\-Y\-P\-E} $\ast$ r\-\_\-in}}\label{potential__eval_8h_adc70e74963b96026291476dfda93d244}
+\hypertarget{potential__eval_8h_a1e79a72229dc3352be90725b35775d43}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!t1@{t1}}
+\index{t1@{t1}!potential_eval.h@{potential\-\_\-eval.\-h}}
+\subsubsection[{t1}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-P\-T\-Y\-P\-E} t1}}\label{potential__eval_8h_a1e79a72229dc3352be90725b35775d43}
+\hypertarget{potential__eval_8h_a4dfb31114bc4164aaec2364fa4fa25b1}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!t2@{t2}}
+\index{t2@{t2}!potential_eval.h@{potential\-\_\-eval.\-h}}
+\subsubsection[{t2}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-P\-T\-Y\-P\-E} t2}}\label{potential__eval_8h_a4dfb31114bc4164aaec2364fa4fa25b1}
+\hypertarget{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!x@{x}}
+\index{x@{x}!potential_eval.h@{potential\-\_\-eval.\-h}}
+\subsubsection[{x}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-P\-T\-Y\-P\-E} x = ({\bf r} -\/ {\bf c}\mbox{[}0\mbox{]}) $\ast$ {\bf c}\mbox{[}1\mbox{]}}}\label{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}

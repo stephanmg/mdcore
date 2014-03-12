@@ -1,0 +1,1273 @@
+\hypertarget{potential_8c}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/potential.c File Reference}
+\label{potential_8c}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/potential.\-c@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/potential.\-c}}
+}
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$malloc.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include $<$float.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}errs.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fptype.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}potential.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}potential\-\_\-eval.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{potential_8c_af11333bedd11407a5846905d6b08be8c}{vector}(elcount, type)~\hyperlink{runner__dosort_8c_af1cd53fc8178e87ccb66a89ef019d4cc}{\-\_\-\-\_\-attribute\-\_\-\-\_\-}((vector\-\_\-size((elcount)$\ast$sizeof(type)))) type
+\item 
+\#define \hyperlink{potential_8c_a7673862d447029edaf3172ebd94aa28e}{error}(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})~( \hyperlink{potential_8h_a0bf5d59465b0dac8ed0e71ebfbafb3d5}{potential\-\_\-err} = \hyperlink{errs_8h_ae37a9c0e0a0aa4a92dbe64c0f38ed95c}{errs\-\_\-register}( \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id} , \hyperlink{potential_8c_a2a29118c41ae7993a669adeefe284fe2}{potential\-\_\-err\-\_\-msg}\mbox{[}-\/(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{potential_8c_a8f9b6af591bdbf286e2df5741c3265d3}{potential\-\_\-switch} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, double A, double B)
+\begin{DoxyCompactList}\small\item\em Switching function. \end{DoxyCompactList}\item 
+double \hyperlink{potential_8c_a4e1a4159b0cc2e6f9d2138182a63b170}{potential\-\_\-switch\-\_\-p} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, double A, double B)
+\item 
+double \hyperlink{potential_8c_a2dda3fcf90588bf9389076511457f41d}{potential\-\_\-\-L\-J126} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, double A, double B)
+\begin{DoxyCompactList}\small\item\em A basic 12-\/6 Lennard-\/\-Jones potential. \end{DoxyCompactList}\item 
+double \hyperlink{potential_8c_a258e7ce37dea04cb5b6031c73a4548b5}{potential\-\_\-\-L\-J126\-\_\-p} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, double A, double B)
+\begin{DoxyCompactList}\small\item\em A basic 12-\/6 Lennard-\/\-Jones potential (first derivative). \end{DoxyCompactList}\item 
+double \hyperlink{potential_8c_a1c5baa550d870b3dbe422bd92681e08a}{potential\-\_\-\-L\-J126\-\_\-6p} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, double A, double B)
+\begin{DoxyCompactList}\small\item\em A basic 12-\/6 Lennard-\/\-Jones potential (sixth derivative). \end{DoxyCompactList}\item 
+double \hyperlink{potential_8c_a48eae4bf9220d04884b8e13e6782f480}{potential\-\_\-\-Coulomb} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\begin{DoxyCompactList}\small\item\em The Coulomb potential. \end{DoxyCompactList}\item 
+double \hyperlink{potential_8c_a3fb1fe343b871a6c52e01d78e639be85}{potential\-\_\-\-Coulomb\-\_\-p} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\begin{DoxyCompactList}\small\item\em The Coulomb potential (first derivative). \end{DoxyCompactList}\item 
+double \hyperlink{potential_8c_ac6bc14d0864ac6a2e464255ae2a7456c}{potential\-\_\-\-Coulomb\-\_\-6p} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\begin{DoxyCompactList}\small\item\em The\-Coulomb potential (sixth derivative). \end{DoxyCompactList}\item 
+double \hyperlink{potential_8c_ac0f31829e59478e3058040a4ca069d25}{potential\-\_\-\-Ewald} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, double \hyperlink{potential__eval_8h_a92aaed300d50590bc36b14bc871fca42}{kappa})
+\begin{DoxyCompactList}\small\item\em The short-\/range part of an Ewald summation. \end{DoxyCompactList}\item 
+double \hyperlink{potential_8c_a9e5b7ba3c38283ac112420e7d71a1991}{potential\-\_\-\-Ewald\-\_\-p} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, double \hyperlink{potential__eval_8h_a92aaed300d50590bc36b14bc871fca42}{kappa})
+\begin{DoxyCompactList}\small\item\em The short-\/range part of an Ewald summation (first derivative). \end{DoxyCompactList}\item 
+double \hyperlink{potential_8c_a646b849982bf22049a8234879a17c706}{potential\-\_\-\-Ewald\-\_\-6p} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, double \hyperlink{potential__eval_8h_a92aaed300d50590bc36b14bc871fca42}{kappa})
+\begin{DoxyCompactList}\small\item\em The short-\/range part of an Ewald summation (sixth derivative). \end{DoxyCompactList}\item 
+double \hyperlink{potential_8c_a04b6d064987cb3af18c4698c91ae04b5}{potential\-\_\-create\-\_\-harmonic\-\_\-f} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+double \hyperlink{potential_8c_a26e3a98d40ce9438ae3cbb46dae5f736}{potential\-\_\-create\-\_\-harmonic\-\_\-dfdr} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+double \hyperlink{potential_8c_a0b9654780e0235f0d875b4d4c580a2fe}{potential\-\_\-create\-\_\-harmonic\-\_\-d6fdr6} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+struct \hyperlink{structpotential}{potential} $\ast$ \hyperlink{potential_8c_a6559e1240c60b2e6027e4f12ab75b1bf}{potential\-\_\-create\-\_\-harmonic} (double a, double b, double K, double r0, double tol)
+\begin{DoxyCompactList}\small\item\em Creates a harmonic bond \hyperlink{structpotential}{potential}. \end{DoxyCompactList}\item 
+double \hyperlink{potential_8c_a49307eb88c6f7732e4fe2916d81995a5}{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-f} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+double \hyperlink{potential_8c_a7913a3e9a1f5c82f11bb0999eebc3303}{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-dfdr} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+double \hyperlink{potential_8c_a01066af567f2e684564b2b19cdda36dd}{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-d6fdr6} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+struct \hyperlink{structpotential}{potential} $\ast$ \hyperlink{potential_8c_afbb2b76ae1dbf8d6a8a63ee20f56ac44}{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral} (double K, int n, double delta, double tol)
+\begin{DoxyCompactList}\small\item\em Creates a harmonic dihedral \hyperlink{structpotential}{potential}. \end{DoxyCompactList}\item 
+double \hyperlink{potential_8c_ad66810bc848afe9bf9052f3fa2558999}{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-f} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+double \hyperlink{potential_8c_a7d2aa798f266995e18f522205f9cc736}{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-dfdr} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+double \hyperlink{potential_8c_a76a2db4e4fdd42a23fa9a163fc870697}{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-d6fdr6} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+struct \hyperlink{structpotential}{potential} $\ast$ \hyperlink{potential_8c_a66ab48e8dca0ad743a670dc073302d9b}{potential\-\_\-create\-\_\-harmonic\-\_\-angle} (double a, double b, double K, double theta0, double tol)
+\begin{DoxyCompactList}\small\item\em Creates a harmonic angle \hyperlink{structpotential}{potential}. \end{DoxyCompactList}\item 
+double \hyperlink{potential_8c_acd7f59a1339f66b7610d49bc77ef8693}{potential\-\_\-create\-\_\-\-Ewald\-\_\-f} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+double \hyperlink{potential_8c_a36248305499ef36a8bd850e67699db73}{potential\-\_\-create\-\_\-\-Ewald\-\_\-dfdr} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+double \hyperlink{potential_8c_a5b73682cb2171d57babe3f797894205d}{potential\-\_\-create\-\_\-\-Ewald\-\_\-d6fdr6} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+struct \hyperlink{structpotential}{potential} $\ast$ \hyperlink{potential_8c_a7644dc5e1785c13301611e45211ad900}{potential\-\_\-create\-\_\-\-Ewald} (double a, double b, double q, double \hyperlink{potential__eval_8h_a92aaed300d50590bc36b14bc871fca42}{kappa}, double tol)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{structpotential}{potential} representing the real-\/space part of an Ewald potential. \end{DoxyCompactList}\item 
+double \hyperlink{potential_8c_af98de45f0408555e3dc48ca2b50f6674}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-f} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+double \hyperlink{potential_8c_a3cbed765cbb330d34afcb61303051d23}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-dfdr} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+double \hyperlink{potential_8c_a3ec18649d7fd077a6016eb4b36cefd68}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-d6fdr6} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+struct \hyperlink{structpotential}{potential} $\ast$ \hyperlink{potential_8c_a48fe933fa1b9e653b20cfde8e7adfa9a}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald} (double a, double b, double A, double B, double q, double \hyperlink{potential__eval_8h_a92aaed300d50590bc36b14bc871fca42}{kappa}, double tol)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{structpotential}{potential} representing the sum of a 12-\/6 Lennard-\/\-Jones potential and the real-\/space part of an Ewald potential. \end{DoxyCompactList}\item 
+double \hyperlink{potential_8c_a25e641600c07796f4c1e758682cbd3a3}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-f} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+double \hyperlink{potential_8c_a151ac008f44b3ae43eaad9fc25c1c0b6}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-dfdr} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+double \hyperlink{potential_8c_a9bc2910adb61fe2324404d8cf75efee1}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-d6fdr6} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+struct \hyperlink{structpotential}{potential} $\ast$ \hyperlink{potential_8c_a65f37869c39495c2d179977dc2774466}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch} (double a, double b, double A, double B, double q, double \hyperlink{potential__eval_8h_a92aaed300d50590bc36b14bc871fca42}{kappa}, double s, double tol)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{structpotential}{potential} representing the sum of a 12-\/6 Lennard-\/\-Jones potential with a switching distance and the real-\/space part of an Ewald potential. \end{DoxyCompactList}\item 
+double \hyperlink{potential_8c_aff15665803d38f015d7f85c7e7926f57}{potential\-\_\-create\-\_\-\-Coulomb\-\_\-f} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+double \hyperlink{potential_8c_a1913e900c3e0f4de56da2894c05170ae}{potential\-\_\-create\-\_\-\-Coulomb\-\_\-dfdr} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+double \hyperlink{potential_8c_a977ea3046a5015eeb8b96a2b1c3f5072}{potential\-\_\-create\-\_\-\-Coulomb\-\_\-d6fdr6} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+struct \hyperlink{structpotential}{potential} $\ast$ \hyperlink{potential_8c_a4484c29367179e8363bbcf548e9b3c46}{potential\-\_\-create\-\_\-\-Coulomb} (double a, double b, double q, double tol)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{structpotential}{potential} representing a shifted Coulomb potential. \end{DoxyCompactList}\item 
+double \hyperlink{potential_8c_ad928556d9fabc7feb693423dc503f80f}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-f} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+double \hyperlink{potential_8c_a8da837955fa217ccfe0762b4c7decae2}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-dfdr} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+double \hyperlink{potential_8c_affe4927cf3ce8ae13e9c4a5fd0ce1f8e}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-d6fdr6} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+struct \hyperlink{structpotential}{potential} $\ast$ \hyperlink{potential_8c_a36adf470af159daf3d5638998d6bd169}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb} (double a, double b, double A, double B, double q, double tol)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{structpotential}{potential} representing the sum of a 12-\/6 Lennard-\/\-Jones potential and a shifted Coulomb potential. \end{DoxyCompactList}\item 
+double \hyperlink{potential_8c_aff8c88a3269e3f83a8c24faf4720c2c0}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-f} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+double \hyperlink{potential_8c_ae6a2eae1791fbcc322c60806dc71b7d1}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-dfdr} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+double \hyperlink{potential_8c_a17b585ea9cd3673aa846fb76eaff8cc5}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-d6fdr6} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+struct \hyperlink{structpotential}{potential} $\ast$ \hyperlink{potential_8c_aa5a8ba6c5186664e891987f3b38f7828}{potential\-\_\-create\-\_\-\-L\-J126} (double a, double b, double A, double B, double tol)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{structpotential}{potential} representing a 12-\/6 Lennard-\/\-Jones potential. \end{DoxyCompactList}\item 
+double \hyperlink{potential_8c_ac770000a32416f97eac44cc64d941f2f}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-f} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+double \hyperlink{potential_8c_a1d2f2e916e408aeecfb3bd215dac35ce}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-dfdr} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+double \hyperlink{potential_8c_afce27bfb6852b8d6bfb4f1e4d3ca0cac}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-d6fdr6} (double \hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+struct \hyperlink{structpotential}{potential} $\ast$ \hyperlink{potential_8c_a0905a612d4821ca8f3c09e288b13d6c5}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch} (double a, double b, double A, double B, double s, double tol)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{structpotential}{potential} representing a switched 12-\/6 Lennard-\/\-Jones potential. \end{DoxyCompactList}\item 
+void \hyperlink{potential_8c_ae75ae7741689fc1a320787219440cc78}{potential\-\_\-clear} (struct \hyperlink{structpotential}{potential} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Free the memory associated with the given potential. \end{DoxyCompactList}\item 
+int \hyperlink{potential_8c_aafb424271f0b16b0ac6470780ad363cd}{potential\-\_\-init} (struct \hyperlink{structpotential}{potential} $\ast$p, double($\ast$\hyperlink{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}{f})(double), double($\ast$fp)(double), double($\ast$f6p)(double), \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} a, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} b, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} tol)
+\begin{DoxyCompactList}\small\item\em Construct a \hyperlink{structpotential}{potential} from the given function. \end{DoxyCompactList}\item 
+int \hyperlink{potential_8c_acf8e8a5ed6ab3f5d05604e1aff5558f2}{potential\-\_\-getfp} (double($\ast$\hyperlink{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}{f})(double), int n, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$\hyperlink{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{x}, double $\ast$fp)
+\begin{DoxyCompactList}\small\item\em Compute the optimal first derivatives for the given set of nodes. \end{DoxyCompactList}\item 
+int \hyperlink{potential_8c_a391ca420c225848212d6ff31dd869186}{potential\-\_\-getfp\-\_\-fixend} (double($\ast$\hyperlink{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}{f})(double), double fpa, double fpb, int n, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$\hyperlink{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{x}, double $\ast$fp)
+\item 
+int \hyperlink{potential_8c_ae5e983626322c87c83ffbd4332c6a407}{potential\-\_\-getcoeffs} (double($\ast$\hyperlink{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}{f})(double), double($\ast$fp)(double), \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$xi, int n, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$\hyperlink{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{c}, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$err)
+\begin{DoxyCompactList}\small\item\em Compute the interpolation coefficients over a given set of nodes. \end{DoxyCompactList}\item 
+double \hyperlink{potential_8c_ab99189d6e15db64748ab304a3506df79}{potential\-\_\-getalpha} (double($\ast$f6p)(double), double a, double b)
+\begin{DoxyCompactList}\small\item\em Compute the parameter $\alpha$ for the optimal node distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{potential_8c_a0bf5d59465b0dac8ed0e71ebfbafb3d5}{potential\-\_\-err} = \hyperlink{potential_8h_ac3ad4b49b93f0a3d3f06a95e363e0c81}{potential\-\_\-err\-\_\-ok}
+\item 
+\hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{potential_8c_a1b2c1615e34d36b601e068849541ca0f}{c\-\_\-null} \mbox{[}$\,$\mbox{]} = \{ \hyperlink{fptype_8h_a544068c9044a93d25aec046279212165}{F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} , \hyperlink{fptype_8h_a544068c9044a93d25aec046279212165}{F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} , \hyperlink{fptype_8h_a544068c9044a93d25aec046279212165}{F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} , \hyperlink{fptype_8h_a544068c9044a93d25aec046279212165}{F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} , \hyperlink{fptype_8h_a544068c9044a93d25aec046279212165}{F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} , \hyperlink{fptype_8h_a544068c9044a93d25aec046279212165}{F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} , \hyperlink{fptype_8h_a544068c9044a93d25aec046279212165}{F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} , \hyperlink{fptype_8h_a544068c9044a93d25aec046279212165}{F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} \}
+\item 
+struct \hyperlink{structpotential}{potential} \hyperlink{potential_8c_a058952fa985def89ba638aae8ca63fe5}{potential\-\_\-null} = \{ \{ \hyperlink{fptype_8h_a544068c9044a93d25aec046279212165}{F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} , \hyperlink{fptype_8h_a544068c9044a93d25aec046279212165}{F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} , \hyperlink{fptype_8h_a544068c9044a93d25aec046279212165}{F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} , \hyperlink{fptype_8h_a544068c9044a93d25aec046279212165}{F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} \} , \hyperlink{potential_8c_a1b2c1615e34d36b601e068849541ca0f}{c\-\_\-null} , 0.\-0 , D\-B\-L\-\_\-\-M\-A\-X , \hyperlink{potential_8h_a5e9288329d0239eca8ea22a1da4188ba}{potential\-\_\-flag\-\_\-none} , 1 \}
+\item 
+char $\ast$ \hyperlink{potential_8c_a2a29118c41ae7993a669adeefe284fe2}{potential\-\_\-err\-\_\-msg} \mbox{[}6\mbox{]}
+\item 
+double \hyperlink{potential_8c_a29e27c4e27057633e0f58a9ecb24f14e}{potential\-\_\-create\-\_\-harmonic\-\_\-\-K}
+\item 
+double \hyperlink{potential_8c_a4579d67ab63e233700da3193feb33b8b}{potential\-\_\-create\-\_\-harmonic\-\_\-r0}
+\item 
+double \hyperlink{potential_8c_a18efa10f63083e8acb34ee251ac6222d}{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-\-K}
+\item 
+int \hyperlink{potential_8c_ae4711475eeffeb9c4033e7da50532ea5}{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-n}
+\item 
+double \hyperlink{potential_8c_ac803b5e1aa34b905621e3f8a0bf64453}{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-delta}
+\item 
+double \hyperlink{potential_8c_a2c1a7659979f70d58c5dd9703016e071}{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-\-K}
+\item 
+double \hyperlink{potential_8c_a0af525b01a76e0479fdd52ee747e308f}{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-theta0}
+\item 
+double \hyperlink{potential_8c_a5f9d7eca80ae797252f842dbed94eb8d}{potential\-\_\-create\-\_\-\-Ewald\-\_\-q}
+\item 
+double \hyperlink{potential_8c_a26387370e8e8d393d9e3eb8e8b8c9a25}{potential\-\_\-create\-\_\-\-Ewald\-\_\-kappa}
+\item 
+double \hyperlink{potential_8c_aa28273138cfc7628676c33ad8ccda5ec}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-\-A}
+\item 
+double \hyperlink{potential_8c_a553ae1919291257488e208bfba4e613b}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-\-B}
+\item 
+double \hyperlink{potential_8c_a7c39d10dade7ebf883b52737b4aacb28}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-kappa}
+\item 
+double \hyperlink{potential_8c_ac1590e6b83cd982ddb3fe1cbf11b569b}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-q}
+\item 
+double \hyperlink{potential_8c_a427e7d58e7ad7100960ded1bb2b659e4}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-\-A}
+\item 
+double \hyperlink{potential_8c_afacb4b866522547ad5fc9b54740d272c}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-\-B}
+\item 
+double \hyperlink{potential_8c_a2ab4c0bb34cab17a832572ad9bd6dca0}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-kappa}
+\item 
+double \hyperlink{potential_8c_a233ca7807bfbb1072118d9e2584ff1b6}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-q}
+\item 
+double \hyperlink{potential_8c_a3906b158141059aeac483a8334fc17e9}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-s}
+\item 
+double \hyperlink{potential_8c_a5cc1e322a40a71600f392b38254ab532}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-cutoff}
+\item 
+double \hyperlink{potential_8c_a3dbde976a0b79ad0cef13a16f0bfe1e6}{potential\-\_\-create\-\_\-\-Coulomb\-\_\-q}
+\item 
+double \hyperlink{potential_8c_a22ac256c44dd76d53f02257f04b161c8}{potential\-\_\-create\-\_\-\-Coulomb\-\_\-b}
+\item 
+double \hyperlink{potential_8c_af68c697d56b2a287bf115f6778c28046}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-q}
+\item 
+double \hyperlink{potential_8c_ae80b3ede09aa1d7283a6d36523e84d8d}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-b}
+\item 
+double \hyperlink{potential_8c_aa92d533ccba9598535160227507b0eb6}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-\-A}
+\item 
+double \hyperlink{potential_8c_ad09e219c277a433e3ed14ffbd4a83278}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-\-B}
+\item 
+double \hyperlink{potential_8c_a5b0422a1ffb57c9f4d48668f44a53afb}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-A}
+\item 
+double \hyperlink{potential_8c_aadc9cc5576dd1aedeec9d70443b101b5}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-B}
+\item 
+double \hyperlink{potential_8c_aa4a1d56ece406bc27e0eecb7bab29a7b}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-\-A}
+\item 
+double \hyperlink{potential_8c_a4fdf0ac0b5f596024cf7f51bbe22b227}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-\-B}
+\item 
+double \hyperlink{potential_8c_a8d5f10fcfac976a11022a8b2fb84514e}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-s}
+\item 
+double \hyperlink{potential_8c_ac5c37bb77eaa6268d87da1cc47ee8a14}{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-cutoff}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{potential_8c_a7673862d447029edaf3172ebd94aa28e}{\index{potential.\-c@{potential.\-c}!error@{error}}
+\index{error@{error}!potential.c@{potential.\-c}}
+\subsubsection[{error}]{\setlength{\rightskip}{0pt plus 5cm}\#define error(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf id}}
+\end{DoxyParamCaption}
+)~( {\bf potential\-\_\-err} = {\bf errs\-\_\-register}( {\bf id} , {\bf potential\-\_\-err\-\_\-msg}\mbox{[}-\/({\bf id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )}}\label{potential_8c_a7673862d447029edaf3172ebd94aa28e}
+\hypertarget{potential_8c_af11333bedd11407a5846905d6b08be8c}{\index{potential.\-c@{potential.\-c}!vector@{vector}}
+\index{vector@{vector}!potential.c@{potential.\-c}}
+\subsubsection[{vector}]{\setlength{\rightskip}{0pt plus 5cm}\#define vector(
+\begin{DoxyParamCaption}
+\item[{}]{elcount, }
+\item[{}]{type}
+\end{DoxyParamCaption}
+)~{\bf \-\_\-\-\_\-attribute\-\_\-\-\_\-}((vector\-\_\-size((elcount)$\ast$sizeof(type)))) type}}\label{potential_8c_af11333bedd11407a5846905d6b08be8c}
+Macro to easily define vector types. 
+
+\subsection{Function Documentation}
+\hypertarget{potential_8c_ae75ae7741689fc1a320787219440cc78}{\index{potential.\-c@{potential.\-c}!potential\-\_\-clear@{potential\-\_\-clear}}
+\index{potential\-\_\-clear@{potential\-\_\-clear}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-clear}]{\setlength{\rightskip}{0pt plus 5cm}void potential\-\_\-clear (
+\begin{DoxyParamCaption}
+\item[{struct {\bf potential} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_ae75ae7741689fc1a320787219440cc78}
+
+
+Free the memory associated with the given potential. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Pointer to the \hyperlink{structpotential}{potential} to clear. \\
+\hline
+\end{DoxyParams}
+\hypertarget{potential_8c_a48eae4bf9220d04884b8e13e6782f480}{\index{potential.\-c@{potential.\-c}!potential\-\_\-\-Coulomb@{potential\-\_\-\-Coulomb}}
+\index{potential\-\_\-\-Coulomb@{potential\-\_\-\-Coulomb}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-\-Coulomb}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-\-Coulomb (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{potential_8c_a48eae4bf9220d04884b8e13e6782f480}
+
+
+The Coulomb potential. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The interaction radius.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The potential $ \frac{1}{4\pi r} $ evaluated at {\ttfamily r}. 
+\end{DoxyReturn}
+\hypertarget{potential_8c_ac6bc14d0864ac6a2e464255ae2a7456c}{\index{potential.\-c@{potential.\-c}!potential\-\_\-\-Coulomb\-\_\-6p@{potential\-\_\-\-Coulomb\-\_\-6p}}
+\index{potential\-\_\-\-Coulomb\-\_\-6p@{potential\-\_\-\-Coulomb\-\_\-6p}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-\-Coulomb\-\_\-6p}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-\-Coulomb\-\_\-6p (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{potential_8c_ac6bc14d0864ac6a2e464255ae2a7456c}
+
+
+The\-Coulomb potential (sixth derivative). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The interaction radius.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The sixth derivative of the potential $ \frac{1}{4\pi r} $ evaluated at {\ttfamily r}. 
+\end{DoxyReturn}
+\hypertarget{potential_8c_a3fb1fe343b871a6c52e01d78e639be85}{\index{potential.\-c@{potential.\-c}!potential\-\_\-\-Coulomb\-\_\-p@{potential\-\_\-\-Coulomb\-\_\-p}}
+\index{potential\-\_\-\-Coulomb\-\_\-p@{potential\-\_\-\-Coulomb\-\_\-p}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-\-Coulomb\-\_\-p}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-\-Coulomb\-\_\-p (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{potential_8c_a3fb1fe343b871a6c52e01d78e639be85}
+
+
+The Coulomb potential (first derivative). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The interaction radius.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The first derivative of the potential $ \frac{1}{4\pi r} $ evaluated at {\ttfamily r}. 
+\end{DoxyReturn}
+\hypertarget{potential_8c_a4484c29367179e8363bbcf548e9b3c46}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-Coulomb@{potential\-\_\-create\-\_\-\-Coulomb}}
+\index{potential\-\_\-create\-\_\-\-Coulomb@{potential\-\_\-create\-\_\-\-Coulomb}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-Coulomb}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf potential}$\ast$ potential\-\_\-create\-\_\-\-Coulomb (
+\begin{DoxyParamCaption}
+\item[{double}]{a, }
+\item[{double}]{b, }
+\item[{double}]{q, }
+\item[{double}]{tol}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a4484c29367179e8363bbcf548e9b3c46}
+
+
+Creates a \hyperlink{structpotential}{potential} representing a shifted Coulomb potential. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The smallest radius for which the potential will be constructed. \\
+\hline
+{\em b} & The largest radius for which the potential will be constructed. \\
+\hline
+{\em q} & The charge scaling of the potential. \\
+\hline
+{\em tol} & The tolerance to which the interpolation should match the exact potential.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A newly-\/allocated \hyperlink{structpotential}{potential} representing the potential $ \frac{1}{4\pi r} $ in $[a,b]$ or {\ttfamily N\-U\-L\-L} on error (see \hyperlink{potential_8h_a0bf5d59465b0dac8ed0e71ebfbafb3d5}{potential\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{potential_8c_a977ea3046a5015eeb8b96a2b1c3f5072}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-Coulomb\-\_\-d6fdr6@{potential\-\_\-create\-\_\-\-Coulomb\-\_\-d6fdr6}}
+\index{potential\-\_\-create\-\_\-\-Coulomb\-\_\-d6fdr6@{potential\-\_\-create\-\_\-\-Coulomb\-\_\-d6fdr6}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-Coulomb\-\_\-d6fdr6}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-Coulomb\-\_\-d6fdr6 (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a977ea3046a5015eeb8b96a2b1c3f5072}
+\hypertarget{potential_8c_a1913e900c3e0f4de56da2894c05170ae}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-Coulomb\-\_\-dfdr@{potential\-\_\-create\-\_\-\-Coulomb\-\_\-dfdr}}
+\index{potential\-\_\-create\-\_\-\-Coulomb\-\_\-dfdr@{potential\-\_\-create\-\_\-\-Coulomb\-\_\-dfdr}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-Coulomb\-\_\-dfdr}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-Coulomb\-\_\-dfdr (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a1913e900c3e0f4de56da2894c05170ae}
+\hypertarget{potential_8c_aff15665803d38f015d7f85c7e7926f57}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-Coulomb\-\_\-f@{potential\-\_\-create\-\_\-\-Coulomb\-\_\-f}}
+\index{potential\-\_\-create\-\_\-\-Coulomb\-\_\-f@{potential\-\_\-create\-\_\-\-Coulomb\-\_\-f}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-Coulomb\-\_\-f}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-Coulomb\-\_\-f (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_aff15665803d38f015d7f85c7e7926f57}
+\hypertarget{potential_8c_a7644dc5e1785c13301611e45211ad900}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-Ewald@{potential\-\_\-create\-\_\-\-Ewald}}
+\index{potential\-\_\-create\-\_\-\-Ewald@{potential\-\_\-create\-\_\-\-Ewald}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-Ewald}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf potential}$\ast$ potential\-\_\-create\-\_\-\-Ewald (
+\begin{DoxyParamCaption}
+\item[{double}]{a, }
+\item[{double}]{b, }
+\item[{double}]{q, }
+\item[{double}]{kappa, }
+\item[{double}]{tol}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a7644dc5e1785c13301611e45211ad900}
+
+
+Creates a \hyperlink{structpotential}{potential} representing the real-\/space part of an Ewald potential. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The smallest radius for which the potential will be constructed. \\
+\hline
+{\em b} & The largest radius for which the potential will be constructed. \\
+\hline
+{\em q} & The charge scaling of the potential. \\
+\hline
+{\em kappa} & The screening distance of the Ewald potential. \\
+\hline
+{\em tol} & The tolerance to which the interpolation should match the exact potential.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A newly-\/allocated \hyperlink{structpotential}{potential} representing the potential $ q\frac{\mbox{erfc}(\kappa r}{r} $ in $[a,b]$ or {\ttfamily N\-U\-L\-L} on error (see \hyperlink{potential_8h_a0bf5d59465b0dac8ed0e71ebfbafb3d5}{potential\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{potential_8c_a5b73682cb2171d57babe3f797894205d}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-Ewald\-\_\-d6fdr6@{potential\-\_\-create\-\_\-\-Ewald\-\_\-d6fdr6}}
+\index{potential\-\_\-create\-\_\-\-Ewald\-\_\-d6fdr6@{potential\-\_\-create\-\_\-\-Ewald\-\_\-d6fdr6}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-Ewald\-\_\-d6fdr6}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-Ewald\-\_\-d6fdr6 (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a5b73682cb2171d57babe3f797894205d}
+\hypertarget{potential_8c_a36248305499ef36a8bd850e67699db73}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-Ewald\-\_\-dfdr@{potential\-\_\-create\-\_\-\-Ewald\-\_\-dfdr}}
+\index{potential\-\_\-create\-\_\-\-Ewald\-\_\-dfdr@{potential\-\_\-create\-\_\-\-Ewald\-\_\-dfdr}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-Ewald\-\_\-dfdr}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-Ewald\-\_\-dfdr (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a36248305499ef36a8bd850e67699db73}
+\hypertarget{potential_8c_acd7f59a1339f66b7610d49bc77ef8693}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-Ewald\-\_\-f@{potential\-\_\-create\-\_\-\-Ewald\-\_\-f}}
+\index{potential\-\_\-create\-\_\-\-Ewald\-\_\-f@{potential\-\_\-create\-\_\-\-Ewald\-\_\-f}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-Ewald\-\_\-f}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-Ewald\-\_\-f (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_acd7f59a1339f66b7610d49bc77ef8693}
+\hypertarget{potential_8c_a6559e1240c60b2e6027e4f12ab75b1bf}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-harmonic@{potential\-\_\-create\-\_\-harmonic}}
+\index{potential\-\_\-create\-\_\-harmonic@{potential\-\_\-create\-\_\-harmonic}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-harmonic}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf potential}$\ast$ potential\-\_\-create\-\_\-harmonic (
+\begin{DoxyParamCaption}
+\item[{double}]{a, }
+\item[{double}]{b, }
+\item[{double}]{K, }
+\item[{double}]{r0, }
+\item[{double}]{tol}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a6559e1240c60b2e6027e4f12ab75b1bf}
+
+
+Creates a harmonic bond \hyperlink{structpotential}{potential}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The smallest radius for which the potential will be constructed. \\
+\hline
+{\em b} & The largest radius for which the potential will be constructed. \\
+\hline
+{\em K} & The energy of the bond. \\
+\hline
+{\em r0} & The minimum energy distance. \\
+\hline
+{\em tol} & The tolerance to which the interpolation should match the exact potential.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A newly-\/allocated \hyperlink{structpotential}{potential} representing the potential $ K(r-r_0)^2 $ in $[a,b]$ or {\ttfamily N\-U\-L\-L} on error (see \hyperlink{potential_8h_a0bf5d59465b0dac8ed0e71ebfbafb3d5}{potential\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{potential_8c_a66ab48e8dca0ad743a670dc073302d9b}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-harmonic\-\_\-angle@{potential\-\_\-create\-\_\-harmonic\-\_\-angle}}
+\index{potential\-\_\-create\-\_\-harmonic\-\_\-angle@{potential\-\_\-create\-\_\-harmonic\-\_\-angle}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-harmonic\-\_\-angle}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf potential}$\ast$ potential\-\_\-create\-\_\-harmonic\-\_\-angle (
+\begin{DoxyParamCaption}
+\item[{double}]{a, }
+\item[{double}]{b, }
+\item[{double}]{K, }
+\item[{double}]{theta0, }
+\item[{double}]{tol}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a66ab48e8dca0ad743a670dc073302d9b}
+
+
+Creates a harmonic angle \hyperlink{structpotential}{potential}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The smallest angle for which the potential will be constructed. \\
+\hline
+{\em b} & The largest angle for which the potential will be constructed. \\
+\hline
+{\em K} & The energy of the angle. \\
+\hline
+{\em theta0} & The minimum energy angle. \\
+\hline
+{\em tol} & The tolerance to which the interpolation should match the exact potential.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A newly-\/allocated \hyperlink{structpotential}{potential} representing the potential $ K(\arccos(r)-r_0)^2 $ in $[a,b]$ or {\ttfamily N\-U\-L\-L} on error (see \hyperlink{potential_8h_a0bf5d59465b0dac8ed0e71ebfbafb3d5}{potential\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{potential_8c_a76a2db4e4fdd42a23fa9a163fc870697}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-d6fdr6@{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-d6fdr6}}
+\index{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-d6fdr6@{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-d6fdr6}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-d6fdr6}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-d6fdr6 (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a76a2db4e4fdd42a23fa9a163fc870697}
+\hypertarget{potential_8c_a7d2aa798f266995e18f522205f9cc736}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-dfdr@{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-dfdr}}
+\index{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-dfdr@{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-dfdr}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-dfdr}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-dfdr (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a7d2aa798f266995e18f522205f9cc736}
+\hypertarget{potential_8c_ad66810bc848afe9bf9052f3fa2558999}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-f@{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-f}}
+\index{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-f@{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-f}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-f}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-f (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_ad66810bc848afe9bf9052f3fa2558999}
+\hypertarget{potential_8c_a0b9654780e0235f0d875b4d4c580a2fe}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-harmonic\-\_\-d6fdr6@{potential\-\_\-create\-\_\-harmonic\-\_\-d6fdr6}}
+\index{potential\-\_\-create\-\_\-harmonic\-\_\-d6fdr6@{potential\-\_\-create\-\_\-harmonic\-\_\-d6fdr6}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-harmonic\-\_\-d6fdr6}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-harmonic\-\_\-d6fdr6 (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a0b9654780e0235f0d875b4d4c580a2fe}
+\hypertarget{potential_8c_a26e3a98d40ce9438ae3cbb46dae5f736}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-harmonic\-\_\-dfdr@{potential\-\_\-create\-\_\-harmonic\-\_\-dfdr}}
+\index{potential\-\_\-create\-\_\-harmonic\-\_\-dfdr@{potential\-\_\-create\-\_\-harmonic\-\_\-dfdr}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-harmonic\-\_\-dfdr}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-harmonic\-\_\-dfdr (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a26e3a98d40ce9438ae3cbb46dae5f736}
+\hypertarget{potential_8c_afbb2b76ae1dbf8d6a8a63ee20f56ac44}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-harmonic\-\_\-dihedral@{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral}}
+\index{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral@{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf potential}$\ast$ potential\-\_\-create\-\_\-harmonic\-\_\-dihedral (
+\begin{DoxyParamCaption}
+\item[{double}]{K, }
+\item[{int}]{n, }
+\item[{double}]{delta, }
+\item[{double}]{tol}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_afbb2b76ae1dbf8d6a8a63ee20f56ac44}
+
+
+Creates a harmonic dihedral \hyperlink{structpotential}{potential}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em K} & The energy of the dihedral. \\
+\hline
+{\em n} & The multiplicity of the dihedral. \\
+\hline
+{\em delta} & The minimum energy dihedral. \\
+\hline
+{\em tol} & The tolerance to which the interpolation should match the exact potential.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A newly-\/allocated \hyperlink{structpotential}{potential} representing the potential $ K(1 + \cos(n\arccos(r)-delta) $ in $[-1,1]$ or {\ttfamily N\-U\-L\-L} on error (see \hyperlink{potential_8h_a0bf5d59465b0dac8ed0e71ebfbafb3d5}{potential\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{potential_8c_a01066af567f2e684564b2b19cdda36dd}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-d6fdr6@{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-d6fdr6}}
+\index{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-d6fdr6@{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-d6fdr6}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-d6fdr6}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-d6fdr6 (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a01066af567f2e684564b2b19cdda36dd}
+\hypertarget{potential_8c_a7913a3e9a1f5c82f11bb0999eebc3303}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-dfdr@{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-dfdr}}
+\index{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-dfdr@{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-dfdr}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-dfdr}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-dfdr (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a7913a3e9a1f5c82f11bb0999eebc3303}
+\hypertarget{potential_8c_a49307eb88c6f7732e4fe2916d81995a5}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-f@{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-f}}
+\index{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-f@{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-f}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-f}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-f (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a49307eb88c6f7732e4fe2916d81995a5}
+\hypertarget{potential_8c_a04b6d064987cb3af18c4698c91ae04b5}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-harmonic\-\_\-f@{potential\-\_\-create\-\_\-harmonic\-\_\-f}}
+\index{potential\-\_\-create\-\_\-harmonic\-\_\-f@{potential\-\_\-create\-\_\-harmonic\-\_\-f}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-harmonic\-\_\-f}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-harmonic\-\_\-f (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a04b6d064987cb3af18c4698c91ae04b5}
+\hypertarget{potential_8c_aa5a8ba6c5186664e891987f3b38f7828}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126@{potential\-\_\-create\-\_\-\-L\-J126}}
+\index{potential\-\_\-create\-\_\-\-L\-J126@{potential\-\_\-create\-\_\-\-L\-J126}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf potential}$\ast$ potential\-\_\-create\-\_\-\-L\-J126 (
+\begin{DoxyParamCaption}
+\item[{double}]{a, }
+\item[{double}]{b, }
+\item[{double}]{A, }
+\item[{double}]{B, }
+\item[{double}]{tol}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_aa5a8ba6c5186664e891987f3b38f7828}
+
+
+Creates a \hyperlink{structpotential}{potential} representing a 12-\/6 Lennard-\/\-Jones potential. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The smallest radius for which the potential will be constructed. \\
+\hline
+{\em b} & The largest radius for which the potential will be constructed. \\
+\hline
+{\em A} & The first parameter of the Lennard-\/\-Jones potential. \\
+\hline
+{\em B} & The second parameter of the Lennard-\/\-Jones potential. \\
+\hline
+{\em tol} & The tolerance to which the interpolation should match the exact potential.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A newly-\/allocated \hyperlink{structpotential}{potential} representing the potential $ \left( \frac{A}{r^{12}} - \frac{B}{r^6} \right) $ in $[a,b]$ or {\ttfamily N\-U\-L\-L} on error (see \hyperlink{potential_8h_a0bf5d59465b0dac8ed0e71ebfbafb3d5}{potential\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{potential_8c_a36adf470af159daf3d5638998d6bd169}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf potential}$\ast$ potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb (
+\begin{DoxyParamCaption}
+\item[{double}]{a, }
+\item[{double}]{b, }
+\item[{double}]{A, }
+\item[{double}]{B, }
+\item[{double}]{q, }
+\item[{double}]{tol}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a36adf470af159daf3d5638998d6bd169}
+
+
+Creates a \hyperlink{structpotential}{potential} representing the sum of a 12-\/6 Lennard-\/\-Jones potential and a shifted Coulomb potential. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The smallest radius for which the potential will be constructed. \\
+\hline
+{\em b} & The largest radius for which the potential will be constructed. \\
+\hline
+{\em A} & The first parameter of the Lennard-\/\-Jones potential. \\
+\hline
+{\em B} & The second parameter of the Lennard-\/\-Jones potential. \\
+\hline
+{\em q} & The charge scaling of the potential. \\
+\hline
+{\em tol} & The tolerance to which the interpolation should match the exact potential.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A newly-\/allocated \hyperlink{structpotential}{potential} representing the potential $ \left( \frac{A}{r^{12}} - \frac{B}{r^6} \right) $ in $[a,b]$ or {\ttfamily N\-U\-L\-L} on error (see \hyperlink{potential_8h_a0bf5d59465b0dac8ed0e71ebfbafb3d5}{potential\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{potential_8c_affe4927cf3ce8ae13e9c4a5fd0ce1f8e}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-d6fdr6@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-d6fdr6}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-d6fdr6@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-d6fdr6}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-d6fdr6}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-d6fdr6 (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_affe4927cf3ce8ae13e9c4a5fd0ce1f8e}
+\hypertarget{potential_8c_a8da837955fa217ccfe0762b4c7decae2}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-dfdr@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-dfdr}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-dfdr@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-dfdr}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-dfdr}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-dfdr (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a8da837955fa217ccfe0762b4c7decae2}
+\hypertarget{potential_8c_ad928556d9fabc7feb693423dc503f80f}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-f@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-f}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-f@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-f}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-f}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-f (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_ad928556d9fabc7feb693423dc503f80f}
+\hypertarget{potential_8c_a17b585ea9cd3673aa846fb76eaff8cc5}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-d6fdr6@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-d6fdr6}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-d6fdr6@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-d6fdr6}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-d6fdr6}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-d6fdr6 (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a17b585ea9cd3673aa846fb76eaff8cc5}
+\hypertarget{potential_8c_ae6a2eae1791fbcc322c60806dc71b7d1}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-dfdr@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-dfdr}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-dfdr@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-dfdr}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-dfdr}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-dfdr (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_ae6a2eae1791fbcc322c60806dc71b7d1}
+\hypertarget{potential_8c_a48fe933fa1b9e653b20cfde8e7adfa9a}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf potential}$\ast$ potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald (
+\begin{DoxyParamCaption}
+\item[{double}]{a, }
+\item[{double}]{b, }
+\item[{double}]{A, }
+\item[{double}]{B, }
+\item[{double}]{q, }
+\item[{double}]{kappa, }
+\item[{double}]{tol}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a48fe933fa1b9e653b20cfde8e7adfa9a}
+
+
+Creates a \hyperlink{structpotential}{potential} representing the sum of a 12-\/6 Lennard-\/\-Jones potential and the real-\/space part of an Ewald potential. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The smallest radius for which the potential will be constructed. \\
+\hline
+{\em b} & The largest radius for which the potential will be constructed. \\
+\hline
+{\em A} & The first parameter of the Lennard-\/\-Jones potential. \\
+\hline
+{\em B} & The second parameter of the Lennard-\/\-Jones potential. \\
+\hline
+{\em q} & The charge scaling of the potential. \\
+\hline
+{\em kappa} & The screening distance of the Ewald potential. \\
+\hline
+{\em tol} & The tolerance to which the interpolation should match the exact potential.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A newly-\/allocated \hyperlink{structpotential}{potential} representing the potential $ \left( \frac{A}{r^{12}} - \frac{B}{r^6} \right) $ in $[a,b]$ or {\ttfamily N\-U\-L\-L} on error (see \hyperlink{potential_8h_a0bf5d59465b0dac8ed0e71ebfbafb3d5}{potential\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{potential_8c_a3ec18649d7fd077a6016eb4b36cefd68}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-d6fdr6@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-d6fdr6}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-d6fdr6@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-d6fdr6}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-d6fdr6}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-d6fdr6 (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a3ec18649d7fd077a6016eb4b36cefd68}
+\hypertarget{potential_8c_a3cbed765cbb330d34afcb61303051d23}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-dfdr@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-dfdr}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-dfdr@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-dfdr}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-dfdr}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-dfdr (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a3cbed765cbb330d34afcb61303051d23}
+\hypertarget{potential_8c_af98de45f0408555e3dc48ca2b50f6674}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-f@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-f}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-f@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-f}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-f}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-f (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_af98de45f0408555e3dc48ca2b50f6674}
+\hypertarget{potential_8c_a65f37869c39495c2d179977dc2774466}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf potential}$\ast$ potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch (
+\begin{DoxyParamCaption}
+\item[{double}]{a, }
+\item[{double}]{b, }
+\item[{double}]{A, }
+\item[{double}]{B, }
+\item[{double}]{q, }
+\item[{double}]{kappa, }
+\item[{double}]{s, }
+\item[{double}]{tol}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a65f37869c39495c2d179977dc2774466}
+
+
+Creates a \hyperlink{structpotential}{potential} representing the sum of a 12-\/6 Lennard-\/\-Jones potential with a switching distance and the real-\/space part of an Ewald potential. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The smallest radius for which the potential will be constructed. \\
+\hline
+{\em b} & The largest radius for which the potential will be constructed. \\
+\hline
+{\em A} & The first parameter of the Lennard-\/\-Jones potential. \\
+\hline
+{\em B} & The second parameter of the Lennard-\/\-Jones potential. \\
+\hline
+{\em q} & The charge scaling of the potential. \\
+\hline
+{\em s} & The switching distance. \\
+\hline
+{\em kappa} & The screening distance of the Ewald potential. \\
+\hline
+{\em tol} & The tolerance to which the interpolation should match the exact potential.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A newly-\/allocated \hyperlink{structpotential}{potential} representing the potential $ \left( \frac{A}{r^{12}} - \frac{B}{r^6} \right) $ in $[a,b]$ or {\ttfamily N\-U\-L\-L} on error (see \hyperlink{potential_8h_a0bf5d59465b0dac8ed0e71ebfbafb3d5}{potential\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{potential_8c_a9bc2910adb61fe2324404d8cf75efee1}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-d6fdr6@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-d6fdr6}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-d6fdr6@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-d6fdr6}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-d6fdr6}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-d6fdr6 (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a9bc2910adb61fe2324404d8cf75efee1}
+\hypertarget{potential_8c_a151ac008f44b3ae43eaad9fc25c1c0b6}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-dfdr@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-dfdr}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-dfdr@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-dfdr}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-dfdr}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-dfdr (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a151ac008f44b3ae43eaad9fc25c1c0b6}
+\hypertarget{potential_8c_a25e641600c07796f4c1e758682cbd3a3}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-f@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-f}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-f@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-f}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-f}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-f (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a25e641600c07796f4c1e758682cbd3a3}
+\hypertarget{potential_8c_aff8c88a3269e3f83a8c24faf4720c2c0}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-f@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-f}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-f@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-f}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-f}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-f (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_aff8c88a3269e3f83a8c24faf4720c2c0}
+\hypertarget{potential_8c_a0905a612d4821ca8f3c09e288b13d6c5}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf potential}$\ast$ potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch (
+\begin{DoxyParamCaption}
+\item[{double}]{a, }
+\item[{double}]{b, }
+\item[{double}]{A, }
+\item[{double}]{B, }
+\item[{double}]{s, }
+\item[{double}]{tol}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a0905a612d4821ca8f3c09e288b13d6c5}
+
+
+Creates a \hyperlink{structpotential}{potential} representing a switched 12-\/6 Lennard-\/\-Jones potential. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The smallest radius for which the potential will be constructed. \\
+\hline
+{\em b} & The largest radius for which the potential will be constructed. \\
+\hline
+{\em A} & The first parameter of the Lennard-\/\-Jones potential. \\
+\hline
+{\em B} & The second parameter of the Lennard-\/\-Jones potential. \\
+\hline
+{\em s} & The switchting length \\
+\hline
+{\em tol} & The tolerance to which the interpolation should match the exact potential.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A newly-\/allocated \hyperlink{structpotential}{potential} representing the potential $ \left( \frac{A}{r^{12}} - \frac{B}{r^6} \right) $ in $[a,b]$ or {\ttfamily N\-U\-L\-L} on error (see \hyperlink{potential_8h_a0bf5d59465b0dac8ed0e71ebfbafb3d5}{potential\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{potential_8c_afce27bfb6852b8d6bfb4f1e4d3ca0cac}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-d6fdr6@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-d6fdr6}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-d6fdr6@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-d6fdr6}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-d6fdr6}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-d6fdr6 (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_afce27bfb6852b8d6bfb4f1e4d3ca0cac}
+\hypertarget{potential_8c_a1d2f2e916e408aeecfb3bd215dac35ce}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-dfdr@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-dfdr}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-dfdr@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-dfdr}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-dfdr}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-dfdr (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a1d2f2e916e408aeecfb3bd215dac35ce}
+\hypertarget{potential_8c_ac770000a32416f97eac44cc64d941f2f}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-f@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-f}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-f@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-f}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-f}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-f (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_ac770000a32416f97eac44cc64d941f2f}
+\hypertarget{potential_8c_ac0f31829e59478e3058040a4ca069d25}{\index{potential.\-c@{potential.\-c}!potential\-\_\-\-Ewald@{potential\-\_\-\-Ewald}}
+\index{potential\-\_\-\-Ewald@{potential\-\_\-\-Ewald}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-\-Ewald}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-\-Ewald (
+\begin{DoxyParamCaption}
+\item[{double}]{r, }
+\item[{double}]{kappa}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{potential_8c_ac0f31829e59478e3058040a4ca069d25}
+
+
+The short-\/range part of an Ewald summation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The interaction radius. \\
+\hline
+{\em kappa} & The screening length of the Ewald summation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The potential $ \frac{\mbox{erfc}( \kappa r )}{r} $ evaluated at {\ttfamily r}. 
+\end{DoxyReturn}
+\hypertarget{potential_8c_a646b849982bf22049a8234879a17c706}{\index{potential.\-c@{potential.\-c}!potential\-\_\-\-Ewald\-\_\-6p@{potential\-\_\-\-Ewald\-\_\-6p}}
+\index{potential\-\_\-\-Ewald\-\_\-6p@{potential\-\_\-\-Ewald\-\_\-6p}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-\-Ewald\-\_\-6p}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-\-Ewald\-\_\-6p (
+\begin{DoxyParamCaption}
+\item[{double}]{r, }
+\item[{double}]{kappa}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{potential_8c_a646b849982bf22049a8234879a17c706}
+
+
+The short-\/range part of an Ewald summation (sixth derivative). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The interaction radius. \\
+\hline
+{\em kappa} & The screening length of the Ewald summation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The sixth derivative of the potential $ \frac{\mbox{erfc}( \kappa r )}{r} $ evaluated at {\ttfamily r}. 
+\end{DoxyReturn}
+\hypertarget{potential_8c_a9e5b7ba3c38283ac112420e7d71a1991}{\index{potential.\-c@{potential.\-c}!potential\-\_\-\-Ewald\-\_\-p@{potential\-\_\-\-Ewald\-\_\-p}}
+\index{potential\-\_\-\-Ewald\-\_\-p@{potential\-\_\-\-Ewald\-\_\-p}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-\-Ewald\-\_\-p}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-\-Ewald\-\_\-p (
+\begin{DoxyParamCaption}
+\item[{double}]{r, }
+\item[{double}]{kappa}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{potential_8c_a9e5b7ba3c38283ac112420e7d71a1991}
+
+
+The short-\/range part of an Ewald summation (first derivative). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The interaction radius. \\
+\hline
+{\em kappa} & The screening length of the Ewald summation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The first derivative of the potential $ \frac{\mbox{erfc}( \kappa r )}{r} $ evaluated at {\ttfamily r}. 
+\end{DoxyReturn}
+\hypertarget{potential_8c_ab99189d6e15db64748ab304a3506df79}{\index{potential.\-c@{potential.\-c}!potential\-\_\-getalpha@{potential\-\_\-getalpha}}
+\index{potential\-\_\-getalpha@{potential\-\_\-getalpha}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-getalpha}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-getalpha (
+\begin{DoxyParamCaption}
+\item[{double($\ast$)(double)}]{f6p, }
+\item[{double}]{a, }
+\item[{double}]{b}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_ab99189d6e15db64748ab304a3506df79}
+
+
+Compute the parameter $\alpha$ for the optimal node distribution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f6p} & Pointer to a function representing the 6th derivative of the interpoland. \\
+\hline
+{\em a} & Left limit of the interpolation. \\
+\hline
+{\em b} & Right limit of the interpolation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The computed value for $\alpha$.
+\end{DoxyReturn}
+The value $\alpha$ is computed using Brent's algortihm to 4 decimal digits. \hypertarget{potential_8c_ae5e983626322c87c83ffbd4332c6a407}{\index{potential.\-c@{potential.\-c}!potential\-\_\-getcoeffs@{potential\-\_\-getcoeffs}}
+\index{potential\-\_\-getcoeffs@{potential\-\_\-getcoeffs}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-getcoeffs}]{\setlength{\rightskip}{0pt plus 5cm}int potential\-\_\-getcoeffs (
+\begin{DoxyParamCaption}
+\item[{double($\ast$)(double)}]{f, }
+\item[{double($\ast$)(double)}]{fp, }
+\item[{{\bf F\-P\-T\-Y\-P\-E} $\ast$}]{xi, }
+\item[{int}]{n, }
+\item[{{\bf F\-P\-T\-Y\-P\-E} $\ast$}]{c, }
+\item[{{\bf F\-P\-T\-Y\-P\-E} $\ast$}]{err}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_ae5e983626322c87c83ffbd4332c6a407}
+
+
+Compute the interpolation coefficients over a given set of nodes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Pointer to the function to be interpolated. \\
+\hline
+{\em fp} & Pointer to the first derivative of {\ttfamily f}. \\
+\hline
+{\em xi} & Pointer to an array of nodes between whicht the function {\ttfamily f} will be interpolated. \\
+\hline
+{\em n} & Number of nodes in {\ttfamily xi}. \\
+\hline
+{\em c} & Pointer to an array in which to store the interpolation coefficients. \\
+\hline
+{\em err} & Pointer to a floating-\/point value in which an approximation of the interpolation error, relative to the maximum of f in each interval, is stored.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{potential_8h_ac3ad4b49b93f0a3d3f06a95e363e0c81}{potential\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{potential_8h_a0bf5d59465b0dac8ed0e71ebfbafb3d5}{potential\-\_\-err}).
+\end{DoxyReturn}
+Compute the coefficients of the function {\ttfamily f} with derivative {\ttfamily fp} over the {\ttfamily n} intervals between the {\ttfamily xi} and store an estimate of the maximum locally relative interpolation error in {\ttfamily err}.
+
+The array to which {\ttfamily c} points must be large enough to hold at least \hyperlink{potential_8h_acc98c138e7592961b5680ae550a42640}{potential\-\_\-degree} x {\ttfamily n} values of type \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E}. \hypertarget{potential_8c_acf8e8a5ed6ab3f5d05604e1aff5558f2}{\index{potential.\-c@{potential.\-c}!potential\-\_\-getfp@{potential\-\_\-getfp}}
+\index{potential\-\_\-getfp@{potential\-\_\-getfp}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-getfp}]{\setlength{\rightskip}{0pt plus 5cm}int potential\-\_\-getfp (
+\begin{DoxyParamCaption}
+\item[{double($\ast$)(double)}]{f, }
+\item[{int}]{n, }
+\item[{{\bf F\-P\-T\-Y\-P\-E} $\ast$}]{x, }
+\item[{double $\ast$}]{fp}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_acf8e8a5ed6ab3f5d05604e1aff5558f2}
+
+
+Compute the optimal first derivatives for the given set of nodes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Pointer to the function to be interpolated. \\
+\hline
+{\em n} & Number of intervals. \\
+\hline
+{\em xi} & Pointer to an array of nodes between whicht the function {\ttfamily f} will be interpolated. \\
+\hline
+{\em fp} & Pointer to an array in which to store the first derivatives of {\ttfamily f}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{potential_8h_ac3ad4b49b93f0a3d3f06a95e363e0c81}{potential\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{potential_8h_a0bf5d59465b0dac8ed0e71ebfbafb3d5}{potential\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{potential_8c_a391ca420c225848212d6ff31dd869186}{\index{potential.\-c@{potential.\-c}!potential\-\_\-getfp\-\_\-fixend@{potential\-\_\-getfp\-\_\-fixend}}
+\index{potential\-\_\-getfp\-\_\-fixend@{potential\-\_\-getfp\-\_\-fixend}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-getfp\-\_\-fixend}]{\setlength{\rightskip}{0pt plus 5cm}int potential\-\_\-getfp\-\_\-fixend (
+\begin{DoxyParamCaption}
+\item[{double($\ast$)(double)}]{f, }
+\item[{double}]{fpa, }
+\item[{double}]{fpb, }
+\item[{int}]{n, }
+\item[{{\bf F\-P\-T\-Y\-P\-E} $\ast$}]{x, }
+\item[{double $\ast$}]{fp}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_a391ca420c225848212d6ff31dd869186}
+\hypertarget{potential_8c_aafb424271f0b16b0ac6470780ad363cd}{\index{potential.\-c@{potential.\-c}!potential\-\_\-init@{potential\-\_\-init}}
+\index{potential\-\_\-init@{potential\-\_\-init}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}int potential\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{struct {\bf potential} $\ast$}]{p, }
+\item[{double($\ast$)(double)}]{f, }
+\item[{double($\ast$)(double)}]{fp, }
+\item[{double($\ast$)(double)}]{f6p, }
+\item[{{\bf F\-P\-T\-Y\-P\-E}}]{a, }
+\item[{{\bf F\-P\-T\-Y\-P\-E}}]{b, }
+\item[{{\bf F\-P\-T\-Y\-P\-E}}]{tol}
+\end{DoxyParamCaption}
+)}}\label{potential_8c_aafb424271f0b16b0ac6470780ad363cd}
+
+
+Construct a \hyperlink{structpotential}{potential} from the given function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & A pointer to an empty \hyperlink{structpotential}{potential}. \\
+\hline
+{\em f} & A pointer to the potential function to be interpolated. \\
+\hline
+{\em fp} & A pointer to the first derivative of {\ttfamily f}. \\
+\hline
+{\em f6p} & A pointer to the sixth derivative of {\ttfamily f}. \\
+\hline
+{\em a} & The smallest radius for which the potential will be constructed. \\
+\hline
+{\em b} & The largest radius for which the potential will be constructed. \\
+\hline
+{\em tol} & The absolute tolerance to which the interpolation should match the exact potential.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{potential_8h_ac3ad4b49b93f0a3d3f06a95e363e0c81}{potential\-\_\-err\-\_\-ok} or $<$0 on error (see \hyperlink{potential_8h_a0bf5d59465b0dac8ed0e71ebfbafb3d5}{potential\-\_\-err}).
+\end{DoxyReturn}
+Computes an interpolated potential function from {\ttfamily f} in {\ttfamily }\mbox{[}a,b\mbox{]} to the locally relative tolerance {\ttfamily tol}.
+
+The sixth derivative {\ttfamily f6p} is used to compute the optimal node distribution. If {\ttfamily f6p} is {\ttfamily N\-U\-L\-L}, the derivative is approximated numerically.
+
+The zeroth interval contains a linear extension of {\ttfamily f} for values $<$ a. \hypertarget{potential_8c_a2dda3fcf90588bf9389076511457f41d}{\index{potential.\-c@{potential.\-c}!potential\-\_\-\-L\-J126@{potential\-\_\-\-L\-J126}}
+\index{potential\-\_\-\-L\-J126@{potential\-\_\-\-L\-J126}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-\-L\-J126}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-\-L\-J126 (
+\begin{DoxyParamCaption}
+\item[{double}]{r, }
+\item[{double}]{A, }
+\item[{double}]{B}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{potential_8c_a2dda3fcf90588bf9389076511457f41d}
+
+
+A basic 12-\/6 Lennard-\/\-Jones potential. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The interaction radius. \\
+\hline
+{\em A} & First parameter of the potential. \\
+\hline
+{\em B} & Second parameter of the potential.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The potential $ \left( \frac{A}{r^{12}} - \frac{B}{r^6} \right) $ evaluated at {\ttfamily r}. 
+\end{DoxyReturn}
+\hypertarget{potential_8c_a1c5baa550d870b3dbe422bd92681e08a}{\index{potential.\-c@{potential.\-c}!potential\-\_\-\-L\-J126\-\_\-6p@{potential\-\_\-\-L\-J126\-\_\-6p}}
+\index{potential\-\_\-\-L\-J126\-\_\-6p@{potential\-\_\-\-L\-J126\-\_\-6p}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-\-L\-J126\-\_\-6p}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-\-L\-J126\-\_\-6p (
+\begin{DoxyParamCaption}
+\item[{double}]{r, }
+\item[{double}]{A, }
+\item[{double}]{B}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{potential_8c_a1c5baa550d870b3dbe422bd92681e08a}
+
+
+A basic 12-\/6 Lennard-\/\-Jones potential (sixth derivative). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The interaction radius. \\
+\hline
+{\em A} & First parameter of the potential. \\
+\hline
+{\em B} & Second parameter of the potential.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The sixth derivative of the potential $ \left( \frac{A}{r^{12}} - \frac{B}{r^6} \right) $ evaluated at {\ttfamily r}. 
+\end{DoxyReturn}
+\hypertarget{potential_8c_a258e7ce37dea04cb5b6031c73a4548b5}{\index{potential.\-c@{potential.\-c}!potential\-\_\-\-L\-J126\-\_\-p@{potential\-\_\-\-L\-J126\-\_\-p}}
+\index{potential\-\_\-\-L\-J126\-\_\-p@{potential\-\_\-\-L\-J126\-\_\-p}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-\-L\-J126\-\_\-p}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-\-L\-J126\-\_\-p (
+\begin{DoxyParamCaption}
+\item[{double}]{r, }
+\item[{double}]{A, }
+\item[{double}]{B}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{potential_8c_a258e7ce37dea04cb5b6031c73a4548b5}
+
+
+A basic 12-\/6 Lennard-\/\-Jones potential (first derivative). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The interaction radius. \\
+\hline
+{\em A} & First parameter of the potential. \\
+\hline
+{\em B} & Second parameter of the potential.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The first derivative of the potential $ \left( \frac{A}{r^{12}} - \frac{B}{r^6} \right) $ evaluated at {\ttfamily r}. 
+\end{DoxyReturn}
+\hypertarget{potential_8c_a8f9b6af591bdbf286e2df5741c3265d3}{\index{potential.\-c@{potential.\-c}!potential\-\_\-switch@{potential\-\_\-switch}}
+\index{potential\-\_\-switch@{potential\-\_\-switch}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-switch}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-switch (
+\begin{DoxyParamCaption}
+\item[{double}]{r, }
+\item[{double}]{A, }
+\item[{double}]{B}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{potential_8c_a8f9b6af591bdbf286e2df5741c3265d3}
+
+
+Switching function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The radius. \\
+\hline
+{\em A} & The start of the switching region. \\
+\hline
+{\em B} & The end of the switching region. \\
+\hline
+\end{DoxyParams}
+\hypertarget{potential_8c_a4e1a4159b0cc2e6f9d2138182a63b170}{\index{potential.\-c@{potential.\-c}!potential\-\_\-switch\-\_\-p@{potential\-\_\-switch\-\_\-p}}
+\index{potential\-\_\-switch\-\_\-p@{potential\-\_\-switch\-\_\-p}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-switch\-\_\-p}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-switch\-\_\-p (
+\begin{DoxyParamCaption}
+\item[{double}]{r, }
+\item[{double}]{A, }
+\item[{double}]{B}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{potential_8c_a4e1a4159b0cc2e6f9d2138182a63b170}
+
+
+\subsection{Variable Documentation}
+\hypertarget{potential_8c_a1b2c1615e34d36b601e068849541ca0f}{\index{potential.\-c@{potential.\-c}!c\-\_\-null@{c\-\_\-null}}
+\index{c\-\_\-null@{c\-\_\-null}!potential.c@{potential.\-c}}
+\subsubsection[{c\-\_\-null}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-P\-T\-Y\-P\-E} c\-\_\-null\mbox{[}$\,$\mbox{]} = \{ {\bf F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} , {\bf F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} , {\bf F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} , {\bf F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} , {\bf F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} , {\bf F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} , {\bf F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} , {\bf F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} \}}}\label{potential_8c_a1b2c1615e34d36b601e068849541ca0f}
+The null potential \hypertarget{potential_8c_a22ac256c44dd76d53f02257f04b161c8}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-Coulomb\-\_\-b@{potential\-\_\-create\-\_\-\-Coulomb\-\_\-b}}
+\index{potential\-\_\-create\-\_\-\-Coulomb\-\_\-b@{potential\-\_\-create\-\_\-\-Coulomb\-\_\-b}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-Coulomb\-\_\-b}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-Coulomb\-\_\-b}}\label{potential_8c_a22ac256c44dd76d53f02257f04b161c8}
+\hypertarget{potential_8c_a3dbde976a0b79ad0cef13a16f0bfe1e6}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-Coulomb\-\_\-q@{potential\-\_\-create\-\_\-\-Coulomb\-\_\-q}}
+\index{potential\-\_\-create\-\_\-\-Coulomb\-\_\-q@{potential\-\_\-create\-\_\-\-Coulomb\-\_\-q}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-Coulomb\-\_\-q}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-Coulomb\-\_\-q}}\label{potential_8c_a3dbde976a0b79ad0cef13a16f0bfe1e6}
+\hypertarget{potential_8c_a26387370e8e8d393d9e3eb8e8b8c9a25}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-Ewald\-\_\-kappa@{potential\-\_\-create\-\_\-\-Ewald\-\_\-kappa}}
+\index{potential\-\_\-create\-\_\-\-Ewald\-\_\-kappa@{potential\-\_\-create\-\_\-\-Ewald\-\_\-kappa}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-Ewald\-\_\-kappa}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-Ewald\-\_\-kappa}}\label{potential_8c_a26387370e8e8d393d9e3eb8e8b8c9a25}
+\hypertarget{potential_8c_a5f9d7eca80ae797252f842dbed94eb8d}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-Ewald\-\_\-q@{potential\-\_\-create\-\_\-\-Ewald\-\_\-q}}
+\index{potential\-\_\-create\-\_\-\-Ewald\-\_\-q@{potential\-\_\-create\-\_\-\-Ewald\-\_\-q}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-Ewald\-\_\-q}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-Ewald\-\_\-q}}\label{potential_8c_a5f9d7eca80ae797252f842dbed94eb8d}
+\hypertarget{potential_8c_a2c1a7659979f70d58c5dd9703016e071}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-\-K@{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-\-K}}
+\index{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-\-K@{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-\-K}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-\-K}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-\-K}}\label{potential_8c_a2c1a7659979f70d58c5dd9703016e071}
+\hypertarget{potential_8c_a0af525b01a76e0479fdd52ee747e308f}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-theta0@{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-theta0}}
+\index{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-theta0@{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-theta0}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-theta0}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-harmonic\-\_\-angle\-\_\-theta0}}\label{potential_8c_a0af525b01a76e0479fdd52ee747e308f}
+\hypertarget{potential_8c_ac803b5e1aa34b905621e3f8a0bf64453}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-delta@{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-delta}}
+\index{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-delta@{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-delta}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-delta}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-delta}}\label{potential_8c_ac803b5e1aa34b905621e3f8a0bf64453}
+\hypertarget{potential_8c_a18efa10f63083e8acb34ee251ac6222d}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-\-K@{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-\-K}}
+\index{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-\-K@{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-\-K}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-\-K}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-\-K}}\label{potential_8c_a18efa10f63083e8acb34ee251ac6222d}
+\hypertarget{potential_8c_ae4711475eeffeb9c4033e7da50532ea5}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-n@{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-n}}
+\index{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-n@{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-n}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-n}]{\setlength{\rightskip}{0pt plus 5cm}int potential\-\_\-create\-\_\-harmonic\-\_\-dihedral\-\_\-n}}\label{potential_8c_ae4711475eeffeb9c4033e7da50532ea5}
+\hypertarget{potential_8c_a29e27c4e27057633e0f58a9ecb24f14e}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-harmonic\-\_\-\-K@{potential\-\_\-create\-\_\-harmonic\-\_\-\-K}}
+\index{potential\-\_\-create\-\_\-harmonic\-\_\-\-K@{potential\-\_\-create\-\_\-harmonic\-\_\-\-K}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-harmonic\-\_\-\-K}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-harmonic\-\_\-\-K}}\label{potential_8c_a29e27c4e27057633e0f58a9ecb24f14e}
+\hypertarget{potential_8c_a4579d67ab63e233700da3193feb33b8b}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-harmonic\-\_\-r0@{potential\-\_\-create\-\_\-harmonic\-\_\-r0}}
+\index{potential\-\_\-create\-\_\-harmonic\-\_\-r0@{potential\-\_\-create\-\_\-harmonic\-\_\-r0}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-harmonic\-\_\-r0}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-harmonic\-\_\-r0}}\label{potential_8c_a4579d67ab63e233700da3193feb33b8b}
+\hypertarget{potential_8c_a5b0422a1ffb57c9f4d48668f44a53afb}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-A@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-A}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-A@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-A}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-A}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-A}}\label{potential_8c_a5b0422a1ffb57c9f4d48668f44a53afb}
+\hypertarget{potential_8c_aadc9cc5576dd1aedeec9d70443b101b5}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-B@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-B}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-B@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-B}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-B}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-B}}\label{potential_8c_aadc9cc5576dd1aedeec9d70443b101b5}
+\hypertarget{potential_8c_aa92d533ccba9598535160227507b0eb6}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-\-A@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-\-A}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-\-A@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-\-A}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-\-A}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-\-A}}\label{potential_8c_aa92d533ccba9598535160227507b0eb6}
+\hypertarget{potential_8c_ae80b3ede09aa1d7283a6d36523e84d8d}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-b@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-b}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-b@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-b}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-b}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-b}}\label{potential_8c_ae80b3ede09aa1d7283a6d36523e84d8d}
+\hypertarget{potential_8c_ad09e219c277a433e3ed14ffbd4a83278}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-\-B@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-\-B}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-\-B@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-\-B}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-\-B}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-\-B}}\label{potential_8c_ad09e219c277a433e3ed14ffbd4a83278}
+\hypertarget{potential_8c_af68c697d56b2a287bf115f6778c28046}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-q@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-q}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-q@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-q}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-q}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Coulomb\-\_\-q}}\label{potential_8c_af68c697d56b2a287bf115f6778c28046}
+\hypertarget{potential_8c_aa28273138cfc7628676c33ad8ccda5ec}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-\-A@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-\-A}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-\-A@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-\-A}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-\-A}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-\-A}}\label{potential_8c_aa28273138cfc7628676c33ad8ccda5ec}
+\hypertarget{potential_8c_a553ae1919291257488e208bfba4e613b}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-\-B@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-\-B}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-\-B@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-\-B}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-\-B}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-\-B}}\label{potential_8c_a553ae1919291257488e208bfba4e613b}
+\hypertarget{potential_8c_a7c39d10dade7ebf883b52737b4aacb28}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-kappa@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-kappa}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-kappa@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-kappa}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-kappa}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-kappa}}\label{potential_8c_a7c39d10dade7ebf883b52737b4aacb28}
+\hypertarget{potential_8c_ac1590e6b83cd982ddb3fe1cbf11b569b}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-q@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-q}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-q@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-q}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-q}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-q}}\label{potential_8c_ac1590e6b83cd982ddb3fe1cbf11b569b}
+\hypertarget{potential_8c_a427e7d58e7ad7100960ded1bb2b659e4}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-\-A@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-\-A}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-\-A@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-\-A}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-\-A}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-\-A}}\label{potential_8c_a427e7d58e7ad7100960ded1bb2b659e4}
+\hypertarget{potential_8c_afacb4b866522547ad5fc9b54740d272c}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-\-B@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-\-B}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-\-B@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-\-B}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-\-B}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-\-B}}\label{potential_8c_afacb4b866522547ad5fc9b54740d272c}
+\hypertarget{potential_8c_a5cc1e322a40a71600f392b38254ab532}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-cutoff@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-cutoff}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-cutoff@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-cutoff}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-cutoff}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-cutoff}}\label{potential_8c_a5cc1e322a40a71600f392b38254ab532}
+\hypertarget{potential_8c_a2ab4c0bb34cab17a832572ad9bd6dca0}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-kappa@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-kappa}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-kappa@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-kappa}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-kappa}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-kappa}}\label{potential_8c_a2ab4c0bb34cab17a832572ad9bd6dca0}
+\hypertarget{potential_8c_a233ca7807bfbb1072118d9e2584ff1b6}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-q@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-q}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-q@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-q}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-q}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-q}}\label{potential_8c_a233ca7807bfbb1072118d9e2584ff1b6}
+\hypertarget{potential_8c_a3906b158141059aeac483a8334fc17e9}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-s@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-s}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-s@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-s}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-s}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-\-Ewald\-\_\-switch\-\_\-s}}\label{potential_8c_a3906b158141059aeac483a8334fc17e9}
+\hypertarget{potential_8c_aa4a1d56ece406bc27e0eecb7bab29a7b}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-\-A@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-\-A}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-\-A@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-\-A}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-\-A}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-\-A}}\label{potential_8c_aa4a1d56ece406bc27e0eecb7bab29a7b}
+\hypertarget{potential_8c_a4fdf0ac0b5f596024cf7f51bbe22b227}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-\-B@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-\-B}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-\-B@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-\-B}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-\-B}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-\-B}}\label{potential_8c_a4fdf0ac0b5f596024cf7f51bbe22b227}
+\hypertarget{potential_8c_ac5c37bb77eaa6268d87da1cc47ee8a14}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-cutoff@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-cutoff}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-cutoff@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-cutoff}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-cutoff}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-cutoff}}\label{potential_8c_ac5c37bb77eaa6268d87da1cc47ee8a14}
+\hypertarget{potential_8c_a8d5f10fcfac976a11022a8b2fb84514e}{\index{potential.\-c@{potential.\-c}!potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-s@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-s}}
+\index{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-s@{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-s}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-s}]{\setlength{\rightskip}{0pt plus 5cm}double potential\-\_\-create\-\_\-\-L\-J126\-\_\-switch\-\_\-s}}\label{potential_8c_a8d5f10fcfac976a11022a8b2fb84514e}
+\hypertarget{potential_8c_a0bf5d59465b0dac8ed0e71ebfbafb3d5}{\index{potential.\-c@{potential.\-c}!potential\-\_\-err@{potential\-\_\-err}}
+\index{potential\-\_\-err@{potential\-\_\-err}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}int potential\-\_\-err = {\bf potential\-\_\-err\-\_\-ok}}}\label{potential_8c_a0bf5d59465b0dac8ed0e71ebfbafb3d5}
+The last error \hypertarget{potential_8c_a2a29118c41ae7993a669adeefe284fe2}{\index{potential.\-c@{potential.\-c}!potential\-\_\-err\-\_\-msg@{potential\-\_\-err\-\_\-msg}}
+\index{potential\-\_\-err\-\_\-msg@{potential\-\_\-err\-\_\-msg}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-err\-\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ potential\-\_\-err\-\_\-msg\mbox{[}6\mbox{]}}}\label{potential_8c_a2a29118c41ae7993a669adeefe284fe2}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= \{
+        \textcolor{stringliteral}{"Nothing bad happened."},
+    \textcolor{stringliteral}{"An unexpected NULL pointer was encountered."},
+    \textcolor{stringliteral}{"A call to malloc failed, probably due to insufficient memory."},
+    \textcolor{stringliteral}{"The requested value was out of bounds."},
+    \textcolor{stringliteral}{"Not yet implemented."},
+    \textcolor{stringliteral}{"Maximum number of intervals reached before tolerance satisfied."}
+        \}
+\end{DoxyCode}
+\hypertarget{potential_8c_a058952fa985def89ba638aae8ca63fe5}{\index{potential.\-c@{potential.\-c}!potential\-\_\-null@{potential\-\_\-null}}
+\index{potential\-\_\-null@{potential\-\_\-null}!potential.c@{potential.\-c}}
+\subsubsection[{potential\-\_\-null}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf potential} potential\-\_\-null = \{ \{ {\bf F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} , {\bf F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} , {\bf F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} , {\bf F\-P\-T\-Y\-P\-E\-\_\-\-Z\-E\-R\-O} \} , {\bf c\-\_\-null} , 0.\-0 , D\-B\-L\-\_\-\-M\-A\-X , {\bf potential\-\_\-flag\-\_\-none} , 1 \}}}\label{potential_8c_a058952fa985def89ba638aae8ca63fe5}
+Fictitious null potential. 

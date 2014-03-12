@@ -1,0 +1,134 @@
+\hypertarget{angle_8c}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/angle.c File Reference}
+\label{angle_8c}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/angle.\-c@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/angle.\-c}}
+}
+{\ttfamily \#include \char`\"{}../config.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$pthread.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include $<$float.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$limits.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}cycle.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}errs.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fptype.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lock.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}part.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}potential.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}potential\-\_\-eval.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}cell.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}space.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}engine.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}angle.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{angle_8c_a7673862d447029edaf3172ebd94aa28e}{error}(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})~( \hyperlink{angle_8h_ac4aa441b2f85a5f143e962b1c6eed47e}{angle\-\_\-err} = \hyperlink{errs_8h_ae37a9c0e0a0aa4a92dbe64c0f38ed95c}{errs\-\_\-register}( \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id} , \hyperlink{angle_8c_af10bb16f5945e88c9a0036c735dabeda}{angle\-\_\-err\-\_\-msg}\mbox{[}-\/(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{angle_8c_a674627b10562e26769045c7250e79ce6}{angle\-\_\-eval} (struct \hyperlink{structangle}{angle} $\ast$a, int N, struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, double $\ast$epot\-\_\-out)
+\begin{DoxyCompactList}\small\item\em Evaluate a list of angleed interactions. \end{DoxyCompactList}\item 
+int \hyperlink{angle_8c_a4763dc3e94784ddccd673b7eef19d68c}{angle\-\_\-evalf} (struct \hyperlink{structangle}{angle} $\ast$a, int N, struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$\hyperlink{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}{f}, double $\ast$epot\-\_\-out)
+\begin{DoxyCompactList}\small\item\em Evaluate a list of angleed interactions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{angle_8c_ac4aa441b2f85a5f143e962b1c6eed47e}{angle\-\_\-err} = \hyperlink{angle_8h_ac8cb3760f6bac0824ca9634dd1f028aa}{angle\-\_\-err\-\_\-ok}
+\item 
+unsigned int \hyperlink{angle_8c_a2bd476216d2a8ccfc92e0932a8d0baab}{angle\-\_\-rcount} = 0
+\item 
+char $\ast$ \hyperlink{angle_8c_af10bb16f5945e88c9a0036c735dabeda}{angle\-\_\-err\-\_\-msg} \mbox{[}2\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{angle_8c_a7673862d447029edaf3172ebd94aa28e}{\index{angle.\-c@{angle.\-c}!error@{error}}
+\index{error@{error}!angle.c@{angle.\-c}}
+\subsubsection[{error}]{\setlength{\rightskip}{0pt plus 5cm}\#define error(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf id}}
+\end{DoxyParamCaption}
+)~( {\bf angle\-\_\-err} = {\bf errs\-\_\-register}( {\bf id} , {\bf angle\-\_\-err\-\_\-msg}\mbox{[}-\/({\bf id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )}}\label{angle_8c_a7673862d447029edaf3172ebd94aa28e}
+
+
+\subsection{Function Documentation}
+\hypertarget{angle_8c_a674627b10562e26769045c7250e79ce6}{\index{angle.\-c@{angle.\-c}!angle\-\_\-eval@{angle\-\_\-eval}}
+\index{angle\-\_\-eval@{angle\-\_\-eval}!angle.c@{angle.\-c}}
+\subsubsection[{angle\-\_\-eval}]{\setlength{\rightskip}{0pt plus 5cm}int angle\-\_\-eval (
+\begin{DoxyParamCaption}
+\item[{struct {\bf angle} $\ast$}]{a, }
+\item[{int}]{N, }
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{double $\ast$}]{epot\-\_\-out}
+\end{DoxyParamCaption}
+)}}\label{angle_8c_a674627b10562e26769045c7250e79ce6}
+
+
+Evaluate a list of angleed interactions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & Pointer to an array of \hyperlink{structangle}{angle}. \\
+\hline
+{\em N} & Nr of angles in {\ttfamily b}. \\
+\hline
+{\em e} & Pointer to the \hyperlink{structengine}{engine} in which these angles are evaluated. \\
+\hline
+{\em epot\-\_\-out} & Pointer to a double in which to aggregate the potential energy.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{angle_8h_ac8cb3760f6bac0824ca9634dd1f028aa}{angle\-\_\-err\-\_\-ok} or $<$0 on error (see \hyperlink{angle_8h_ac4aa441b2f85a5f143e962b1c6eed47e}{angle\-\_\-err}) 
+\end{DoxyReturn}
+\hypertarget{angle_8c_a4763dc3e94784ddccd673b7eef19d68c}{\index{angle.\-c@{angle.\-c}!angle\-\_\-evalf@{angle\-\_\-evalf}}
+\index{angle\-\_\-evalf@{angle\-\_\-evalf}!angle.c@{angle.\-c}}
+\subsubsection[{angle\-\_\-evalf}]{\setlength{\rightskip}{0pt plus 5cm}int angle\-\_\-evalf (
+\begin{DoxyParamCaption}
+\item[{struct {\bf angle} $\ast$}]{a, }
+\item[{int}]{N, }
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{{\bf F\-P\-T\-Y\-P\-E} $\ast$}]{f, }
+\item[{double $\ast$}]{epot\-\_\-out}
+\end{DoxyParamCaption}
+)}}\label{angle_8c_a4763dc3e94784ddccd673b7eef19d68c}
+
+
+Evaluate a list of angleed interactions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & Pointer to an array of \hyperlink{structangle}{angle}. \\
+\hline
+{\em N} & Nr of angles in {\ttfamily b}. \\
+\hline
+{\em e} & Pointer to the \hyperlink{structengine}{engine} in which these angles are evaluated. \\
+\hline
+{\em epot\-\_\-out} & Pointer to a double in which to aggregate the potential energy.\\
+\hline
+\end{DoxyParams}
+This function differs from \hyperlink{angle_8h_a674627b10562e26769045c7250e79ce6}{angle\-\_\-eval} in that the forces are added to the array {\ttfamily f} instead of directly in the particle data.
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{angle_8h_ac8cb3760f6bac0824ca9634dd1f028aa}{angle\-\_\-err\-\_\-ok} or $<$0 on error (see \hyperlink{angle_8h_ac4aa441b2f85a5f143e962b1c6eed47e}{angle\-\_\-err}) 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\hypertarget{angle_8c_ac4aa441b2f85a5f143e962b1c6eed47e}{\index{angle.\-c@{angle.\-c}!angle\-\_\-err@{angle\-\_\-err}}
+\index{angle\-\_\-err@{angle\-\_\-err}!angle.c@{angle.\-c}}
+\subsubsection[{angle\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}int angle\-\_\-err = {\bf angle\-\_\-err\-\_\-ok}}}\label{angle_8c_ac4aa441b2f85a5f143e962b1c6eed47e}
+The I\-D of the last error. \hypertarget{angle_8c_af10bb16f5945e88c9a0036c735dabeda}{\index{angle.\-c@{angle.\-c}!angle\-\_\-err\-\_\-msg@{angle\-\_\-err\-\_\-msg}}
+\index{angle\-\_\-err\-\_\-msg@{angle\-\_\-err\-\_\-msg}!angle.c@{angle.\-c}}
+\subsubsection[{angle\-\_\-err\-\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ angle\-\_\-err\-\_\-msg\mbox{[}2\mbox{]}}}\label{angle_8c_af10bb16f5945e88c9a0036c735dabeda}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= \{
+        \textcolor{stringliteral}{"Nothing bad happened."},
+    \textcolor{stringliteral}{"An unexpected NULL pointer was encountered."}
+        \}
+\end{DoxyCode}
+\hypertarget{angle_8c_a2bd476216d2a8ccfc92e0932a8d0baab}{\index{angle.\-c@{angle.\-c}!angle\-\_\-rcount@{angle\-\_\-rcount}}
+\index{angle\-\_\-rcount@{angle\-\_\-rcount}!angle.c@{angle.\-c}}
+\subsubsection[{angle\-\_\-rcount}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int angle\-\_\-rcount = 0}}\label{angle_8c_a2bd476216d2a8ccfc92e0932a8d0baab}

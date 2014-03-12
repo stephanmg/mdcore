@@ -1,0 +1,991 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/runner_cuda.cu" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/runner_cuda.cu \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include '\&.\&./config\&.h'\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <pthread\&.h>\fP
+.br
+\fC#include <math\&.h>\fP
+.br
+\fC#include <float\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <limits\&.h>\fP
+.br
+\fC#include 'cutil_math\&.h'\fP
+.br
+\fC#include <mpi\&.h>\fP
+.br
+\fC#include 'cycle\&.h'\fP
+.br
+\fC#include 'errs\&.h'\fP
+.br
+\fC#include 'fptype\&.h'\fP
+.br
+\fC#include 'lock\&.h'\fP
+.br
+\fC#include 'part\&.h'\fP
+.br
+\fC#include 'cell\&.h'\fP
+.br
+\fC#include 'space\&.h'\fP
+.br
+\fC#include 'task\&.h'\fP
+.br
+\fC#include 'potential\&.h'\fP
+.br
+\fC#include 'engine\&.h'\fP
+.br
+\fC#include 'runner_cuda\&.h'\fP
+.br
+\fC#include 'runner_cuda_main\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBFPTYPE_SINGLE\fP   1"
+.br
+.ti -1c
+.RI "#define \fBerror\fP(\fBid\fP)   ( \fBengine_err\fP = \fBerrs_register\fP( \fBid\fP , \fBengine_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+.br
+.ti -1c
+.RI "#define \fBcuda_error\fP(\fBid\fP)   ( \fBengine_err\fP = \fBerrs_register\fP( \fBid\fP , cudaGetErrorString(cudaGetLastError()) , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+.br
+.ti -1c
+.RI "#define \fBcuda_nparts\fP   32"
+.br
+.ti -1c
+.RI "#define \fBcuda_nparts\fP   64"
+.br
+.ti -1c
+.RI "#define \fBcuda_nparts\fP   96"
+.br
+.ti -1c
+.RI "#define \fBcuda_nparts\fP   128"
+.br
+.ti -1c
+.RI "#define \fBcuda_nparts\fP   160"
+.br
+.ti -1c
+.RI "#define \fBcuda_nparts\fP   192"
+.br
+.ti -1c
+.RI "#define \fBcuda_nparts\fP   224"
+.br
+.ti -1c
+.RI "#define \fBcuda_nparts\fP   256"
+.br
+.ti -1c
+.RI "#define \fBcuda_nparts\fP   288"
+.br
+.ti -1c
+.RI "#define \fBcuda_nparts\fP   320"
+.br
+.ti -1c
+.RI "#define \fBcuda_nparts\fP   352"
+.br
+.ti -1c
+.RI "#define \fBcuda_nparts\fP   384"
+.br
+.ti -1c
+.RI "#define \fBcuda_nparts\fP   416"
+.br
+.ti -1c
+.RI "#define \fBcuda_nparts\fP   448"
+.br
+.ti -1c
+.RI "#define \fBcuda_nparts\fP   480"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "__device__ void \fBcuda_mutex_lock\fP (int *m)"
+.br
+.RI "\fILock a device mutex\&. \fP"
+.ti -1c
+.RI "__device__ int \fBcuda_mutex_trylock\fP (int *m)"
+.br
+.RI "\fIAttempt to lock a device mutex\&. \fP"
+.ti -1c
+.RI "__device__ int \fBcuda_mutex_lock_cond\fP (int *m, int *\fBc\fP)"
+.br
+.RI "\fILock a device mutex with an additional condition\&. \fP"
+.ti -1c
+.RI "__device__ void \fBcuda_mutex_unlock\fP (int *m)"
+.br
+.RI "\fIUnlock a device mutex\&. \fP"
+.ti -1c
+.RI "__device__ int \fBcuda_queue_gettask\fP (struct \fBqueue_cuda\fP *q)"
+.br
+.RI "\fIGet a task ID from the given queue\&. \fP"
+.ti -1c
+.RI "__device__ void \fBcuda_queue_puttask\fP (struct \fBqueue_cuda\fP *q, int tid)"
+.br
+.RI "\fIPut a task onto the given queue\&. \fP"
+.ti -1c
+.RI "__noinline__ __device__ \fBuint\fP \fBget_smid\fP (void)"
+.br
+.RI "\fIGet the ID of the block's SM\&. \fP"
+.ti -1c
+.RI "__device__ int \fBrunner_cuda_gettask\fP (struct \fBqueue_cuda\fP *q, int steal)"
+.br
+.RI "\fIGet a task from the given task queue\&. \fP"
+.ti -1c
+.RI "__device__ int \fBrunner_cuda_gettask_nolock\fP (struct \fBqueue_cuda\fP *q, int steal)"
+.br
+.ti -1c
+.RI "__device__ void \fBcuda_memcpy\fP (void *dest, void *source, int count)"
+.br
+.RI "\fICopy bulk memory in a strided way\&. \fP"
+.ti -1c
+.RI "__device__ void \fBcuda_memcpy_old\fP (void *dest, void *source, int count)"
+.br
+.ti -1c
+.RI "__device__ void \fBcuda_sum\fP (float *a, float *b, int count)"
+.br
+.RI "\fISum two vectors in a strided way\&. \fP"
+.ti -1c
+.RI "__device__ void \fBcuda_sort_descending\fP (unsigned int *a, int count)"
+.br
+.RI "\fISort the given data w\&.r\&.t\&. the lowest 16 bits in decending order\&. \fP"
+.ti -1c
+.RI "__device__ void \fBcuda_sort_ascending\fP (unsigned int *a, int count)"
+.br
+.RI "\fISort the given data w\&.r\&.t\&. the lowest 16 bits in ascending order\&. \fP"
+.ti -1c
+.RI "__device__ void \fBpotential_eval_cuda_tex\fP (int pid, float \fBr2\fP, float *\fBe\fP, float *\fBf\fP)"
+.br
+.RI "\fIEvaluates the given potential at the given point (interpolated) using texture memory on the device\&. \fP"
+.ti -1c
+.RI "__device__ void \fBpotential_eval4_cuda_tex\fP (int4 pid, float4 \fBr2\fP, float4 *\fBe\fP, float4 *\fBf\fP)"
+.br
+.RI "\fIEvaluates the given potential at the given point (interpolated) using texture memory on the device\&. \fP"
+.ti -1c
+.RI "__device__ void \fBpotential_eval_cuda\fP (struct \fBpotential\fP *p, float \fBr2\fP, float *\fBe\fP, float *\fBf\fP)"
+.br
+.RI "\fIEvaluates the given potential at the given point (interpolated)\&. \fP"
+.ti -1c
+.RI "__device__ void \fBrunner_dopair_unsorted_cuda\fP (float4 *parts_i, int count_i, float4 *parts_j, int count_j, float *forces_i, float *forces_j, float *shift, float *epot_global)"
+.br
+.RI "\fICompute the pairwise interactions for the given pair on a CUDA device\&. \fP"
+.ti -1c
+.RI "__device__ void \fBrunner_dopair4_unsorted_cuda\fP (float4 *parts_i, int count_i, float4 *parts_j, int count_j, float *forces_i, float *forces_j, float *shift, float *epot_global)"
+.br
+.RI "\fICompute the pairwise interactions for the given pair on a CUDA device\&. \fP"
+.ti -1c
+.RI "__device__ void \fBrunner_dosort_cuda\fP (float4 *parts_i, int count_i, unsigned int *sort_i, int sid)"
+.br
+.RI "\fICompute the pairwise interactions for the given pair on a CUDA device\&. \fP"
+.ti -1c
+.RI "__device__ void \fBrunner_dopair_cuda\fP (float4 *parts_i, int count_i, float4 *parts_j, int count_j, float *forces_i, float *forces_j, unsigned int *sort_i, unsigned int *sort_j, float *shift, unsigned int dshift, float *epot_global)"
+.br
+.RI "\fICompute the pairwise interactions for the given pair on a CUDA device\&. \fP"
+.ti -1c
+.RI "__device__ void \fBrunner_dopair_left_cuda\fP (float4 *parts_i, int count_i, float4 *parts_j, int count_j, float *forces_i, float *forces_j, unsigned int *sort_i, unsigned int *sort_j, float *shift, unsigned int dshift, float *epot_global)"
+.br
+.RI "\fICompute the pairwise interactions for the given pair on a CUDA device\&. \fP"
+.ti -1c
+.RI "__device__ void \fBrunner_dopair_right_cuda\fP (float4 *parts_i, int count_i, float4 *parts_j, int count_j, float *forces_i, float *forces_j, unsigned int *sort_i, unsigned int *sort_j, float *shift, unsigned int dshift, float *epot_global)"
+.br
+.RI "\fICompute the pairwise interactions for the given pair on a CUDA device\&. \fP"
+.ti -1c
+.RI "__device__ void \fBrunner_doself_cuda\fP (float4 *parts, int count, float *forces, float *epot_global)"
+.br
+.RI "\fICompute the self interactions for the given cell on a CUDA device\&. \fP"
+.ti -1c
+.RI "__global__ void \fBcuda_memset_float\fP (float *data, float val, int N)"
+.br
+.RI "\fIOur very own memset for the particle forces as cudaMemsetAsync requires a device switch when using streams on different devices\&. \fP"
+.ti -1c
+.RI "int \fBengine_nonbond_cuda\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fIOffload and compute the nonbonded interactions on a CUDA device\&. \fP"
+.ti -1c
+.RI "int \fBengine_cuda_load_parts\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fILoad the cell data onto the CUDA device\&. \fP"
+.ti -1c
+.RI "int \fBengine_cuda_unload_parts\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fILoad the cell data from the CUDA device\&. \fP"
+.ti -1c
+.RI "int \fBengine_cuda_queues_load\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fILoad the queues onto the CUDA device\&. \fP"
+.ti -1c
+.RI "int \fBengine_cuda_load\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fILoad the potentials and cell pairs onto the CUDA device\&. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "__constant__ struct \fBpotential\fP * \fBpotential_null_cuda\fP = NULL"
+.br
+.ti -1c
+.RI "__constant__ int \fBcuda_nr_cells\fP = 0"
+.br
+.ti -1c
+.RI "__constant__ float4 * \fBcuda_parts\fP"
+.br
+.ti -1c
+.RI "__constant__ int \fBcuda_nr_parts\fP"
+.br
+.ti -1c
+.RI "__constant__ unsigned int * \fBcuda_pind\fP"
+.br
+.ti -1c
+.RI "__device__ int \fBcuda_cell_mutex\fP = 0"
+.br
+.ti -1c
+.RI "__device__ int \fBcuda_barrier\fP = 0"
+.br
+.ti -1c
+.RI "__device__ volatile int \fBNAMD_barrier\fP = 0"
+.br
+.ti -1c
+.RI "__device__ int \fBcuda_pair_next\fP = 0"
+.br
+.ti -1c
+.RI "__constant__ struct cellpair_cuda * \fBcuda_pairs\fP"
+.br
+.ti -1c
+.RI "__device__ int * \fBcuda_taboo\fP"
+.br
+.ti -1c
+.RI "__constant__ struct \fBtask_cuda\fP * \fBcuda_tasks\fP"
+.br
+.ti -1c
+.RI "__constant__ int \fBcuda_nr_tasks\fP = 0"
+.br
+.ti -1c
+.RI "__device__ struct \fBqueue_cuda\fP \fBcuda_queues\fP [\fBcuda_maxqueues\fP]"
+.br
+.ti -1c
+.RI "__device__ struct \fBqueue_cuda\fP \fBcuda_sorts\fP [\fBcuda_maxqueues\fP]"
+.br
+.ti -1c
+.RI "__constant__ int \fBcuda_nrqueues\fP"
+.br
+.ti -1c
+.RI "__constant__ int \fBcuda_queue_size\fP"
+.br
+.ti -1c
+.RI "__constant__ float \fBcuda_cutoff2\fP = 0\&.0f"
+.br
+.ti -1c
+.RI "__constant__ float \fBcuda_cutoff\fP = 0\&.0f"
+.br
+.ti -1c
+.RI "__constant__ float \fBcuda_dscale\fP = 0\&.0f"
+.br
+.ti -1c
+.RI "__constant__ float \fBcuda_maxdist\fP = 0\&.0f"
+.br
+.ti -1c
+.RI "__constant__ struct \fBpotential\fP ** \fBcuda_p\fP"
+.br
+.ti -1c
+.RI "__constant__ int \fBcuda_maxtype\fP = 0"
+.br
+.ti -1c
+.RI "__constant__ struct \fBpotential\fP * \fBcuda_pots\fP"
+.br
+.ti -1c
+.RI "__device__ unsigned int * \fBcuda_sortlists\fP = NULL"
+.br
+.ti -1c
+.RI "texture< float4, 
+.br
+cudaTextureType2D > \fBtex_coeffs\fP"
+.br
+.ti -1c
+.RI "texture< float4, 
+.br
+cudaTextureType2D > \fBtex_parts\fP"
+.br
+.ti -1c
+.RI "texture< int, cudaTextureType1D > \fBtex_pind\fP"
+.br
+.ti -1c
+.RI "cudaArray * \fBcuda_coeffs\fP"
+.br
+.ti -1c
+.RI "__constant__ float * \fBcuda_corig\fP"
+.br
+.ti -1c
+.RI "__constant__ float \fBcuda_eps\fP [100]"
+.br
+.ti -1c
+.RI "__constant__ float \fBcuda_rmin\fP [100]"
+.br
+.ti -1c
+.RI "__device__ float \fBcuda_fio\fP [32]"
+.br
+.ti -1c
+.RI "__device__ int \fBcuda_io\fP [32]"
+.br
+.ti -1c
+.RI "__device__ int \fBcuda_rcount\fP = 0"
+.br
+.ti -1c
+.RI "__device__ float \fBcuda_epot\fP = 0\&.0f"
+.br
+.ti -1c
+.RI "__device__ float \fBcuda_epot_out\fP"
+.br
+.ti -1c
+.RI "__device__ float \fBcuda_timers\fP [\fBtid_count\fP]"
+.br
+.ti -1c
+.RI "__constant__ float \fBcuda_shiftn\fP [13 *3]"
+.br
+.ti -1c
+.RI "__constant__ float \fBcuda_shift\fP [13 *3]"
+.br
+.ti -1c
+.RI "__constant__ float \fBcuda_h\fP [3]"
+.br
+.ti -1c
+.RI "__constant__ float \fBcuda_dim\fP [3]"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define cuda_error(\fBid\fP)   ( \fBengine_err\fP = \fBerrs_register\fP( \fBid\fP , cudaGetErrorString(cudaGetLastError()) , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+
+.SS "#define cuda_nparts   32"
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda_maxparts\&. 
+.SS "#define cuda_nparts   64"
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda_maxparts\&. 
+.SS "#define cuda_nparts   96"
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda_maxparts\&. 
+.SS "#define cuda_nparts   128"
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda_maxparts\&. 
+.SS "#define cuda_nparts   160"
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda_maxparts\&. 
+.SS "#define cuda_nparts   192"
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda_maxparts\&. 
+.SS "#define cuda_nparts   224"
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda_maxparts\&. 
+.SS "#define cuda_nparts   256"
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda_maxparts\&. 
+.SS "#define cuda_nparts   288"
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda_maxparts\&. 
+.SS "#define cuda_nparts   320"
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda_maxparts\&. 
+.SS "#define cuda_nparts   352"
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda_maxparts\&. 
+.SS "#define cuda_nparts   384"
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda_maxparts\&. 
+.SS "#define cuda_nparts   416"
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda_maxparts\&. 
+.SS "#define cuda_nparts   448"
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda_maxparts\&. 
+.SS "#define cuda_nparts   480"
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda_maxparts\&. 
+.SS "#define error(\fBid\fP)   ( \fBengine_err\fP = \fBerrs_register\fP( \fBid\fP , \fBengine_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+
+.SS "#define FPTYPE_SINGLE   1"
+
+.SH "Function Documentation"
+.PP 
+.SS "__device__ void cuda_memcpy (void *dest, void *source, intcount)\fC [inline]\fP"
+
+.PP
+Copy bulk memory in a strided way\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdest\fP Pointer to destination memory\&. 
+.br
+\fIsource\fP Pointer to source memory\&. 
+.br
+\fIcount\fP Number of bytes to copy, must be a multiple of sizeof(int)\&. 
+.RE
+.PP
+
+.SS "__device__ void cuda_memcpy_old (void *dest, void *source, intcount)\fC [inline]\fP"
+
+.SS "__global__ void cuda_memset_float (float *data, floatval, intN)"
+
+.PP
+Our very own memset for the particle forces as cudaMemsetAsync requires a device switch when using streams on different devices\&. 
+.SS "__device__ void cuda_mutex_lock (int *m)"
+
+.PP
+Lock a device mutex\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIm\fP The mutex\&.
+.RE
+.PP
+Loops until the mutex can be set\&. Note that only one thread can do this at a time, so to synchronize blocks, only a single thread of each block should call it\&. 
+.SS "__device__ int cuda_mutex_lock_cond (int *m, int *c)"
+
+.PP
+Lock a device mutex with an additional condition\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIm\fP The mutex\&. 
+.br
+\fIc\fP the condition
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fC1\fP if the mutex could be locked or zero if the condition \fCc\fP was reached first\&.
+.RE
+.PP
+Loops until the mutex can be set or until \fC*c\fP is non-zero\&. Note that only one thread can do this at a time, so to synchronize blocks, only a single thread of each block should call it\&. 
+.SS "__device__ int cuda_mutex_trylock (int *m)"
+
+.PP
+Attempt to lock a device mutex\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIm\fP The mutex\&.
+.RE
+.PP
+Try to grab the mutex\&. Note that only one thread can do this at a time, so to synchronize blocks, only a single thread of each block should call it\&. 
+.SS "__device__ void cuda_mutex_unlock (int *m)"
+
+.PP
+Unlock a device mutex\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIm\fP The mutex\&.
+.RE
+.PP
+Does not check if the mutex had been locked\&. 
+.SS "__device__ int cuda_queue_gettask (struct \fBqueue_cuda\fP *q)"
+
+.PP
+Get a task ID from the given queue\&. 
+.SS "__device__ void cuda_queue_puttask (struct \fBqueue_cuda\fP *q, inttid)"
+
+.PP
+Put a task onto the given queue\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItid\fP The task ID to add to the end of the queue\&. 
+.RE
+.PP
+
+.SS "__device__ void cuda_sort_ascending (unsigned int *a, intcount)"
+
+.PP
+Sort the given data w\&.r\&.t\&. the lowest 16 bits in ascending order\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP The array to sort\&. 
+.br
+\fIcount\fP The number of elements\&. 
+.RE
+.PP
+
+.SS "__device__ void cuda_sort_descending (unsigned int *a, intcount)\fC [inline]\fP"
+
+.PP
+Sort the given data w\&.r\&.t\&. the lowest 16 bits in decending order\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP The array to sort\&. 
+.br
+\fIcount\fP The number of elements\&. 
+.RE
+.PP
+
+.SS "__device__ void cuda_sum (float *a, float *b, intcount)\fC [inline]\fP"
+
+.PP
+Sum two vectors in a strided way\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP Pointer to destination memory\&. 
+.br
+\fIb\fP Pointer to source memory\&. 
+.br
+\fIcount\fP Number of floats to sum\&.
+.RE
+.PP
+Computes \fCa\fP[k] += b[k] for k=1\&.\&.count\&. 
+.SS "int engine_cuda_load (struct \fBengine\fP *e)"
+
+.PP
+Load the potentials and cell pairs onto the CUDA device\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_cuda_load_parts (struct \fBengine\fP *e)"
+
+.PP
+Load the cell data onto the CUDA device\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The maximum number of parts per cell or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_cuda_queues_load (struct \fBengine\fP *e)"
+
+.PP
+Load the queues onto the CUDA device\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_cuda_unload_parts (struct \fBengine\fP *e)"
+
+.PP
+Load the cell data from the CUDA device\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_nonbond_cuda (struct \fBengine\fP *e)"
+
+.PP
+Offload and compute the nonbonded interactions on a CUDA device\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "__noinline__ __device__ \fBuint\fP get_smid (void)"
+
+.PP
+Get the ID of the block's SM\&. 
+.SS "__device__ void potential_eval4_cuda_tex (int4pid, float4r2, float4 *e, float4 *f)\fC [inline]\fP"
+
+.PP
+Evaluates the given potential at the given point (interpolated) using texture memory on the device\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpid\fP The index of the \fBpotential\fP to be evaluated\&. 
+.br
+\fIr2\fP The radius at which it is to be evaluated, squared\&. 
+.br
+\fIe\fP Pointer to a floating-point value in which to store the interaction energy\&. 
+.br
+\fIf\fP Pointer to a floating-point value in which to store the magnitude of the interaction force divided by r\&.
+.RE
+.PP
+Note that for efficiency reasons, this function does not check if any of the parameters are \fCNULL\fP or if \fCsqrt(r2)\fP is within the interval of the \fBpotential\fP \fCp\fP\&. 
+.SS "__device__ void potential_eval_cuda (struct \fBpotential\fP *p, floatr2, float *e, float *f)\fC [inline]\fP"
+
+.PP
+Evaluates the given potential at the given point (interpolated)\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP The \fBpotential\fP to be evaluated\&. 
+.br
+\fIr2\fP The radius at which it is to be evaluated, squared\&. 
+.br
+\fIe\fP Pointer to a floating-point value in which to store the interaction energy\&. 
+.br
+\fIf\fP Pointer to a floating-point value in which to store the magnitude of the interaction force divided by r\&.
+.RE
+.PP
+Note that for efficiency reasons, this function does not check if any of the parameters are \fCNULL\fP or if \fCsqrt(r2)\fP is within the interval of the \fBpotential\fP \fCp\fP\&. 
+.SS "__device__ void potential_eval_cuda_tex (intpid, floatr2, float *e, float *f)\fC [inline]\fP"
+
+.PP
+Evaluates the given potential at the given point (interpolated) using texture memory on the device\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpid\fP The index of the \fBpotential\fP to be evaluated\&. 
+.br
+\fIr2\fP The radius at which it is to be evaluated, squared\&. 
+.br
+\fIe\fP Pointer to a floating-point value in which to store the interaction energy\&. 
+.br
+\fIf\fP Pointer to a floating-point value in which to store the magnitude of the interaction force divided by r\&.
+.RE
+.PP
+Note that for efficiency reasons, this function does not check if any of the parameters are \fCNULL\fP or if \fCsqrt(r2)\fP is within the interval of the \fBpotential\fP \fCp\fP\&. 
+.SS "__device__ int runner_cuda_gettask (struct \fBqueue_cuda\fP *q, intsteal)"
+
+.PP
+Get a task from the given task queue\&. Picks tasks from the queue sequentially and checks if they can be computed\&. If not, they are returned to the queue\&.
+.PP
+This routine blocks until a valid task is picked up, or the specified queue is empty\&. 
+.SS "__device__ int runner_cuda_gettask_nolock (struct \fBqueue_cuda\fP *q, intsteal)"
+
+.SS "__device__ void runner_dopair4_unsorted_cuda (float4 *parts_i, intcount_i, float4 *parts_j, intcount_j, float *forces_i, float *forces_j, float *shift, float *epot_global)"
+
+.PP
+Compute the pairwise interactions for the given pair on a CUDA device\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIicid\fP Array of parts in the first cell\&. 
+.br
+\fIcount_i\fP Number of parts in the first cell\&. 
+.br
+\fIicjd\fP Array of parts in the second cell\&. 
+.br
+\fIcount_j\fP Number of parts in the second cell\&. 
+.br
+\fIpshift\fP A pointer to an array of three floating point values containing the vector separating the centers of \fCcell_i\fP and \fCcell_j\fP\&. 
+.br
+\fIcid\fP Part buffer in local memory\&. 
+.br
+\fIcjd\fP Part buffer in local memory\&.
+.RE
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBrunner_dopair\fP\&. 
+.RE
+.PP
+
+.SS "__device__ void runner_dopair_cuda (float4 *parts_i, intcount_i, float4 *parts_j, intcount_j, float *forces_i, float *forces_j, unsigned int *sort_i, unsigned int *sort_j, float *shift, unsigned intdshift, float *epot_global)"
+
+.PP
+Compute the pairwise interactions for the given pair on a CUDA device\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIicid\fP Array of parts in the first cell\&. 
+.br
+\fIcount_i\fP Number of parts in the first cell\&. 
+.br
+\fIicjd\fP Array of parts in the second cell\&. 
+.br
+\fIcount_j\fP Number of parts in the second cell\&. 
+.br
+\fIpshift\fP A pointer to an array of three floating point values containing the vector separating the centers of \fCcell_i\fP and \fCcell_j\fP\&. 
+.br
+\fIcid\fP Part buffer in local memory\&. 
+.br
+\fIcjd\fP Part buffer in local memory\&.
+.RE
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBrunner_dopair\fP\&. 
+.RE
+.PP
+
+.SS "__device__ void runner_dopair_left_cuda (float4 *parts_i, intcount_i, float4 *parts_j, intcount_j, float *forces_i, float *forces_j, unsigned int *sort_i, unsigned int *sort_j, float *shift, unsigned intdshift, float *epot_global)"
+
+.PP
+Compute the pairwise interactions for the given pair on a CUDA device\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIicid\fP Array of parts in the first cell\&. 
+.br
+\fIcount_i\fP Number of parts in the first cell\&. 
+.br
+\fIicjd\fP Array of parts in the second cell\&. 
+.br
+\fIcount_j\fP Number of parts in the second cell\&. 
+.br
+\fIpshift\fP A pointer to an array of three floating point values containing the vector separating the centers of \fCcell_i\fP and \fCcell_j\fP\&. 
+.br
+\fIcid\fP Part buffer in local memory\&. 
+.br
+\fIcjd\fP Part buffer in local memory\&.
+.RE
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBrunner_dopair\fP\&. 
+.RE
+.PP
+
+.SS "__device__ void runner_dopair_right_cuda (float4 *parts_i, intcount_i, float4 *parts_j, intcount_j, float *forces_i, float *forces_j, unsigned int *sort_i, unsigned int *sort_j, float *shift, unsigned intdshift, float *epot_global)"
+
+.PP
+Compute the pairwise interactions for the given pair on a CUDA device\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIicid\fP Array of parts in the first cell\&. 
+.br
+\fIcount_i\fP Number of parts in the first cell\&. 
+.br
+\fIicjd\fP Array of parts in the second cell\&. 
+.br
+\fIcount_j\fP Number of parts in the second cell\&. 
+.br
+\fIpshift\fP A pointer to an array of three floating point values containing the vector separating the centers of \fCcell_i\fP and \fCcell_j\fP\&. 
+.br
+\fIcid\fP Part buffer in local memory\&. 
+.br
+\fIcjd\fP Part buffer in local memory\&.
+.RE
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBrunner_dopair\fP\&. 
+.RE
+.PP
+
+.SS "__device__ void runner_dopair_unsorted_cuda (float4 *parts_i, intcount_i, float4 *parts_j, intcount_j, float *forces_i, float *forces_j, float *shift, float *epot_global)"
+
+.PP
+Compute the pairwise interactions for the given pair on a CUDA device\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIicid\fP Array of parts in the first cell\&. 
+.br
+\fIcount_i\fP Number of parts in the first cell\&. 
+.br
+\fIicjd\fP Array of parts in the second cell\&. 
+.br
+\fIcount_j\fP Number of parts in the second cell\&. 
+.br
+\fIpshift\fP A pointer to an array of three floating point values containing the vector separating the centers of \fCcell_i\fP and \fCcell_j\fP\&. 
+.br
+\fIcid\fP Part buffer in local memory\&. 
+.br
+\fIcjd\fP Part buffer in local memory\&.
+.RE
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBrunner_dopair\fP\&. 
+.RE
+.PP
+
+.SS "__device__ void runner_doself_cuda (float4 *parts, intcount, float *forces, float *epot_global)"
+
+.PP
+Compute the self interactions for the given cell on a CUDA device\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIiparts\fP Array of parts in this cell\&. 
+.br
+\fIcount\fP Number of parts in the cell\&. 
+.br
+\fIparts\fP Part buffer in local memory\&.
+.RE
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBrunner_dopair\fP\&. 
+.RE
+.PP
+
+.SS "__device__ void runner_dosort_cuda (float4 *parts_i, intcount_i, unsigned int *sort_i, intsid)\fC [inline]\fP"
+
+.PP
+Compute the pairwise interactions for the given pair on a CUDA device\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIicid\fP Array of parts in the first cell\&. 
+.br
+\fIcount_i\fP Number of parts in the first cell\&. 
+.br
+\fIicjd\fP Array of parts in the second cell\&. 
+.br
+\fIcount_j\fP Number of parts in the second cell\&. 
+.br
+\fIpshift\fP A pointer to an array of three floating point values containing the vector separating the centers of \fCcell_i\fP and \fCcell_j\fP\&. 
+.br
+\fIcid\fP Part buffer in local memory\&. 
+.br
+\fIcjd\fP Part buffer in local memory\&.
+.RE
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBrunner_dopair\fP\&. 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "__device__ int cuda_barrier = 0"
+
+.SS "__device__ int cuda_cell_mutex = 0"
+
+.SS "cudaArray* cuda_coeffs"
+
+.SS "__constant__ float* cuda_corig"
+
+.SS "__constant__ float cuda_cutoff = 0\&.0f"
+
+.SS "__constant__ float cuda_cutoff2 = 0\&.0f"
+
+.SS "__constant__ float cuda_dim[3]"
+
+.SS "__constant__ float cuda_dscale = 0\&.0f"
+
+.SS "__device__ float cuda_epot = 0\&.0f"
+
+.SS "__device__ float cuda_epot_out"
+
+.SS "__constant__ float cuda_eps[100]"
+
+.SS "__device__ float cuda_fio[32]"
+
+.SS "__constant__ float cuda_h[3]"
+
+.SS "__device__ int cuda_io[32]"
+
+.SS "__constant__ float cuda_maxdist = 0\&.0f"
+
+.SS "__constant__ int cuda_maxtype = 0"
+
+.SS "__constant__ int cuda_nr_cells = 0"
+
+.SS "__constant__ int cuda_nr_parts"
+
+.SS "__constant__ int cuda_nr_tasks = 0"
+
+.SS "__constant__ int cuda_nrqueues"
+
+.SS "__constant__ struct \fBpotential\fP** cuda_p"
+
+.SS "__device__ int cuda_pair_next = 0"
+
+.SS "__constant__ struct cellpair_cuda* cuda_pairs"
+
+.SS "__constant__ float4* cuda_parts"
+
+.SS "__constant__ unsigned int* cuda_pind"
+
+.SS "__constant__ struct \fBpotential\fP* cuda_pots"
+
+.SS "__constant__ int cuda_queue_size"
+
+.SS "__device__ struct \fBqueue_cuda\fP cuda_queues[\fBcuda_maxqueues\fP]"
+
+.SS "__device__ int cuda_rcount = 0"
+
+.SS "__constant__ float cuda_rmin[100]"
+
+.SS "__constant__ float cuda_shift[13 *3]"
+\fBInitial value:\fP
+.PP
+.nf
+= {
+     1\&.0 ,  1\&.0 ,  1\&.0 ,
+     1\&.0 ,  1\&.0 ,  0\&.0 ,
+     1\&.0 ,  1\&.0 , -1\&.0 ,
+     1\&.0 ,  0\&.0 ,  1\&.0 ,
+     1\&.0 ,  0\&.0 ,  0\&.0 ,
+     1\&.0 ,  0\&.0 , -1\&.0 ,
+     1\&.0 , -1\&.0 ,  1\&.0 ,
+     1\&.0 , -1\&.0 ,  0\&.0 ,
+     1\&.0 , -1\&.0 , -1\&.0 ,
+     0\&.0 ,  1\&.0 ,  1\&.0 ,
+     0\&.0 ,  1\&.0 ,  0\&.0 ,
+     0\&.0 ,  1\&.0 , -1\&.0 ,
+     0\&.0 ,  0\&.0 ,  1\&.0 ,
+    }
+.fi
+.SS "__constant__ float cuda_shiftn[13 *3]"
+\fBInitial value:\fP
+.PP
+.nf
+= {
+     5\&.773502691896258e-01 ,  5\&.773502691896258e-01 ,  5\&.773502691896258e-01 ,
+     7\&.071067811865475e-01 ,  7\&.071067811865475e-01 ,  0\&.0                   ,
+     5\&.773502691896258e-01 ,  5\&.773502691896258e-01 , -5\&.773502691896258e-01 ,
+     7\&.071067811865475e-01 ,  0\&.0                   ,  7\&.071067811865475e-01 ,
+     1\&.0                   ,  0\&.0                   ,  0\&.0                   ,
+     7\&.071067811865475e-01 ,  0\&.0                   , -7\&.071067811865475e-01 ,
+     5\&.773502691896258e-01 , -5\&.773502691896258e-01 ,  5\&.773502691896258e-01 ,
+     7\&.071067811865475e-01 , -7\&.071067811865475e-01 ,  0\&.0                   ,
+     5\&.773502691896258e-01 , -5\&.773502691896258e-01 , -5\&.773502691896258e-01 ,
+     0\&.0                   ,  7\&.071067811865475e-01 ,  7\&.071067811865475e-01 ,
+     0\&.0                   ,  1\&.0                   ,  0\&.0                   ,
+     0\&.0                   ,  7\&.071067811865475e-01 , -7\&.071067811865475e-01 ,
+     0\&.0                   ,  0\&.0                   ,  1\&.0                   ,
+     }
+.fi
+.SS "__device__ unsigned int* cuda_sortlists = NULL"
+
+.SS "__device__ struct \fBqueue_cuda\fP cuda_sorts[\fBcuda_maxqueues\fP]"
+
+.SS "__device__ int* cuda_taboo"
+
+.SS "__constant__ struct \fBtask_cuda\fP* cuda_tasks"
+
+.SS "__device__ float cuda_timers[\fBtid_count\fP]"
+
+.SS "__device__ volatile int NAMD_barrier = 0"
+
+.SS "__constant__ struct \fBpotential\fP* potential_null_cuda = NULL"
+
+.SS "texture< float4 , cudaTextureType2D > tex_coeffs"
+
+.SS "texture< float4 , cudaTextureType2D > tex_parts"
+
+.SS "texture< int , cudaTextureType1D > tex_pind"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

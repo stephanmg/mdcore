@@ -1,0 +1,136 @@
+\hypertarget{bond_8c}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/bond.c File Reference}
+\label{bond_8c}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/bond.\-c@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/bond.\-c}}
+}
+{\ttfamily \#include \char`\"{}../config.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$pthread.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include $<$float.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$limits.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}cycle.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}errs.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fptype.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lock.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}part.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}potential.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}potential\-\_\-eval.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}cell.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}space.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}engine.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}bond.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{bond_8c_a7673862d447029edaf3172ebd94aa28e}{error}(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})~( \hyperlink{bond_8h_a3705bb0ecce5da46b68a9b500386b3ae}{bond\-\_\-err} = \hyperlink{errs_8h_ae37a9c0e0a0aa4a92dbe64c0f38ed95c}{errs\-\_\-register}( \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id} , \hyperlink{bond_8c_ab434aadcc13e196382f7f85b58078326}{bond\-\_\-err\-\_\-msg}\mbox{[}-\/(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{bond_8c_a6d1e8affa81509c282cd04c3321ea1ff}{bond\-\_\-eval} (struct \hyperlink{structbond}{bond} $\ast$b, int N, struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, double $\ast$epot\-\_\-out)
+\begin{DoxyCompactList}\small\item\em Evaluate a list of bonded interactoins. \end{DoxyCompactList}\item 
+int \hyperlink{bond_8c_a770385a01f032d3150add35e940cab25}{bond\-\_\-evalf} (struct \hyperlink{structbond}{bond} $\ast$b, int N, struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$\hyperlink{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}{f}, double $\ast$epot\-\_\-out)
+\begin{DoxyCompactList}\small\item\em Evaluate a list of bonded interactoins. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{bond_8c_a3705bb0ecce5da46b68a9b500386b3ae}{bond\-\_\-err} = \hyperlink{bond_8h_a3929581b5ee9fecf581e088d18fb187b}{bond\-\_\-err\-\_\-ok}
+\item 
+unsigned int \hyperlink{bond_8c_a26ee2ce9a39877deb413b87f9a90b326}{bond\-\_\-rcount} = 0
+\item 
+char $\ast$ \hyperlink{bond_8c_ab434aadcc13e196382f7f85b58078326}{bond\-\_\-err\-\_\-msg} \mbox{[}2\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{bond_8c_a7673862d447029edaf3172ebd94aa28e}{\index{bond.\-c@{bond.\-c}!error@{error}}
+\index{error@{error}!bond.c@{bond.\-c}}
+\subsubsection[{error}]{\setlength{\rightskip}{0pt plus 5cm}\#define error(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf id}}
+\end{DoxyParamCaption}
+)~( {\bf bond\-\_\-err} = {\bf errs\-\_\-register}( {\bf id} , {\bf bond\-\_\-err\-\_\-msg}\mbox{[}-\/({\bf id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )}}\label{bond_8c_a7673862d447029edaf3172ebd94aa28e}
+
+
+\subsection{Function Documentation}
+\hypertarget{bond_8c_a6d1e8affa81509c282cd04c3321ea1ff}{\index{bond.\-c@{bond.\-c}!bond\-\_\-eval@{bond\-\_\-eval}}
+\index{bond\-\_\-eval@{bond\-\_\-eval}!bond.c@{bond.\-c}}
+\subsubsection[{bond\-\_\-eval}]{\setlength{\rightskip}{0pt plus 5cm}int bond\-\_\-eval (
+\begin{DoxyParamCaption}
+\item[{struct {\bf bond} $\ast$}]{b, }
+\item[{int}]{N, }
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{double $\ast$}]{epot\-\_\-out}
+\end{DoxyParamCaption}
+)}}\label{bond_8c_a6d1e8affa81509c282cd04c3321ea1ff}
+
+
+Evaluate a list of bonded interactoins. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & Pointer to an array of \hyperlink{structbond}{bond}. \\
+\hline
+{\em N} & Nr of bonds in {\ttfamily b}. \\
+\hline
+{\em e} & Pointer to the \hyperlink{structengine}{engine} in which these bonds are evaluated. \\
+\hline
+{\em epot\-\_\-out} & Pointer to a double in which to aggregate the potential energy.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{bond_8h_a3929581b5ee9fecf581e088d18fb187b}{bond\-\_\-err\-\_\-ok} or $<$0 on error (see \hyperlink{bond_8h_a3705bb0ecce5da46b68a9b500386b3ae}{bond\-\_\-err}) 
+\end{DoxyReturn}
+\hypertarget{bond_8c_a770385a01f032d3150add35e940cab25}{\index{bond.\-c@{bond.\-c}!bond\-\_\-evalf@{bond\-\_\-evalf}}
+\index{bond\-\_\-evalf@{bond\-\_\-evalf}!bond.c@{bond.\-c}}
+\subsubsection[{bond\-\_\-evalf}]{\setlength{\rightskip}{0pt plus 5cm}int bond\-\_\-evalf (
+\begin{DoxyParamCaption}
+\item[{struct {\bf bond} $\ast$}]{b, }
+\item[{int}]{N, }
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{{\bf F\-P\-T\-Y\-P\-E} $\ast$}]{f, }
+\item[{double $\ast$}]{epot\-\_\-out}
+\end{DoxyParamCaption}
+)}}\label{bond_8c_a770385a01f032d3150add35e940cab25}
+
+
+Evaluate a list of bonded interactoins. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & Pointer to an array of \hyperlink{structbond}{bond}. \\
+\hline
+{\em N} & Nr of bonds in {\ttfamily b}. \\
+\hline
+{\em e} & Pointer to the \hyperlink{structengine}{engine} in which these bonds are evaluated. \\
+\hline
+{\em f} & An array of {\ttfamily F\-P\-T\-Y\-P\-E} in which to aggregate the resulting forces. \\
+\hline
+{\em epot\-\_\-out} & Pointer to a double in which to aggregate the potential energy.\\
+\hline
+\end{DoxyParams}
+This function differs from \hyperlink{bond_8h_a6d1e8affa81509c282cd04c3321ea1ff}{bond\-\_\-eval} in that the forces are added to the array {\ttfamily f} instead of directly in the particle data.
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{bond_8h_a3929581b5ee9fecf581e088d18fb187b}{bond\-\_\-err\-\_\-ok} or $<$0 on error (see \hyperlink{bond_8h_a3705bb0ecce5da46b68a9b500386b3ae}{bond\-\_\-err}) 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\hypertarget{bond_8c_a3705bb0ecce5da46b68a9b500386b3ae}{\index{bond.\-c@{bond.\-c}!bond\-\_\-err@{bond\-\_\-err}}
+\index{bond\-\_\-err@{bond\-\_\-err}!bond.c@{bond.\-c}}
+\subsubsection[{bond\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}int bond\-\_\-err = {\bf bond\-\_\-err\-\_\-ok}}}\label{bond_8c_a3705bb0ecce5da46b68a9b500386b3ae}
+The I\-D of the last error. \hypertarget{bond_8c_ab434aadcc13e196382f7f85b58078326}{\index{bond.\-c@{bond.\-c}!bond\-\_\-err\-\_\-msg@{bond\-\_\-err\-\_\-msg}}
+\index{bond\-\_\-err\-\_\-msg@{bond\-\_\-err\-\_\-msg}!bond.c@{bond.\-c}}
+\subsubsection[{bond\-\_\-err\-\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ bond\-\_\-err\-\_\-msg\mbox{[}2\mbox{]}}}\label{bond_8c_ab434aadcc13e196382f7f85b58078326}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= \{
+        \textcolor{stringliteral}{"Nothing bad happened."},
+    \textcolor{stringliteral}{"An unexpected NULL pointer was encountered."}
+        \}
+\end{DoxyCode}
+\hypertarget{bond_8c_a26ee2ce9a39877deb413b87f9a90b326}{\index{bond.\-c@{bond.\-c}!bond\-\_\-rcount@{bond\-\_\-rcount}}
+\index{bond\-\_\-rcount@{bond\-\_\-rcount}!bond.c@{bond.\-c}}
+\subsubsection[{bond\-\_\-rcount}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int bond\-\_\-rcount = 0}}\label{bond_8c_a26ee2ce9a39877deb413b87f9a90b326}

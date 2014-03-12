@@ -1,0 +1,295 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/potential_eval.h" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/potential_eval.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBINLINE\fP   inline"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__attribute__\fP ((always_inline)) \fBINLINE\fP void potential_eval(struct \fBpotential\fP *p"
+.br
+.RI "\fIEvaluates the given potential at the given point (interpolated)\&. \fP"
+.ti -1c
+.RI "\fBfor\fP (k=4;k< \fBpotential_chunk\fP;k++)"
+.br
+.ti -1c
+.RI "\fBif\fP (p->flags &\fBpotential_flag_LJ126\fP)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBFPTYPE\fP \fBr2\fP"
+.br
+.ti -1c
+.RI "\fBFPTYPE\fP \fBFPTYPE\fP * \fBe\fP = \fBee\fP"
+.br
+.ti -1c
+.RI "\fBFPTYPE\fP \fBFPTYPE\fP \fBFPTYPE\fP * \fBf\fP"
+.br
+.ti -1c
+.RI "\fBFPTYPE\fP \fBx\fP = (\fBr\fP - \fBc\fP[0]) * \fBc\fP[1]"
+.br
+.ti -1c
+.RI "\fBFPTYPE\fP \fBee\fP = \fBc\fP[2] * \fBx\fP + \fBc\fP[3]"
+.br
+.ti -1c
+.RI "\fBFPTYPE\fP \fBeff\fP = \fBc\fP[2]"
+.br
+.ti -1c
+.RI "\fBFPTYPE\fP * \fBc\fP = &(p->c[\fBind\fP * \fBpotential_chunk\fP])"
+.br
+.ti -1c
+.RI "\fBFPTYPE\fP \fBr\fP = \fBFPTYPE_SQRT\fP(\fBr2\fP)"
+.br
+.ti -1c
+.RI "\fBind\fP = \fBFPTYPE_FMAX\fP( \fBFPTYPE_ZERO\fP , p->alpha[0] + \fBr\fP * (p->alpha[1] + \fBr\fP * p->alpha[2]) )"
+.br
+.ti -1c
+.RI "const \fBFPTYPE\fP \fBkappa\fP = 3\&.0"
+.br
+.ti -1c
+.RI "\fBFPTYPE\fP \fBir\fP = 1\&.0 / \fBr\fP"
+.br
+.ti -1c
+.RI "\fBFPTYPE\fP \fBir2\fP = \fBir\fP * \fBir\fP"
+.br
+.ti -1c
+.RI "\fBFPTYPE\fP \fBir4\fP"
+.br
+.ti -1c
+.RI "\fBFPTYPE\fP \fBir6\fP"
+.br
+.ti -1c
+.RI "\fBFPTYPE\fP \fBir12\fP"
+.br
+.ti -1c
+.RI "\fBFPTYPE\fP \fBt1\fP"
+.br
+.ti -1c
+.RI "\fBFPTYPE\fP \fBt2\fP"
+.br
+.ti -1c
+.RI "float * \fBr_in\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define INLINE   inline"
+
+.SH "Function Documentation"
+.PP 
+.SS "__attribute__ ((always_inline))"
+
+.PP
+Evaluates the given potential at the given point (interpolated)\&. Evaluates the given potential at a set of points (interpolated)\&.
+.PP
+Evaluates the given potential at the given radius explicitly\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP The \fBpotential\fP to be evaluated\&. 
+.br
+\fIr2\fP The radius at which it is to be evaluated, squared\&. 
+.br
+\fIe\fP Pointer to a floating-point value in which to store the interaction energy\&. 
+.br
+\fIf\fP Pointer to a floating-point value in which to store the magnitude of the interaction force divided by r\&.
+.RE
+.PP
+Note that for efficiency reasons, this function does not check if any of the parameters are \fCNULL\fP or if \fCsqrt(r2)\fP is within the interval of the \fBpotential\fP \fCp\fP\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP The \fBpotential\fP to be evaluated\&. 
+.br
+\fIr\fP The radius at which it is to be evaluated\&. 
+.br
+\fIe\fP Pointer to a floating-point value in which to store the interaction energy\&. 
+.br
+\fIf\fP Pointer to a floating-point value in which to store the magnitude of the interaction force\&.
+.RE
+.PP
+Note that for efficiency reasons, this function does not check if any of the parameters are \fCNULL\fP or if \fCsqrt(r2)\fP is within the interval of the \fBpotential\fP \fCp\fP\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP The \fBpotential\fP to be evaluated\&. 
+.br
+\fIr2\fP The radius squared\&. 
+.br
+\fIe\fP A pointer to a floating point value in which to store the interaction energy\&. 
+.br
+\fIf\fP A pointer to a floating point value in which to store the magnitude of the interaction force
+.RE
+.PP
+Assumes that the parameters for the potential forms given in the value \fCflags\fP of the \fBpotential\fP \fCp\fP are stored in the array \fCalpha\fP of \fCp\fP\&.
+.PP
+This way of evaluating a potential is not extremely efficient and is intended for comparison and debugging purposes\&.
+.PP
+Note that for performance reasons, this function does not check its input arguments for \fCNULL\fP\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP Pointer to an array of pointers to the #potentials to be evaluated\&. 
+.br
+\fIr2\fP Pointer to an array of the radii at which the potentials are to be evaluated, squared\&. 
+.br
+\fIe\fP Pointer to an array of floating-point values in which to store the interaction energies\&. 
+.br
+\fIf\fP Pointer to an array of floating-point values in which to store the magnitude of the interaction forces\&.
+.RE
+.PP
+Note that for efficiency reasons, this function does not check if any of the parameters are \fCNULL\fP or if \fCsqrt(r2)\fP is within the interval of the \fBpotential\fP \fCp\fP\&.
+.PP
+Computes four single-precision interactions simultaneously using vectorized instructions\&.
+.PP
+This function is only available if mdcore was compiled with SSE or AltiVec and single precision! If \fCmdcore\fP was not compiled with SSE or AltiVec, this function simply calls #potential_eval on each entry\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP Pointer to an array of pointers to the #potentials to be evaluated\&. 
+.br
+\fIr_in\fP Pointer to an array of the radii at which the potentials are to be evaluated\&. 
+.br
+\fIe\fP Pointer to an array of floating-point values in which to store the interaction energies\&. 
+.br
+\fIf\fP Pointer to an array of floating-point values in which to store the magnitude of the interaction forces\&.
+.RE
+.PP
+Note that for efficiency reasons, this function does not check if any of the parameters are \fCNULL\fP or if \fCsqrt(r2)\fP is within the interval of the \fBpotential\fP \fCp\fP\&.
+.PP
+Computes four single-precision interactions simultaneously using vectorized instructions\&.
+.PP
+This function is only available if mdcore was compiled with SSE or AltiVec and single precision! If \fCmdcore\fP was not compiled with SSE or AltiVec, this function simply calls #potential_eval on each entry\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP Pointer to an array of pointers to the #potentials to be evaluated\&. 
+.br
+\fIr2\fP Pointer to an array of the radii at which the potentials are to be evaluated, squared\&. 
+.br
+\fIe\fP Pointer to an array of floating-point values in which to store the interaction energies\&. 
+.br
+\fIf\fP Pointer to an array of floating-point values in which to store the magnitude of the interaction forces\&.
+.RE
+.PP
+Note that for efficiency reasons, this function does not check if any of the parameters are \fCNULL\fP or if \fCsqrt(r2)\fP is within the interval of the \fBpotential\fP \fCp\fP\&.
+.PP
+Computes eight single-precision interactions simultaneously using vectorized instructions\&.
+.PP
+This function is only available if mdcore was compiled with SSE or AltiVec and single precision! If \fCmdcore\fP was not compiled with SSE or AltiVec, this function simply calls #potential_eval on each entry\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP Pointer to an array of pointers to the #potentials to be evaluated\&. 
+.br
+\fIr2\fP Pointer to an array of the radii at which the potentials are to be evaluated, squared\&. 
+.br
+\fIe\fP Pointer to an array of floating-point values in which to store the interaction energies\&. 
+.br
+\fIf\fP Pointer to an array of floating-point values in which to store the magnitude of the interaction forces\&.
+.RE
+.PP
+Note that for efficiency reasons, this function does not check if any of the parameters are \fCNULL\fP or if \fCsqrt(r2)\fP is within the interval of the \fBpotential\fP \fCp\fP\&.
+.PP
+Computes two double-precision interactions simultaneously using vectorized instructions\&.
+.PP
+This function is only available if mdcore was compiled with SSE2 and double precision! If \fCmdcore\fP was not compiled with SSE2 enabled, this function simply calls #potential_eval on each entry\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP Pointer to an array of pointers to the #potentials to be evaluated\&. 
+.br
+\fIr2\fP Pointer to an array of the radii at which the potentials are to be evaluated, squared\&. 
+.br
+\fIe\fP Pointer to an array of floating-point values in which to store the interaction energies\&. 
+.br
+\fIf\fP Pointer to an array of floating-point values in which to store the magnitude of the interaction forces\&.
+.RE
+.PP
+Note that for efficiency reasons, this function does not check if any of the parameters are \fCNULL\fP or if \fCsqrt(r2)\fP is within the interval of the \fBpotential\fP \fCp\fP\&.
+.PP
+Computes four double-precision interactions simultaneously using vectorized instructions\&.
+.PP
+This function is only available if mdcore was compiled with SSE2 and double precision! If \fCmdcore\fP was not compiled with SSE2 enabled, this function simply calls #potential_eval on each entry\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP Pointer to an array of pointers to the #potentials to be evaluated\&. 
+.br
+\fIr\fP Pointer to an array of the radii at which the potentials are to be evaluated\&. 
+.br
+\fIe\fP Pointer to an array of floating-point values in which to store the interaction energies\&. 
+.br
+\fIf\fP Pointer to an array of floating-point values in which to store the magnitude of the interaction forces\&.
+.RE
+.PP
+Note that for efficiency reasons, this function does not check if any of the parameters are \fCNULL\fP or if \fCsqrt(r2)\fP is within the interval of the \fBpotential\fP \fCp\fP\&.
+.PP
+Computes four double-precision interactions simultaneously using vectorized instructions\&.
+.PP
+This function is only available if mdcore was compiled with SSE2 and double precision! If \fCmdcore\fP was not compiled with SSE2 enabled, this function simply calls #potential_eval on each entry\&. 
+.SS "for ()"
+
+.SS "if (p->flags &potential_flag_LJ126)"
+
+.SH "Variable Documentation"
+.PP 
+.SS "\fBFPTYPE\fP * c = &(p->c[\fBind\fP * \fBpotential_chunk\fP])"
+
+.SS "& e = \fBee\fP"
+
+.SS "\fBFPTYPE\fP ee = \fBc\fP[2] * \fBx\fP + \fBc\fP[3]"
+
+.SS "\fBFPTYPE\fP eff = \fBc\fP[2]"
+
+.SS "& f"
+\fBInitial value:\fP
+.PP
+.nf
+{
+
+    int ind, k
+.fi
+.SS "ind = \fBFPTYPE_FMAX\fP( \fBFPTYPE_ZERO\fP , p->alpha[0] + \fBr\fP * (p->alpha[1] + \fBr\fP * p->alpha[2]) )"
+
+.SS "\fBFPTYPE\fP ir = 1\&.0 / \fBr\fP"
+
+.SS "\fBFPTYPE\fP ir12"
+
+.SS "\fBFPTYPE\fP ir2 = \fBir\fP * \fBir\fP"
+
+.SS "\fBFPTYPE\fP ir4"
+
+.SS "\fBFPTYPE\fP ir6"
+
+.SS "const \fBFPTYPE\fP kappa = 3\&.0"
+
+.SS "\fBFPTYPE\fP r = \fBFPTYPE_SQRT\fP(\fBr2\fP)"
+
+.SS "\fBFPTYPE\fP * r2"
+
+.SS "\fBFPTYPE\fP * r_in"
+
+.SS "\fBFPTYPE\fP t1"
+
+.SS "\fBFPTYPE\fP t2"
+
+.SS "\fBFPTYPE\fP x = (\fBr\fP - \fBc\fP[0]) * \fBc\fP[1]"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

@@ -1,0 +1,78 @@
+.TH "engine_set" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+engine_set \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <engine\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "int \fBnr_bonds\fP"
+.br
+.ti -1c
+.RI "int \fBnr_angles\fP"
+.br
+.ti -1c
+.RI "int \fBnr_dihedrals\fP"
+.br
+.ti -1c
+.RI "int \fBnr_exclusions\fP"
+.br
+.ti -1c
+.RI "int \fBweight\fP"
+.br
+.ti -1c
+.RI "struct \fBbond\fP * \fBbonds\fP"
+.br
+.ti -1c
+.RI "struct \fBangle\fP * \fBangles\fP"
+.br
+.ti -1c
+.RI "struct \fBdihedral\fP * \fBdihedrals\fP"
+.br
+.ti -1c
+.RI "struct \fBexclusion\fP * \fBexclusions\fP"
+.br
+.ti -1c
+.RI "int \fBnr_confl\fP"
+.br
+.ti -1c
+.RI "int * \fBconfl\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Structure storing grouped sets of bonded interactions\&. 
+.SH "Field Documentation"
+.PP 
+.SS "struct \fBangle\fP* angles"
+
+.SS "struct \fBbond\fP* bonds"
+
+.SS "int* confl"
+
+.SS "struct \fBdihedral\fP* dihedrals"
+
+.SS "struct \fBexclusion\fP* exclusions"
+
+.SS "int nr_angles"
+
+.SS "int nr_bonds"
+
+.SS "int nr_confl"
+
+.SS "int nr_dihedrals"
+
+.SS "int nr_exclusions"
+
+.SS "int weight"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

@@ -1,0 +1,104 @@
+\hypertarget{runner__dopair_8c}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/runner\-\_\-dopair.c File Reference}
+\label{runner__dopair_8c}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/runner\-\_\-dopair.\-c@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/runner\-\_\-dopair.\-c}}
+}
+{\ttfamily \#include \char`\"{}../config.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$pthread.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include $<$float.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$limits.\-h$>$}\\*
+{\ttfamily \#include $<$sched.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}cycle.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}errs.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fptype.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lock.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}part.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}cell.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}space.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}potential.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}potential\-\_\-eval.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}engine.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}runner.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{runner__dopair_8c_a7673862d447029edaf3172ebd94aa28e}{error}(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})~( \hyperlink{runner_8h_a089c4782be93d7832449e187e5bff7fd}{runner\-\_\-err} = \hyperlink{errs_8h_ae37a9c0e0a0aa4a92dbe64c0f38ed95c}{errs\-\_\-register}( \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id} , \hyperlink{runner__dosort_8c_abc364fce0ce2786068ca9c910aa3bd86}{runner\-\_\-err\-\_\-msg}\mbox{[}-\/(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{runner__dopair_8c_af1cd53fc8178e87ccb66a89ef019d4cc}{\-\_\-\-\_\-attribute\-\_\-\-\_\-} ((flatten))
+\begin{DoxyCompactList}\small\item\em Compute the pairwise interactions for the given pair. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{runner__dopair_8c_abc364fce0ce2786068ca9c910aa3bd86}{runner\-\_\-err\-\_\-msg} \mbox{[}$\,$\mbox{]}
+\item 
+unsigned int \hyperlink{runner__dopair_8c_a27d7ea9069ba02bd4df2a48cc1093376}{runner\-\_\-rcount}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{runner__dopair_8c_a7673862d447029edaf3172ebd94aa28e}{\index{runner\-\_\-dopair.\-c@{runner\-\_\-dopair.\-c}!error@{error}}
+\index{error@{error}!runner_dopair.c@{runner\-\_\-dopair.\-c}}
+\subsubsection[{error}]{\setlength{\rightskip}{0pt plus 5cm}\#define error(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf id}}
+\end{DoxyParamCaption}
+)~( {\bf runner\-\_\-err} = {\bf errs\-\_\-register}( {\bf id} , {\bf runner\-\_\-err\-\_\-msg}\mbox{[}-\/({\bf id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )}}\label{runner__dopair_8c_a7673862d447029edaf3172ebd94aa28e}
+
+
+\subsection{Function Documentation}
+\hypertarget{runner__dopair_8c_af1cd53fc8178e87ccb66a89ef019d4cc}{\index{runner\-\_\-dopair.\-c@{runner\-\_\-dopair.\-c}!\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}!runner_dopair.c@{runner\-\_\-dopair.\-c}}
+\subsubsection[{\-\_\-\-\_\-attribute\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-attribute\-\_\-\-\_\- (
+\begin{DoxyParamCaption}
+\item[{(flatten)}]{}
+\end{DoxyParamCaption}
+)}}\label{runner__dopair_8c_af1cd53fc8178e87ccb66a89ef019d4cc}
+
+
+Compute the pairwise interactions for the given pair. 
+
+Compute the self-\/interactions for the given cell.
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The \hyperlink{structrunner}{runner} computing the pair. \\
+\hline
+{\em cell\-\_\-i} & The first cell. \\
+\hline
+{\em cell\-\_\-j} & The second cell. \\
+\hline
+{\em shift} & A pointer to an array of three floating point values containing the vector separating the centers of {\ttfamily cell\-\_\-i} and {\ttfamily cell\-\_\-j}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{runner_8h_a9dee8308cc82d4f6c77891cfb448790c}{runner\-\_\-err\-\_\-ok} or $<$0 on error (see \hyperlink{runner_8h_a089c4782be93d7832449e187e5bff7fd}{runner\-\_\-err})
+\end{DoxyReturn}
+Computes the interactions between all the particles in {\ttfamily cell\-\_\-i} and all the paritcles in {\ttfamily cell\-\_\-j}. {\ttfamily cell\-\_\-i} and {\ttfamily cell\-\_\-j} may be the same cell.
+
+\begin{DoxySeeAlso}{See Also}
+\#runner\-\_\-sortedpair.
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The \hyperlink{structrunner}{runner} computing the pair. \\
+\hline
+{\em cell\-\_\-i} & The first cell.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{runner_8h_a9dee8308cc82d4f6c77891cfb448790c}{runner\-\_\-err\-\_\-ok} or $<$0 on error (see \hyperlink{runner_8h_a089c4782be93d7832449e187e5bff7fd}{runner\-\_\-err}) 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\hypertarget{runner__dopair_8c_abc364fce0ce2786068ca9c910aa3bd86}{\index{runner\-\_\-dopair.\-c@{runner\-\_\-dopair.\-c}!runner\-\_\-err\-\_\-msg@{runner\-\_\-err\-\_\-msg}}
+\index{runner\-\_\-err\-\_\-msg@{runner\-\_\-err\-\_\-msg}!runner_dopair.c@{runner\-\_\-dopair.\-c}}
+\subsubsection[{runner\-\_\-err\-\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ runner\-\_\-err\-\_\-msg\mbox{[}$\,$\mbox{]}}}\label{runner__dopair_8c_abc364fce0ce2786068ca9c910aa3bd86}
+\hypertarget{runner__dopair_8c_a27d7ea9069ba02bd4df2a48cc1093376}{\index{runner\-\_\-dopair.\-c@{runner\-\_\-dopair.\-c}!runner\-\_\-rcount@{runner\-\_\-rcount}}
+\index{runner\-\_\-rcount@{runner\-\_\-rcount}!runner_dopair.c@{runner\-\_\-dopair.\-c}}
+\subsubsection[{runner\-\_\-rcount}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int runner\-\_\-rcount}}\label{runner__dopair_8c_a27d7ea9069ba02bd4df2a48cc1093376}

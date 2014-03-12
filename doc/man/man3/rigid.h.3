@@ -1,0 +1,135 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/rigid.h" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/rigid.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBrigid\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBrigid_err_ok\fP   0"
+.br
+.ti -1c
+.RI "#define \fBrigid_err_null\fP   -1"
+.br
+.ti -1c
+.RI "#define \fBrigid_err_malloc\fP   -2"
+.br
+.ti -1c
+.RI "#define \fBrigid_maxparts\fP   10"
+.br
+.ti -1c
+.RI "#define \fBrigid_maxconstr\fP   (3*\fBrigid_maxparts\fP)"
+.br
+.ti -1c
+.RI "#define \fBrigid_maxiter\fP   100"
+.br
+.ti -1c
+.RI "#define \fBrigid_pshake_refine\fP   4"
+.br
+.ti -1c
+.RI "#define \fBrigid_pshake_maxalpha\fP   0\&.1f"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBrigid_eval_shake\fP (struct \fBrigid\fP *\fBr\fP, int N, struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fIEvaluate (SHAKE) a list of rigid constraints\&. \fP"
+.ti -1c
+.RI "int \fBrigid_eval_pshake\fP (struct \fBrigid\fP *\fBr\fP, int N, struct \fBengine\fP *\fBe\fP, int a_update)"
+.br
+.RI "\fIEvaluate (P-SHAKE) a list of rigid constraints\&. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBrigid_err\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define rigid_err_malloc   -2"
+
+.SS "#define rigid_err_null   -1"
+
+.SS "#define rigid_err_ok   0"
+
+.SS "#define rigid_maxconstr   (3*\fBrigid_maxparts\fP)"
+
+.SS "#define rigid_maxiter   100"
+
+.SS "#define rigid_maxparts   10"
+
+.SS "#define rigid_pshake_maxalpha   0\&.1f"
+
+.SS "#define rigid_pshake_refine   4"
+
+.SH "Function Documentation"
+.PP 
+.SS "int rigid_eval_pshake (struct \fBrigid\fP *rs, intN, struct \fBengine\fP *e, inta_update)"
+
+.PP
+Evaluate (P-SHAKE) a list of rigid constraints\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIrs\fP Pointer to an array of \fBrigid\fP\&. 
+.br
+\fIN\fP Nr of rigids in \fCr\fP\&. 
+.br
+\fIe\fP Pointer to the \fBengine\fP in which these rigids are evaluated\&. 
+.br
+\fIa_update\fP flag whether to force updates of the constraint coeffs\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBrigid_err_ok\fP or <0 on error (see \fBrigid_err\fP) 
+.RE
+.PP
+
+.SS "int rigid_eval_shake (struct \fBrigid\fP *rs, intN, struct \fBengine\fP *e)"
+
+.PP
+Evaluate (SHAKE) a list of rigid constraints\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIrs\fP Pointer to an array of \fBrigid\fP\&. 
+.br
+\fIN\fP Nr of rigids in \fCr\fP\&. 
+.br
+\fIe\fP Pointer to the \fBengine\fP in which these rigids are evaluated\&. 
+.br
+\fIepot_out\fP Pointer to a double in which to aggregate the potential energy\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBrigid_err_ok\fP or <0 on error (see \fBrigid_err\fP) 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "int rigid_err"
+ID of the last error
+.PP
+The ID of the last error\&. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

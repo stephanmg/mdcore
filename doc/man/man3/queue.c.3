@@ -1,0 +1,194 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/queue.c" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/queue.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include '\&.\&./config\&.h'\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <pthread\&.h>\fP
+.br
+\fC#include <math\&.h>\fP
+.br
+\fC#include <float\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <limits\&.h>\fP
+.br
+\fC#include 'cycle\&.h'\fP
+.br
+\fC#include 'errs\&.h'\fP
+.br
+\fC#include 'fptype\&.h'\fP
+.br
+\fC#include 'lock\&.h'\fP
+.br
+\fC#include 'part\&.h'\fP
+.br
+\fC#include 'cell\&.h'\fP
+.br
+\fC#include 'task\&.h'\fP
+.br
+\fC#include 'space\&.h'\fP
+.br
+\fC#include 'potential\&.h'\fP
+.br
+\fC#include 'engine\&.h'\fP
+.br
+\fC#include 'queue\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBerror\fP(\fBid\fP)   ( \fBqueue_err\fP = \fBerrs_register\fP( \fBid\fP , \fBqueue_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "struct \fBtask\fP * \fBqueue_get\fP (struct \fBqueue\fP *q, int rid, int keep)"
+.br
+.RI "\fIGet a task from the queue\&. \fP"
+.ti -1c
+.RI "void \fBqueue_reset\fP (struct \fBqueue\fP *q)"
+.br
+.RI "\fIReset the queue\&. \fP"
+.ti -1c
+.RI "int \fBqueue_insert\fP (struct \fBqueue\fP *q, struct \fBtask\fP *t)"
+.br
+.RI "\fIAdd an index to the given queue\&. \fP"
+.ti -1c
+.RI "int \fBqueue_init\fP (struct \fBqueue\fP *q, int size, struct \fBspace\fP *s, struct \fBtask\fP *tasks)"
+.br
+.RI "\fIInitialize a task queue\&. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBqueue_err\fP = \fBqueue_err_ok\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBqueue_rcount\fP = 0"
+.br
+.ti -1c
+.RI "char * \fBqueue_err_msg\fP [5]"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define error(\fBid\fP)   ( \fBqueue_err\fP = \fBerrs_register\fP( \fBid\fP , \fBqueue_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+
+.SH "Function Documentation"
+.PP 
+.SS "struct \fBtask\fP* queue_get (struct \fBqueue\fP *q, intrid, intkeep)"
+
+.PP
+Get a task from the queue\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIq\fP The \fBqueue\fP\&. 
+.br
+\fIrid\fP \fBrunner\fP ID for ownership issues\&. 
+.br
+\fIkeep\fP If true, remove the returned index from the queue\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A \fBtask\fP with no unresolved dependencies or conflicts or \fCNULL\fP if none could be found\&. 
+.RE
+.PP
+
+.SS "int queue_init (struct \fBqueue\fP *q, intsize, struct \fBspace\fP *s, struct \fBtask\fP *tasks)"
+
+.PP
+Initialize a task queue\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIq\fP The \fBqueue\fP to initialize\&. 
+.br
+\fIsize\fP The maximum number of cellpairs in this queue\&. 
+.br
+\fIs\fP The space with which this queue is associated\&. 
+.br
+\fItasks\fP An array containing the \fBtask\fP to which the queue indices will refer to\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBqueue_err_ok\fP or <0 on error (see \fBqueue_err\fP)\&.
+.RE
+.PP
+Initializes a queue of the maximum given size\&. The initial queue is empty and can be filled with pair ids\&.
+.PP
+\fBSee Also:\fP
+.RS 4
+#queue_tuples_init 
+.RE
+.PP
+
+.SS "int queue_insert (struct \fBqueue\fP *q, struct \fBtask\fP *t)"
+
+.PP
+Add an index to the given queue\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIq\fP The \fBqueue\fP\&. 
+.br
+\fIthing\fP The thing to be inserted\&.
+.RE
+.PP
+Inserts a task into the queue at the location of the next pointer and moves all remaining tasks up by one\&. Thus, if the queue is executing, the inserted task is considered to already have been taken\&.
+.PP
+\fBReturns:\fP
+.RS 4
+1 on success, 0 if the queue is full and <0 on error (see \fBqueue_err\fP)\&. 
+.RE
+.PP
+
+.SS "void queue_reset (struct \fBqueue\fP *q)"
+
+.PP
+Reset the queue\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIq\fP The \fBqueue\fP\&. 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "int queue_err = \fBqueue_err_ok\fP"
+The ID of the last error\&. 
+.SS "char* queue_err_msg[5]"
+\fBInitial value:\fP
+.PP
+.nf
+= {
+        "Nothing bad happened\&.",
+    "An unexpected NULL pointer was encountered\&.",
+    "A call to malloc failed, probably due to insufficient memory\&.",
+    "Attempted to insert into a full queue\&.",
+    "An error occured in a lock function\&."
+        }
+.fi
+.SS "unsigned int queue_rcount = 0"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

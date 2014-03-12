@@ -1,0 +1,66 @@
+.TH "rigid" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+rigid \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <rigid\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "int \fBnr_parts\fP"
+.br
+.ti -1c
+.RI "int \fBparts\fP [\fBrigid_maxparts\fP]"
+.br
+.ti -1c
+.RI "int \fBnr_constr\fP"
+.br
+.ti -1c
+.RI "struct {"
+.br
+.ti -1c
+.RI "   int \fBi\fP"
+.br
+.ti -1c
+.RI "   int \fBj\fP"
+.br
+.ti -1c
+.RI "   double \fBd2\fP"
+.br
+.ti -1c
+.RI "} \fBconstr\fP [\fBrigid_maxconstr\fP]"
+.br
+.ti -1c
+.RI "float \fBa\fP [\fBrigid_maxconstr\fP *\fBrigid_maxconstr\fP]"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The rigid structure 
+.SH "Field Documentation"
+.PP 
+.SS "float a[\fBrigid_maxconstr\fP *\fBrigid_maxconstr\fP]"
+The constraint shuffle matrix\&. 
+.SS "struct { \&.\&.\&. }   constr[ \fBrigid_maxconstr\fP ]"
+The constraints themselves\&. 
+.SS "double d2"
+
+.SS "int i"
+
+.SS "int j"
+
+.SS "int nr_constr"
+Nr of constraints involved\&. 
+.SS "int nr_parts"
+Nr of parts involved\&. 
+.SS "int parts[\fBrigid_maxparts\fP]"
+ids of particles involved 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

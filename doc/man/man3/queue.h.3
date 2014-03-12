@@ -1,0 +1,169 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/queue.h" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/queue.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBqueue\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBqueue_err_ok\fP   0"
+.br
+.ti -1c
+.RI "#define \fBqueue_err_null\fP   -1"
+.br
+.ti -1c
+.RI "#define \fBqueue_err_malloc\fP   -2"
+.br
+.ti -1c
+.RI "#define \fBqueue_err_full\fP   -3"
+.br
+.ti -1c
+.RI "#define \fBqueue_err_lock\fP   -4"
+.br
+.ti -1c
+.RI "#define \fBqueue_maxhit\fP   10"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBqueue_init\fP (struct \fBqueue\fP *q, int size, struct \fBspace\fP *s, struct \fBtask\fP *tasks)"
+.br
+.RI "\fIInitialize a task queue\&. \fP"
+.ti -1c
+.RI "void \fBqueue_reset\fP (struct \fBqueue\fP *q)"
+.br
+.RI "\fIReset the queue\&. \fP"
+.ti -1c
+.RI "int \fBqueue_insert\fP (struct \fBqueue\fP *q, struct \fBtask\fP *t)"
+.br
+.RI "\fIAdd an index to the given queue\&. \fP"
+.ti -1c
+.RI "struct \fBtask\fP * \fBqueue_get\fP (struct \fBqueue\fP *q, int rid, int keep)"
+.br
+.RI "\fIGet a task from the queue\&. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBqueue_err\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define queue_err_full   -3"
+
+.SS "#define queue_err_lock   -4"
+
+.SS "#define queue_err_malloc   -2"
+
+.SS "#define queue_err_null   -1"
+
+.SS "#define queue_err_ok   0"
+
+.SS "#define queue_maxhit   10"
+
+.SH "Function Documentation"
+.PP 
+.SS "struct \fBtask\fP* queue_get (struct \fBqueue\fP *q, intrid, intkeep)"
+
+.PP
+Get a task from the queue\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIq\fP The \fBqueue\fP\&. 
+.br
+\fIrid\fP \fBrunner\fP ID for ownership issues\&. 
+.br
+\fIkeep\fP If true, remove the returned index from the queue\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A \fBtask\fP with no unresolved dependencies or conflicts or \fCNULL\fP if none could be found\&. 
+.RE
+.PP
+
+.SS "int queue_init (struct \fBqueue\fP *q, intsize, struct \fBspace\fP *s, struct \fBtask\fP *tasks)"
+
+.PP
+Initialize a task queue\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIq\fP The \fBqueue\fP to initialize\&. 
+.br
+\fIsize\fP The maximum number of cellpairs in this queue\&. 
+.br
+\fIs\fP The space with which this queue is associated\&. 
+.br
+\fItasks\fP An array containing the \fBtask\fP to which the queue indices will refer to\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBqueue_err_ok\fP or <0 on error (see \fBqueue_err\fP)\&.
+.RE
+.PP
+Initializes a queue of the maximum given size\&. The initial queue is empty and can be filled with pair ids\&.
+.PP
+\fBSee Also:\fP
+.RS 4
+#queue_tuples_init 
+.RE
+.PP
+
+.SS "int queue_insert (struct \fBqueue\fP *q, struct \fBtask\fP *t)"
+
+.PP
+Add an index to the given queue\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIq\fP The \fBqueue\fP\&. 
+.br
+\fIthing\fP The thing to be inserted\&.
+.RE
+.PP
+Inserts a task into the queue at the location of the next pointer and moves all remaining tasks up by one\&. Thus, if the queue is executing, the inserted task is considered to already have been taken\&.
+.PP
+\fBReturns:\fP
+.RS 4
+1 on success, 0 if the queue is full and <0 on error (see \fBqueue_err\fP)\&. 
+.RE
+.PP
+
+.SS "void queue_reset (struct \fBqueue\fP *q)"
+
+.PP
+Reset the queue\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIq\fP The \fBqueue\fP\&. 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "int queue_err"
+ID of the last error
+.PP
+The ID of the last error\&. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

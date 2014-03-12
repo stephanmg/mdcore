@@ -1,0 +1,239 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/btree.c" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/btree.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include 'errs\&.h'\fP
+.br
+\fC#include 'btree\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBerror\fP(\fBid\fP)   ( \fBbtree_err\fP = \fBerrs_register\fP( \fBid\fP , \fBbtree_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBbtree_delete\fP (struct \fBbtree\fP *b, int key, void **res)"
+.br
+.RI "\fIDelete a key from the \fBbtree\fP\&. \fP"
+.ti -1c
+.RI "int \fBbtree_find\fP (struct \fBbtree\fP *b, int key, void **res)"
+.br
+.RI "\fIRetrieve the data for a given key\&. \fP"
+.ti -1c
+.RI "int \fBbtree_dump\fP (struct \fBbtree\fP *b, FILE *out)"
+.br
+.RI "\fIDump the given btree\&. \fP"
+.ti -1c
+.RI "int \fBbtree_map\fP (struct \fBbtree\fP *b, int(*\fBfunc\fP)(void *, void *), void *data)"
+.br
+.RI "\fIApply a given function to all data in a btree\&. \fP"
+.ti -1c
+.RI "int \fBbtree_insert\fP (struct \fBbtree\fP *b, int key, void *data)"
+.br
+.RI "\fIInsert a key/data pair into the given \fBbtree\fP\&. \fP"
+.ti -1c
+.RI "int \fBbtree_releasenode\fP (struct \fBbtree\fP *b, struct \fBbtree_node\fP *n)"
+.br
+.RI "\fIReturn a \fBbtree_node\fP to the btree's cache\&. \fP"
+.ti -1c
+.RI "struct \fBbtree_node\fP * \fBbtree_getnode\fP (struct \fBbtree\fP *b)"
+.br
+.RI "\fIget a \fBbtree_node\fP from the btree's cache\&. \fP"
+.ti -1c
+.RI "int \fBbtree_init\fP (struct \fBbtree\fP *b)"
+.br
+.RI "\fIInitialize the given \fBbtree\fP\&. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "char * \fBbtree_err_msg\fP [4]"
+.br
+.ti -1c
+.RI "int \fBbtree_err\fP = \fBbtree_err_ok\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define error(\fBid\fP)   ( \fBbtree_err\fP = \fBerrs_register\fP( \fBid\fP , \fBbtree_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+
+.SH "Function Documentation"
+.PP 
+.SS "int btree_delete (struct \fBbtree\fP *b, intkey, void **res)"
+
+.PP
+Delete a key from the \fBbtree\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIb\fP the \fBbtree\fP\&. 
+.br
+\fIkey\fP the key to search for and remove 
+.br
+\fIres\fP a pointer to a pointer in which the address of the data will be written, if found (may be \fCNULL\fP)
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if the \fCkey\fP was found, 0 if not and < 0 on error (see \fBbtree_err\fP)\&. 
+.RE
+.PP
+
+.SS "int btree_dump (struct \fBbtree\fP *b, FILE *out)"
+
+.PP
+Dump the given btree\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIb\fP the \fBbtree\fP\&. 
+.br
+\fIout\fP a pointer to the \fCFILE\fP in which to dump the \fBbtree\fP\&. 
+.RE
+.PP
+
+.SS "int btree_find (struct \fBbtree\fP *b, intkey, void **res)"
+
+.PP
+Retrieve the data for a given key\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIb\fP the \fBbtree\fP in which to search\&. 
+.br
+\fIkey\fP the key to search for\&. 
+.br
+\fIres\fP a pointer to a pointer in which the address of the data will be written\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if found, 0 if not and < 0 on err (see \fBbtree_err\fP)\&.
+.RE
+.PP
+Looks for the given \fCkey\fP and copies its data pointer to the address given by \fCres\fP\&. 
+.SS "struct \fBbtree_node\fP* btree_getnode (struct \fBbtree\fP *b)"
+
+.PP
+get a \fBbtree_node\fP from the btree's cache\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIthe\fP \fBbtree\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A pointer to a \fBbtree_node\fP or \fCNULL\fP if an error occured (see \fBbtree_err\fP)\&. 
+.RE
+.PP
+
+.SS "int btree_init (struct \fBbtree\fP *b)"
+
+.PP
+Initialize the given \fBbtree\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIb\fP the \fBbtree\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBbtree_err_ok\fP or < 0 on error\&. 
+.RE
+.PP
+
+.SS "int btree_insert (struct \fBbtree\fP *b, intkey, void *data)"
+
+.PP
+Insert a key/data pair into the given \fBbtree\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIb\fP the \fBbtree\fP\&. 
+.br
+\fIkey\fP the integer key\&. 
+.br
+\fIdata\fP a pointer to the data associated with \fCkey\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBbtree_err_ok\fP or < 0 on error (see \fBbtree_err\fP)\&.
+.RE
+.PP
+If a node with the given key already exists, the data pointer is replaced\&. 
+.SS "int btree_map (struct \fBbtree\fP *b, int(*)(void *, void *)func, void *data)"
+
+.PP
+Apply a given function to all data in a btree\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIb\fP the \fBbtree\fP\&. 
+.br
+\fIfunc\fP the funciton, which should be of the type \fBbtree_maptype\fP\&. 
+.br
+\fIdata\fP a pointer that will be passed to \fCfunc\fP with each call\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBbtree_err_ok\fP or < 0 on error (see \fBbtree_err\fP)\&.
+.RE
+.PP
+If \fCfunc\fP returns < 0 for any node, the traversal is interrupted and an error is returned\&. 
+.SS "int btree_releasenode (struct \fBbtree\fP *b, struct \fBbtree_node\fP *n)"
+
+.PP
+Return a \fBbtree_node\fP to the btree's cache\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIb\fP the \fBbtree\fP\&. 
+.br
+\fIn\fP the \fBbtree_node\fP
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A pointer to a \fBbtree_node\fP or \fCNULL\fP if an error occured (see \fBbtree_err\fP)\&. 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "int btree_err = \fBbtree_err_ok\fP"
+ID of the last error\&. 
+.SS "char* btree_err_msg[4]"
+\fBInitial value:\fP
+.PP
+.nf
+= {
+        "Nothing bad happened\&.",
+    "An unexpected NULL pointer was encountered\&.",
+    "A call to malloc failed, probably due to insufficient memory\&.",
+    "The user-supplied mapping function returned an error\&."
+        }
+.fi
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

@@ -1,0 +1,249 @@
+\hypertarget{btree_8c}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/btree.c File Reference}
+\label{btree_8c}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/btree.\-c@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/btree.\-c}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}errs.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}btree.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{btree_8c_a7673862d447029edaf3172ebd94aa28e}{error}(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})~( \hyperlink{btree_8h_a19ee1f4aa7b27e3dc4d1c1860efe37f9}{btree\-\_\-err} = \hyperlink{errs_8h_ae37a9c0e0a0aa4a92dbe64c0f38ed95c}{errs\-\_\-register}( \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id} , \hyperlink{btree_8c_a7ff2483d6a138f3cfb811702af1c3b5f}{btree\-\_\-err\-\_\-msg}\mbox{[}-\/(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{btree_8c_afd84dcd613ec4689faf2f18d593d2dbf}{btree\-\_\-delete} (struct \hyperlink{structbtree}{btree} $\ast$b, int key, void $\ast$$\ast$res)
+\begin{DoxyCompactList}\small\item\em Delete a key from the \hyperlink{structbtree}{btree}. \end{DoxyCompactList}\item 
+int \hyperlink{btree_8c_a4c052d0b1f0ccc10ceeefe0b394f2678}{btree\-\_\-find} (struct \hyperlink{structbtree}{btree} $\ast$b, int key, void $\ast$$\ast$res)
+\begin{DoxyCompactList}\small\item\em Retrieve the data for a given key. \end{DoxyCompactList}\item 
+int \hyperlink{btree_8c_af71b4f26521ecc1cc640546b4f9141c3}{btree\-\_\-dump} (struct \hyperlink{structbtree}{btree} $\ast$b, F\-I\-L\-E $\ast$out)
+\begin{DoxyCompactList}\small\item\em Dump the given btree. \end{DoxyCompactList}\item 
+int \hyperlink{btree_8c_aa989c9fda6c4e7dad4869e6edd93a4a5}{btree\-\_\-map} (struct \hyperlink{structbtree}{btree} $\ast$b, int($\ast$\hyperlink{errs_8c_ac4d02c4762d7260b3ce0a2274521a3e3}{func})(void $\ast$, void $\ast$), void $\ast$data)
+\begin{DoxyCompactList}\small\item\em Apply a given function to all data in a btree. \end{DoxyCompactList}\item 
+int \hyperlink{btree_8c_a0a74f40d280c39779283066d1d9b61c4}{btree\-\_\-insert} (struct \hyperlink{structbtree}{btree} $\ast$b, int key, void $\ast$data)
+\begin{DoxyCompactList}\small\item\em Insert a key/data pair into the given \hyperlink{structbtree}{btree}. \end{DoxyCompactList}\item 
+int \hyperlink{btree_8c_a1a18e1c61d4cf16c932ade2d0ecdda98}{btree\-\_\-releasenode} (struct \hyperlink{structbtree}{btree} $\ast$b, struct \hyperlink{structbtree__node}{btree\-\_\-node} $\ast$n)
+\begin{DoxyCompactList}\small\item\em Return a \hyperlink{structbtree__node}{btree\-\_\-node} to the btree's cache. \end{DoxyCompactList}\item 
+struct \hyperlink{structbtree__node}{btree\-\_\-node} $\ast$ \hyperlink{btree_8c_a706e1a269815280f11fd3518c505ed90}{btree\-\_\-getnode} (struct \hyperlink{structbtree}{btree} $\ast$b)
+\begin{DoxyCompactList}\small\item\em get a \hyperlink{structbtree__node}{btree\-\_\-node} from the btree's cache. \end{DoxyCompactList}\item 
+int \hyperlink{btree_8c_a0a5732d431af067d74cd5f54e609b53d}{btree\-\_\-init} (struct \hyperlink{structbtree}{btree} $\ast$b)
+\begin{DoxyCompactList}\small\item\em Initialize the given \hyperlink{structbtree}{btree}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{btree_8c_a7ff2483d6a138f3cfb811702af1c3b5f}{btree\-\_\-err\-\_\-msg} \mbox{[}4\mbox{]}
+\item 
+int \hyperlink{btree_8c_a19ee1f4aa7b27e3dc4d1c1860efe37f9}{btree\-\_\-err} = \hyperlink{btree_8h_aae6fbaf814d02c6560d57f9d0484febd}{btree\-\_\-err\-\_\-ok}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{btree_8c_a7673862d447029edaf3172ebd94aa28e}{\index{btree.\-c@{btree.\-c}!error@{error}}
+\index{error@{error}!btree.c@{btree.\-c}}
+\subsubsection[{error}]{\setlength{\rightskip}{0pt plus 5cm}\#define error(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf id}}
+\end{DoxyParamCaption}
+)~( {\bf btree\-\_\-err} = {\bf errs\-\_\-register}( {\bf id} , {\bf btree\-\_\-err\-\_\-msg}\mbox{[}-\/({\bf id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )}}\label{btree_8c_a7673862d447029edaf3172ebd94aa28e}
+
+
+\subsection{Function Documentation}
+\hypertarget{btree_8c_afd84dcd613ec4689faf2f18d593d2dbf}{\index{btree.\-c@{btree.\-c}!btree\-\_\-delete@{btree\-\_\-delete}}
+\index{btree\-\_\-delete@{btree\-\_\-delete}!btree.c@{btree.\-c}}
+\subsubsection[{btree\-\_\-delete}]{\setlength{\rightskip}{0pt plus 5cm}int btree\-\_\-delete (
+\begin{DoxyParamCaption}
+\item[{struct {\bf btree} $\ast$}]{b, }
+\item[{int}]{key, }
+\item[{void $\ast$$\ast$}]{res}
+\end{DoxyParamCaption}
+)}}\label{btree_8c_afd84dcd613ec4689faf2f18d593d2dbf}
+
+
+Delete a key from the \hyperlink{structbtree}{btree}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & the \hyperlink{structbtree}{btree}. \\
+\hline
+{\em key} & the key to search for and remove \\
+\hline
+{\em res} & a pointer to a pointer in which the address of the data will be written, if found (may be {\ttfamily N\-U\-L\-L})\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the {\ttfamily key} was found, 0 if not and $<$ 0 on error (see \hyperlink{btree_8h_a19ee1f4aa7b27e3dc4d1c1860efe37f9}{btree\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{btree_8c_af71b4f26521ecc1cc640546b4f9141c3}{\index{btree.\-c@{btree.\-c}!btree\-\_\-dump@{btree\-\_\-dump}}
+\index{btree\-\_\-dump@{btree\-\_\-dump}!btree.c@{btree.\-c}}
+\subsubsection[{btree\-\_\-dump}]{\setlength{\rightskip}{0pt plus 5cm}int btree\-\_\-dump (
+\begin{DoxyParamCaption}
+\item[{struct {\bf btree} $\ast$}]{b, }
+\item[{F\-I\-L\-E $\ast$}]{out}
+\end{DoxyParamCaption}
+)}}\label{btree_8c_af71b4f26521ecc1cc640546b4f9141c3}
+
+
+Dump the given btree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & the \hyperlink{structbtree}{btree}. \\
+\hline
+{\em out} & a pointer to the {\ttfamily F\-I\-L\-E} in which to dump the \hyperlink{structbtree}{btree}. \\
+\hline
+\end{DoxyParams}
+\hypertarget{btree_8c_a4c052d0b1f0ccc10ceeefe0b394f2678}{\index{btree.\-c@{btree.\-c}!btree\-\_\-find@{btree\-\_\-find}}
+\index{btree\-\_\-find@{btree\-\_\-find}!btree.c@{btree.\-c}}
+\subsubsection[{btree\-\_\-find}]{\setlength{\rightskip}{0pt plus 5cm}int btree\-\_\-find (
+\begin{DoxyParamCaption}
+\item[{struct {\bf btree} $\ast$}]{b, }
+\item[{int}]{key, }
+\item[{void $\ast$$\ast$}]{res}
+\end{DoxyParamCaption}
+)}}\label{btree_8c_a4c052d0b1f0ccc10ceeefe0b394f2678}
+
+
+Retrieve the data for a given key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & the \hyperlink{structbtree}{btree} in which to search. \\
+\hline
+{\em key} & the key to search for. \\
+\hline
+{\em res} & a pointer to a pointer in which the address of the data will be written.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if found, 0 if not and $<$ 0 on err (see \hyperlink{btree_8h_a19ee1f4aa7b27e3dc4d1c1860efe37f9}{btree\-\_\-err}).
+\end{DoxyReturn}
+Looks for the given {\ttfamily key} and copies its data pointer to the address given by {\ttfamily res}. \hypertarget{btree_8c_a706e1a269815280f11fd3518c505ed90}{\index{btree.\-c@{btree.\-c}!btree\-\_\-getnode@{btree\-\_\-getnode}}
+\index{btree\-\_\-getnode@{btree\-\_\-getnode}!btree.c@{btree.\-c}}
+\subsubsection[{btree\-\_\-getnode}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf btree\-\_\-node}$\ast$ btree\-\_\-getnode (
+\begin{DoxyParamCaption}
+\item[{struct {\bf btree} $\ast$}]{b}
+\end{DoxyParamCaption}
+)}}\label{btree_8c_a706e1a269815280f11fd3518c505ed90}
+
+
+get a \hyperlink{structbtree__node}{btree\-\_\-node} from the btree's cache. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the} & \hyperlink{structbtree}{btree}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to a \hyperlink{structbtree__node}{btree\-\_\-node} or {\ttfamily N\-U\-L\-L} if an error occured (see \hyperlink{btree_8h_a19ee1f4aa7b27e3dc4d1c1860efe37f9}{btree\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{btree_8c_a0a5732d431af067d74cd5f54e609b53d}{\index{btree.\-c@{btree.\-c}!btree\-\_\-init@{btree\-\_\-init}}
+\index{btree\-\_\-init@{btree\-\_\-init}!btree.c@{btree.\-c}}
+\subsubsection[{btree\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}int btree\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{struct {\bf btree} $\ast$}]{b}
+\end{DoxyParamCaption}
+)}}\label{btree_8c_a0a5732d431af067d74cd5f54e609b53d}
+
+
+Initialize the given \hyperlink{structbtree}{btree}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & the \hyperlink{structbtree}{btree}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{btree_8h_aae6fbaf814d02c6560d57f9d0484febd}{btree\-\_\-err\-\_\-ok} or $<$ 0 on error. 
+\end{DoxyReturn}
+\hypertarget{btree_8c_a0a74f40d280c39779283066d1d9b61c4}{\index{btree.\-c@{btree.\-c}!btree\-\_\-insert@{btree\-\_\-insert}}
+\index{btree\-\_\-insert@{btree\-\_\-insert}!btree.c@{btree.\-c}}
+\subsubsection[{btree\-\_\-insert}]{\setlength{\rightskip}{0pt plus 5cm}int btree\-\_\-insert (
+\begin{DoxyParamCaption}
+\item[{struct {\bf btree} $\ast$}]{b, }
+\item[{int}]{key, }
+\item[{void $\ast$}]{data}
+\end{DoxyParamCaption}
+)}}\label{btree_8c_a0a74f40d280c39779283066d1d9b61c4}
+
+
+Insert a key/data pair into the given \hyperlink{structbtree}{btree}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & the \hyperlink{structbtree}{btree}. \\
+\hline
+{\em key} & the integer key. \\
+\hline
+{\em data} & a pointer to the data associated with {\ttfamily key}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{btree_8h_aae6fbaf814d02c6560d57f9d0484febd}{btree\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{btree_8h_a19ee1f4aa7b27e3dc4d1c1860efe37f9}{btree\-\_\-err}).
+\end{DoxyReturn}
+If a node with the given key already exists, the data pointer is replaced. \hypertarget{btree_8c_aa989c9fda6c4e7dad4869e6edd93a4a5}{\index{btree.\-c@{btree.\-c}!btree\-\_\-map@{btree\-\_\-map}}
+\index{btree\-\_\-map@{btree\-\_\-map}!btree.c@{btree.\-c}}
+\subsubsection[{btree\-\_\-map}]{\setlength{\rightskip}{0pt plus 5cm}int btree\-\_\-map (
+\begin{DoxyParamCaption}
+\item[{struct {\bf btree} $\ast$}]{b, }
+\item[{int($\ast$)(void $\ast$, void $\ast$)}]{func, }
+\item[{void $\ast$}]{data}
+\end{DoxyParamCaption}
+)}}\label{btree_8c_aa989c9fda6c4e7dad4869e6edd93a4a5}
+
+
+Apply a given function to all data in a btree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & the \hyperlink{structbtree}{btree}. \\
+\hline
+{\em func} & the funciton, which should be of the type \hyperlink{btree_8h_a7afa7f1a76f56bcde90a7984d6dc6dc9}{btree\-\_\-maptype}. \\
+\hline
+{\em data} & a pointer that will be passed to {\ttfamily func} with each call.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{btree_8h_aae6fbaf814d02c6560d57f9d0484febd}{btree\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{btree_8h_a19ee1f4aa7b27e3dc4d1c1860efe37f9}{btree\-\_\-err}).
+\end{DoxyReturn}
+If {\ttfamily func} returns $<$ 0 for any node, the traversal is interrupted and an error is returned. \hypertarget{btree_8c_a1a18e1c61d4cf16c932ade2d0ecdda98}{\index{btree.\-c@{btree.\-c}!btree\-\_\-releasenode@{btree\-\_\-releasenode}}
+\index{btree\-\_\-releasenode@{btree\-\_\-releasenode}!btree.c@{btree.\-c}}
+\subsubsection[{btree\-\_\-releasenode}]{\setlength{\rightskip}{0pt plus 5cm}int btree\-\_\-releasenode (
+\begin{DoxyParamCaption}
+\item[{struct {\bf btree} $\ast$}]{b, }
+\item[{struct {\bf btree\-\_\-node} $\ast$}]{n}
+\end{DoxyParamCaption}
+)}}\label{btree_8c_a1a18e1c61d4cf16c932ade2d0ecdda98}
+
+
+Return a \hyperlink{structbtree__node}{btree\-\_\-node} to the btree's cache. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & the \hyperlink{structbtree}{btree}. \\
+\hline
+{\em n} & the \hyperlink{structbtree__node}{btree\-\_\-node}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to a \hyperlink{structbtree__node}{btree\-\_\-node} or {\ttfamily N\-U\-L\-L} if an error occured (see \hyperlink{btree_8h_a19ee1f4aa7b27e3dc4d1c1860efe37f9}{btree\-\_\-err}). 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\hypertarget{btree_8c_a19ee1f4aa7b27e3dc4d1c1860efe37f9}{\index{btree.\-c@{btree.\-c}!btree\-\_\-err@{btree\-\_\-err}}
+\index{btree\-\_\-err@{btree\-\_\-err}!btree.c@{btree.\-c}}
+\subsubsection[{btree\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}int btree\-\_\-err = {\bf btree\-\_\-err\-\_\-ok}}}\label{btree_8c_a19ee1f4aa7b27e3dc4d1c1860efe37f9}
+I\-D of the last error. \hypertarget{btree_8c_a7ff2483d6a138f3cfb811702af1c3b5f}{\index{btree.\-c@{btree.\-c}!btree\-\_\-err\-\_\-msg@{btree\-\_\-err\-\_\-msg}}
+\index{btree\-\_\-err\-\_\-msg@{btree\-\_\-err\-\_\-msg}!btree.c@{btree.\-c}}
+\subsubsection[{btree\-\_\-err\-\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ btree\-\_\-err\-\_\-msg\mbox{[}4\mbox{]}}}\label{btree_8c_a7ff2483d6a138f3cfb811702af1c3b5f}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= \{
+        \textcolor{stringliteral}{"Nothing bad happened."},
+    \textcolor{stringliteral}{"An unexpected NULL pointer was encountered."},
+    \textcolor{stringliteral}{"A call to malloc failed, probably due to insufficient memory."},
+    \textcolor{stringliteral}{"The user-supplied mapping function returned an error."}
+        \}
+\end{DoxyCode}

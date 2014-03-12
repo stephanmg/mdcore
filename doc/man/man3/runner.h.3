@@ -1,0 +1,300 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/runner.h" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/runner.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBrunner_fifo\fP"
+.br
+.ti -1c
+.RI "struct \fBrunner\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBrunner_err_ok\fP   0"
+.br
+.ti -1c
+.RI "#define \fBrunner_err_null\fP   -1"
+.br
+.ti -1c
+.RI "#define \fBrunner_err_malloc\fP   -2"
+.br
+.ti -1c
+.RI "#define \fBrunner_err_space\fP   -3"
+.br
+.ti -1c
+.RI "#define \fBrunner_err_pthread\fP   -4"
+.br
+.ti -1c
+.RI "#define \fBrunner_err_engine\fP   -5"
+.br
+.ti -1c
+.RI "#define \fBrunner_err_spe\fP   -6"
+.br
+.ti -1c
+.RI "#define \fBrunner_err_mfc\fP   -7"
+.br
+.ti -1c
+.RI "#define \fBrunner_err_unavail\fP   -8"
+.br
+.ti -1c
+.RI "#define \fBrunner_err_fifo\fP   -9"
+.br
+.ti -1c
+.RI "#define \fBrunner_err_verlet_overflow\fP   -10"
+.br
+.ti -1c
+.RI "#define \fBrunner_err_tasktype\fP   -11"
+.br
+.ti -1c
+.RI "#define \fBrunner_minsleep\fP   1000"
+.br
+.ti -1c
+.RI "#define \fBrunner_bitesize\fP   3"
+.br
+.ti -1c
+.RI "#define \fBrunner_verlet_bitesize\fP   200"
+.br
+.ti -1c
+.RI "#define \fBrunner_qlen\fP   8"
+.br
+.ti -1c
+.RI "#define \fBrunner_dispatch_stop\fP   0xffffffff"
+.br
+.ti -1c
+.RI "#define \fBrunner_dispatch_lookahead\fP   20"
+.br
+.ti -1c
+.RI "#define \fBTIMER_TIC\fP"
+.br
+.ti -1c
+.RI "#define \fBTIMER_TOC\fP(t)"
+.br
+.ti -1c
+.RI "#define \fBTIMER_TIC2\fP"
+.br
+.ti -1c
+.RI "#define \fBTIMER_TOC2\fP(t)"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum { \fBrunner_timer_queue\fP = 0, \fBrunner_timer_pair\fP, \fBrunner_timer_self\fP, \fBrunner_timer_sort\fP, \fBrunner_timer_count\fP }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBrunner_dopair_unsorted\fP (struct \fBrunner\fP *\fBr\fP, struct \fBcell\fP *cell_i, struct \fBcell\fP *cell_j)"
+.br
+.ti -1c
+.RI "int \fBrunner_init_SPU\fP (struct \fBrunner\fP *\fBr\fP, struct \fBengine\fP *\fBe\fP, int \fBid\fP)"
+.br
+.RI "\fIInitialize the runner associated to the given engine and attach it to an SPU\&. \fP"
+.ti -1c
+.RI "int \fBrunner_init\fP (struct \fBrunner\fP *\fBr\fP, struct \fBengine\fP *\fBe\fP, int \fBid\fP)"
+.br
+.RI "\fIInitialize the runner associated to the given engine\&. \fP"
+.ti -1c
+.RI "int \fBrunner_run\fP (struct \fBrunner\fP *\fBr\fP)"
+.br
+.ti -1c
+.RI "void \fBrunner_sort_ascending\fP (unsigned int *parts, int N)"
+.br
+.RI "\fISort the particles in ascending order using QuickSort\&. \fP"
+.ti -1c
+.RI "void \fBrunner_sort_descending\fP (unsigned int *parts, int N)"
+.br
+.RI "\fISort the particles in descending order using QuickSort\&. \fP"
+.ti -1c
+.RI "int \fBrunner_verlet_eval\fP (struct \fBrunner\fP *\fBr\fP, struct \fBcell\fP *\fBc\fP, \fBFPTYPE\fP *f_out)"
+.br
+.ti -1c
+.RI "int \fBrunner_verlet_fill\fP (struct \fBrunner\fP *\fBr\fP, struct \fBcell\fP *cell_i, struct \fBcell\fP *cell_j, \fBFPTYPE\fP *pshift)"
+.br
+.ti -1c
+.RI "int \fBrunner_dosort\fP (struct \fBrunner\fP *\fBr\fP, struct \fBcell\fP *\fBc\fP, int flags)"
+.br
+.ti -1c
+.RI "int \fBrunner_dopair\fP (struct \fBrunner\fP *\fBr\fP, struct \fBcell\fP *cell_i, struct \fBcell\fP *cell_j, int sid)"
+.br
+.ti -1c
+.RI "int \fBrunner_doself\fP (struct \fBrunner\fP *\fBr\fP, struct \fBcell\fP *cell_i)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "ticks \fBrunner_timers\fP []"
+.br
+.ti -1c
+.RI "int \fBrunner_err\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define runner_bitesize   3"
+Maximum number of cellpairs to get from space_getpair\&. 
+.SS "#define runner_dispatch_lookahead   20"
+
+.SS "#define runner_dispatch_stop   0xffffffff"
+Magic word to make the dispatcher stop\&. 
+.SS "#define runner_err_engine   -5"
+
+.SS "#define runner_err_fifo   -9"
+
+.SS "#define runner_err_malloc   -2"
+
+.SS "#define runner_err_mfc   -7"
+
+.SS "#define runner_err_null   -1"
+
+.SS "#define runner_err_ok   0"
+
+.SS "#define runner_err_pthread   -4"
+
+.SS "#define runner_err_space   -3"
+
+.SS "#define runner_err_spe   -6"
+
+.SS "#define runner_err_tasktype   -11"
+
+.SS "#define runner_err_unavail   -8"
+
+.SS "#define runner_err_verlet_overflow   -10"
+
+.SS "#define runner_minsleep   1000"
+
+.SS "#define runner_qlen   8"
+Length of the cell pair queue between the PPU and the SPU and of the fifo-queue in dispatch mode\&. 
+.SS "#define runner_verlet_bitesize   200"
+Number of particles to request per call to space_getverlet\&. 
+.SS "#define TIMER_TIC"
+
+.SS "#define TIMER_TIC2"
+
+.SS "#define TIMER_TOC(t)"
+
+.SS "#define TIMER_TOC2(t)"
+
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "anonymous enum"
+Timers\&. 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIrunner_timer_queue \fP\fP
+.TP
+\fB\fIrunner_timer_pair \fP\fP
+.TP
+\fB\fIrunner_timer_self \fP\fP
+.TP
+\fB\fIrunner_timer_sort \fP\fP
+.TP
+\fB\fIrunner_timer_count \fP\fP
+.SH "Function Documentation"
+.PP 
+.SS "int runner_dopair (struct \fBrunner\fP *r, struct \fBcell\fP *cell_i, struct \fBcell\fP *cell_j, intsid)"
+
+.SS "int runner_dopair_unsorted (struct \fBrunner\fP *r, struct \fBcell\fP *cell_i, struct \fBcell\fP *cell_j)"
+
+.SS "int runner_doself (struct \fBrunner\fP *r, struct \fBcell\fP *cell_i)"
+
+.SS "int runner_dosort (struct \fBrunner\fP *r, struct \fBcell\fP *c, intflags)"
+
+.SS "int runner_init (struct \fBrunner\fP *r, struct \fBengine\fP *e, intid)"
+
+.PP
+Initialize the runner associated to the given engine\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The \fBrunner\fP to be initialized\&. 
+.br
+\fIe\fP The \fBengine\fP with which it is associated\&. 
+.br
+\fIid\fP The ID of this \fBrunner\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBrunner_err_ok\fP or < 0 on error (see \fBrunner_err\fP)\&. 
+.RE
+.PP
+
+.SS "int runner_init_SPU (struct \fBrunner\fP *r, struct \fBengine\fP *e, intid)"
+
+.PP
+Initialize the runner associated to the given engine and attach it to an SPU\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The \fBrunner\fP to be initialized\&. 
+.br
+\fIe\fP The \fBengine\fP with which it is associated\&. 
+.br
+\fIid\fP The ID of this \fBrunner\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBrunner_err_ok\fP or < 0 on error (see \fBrunner_err\fP)\&.
+.RE
+.PP
+If \fCCELL\fP is not defined, this routine will fail! 
+.SS "int runner_run (struct \fBrunner\fP *r)"
+
+.SS "void runner_sort_ascending (unsigned int *parts, intN)"
+
+.PP
+Sort the particles in ascending order using QuickSort\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIparts\fP The particle IDs and distances in compact form 
+.br
+\fIN\fP The number of particles\&.
+.RE
+.PP
+The particle data is assumed to contain the distance in the lower 16 bits and the particle ID in the upper 16 bits\&. 
+.SS "void runner_sort_descending (unsigned int *parts, intN)"
+
+.PP
+Sort the particles in descending order using QuickSort\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIparts\fP The particle IDs and distances in compact form 
+.br
+\fIN\fP The number of particles\&.
+.RE
+.PP
+The particle data is assumed to contain the distance in the lower 16 bits and the particle ID in the upper 16 bits\&. 
+.SS "int runner_verlet_eval (struct \fBrunner\fP *r, struct \fBcell\fP *c, \fBFPTYPE\fP *f_out)"
+
+.SS "int runner_verlet_fill (struct \fBrunner\fP *r, struct \fBcell\fP *cell_i, struct \fBcell\fP *cell_j, \fBFPTYPE\fP *pshift)"
+
+.SH "Variable Documentation"
+.PP 
+.SS "int runner_err"
+The ID of the last error\&. 
+.SS "ticks runner_timers[]"
+Timers\&. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

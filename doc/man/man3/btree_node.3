@@ -1,0 +1,48 @@
+.TH "btree_node" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+btree_node \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <btree\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "short int \fBfill\fP"
+.br
+.ti -1c
+.RI "unsigned short int \fBflags\fP"
+.br
+.ti -1c
+.RI "void * \fBdata\fP [\fBbtree_maxnodes\fP+1]"
+.br
+.ti -1c
+.RI "int \fBkeys\fP [\fBbtree_maxnodes\fP+1]"
+.br
+.ti -1c
+.RI "struct \fBbtree_node\fP * \fBnodes\fP [\fBbtree_maxnodes\fP+2]"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Data structure for a btree node\&. 
+.SH "Field Documentation"
+.PP 
+.SS "void* data[\fBbtree_maxnodes\fP+1]"
+
+.SS "short int fill"
+
+.SS "unsigned short int flags"
+
+.SS "int keys[\fBbtree_maxnodes\fP+1]"
+
+.SS "struct \fBbtree_node\fP* nodes[\fBbtree_maxnodes\fP+2]"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

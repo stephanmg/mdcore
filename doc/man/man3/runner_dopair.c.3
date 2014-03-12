@@ -1,0 +1,130 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/runner_dopair.c" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/runner_dopair.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include '\&.\&./config\&.h'\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <pthread\&.h>\fP
+.br
+\fC#include <math\&.h>\fP
+.br
+\fC#include <float\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <limits\&.h>\fP
+.br
+\fC#include <sched\&.h>\fP
+.br
+\fC#include 'cycle\&.h'\fP
+.br
+\fC#include 'errs\&.h'\fP
+.br
+\fC#include 'fptype\&.h'\fP
+.br
+\fC#include 'lock\&.h'\fP
+.br
+\fC#include 'part\&.h'\fP
+.br
+\fC#include 'cell\&.h'\fP
+.br
+\fC#include 'space\&.h'\fP
+.br
+\fC#include 'potential\&.h'\fP
+.br
+\fC#include 'potential_eval\&.h'\fP
+.br
+\fC#include 'engine\&.h'\fP
+.br
+\fC#include 'runner\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBerror\fP(\fBid\fP)   ( \fBrunner_err\fP = \fBerrs_register\fP( \fBid\fP , \fBrunner_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__attribute__\fP ((flatten))"
+.br
+.RI "\fICompute the pairwise interactions for the given pair\&. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "char * \fBrunner_err_msg\fP []"
+.br
+.ti -1c
+.RI "unsigned int \fBrunner_rcount\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define error(\fBid\fP)   ( \fBrunner_err\fP = \fBerrs_register\fP( \fBid\fP , \fBrunner_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+
+.SH "Function Documentation"
+.PP 
+.SS "__attribute__ ((flatten))"
+
+.PP
+Compute the pairwise interactions for the given pair\&. Compute the self-interactions for the given cell\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The \fBrunner\fP computing the pair\&. 
+.br
+\fIcell_i\fP The first cell\&. 
+.br
+\fIcell_j\fP The second cell\&. 
+.br
+\fIshift\fP A pointer to an array of three floating point values containing the vector separating the centers of \fCcell_i\fP and \fCcell_j\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBrunner_err_ok\fP or <0 on error (see \fBrunner_err\fP)
+.RE
+.PP
+Computes the interactions between all the particles in \fCcell_i\fP and all the paritcles in \fCcell_j\fP\&. \fCcell_i\fP and \fCcell_j\fP may be the same cell\&.
+.PP
+\fBSee Also:\fP
+.RS 4
+#runner_sortedpair\&.
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The \fBrunner\fP computing the pair\&. 
+.br
+\fIcell_i\fP The first cell\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBrunner_err_ok\fP or <0 on error (see \fBrunner_err\fP) 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "char* runner_err_msg[]"
+
+.SS "unsigned int runner_rcount"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

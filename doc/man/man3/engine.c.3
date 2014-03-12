@@ -1,0 +1,777 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/engine.c" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/engine.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <pthread\&.h>\fP
+.br
+\fC#include <math\&.h>\fP
+.br
+\fC#include <float\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include '\&.\&./config\&.h'\fP
+.br
+\fC#include <omp\&.h>\fP
+.br
+\fC#include 'cycle\&.h'\fP
+.br
+\fC#include 'errs\&.h'\fP
+.br
+\fC#include 'fptype\&.h'\fP
+.br
+\fC#include 'lock\&.h'\fP
+.br
+\fC#include 'part\&.h'\fP
+.br
+\fC#include 'cell\&.h'\fP
+.br
+\fC#include 'task\&.h'\fP
+.br
+\fC#include 'queue\&.h'\fP
+.br
+\fC#include 'space\&.h'\fP
+.br
+\fC#include 'potential\&.h'\fP
+.br
+\fC#include 'runner\&.h'\fP
+.br
+\fC#include 'bond\&.h'\fP
+.br
+\fC#include 'rigid\&.h'\fP
+.br
+\fC#include 'angle\&.h'\fP
+.br
+\fC#include 'dihedral\&.h'\fP
+.br
+\fC#include 'exclusion\&.h'\fP
+.br
+\fC#include 'reader\&.h'\fP
+.br
+\fC#include 'engine\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBerror\fP(\fBid\fP)   ( \fBengine_err\fP = \fBerrs_register\fP( \fBid\fP , \fBengine_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBengine_shuffle\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fIRe-shuffle the particles in the engine\&. \fP"
+.ti -1c
+.RI "int \fBengine_timers_reset\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fISet all the engine timers to 0\&. \fP"
+.ti -1c
+.RI "int \fBengine_verlet_update\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fICheck if the Verlet-list needs to be updated\&. \fP"
+.ti -1c
+.RI "int \fBengine_split\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fISet-up the engine for distributed-memory parallel operation\&. \fP"
+.ti -1c
+.RI "int \fBengine_split_METIS\fP (struct \fBengine\fP *\fBe\fP, int N, int flags)"
+.br
+.RI "\fISplit the computation domain over a number of nodes using METIS graph partitioning\&. \fP"
+.ti -1c
+.RI "int \fBengine_split_bisect\fP (struct \fBengine\fP *\fBe\fP, int N)"
+.br
+.RI "\fISplit the computational domain over a number of nodes using bisection\&. \fP"
+.ti -1c
+.RI "int \fBengine_flush\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fIClear all particles from this \fBengine\fP\&. \fP"
+.ti -1c
+.RI "int \fBengine_flush_ghosts\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fIClear all particles from this \fBengine\fP's ghost cells\&. \fP"
+.ti -1c
+.RI "int \fBengine_setexplepot\fP (struct \fBengine\fP *\fBe\fP, struct \fBpotential\fP *ep)"
+.br
+.RI "\fISet the explicit electrostatic potential\&. \fP"
+.ti -1c
+.RI "int \fBengine_unload\fP (struct \fBengine\fP *\fBe\fP, double *\fBx\fP, double *v, int *type, int *pid, int *vid, double *q, unsigned int *flags, double *epot, int N)"
+.br
+.RI "\fIUnload a set of particle data from the \fBengine\fP\&. \fP"
+.ti -1c
+.RI "int \fBengine_unload_marked\fP (struct \fBengine\fP *\fBe\fP, double *\fBx\fP, double *v, int *type, int *pid, int *vid, double *q, unsigned int *flags, double *epot, int N)"
+.br
+.RI "\fIUnload a set of particle data from the marked cells of an \fBengine\fP\&. \fP"
+.ti -1c
+.RI "int \fBengine_unload_strays\fP (struct \fBengine\fP *\fBe\fP, double *\fBx\fP, double *v, int *type, int *pid, int *vid, double *q, unsigned int *flags, double *epot, int N)"
+.br
+.RI "\fIUnload real particles that may have wandered into a ghost cell\&. \fP"
+.ti -1c
+.RI "int \fBengine_load\fP (struct \fBengine\fP *\fBe\fP, double *\fBx\fP, double *v, int *type, int *pid, int *vid, double *q, unsigned int *flags, int N)"
+.br
+.RI "\fILoad a set of particle data\&. \fP"
+.ti -1c
+.RI "int \fBengine_load_ghosts\fP (struct \fBengine\fP *\fBe\fP, double *\fBx\fP, double *v, int *type, int *pid, int *vid, double *q, unsigned int *flags, int N)"
+.br
+.RI "\fILoad a set of particle data as ghosts\&. \fP"
+.ti -1c
+.RI "int \fBengine_gettype\fP (struct \fBengine\fP *\fBe\fP, char *name)"
+.br
+.RI "\fILook for a given type by name\&. \fP"
+.ti -1c
+.RI "int \fBengine_gettype2\fP (struct \fBengine\fP *\fBe\fP, char *name2)"
+.br
+.RI "\fILook for a given type by its second name\&. \fP"
+.ti -1c
+.RI "int \fBengine_addtype\fP (struct \fBengine\fP *\fBe\fP, double mass, double charge, char *name, char *name2)"
+.br
+.RI "\fIAdd a type definition\&. \fP"
+.ti -1c
+.RI "int \fBengine_addpot\fP (struct \fBengine\fP *\fBe\fP, struct \fBpotential\fP *p, int i, int j)"
+.br
+.RI "\fIAdd an interaction potential\&. \fP"
+.ti -1c
+.RI "int \fBengine_start\fP (struct \fBengine\fP *\fBe\fP, int nr_runners, int nr_queues)"
+.br
+.RI "\fIStart the runners in the given \fBengine\fP\&. \fP"
+.ti -1c
+.RI "int \fBengine_start_SPU\fP (struct \fBengine\fP *\fBe\fP, int nr_runners)"
+.br
+.RI "\fIStart the SPU-associated runners in the given \fBengine\fP\&. \fP"
+.ti -1c
+.RI "int \fBengine_nonbond_eval\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fICompute the nonbonded interactions in the current step\&. \fP"
+.ti -1c
+.RI "int \fBengine_advance\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fIUpdate the particle velocities and positions, re-shuffle if appropriate\&. \fP"
+.ti -1c
+.RI "int \fBengine_step\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fIRun the engine for a single time step\&. \fP"
+.ti -1c
+.RI "int \fBengine_barrier\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fIBarrier routine to hold the \fCrunners\fP back\&. \fP"
+.ti -1c
+.RI "int \fBengine_finalize\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fIInitialize an \fBengine\fP with the given data and MPI enabled\&. \fP"
+.ti -1c
+.RI "int \fBengine_init\fP (struct \fBengine\fP *\fBe\fP, const double *origin, const double *dim, double *L, double cutoff, unsigned int period, int max_type, unsigned int flags)"
+.br
+.RI "\fIInitialize an \fBengine\fP with the given data\&. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBengine_err\fP = \fBengine_err_ok\fP"
+.br
+.ti -1c
+.RI "char * \fBengine_err_msg\fP [29]"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define error(\fBid\fP)   ( \fBengine_err\fP = \fBerrs_register\fP( \fBid\fP , \fBengine_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+
+.SH "Function Documentation"
+.PP 
+.SS "int engine_addpot (struct \fBengine\fP *e, struct \fBpotential\fP *p, inti, intj)"
+
+.PP
+Add an interaction potential\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&. 
+.br
+\fIp\fP The \fBpotential\fP to add to the \fBengine\fP\&. 
+.br
+\fIi\fP ID of particle type for this interaction\&. 
+.br
+\fIj\fP ID of second particle type for this interaction\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&.
+.RE
+.PP
+Adds the given potential for pairs of particles of type \fCi\fP and \fCj\fP, where \fCi\fP and \fCj\fP may be the same type ID\&. 
+.SS "int engine_addtype (struct \fBengine\fP *e, doublemass, doublecharge, char *name, char *name2)"
+
+.PP
+Add a type definition\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&. 
+.br
+\fImass\fP The particle type mass\&. 
+.br
+\fIcharge\fP The particle type charge\&. 
+.br
+\fIname\fP Particle name, can be \fCNULL\fP\&. 
+.br
+\fIname2\fP Particle second name, can be \fCNULL\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The type ID or < 0 on error (see \fBengine_err\fP)\&.
+.RE
+.PP
+The particle type ID must be an integer greater or equal to 0 and less than the value \fCmax_type\fP specified in \fBengine_init\fP\&. 
+.SS "int engine_advance (struct \fBengine\fP *e)"
+
+.PP
+Update the particle velocities and positions, re-shuffle if appropriate\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP on which to run\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_barrier (struct \fBengine\fP *e)"
+
+.PP
+Barrier routine to hold the \fCrunners\fP back\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP to wait on\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&.
+.RE
+.PP
+After being initialized, and after every timestep, every \fBrunner\fP calls this routine which blocks until all the runners have returned and the \fBengine\fP signals the next timestep\&. 
+.SS "int engine_finalize (struct \fBengine\fP *e)"
+
+.PP
+Initialize an \fBengine\fP with the given data and MPI enabled\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP to initialize\&. 
+.br
+\fIorigin\fP An array of three doubles containing the cartesian origin of the space\&. 
+.br
+\fIdim\fP An array of three doubles containing the size of the space\&. 
+.br
+\fIL\fP The minimum cell edge length, should be at least \fCcutoff\fP\&. 
+.br
+\fIcutoff\fP The maximum interaction cutoff to use\&. 
+.br
+\fIperiod\fP A bitmask describing the periodicity of the domain (see \fBspace_periodic_full\fP)\&. 
+.br
+\fImax_type\fP The maximum number of particle types that will be used by this engine\&. 
+.br
+\fIflags\fP Bit-mask containing the flags for this engine\&. 
+.br
+\fIcomm\fP The MPI comm to use\&. 
+.br
+\fIrank\fP The ID of this node\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. Kill all runners and de-allocate the data of an engine\&.
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP the \fBengine\fP to finalize\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_flush (struct \fBengine\fP *e)"
+
+.PP
+Clear all particles from this \fBengine\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP to flush\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_flush_ghosts (struct \fBengine\fP *e)"
+
+.PP
+Clear all particles from this \fBengine\fP's ghost cells\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP to flush\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_gettype (struct \fBengine\fP *e, char *name)"
+
+.PP
+Look for a given type by name\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&. 
+.br
+\fIname\fP The type name\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The type ID or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_gettype2 (struct \fBengine\fP *e, char *name2)"
+
+.PP
+Look for a given type by its second name\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&. 
+.br
+\fIname2\fP The type name2\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The type ID or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_init (struct \fBengine\fP *e, const double *origin, const double *dim, double *L, doublecutoff, unsigned intperiod, intmax_type, unsigned intflags)"
+
+.PP
+Initialize an \fBengine\fP with the given data\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP to initialize\&. 
+.br
+\fIorigin\fP An array of three doubles containing the cartesian origin of the space\&. 
+.br
+\fIdim\fP An array of three doubles containing the size of the space\&. 
+.br
+\fIL\fP The minimum cell edge length in each dimension\&. 
+.br
+\fIcutoff\fP The maximum interaction cutoff to use\&. 
+.br
+\fIperiod\fP A bitmask describing the periodicity of the domain (see \fBspace_periodic_full\fP)\&. 
+.br
+\fImax_type\fP The maximum number of particle types that will be used by this engine\&. 
+.br
+\fIflags\fP Bit-mask containing the flags for this engine\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_load (struct \fBengine\fP *e, double *x, double *v, int *type, int *pid, int *vid, double *q, unsigned int *flags, intN)"
+
+.PP
+Load a set of particle data\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&. 
+.br
+\fIx\fP An \fCN\fP times 3 array of the particle positions\&. 
+.br
+\fIv\fP An \fCN\fP times 3 array of the particle velocities\&. 
+.br
+\fItype\fP A vector of length \fCN\fP of the particle type IDs\&. 
+.br
+\fIpid\fP A vector of length \fCN\fP of the particle IDs\&. 
+.br
+\fIvid\fP A vector of length \fCN\fP of the particle virtual IDs\&. 
+.br
+\fIq\fP A vector of length \fCN\fP of the individual particle charges\&. 
+.br
+\fIflags\fP A vector of length \fCN\fP of the particle flags\&. 
+.br
+\fIN\fP the number of particles to load\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&.
+.RE
+.PP
+If the parameters \fCv\fP, \fCflags\fP, \fCvid\fP or \fCq\fP are \fCNULL\fP, then these values are set to zero\&. 
+.SS "int engine_load_ghosts (struct \fBengine\fP *e, double *x, double *v, int *type, int *pid, int *vid, double *q, unsigned int *flags, intN)"
+
+.PP
+Load a set of particle data as ghosts\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&. 
+.br
+\fIx\fP An \fCN\fP times 3 array of the particle positions\&. 
+.br
+\fIv\fP An \fCN\fP times 3 array of the particle velocities\&. 
+.br
+\fItype\fP A vector of length \fCN\fP of the particle type IDs\&. 
+.br
+\fIpid\fP A vector of length \fCN\fP of the particle IDs\&. 
+.br
+\fIvid\fP A vector of length \fCN\fP of the particle virtual IDs\&. 
+.br
+\fIq\fP A vector of length \fCN\fP of the individual particle charges\&. 
+.br
+\fIflags\fP A vector of length \fCN\fP of the particle flags\&. 
+.br
+\fIN\fP the number of particles to load\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&.
+.RE
+.PP
+If the parameters \fCv\fP, \fCflags\fP, \fCvid\fP or \fCq\fP are \fCNULL\fP, then these values are set to zero\&. 
+.SS "int engine_nonbond_eval (struct \fBengine\fP *e)"
+
+.PP
+Compute the nonbonded interactions in the current step\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP on which to run\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&.
+.RE
+.PP
+This routine advances the timestep counter by one, prepares the \fBspace\fP for a timestep, releases the \fBrunner\fP's associated with the \fBengine\fP and waits for them to finnish\&. 
+.SS "int engine_setexplepot (struct \fBengine\fP *e, struct \fBpotential\fP *ep)"
+
+.PP
+Set the explicit electrostatic potential\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&. 
+.br
+\fIep\fP The electrostatic \fBpotential\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&.
+.RE
+.PP
+If \fCep\fP is not \fCNULL\fP, the flag \fBengine_flag_explepot\fP is set, otherwise it is cleared\&. 
+.SS "int engine_shuffle (struct \fBengine\fP *e)"
+
+.PP
+Re-shuffle the particles in the engine\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP on which to run\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_split (struct \fBengine\fP *e)"
+
+.PP
+Set-up the engine for distributed-memory parallel operation\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP to set-up\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&.
+.RE
+.PP
+This function assumes that \fBengine_split_bisect\fP or some similar function has already been called and that #nodeID, #nr_nodes as well as the \fBcell\fP \fCnodeIDs\fP have been set\&. 
+.SS "int engine_split_bisect (struct \fBengine\fP *e, intN)"
+
+.PP
+Split the computational domain over a number of nodes using bisection\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP to split up\&. 
+.br
+\fIN\fP The number of computational nodes\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_split_METIS (struct \fBengine\fP *e, intN, intflags)"
+
+.PP
+Split the computation domain over a number of nodes using METIS graph partitioning\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP to split up\&. 
+.br
+\fIN\fP The number of computational nodes\&. 
+.br
+\fIflags\fP Flag telling whether to split the space for MPI or for GPUs\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_start (struct \fBengine\fP *e, intnr_runners, intnr_queues)"
+
+.PP
+Start the runners in the given \fBengine\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP to start\&. 
+.br
+\fInr_runners\fP The number of runners start\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&.
+.RE
+.PP
+Allocates and starts the specified number of \fBrunner\fP\&. Also initializes the Verlet lists\&. 
+.SS "int engine_start_SPU (struct \fBengine\fP *e, intnr_runners)"
+
+.PP
+Start the SPU-associated runners in the given \fBengine\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP to start\&. 
+.br
+\fInr_runners\fP The number of runners start\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&.
+.RE
+.PP
+Allocates and starts the specified number of \fBrunner\fP\&. 
+.SS "int engine_step (struct \fBengine\fP *e)"
+
+.PP
+Run the engine for a single time step\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP on which to run\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&.
+.RE
+.PP
+This routine advances the timestep counter by one, prepares the \fBspace\fP for a timestep, releases the \fBrunner\fP's associated with the \fBengine\fP and waits for them to finnish\&.
+.PP
+Once all the \fBrunner\fP's are done, the particle velocities and positions are updated and the particles are re-sorted in the \fBspace\fP\&. 
+.SS "int engine_timers_reset (struct \fBengine\fP *e)"
+
+.PP
+Set all the engine timers to 0\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_unload (struct \fBengine\fP *e, double *x, double *v, int *type, int *pid, int *vid, double *q, unsigned int *flags, double *epot, intN)"
+
+.PP
+Unload a set of particle data from the \fBengine\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&. 
+.br
+\fIx\fP An \fCN\fP times 3 array of the particle positions\&. 
+.br
+\fIv\fP An \fCN\fP times 3 array of the particle velocities\&. 
+.br
+\fItype\fP A vector of length \fCN\fP of the particle type IDs\&. 
+.br
+\fIpid\fP A vector of length \fCN\fP of the particle IDs\&. 
+.br
+\fIvid\fP A vector of length \fCN\fP of the particle virtual IDs\&. 
+.br
+\fIq\fP A vector of length \fCN\fP of the individual particle charges\&. 
+.br
+\fIflags\fP A vector of length \fCN\fP of the particle flags\&. 
+.br
+\fIepot\fP A pointer to a #double in which to store the total potential energy\&. 
+.br
+\fIN\fP the maximum number of particles\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The number of particles unloaded or < 0 on error (see \fBengine_err\fP)\&.
+.RE
+.PP
+The fields \fCx\fP, \fCv\fP, \fCtype\fP, \fCpid\fP, \fCvid\fP, \fCq\fP, \fCepot\fP and/or \fCflags\fP may be NULL\&. 
+.SS "int engine_unload_marked (struct \fBengine\fP *e, double *x, double *v, int *type, int *pid, int *vid, double *q, unsigned int *flags, double *epot, intN)"
+
+.PP
+Unload a set of particle data from the marked cells of an \fBengine\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&. 
+.br
+\fIx\fP An \fCN\fP times 3 array of the particle positions\&. 
+.br
+\fIv\fP An \fCN\fP times 3 array of the particle velocities\&. 
+.br
+\fItype\fP A vector of length \fCN\fP of the particle type IDs\&. 
+.br
+\fIpid\fP A vector of length \fCN\fP of the particle IDs\&. 
+.br
+\fIvid\fP A vector of length \fCN\fP of the particle virtual IDs\&. 
+.br
+\fIq\fP A vector of length \fCN\fP of the individual particle charges\&. 
+.br
+\fIflags\fP A vector of length \fCN\fP of the particle flags\&. 
+.br
+\fIepot\fP A pointer to a #double in which to store the total potential energy\&. 
+.br
+\fIN\fP the maximum number of particles\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The number of particles unloaded or < 0 on error (see \fBengine_err\fP)\&.
+.RE
+.PP
+The fields \fCx\fP, \fCv\fP, \fCtype\fP, \fCpid\fP, \fCvid\fP, \fCq\fP, \fCepot\fP and/or \fCflags\fP may be NULL\&. 
+.SS "int engine_unload_strays (struct \fBengine\fP *e, double *x, double *v, int *type, int *pid, int *vid, double *q, unsigned int *flags, double *epot, intN)"
+
+.PP
+Unload real particles that may have wandered into a ghost cell\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&. 
+.br
+\fIx\fP An \fCN\fP times 3 array of the particle positions\&. 
+.br
+\fIv\fP An \fCN\fP times 3 array of the particle velocities\&. 
+.br
+\fItype\fP A vector of length \fCN\fP of the particle type IDs\&. 
+.br
+\fIpid\fP A vector of length \fCN\fP of the particle IDs\&. 
+.br
+\fIvid\fP A vector of length \fCN\fP of the particle virtual IDs\&. 
+.br
+\fIq\fP A vector of length \fCN\fP of the individual particle charges\&. 
+.br
+\fIflags\fP A vector of length \fCN\fP of the particle flags\&. 
+.br
+\fIepot\fP A pointer to a #double in which to store the total potential energy\&. 
+.br
+\fIN\fP the maximum number of particles\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The number of particles unloaded or < 0 on error (see \fBengine_err\fP)\&.
+.RE
+.PP
+The fields \fCx\fP, \fCv\fP, \fCtype\fP, \fCvid\fP, \fCpid\fP, \fCq\fP, \fCepot\fP and/or \fCflags\fP may be NULL\&. 
+.SS "int engine_verlet_update (struct \fBengine\fP *e)"
+
+.PP
+Check if the Verlet-list needs to be updated\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "int engine_err = \fBengine_err_ok\fP"
+ID of the last error\&. 
+.SS "char* engine_err_msg[29]"
+List of error messages\&. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

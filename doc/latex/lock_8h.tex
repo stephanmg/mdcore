@@ -1,0 +1,70 @@
+\hypertarget{lock_8h}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/lock.h File Reference}
+\label{lock_8h}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/lock.\-h@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/lock.\-h}}
+}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{lock_8h_a2eb6f9e0395b47b8d5e3eeae4fe0c116}{I\-N\-L\-I\-N\-E}~inline
+\item 
+\#define \hyperlink{lock_8h_aba44f1a15d47fe69256952d82b0058e6}{lock\-\_\-type}~volatile int
+\item 
+\#define \hyperlink{lock_8h_a4a6706e1b93b3298ca8d4da0d7ace515}{lock\-\_\-init}(l)~( $\ast$l = 0 )
+\item 
+\#define \hyperlink{lock_8h_a4d653d50433881dc1992c6d87b3e6535}{lock\-\_\-destroy}(l)~0
+\item 
+\#define \hyperlink{lock_8h_a8e82e95179defad05f9182324aad8d6f}{lock\-\_\-trylock}(l)~( ( $\ast$(l) ) ? 1 \-: \-\_\-\-\_\-sync\-\_\-val\-\_\-compare\-\_\-and\-\_\-swap( l , 0 , 1 ) )
+\item 
+\#define \hyperlink{lock_8h_aacd765120f9fe321548b70eee25cbc86}{lock\-\_\-unlock}(l)~( \-\_\-\-\_\-sync\-\_\-val\-\_\-compare\-\_\-and\-\_\-swap( l , 1 , 0 ) != 1 )
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{lock_8h_ac907c89562517071f5ecda42e1c8d413}{\-\_\-\-\_\-attribute\-\_\-\-\_\-} ((always\-\_\-inline)) \hyperlink{potential__eval_8h_a2eb6f9e0395b47b8d5e3eeae4fe0c116}{I\-N\-L\-I\-N\-E} int lock\-\_\-lock(volatile int $\ast$l)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{lock_8h_a2eb6f9e0395b47b8d5e3eeae4fe0c116}{\index{lock.\-h@{lock.\-h}!I\-N\-L\-I\-N\-E@{I\-N\-L\-I\-N\-E}}
+\index{I\-N\-L\-I\-N\-E@{I\-N\-L\-I\-N\-E}!lock.h@{lock.\-h}}
+\subsubsection[{I\-N\-L\-I\-N\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-N\-L\-I\-N\-E~inline}}\label{lock_8h_a2eb6f9e0395b47b8d5e3eeae4fe0c116}
+\hypertarget{lock_8h_a4d653d50433881dc1992c6d87b3e6535}{\index{lock.\-h@{lock.\-h}!lock\-\_\-destroy@{lock\-\_\-destroy}}
+\index{lock\-\_\-destroy@{lock\-\_\-destroy}!lock.h@{lock.\-h}}
+\subsubsection[{lock\-\_\-destroy}]{\setlength{\rightskip}{0pt plus 5cm}\#define lock\-\_\-destroy(
+\begin{DoxyParamCaption}
+\item[{}]{l}
+\end{DoxyParamCaption}
+)~0}}\label{lock_8h_a4d653d50433881dc1992c6d87b3e6535}
+\hypertarget{lock_8h_a4a6706e1b93b3298ca8d4da0d7ace515}{\index{lock.\-h@{lock.\-h}!lock\-\_\-init@{lock\-\_\-init}}
+\index{lock\-\_\-init@{lock\-\_\-init}!lock.h@{lock.\-h}}
+\subsubsection[{lock\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}\#define lock\-\_\-init(
+\begin{DoxyParamCaption}
+\item[{}]{l}
+\end{DoxyParamCaption}
+)~( $\ast$l = 0 )}}\label{lock_8h_a4a6706e1b93b3298ca8d4da0d7ace515}
+\hypertarget{lock_8h_a8e82e95179defad05f9182324aad8d6f}{\index{lock.\-h@{lock.\-h}!lock\-\_\-trylock@{lock\-\_\-trylock}}
+\index{lock\-\_\-trylock@{lock\-\_\-trylock}!lock.h@{lock.\-h}}
+\subsubsection[{lock\-\_\-trylock}]{\setlength{\rightskip}{0pt plus 5cm}\#define lock\-\_\-trylock(
+\begin{DoxyParamCaption}
+\item[{}]{l}
+\end{DoxyParamCaption}
+)~( ( $\ast$(l) ) ? 1 \-: \-\_\-\-\_\-sync\-\_\-val\-\_\-compare\-\_\-and\-\_\-swap( l , 0 , 1 ) )}}\label{lock_8h_a8e82e95179defad05f9182324aad8d6f}
+\hypertarget{lock_8h_aba44f1a15d47fe69256952d82b0058e6}{\index{lock.\-h@{lock.\-h}!lock\-\_\-type@{lock\-\_\-type}}
+\index{lock\-\_\-type@{lock\-\_\-type}!lock.h@{lock.\-h}}
+\subsubsection[{lock\-\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}\#define lock\-\_\-type~volatile int}}\label{lock_8h_aba44f1a15d47fe69256952d82b0058e6}
+\hypertarget{lock_8h_aacd765120f9fe321548b70eee25cbc86}{\index{lock.\-h@{lock.\-h}!lock\-\_\-unlock@{lock\-\_\-unlock}}
+\index{lock\-\_\-unlock@{lock\-\_\-unlock}!lock.h@{lock.\-h}}
+\subsubsection[{lock\-\_\-unlock}]{\setlength{\rightskip}{0pt plus 5cm}\#define lock\-\_\-unlock(
+\begin{DoxyParamCaption}
+\item[{}]{l}
+\end{DoxyParamCaption}
+)~( \-\_\-\-\_\-sync\-\_\-val\-\_\-compare\-\_\-and\-\_\-swap( l , 1 , 0 ) != 1 )}}\label{lock_8h_aacd765120f9fe321548b70eee25cbc86}
+
+
+\subsection{Function Documentation}
+\hypertarget{lock_8h_ac907c89562517071f5ecda42e1c8d413}{\index{lock.\-h@{lock.\-h}!\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}!lock.h@{lock.\-h}}
+\subsubsection[{\-\_\-\-\_\-attribute\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-attribute\-\_\-\-\_\- (
+\begin{DoxyParamCaption}
+\item[{(always\-\_\-inline)}]{}
+\end{DoxyParamCaption}
+) volatile}}\label{lock_8h_ac907c89562517071f5ecda42e1c8d413}

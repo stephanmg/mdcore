@@ -1,0 +1,64 @@
+make  all-recursive
+make[1]: Entering directory `/home/stephan/code/unversioned/mdcore-0.1.7'
+Making all in src
+make[2]: Entering directory `/home/stephan/code/unversioned/mdcore-0.1.7/src'
+Making all in spu
+make[3]: Entering directory `/home/stephan/code/unversioned/mdcore-0.1.7/src/spu'
+make[3]: Nothing to be done for `all'.
+make[3]: Leaving directory `/home/stephan/code/unversioned/mdcore-0.1.7/src/spu'
+make[3]: Entering directory `/home/stephan/code/unversioned/mdcore-0.1.7/src'
+/bin/bash ../libtool  --tag=CC   --mode=compile mpicc -DHAVE_CONFIG_H -I. -I..    -DFPTYPE_DOUBLE -g -Wall -std=gnu99 -mmmx -msse -msse2 -msse3 -mssse3  -Werror -O3 -funroll-loops -DTIMER -Wall -g -g -O2 -mtune=pentiumpro -pthread -MT libmdcore_la-engine.lo -MD -MP -MF .deps/libmdcore_la-engine.Tpo -c -o libmdcore_la-engine.lo `test -f 'engine.c' || echo './'`engine.c
+libtool: compile:  mpicc -DHAVE_CONFIG_H -I. -I.. -DFPTYPE_DOUBLE -g -Wall -std=gnu99 -mmmx -msse -msse2 -msse3 -mssse3 -Werror -O3 -funroll-loops -DTIMER -Wall -g -g -O2 -mtune=pentiumpro -pthread -MT libmdcore_la-engine.lo -MD -MP -MF .deps/libmdcore_la-engine.Tpo -c engine.c  -fPIC -DPIC -o .libs/libmdcore_la-engine.o
+engine.c: In function ‘engine_shuffle’:
+engine.c:121:0: error: ignoring #pragma omp parallel [-Werror=unknown-pragmas]
+     #pragma omp parallel for schedule(static), private(cid)
+ ^
+engine.c:138:0: error: ignoring #pragma omp parallel [-Werror=unknown-pragmas]
+     #pragma omp parallel for schedule(static), private(cid,c,k)
+ ^
+engine.c: In function ‘engine_verlet_update’:
+engine.c:282:0: error: ignoring #pragma omp parallel [-Werror=unknown-pragmas]
+         #pragma omp parallel for schedule(static), private(cid,c,pid,p,k)
+ ^
+engine.c: In function ‘engine_unload’:
+engine.c:1076:0: error: ignoring #pragma omp parallel [-Werror=unknown-pragmas]
+     #pragma omp parallel for schedule(static), private(cid,count,c,k,p,j), reduction(+:epot_acc)
+ ^
+engine.c: In function ‘engine_unload_marked’:
+engine.c:1171:0: error: ignoring #pragma omp parallel [-Werror=unknown-pragmas]
+     #pragma omp parallel for schedule(static), private(cid,count,c,k,p,j), reduction(+:epot_acc)
+ ^
+engine.c: In function ‘engine_start’:
+engine.c:1639:0: error: ignoring #pragma omp parallel [-Werror=unknown-pragmas]
+         #pragma omp parallel for schedule(static), private(cid,c,pid,p,k)
+ ^
+engine.c: In function ‘engine_advance’:
+engine.c:1858:0: error: ignoring #pragma omp parallel [-Werror=unknown-pragmas]
+         #pragma omp parallel private(cid,c,pid,p,w,k,epot_local)
+ ^
+engine.c:1860:13: error: implicit declaration of function ‘omp_get_num_threads’ [-Werror=implicit-function-declaration]
+             step = omp_get_num_threads(); epot_local = 0.0;
+             ^
+engine.c:1861:13: error: implicit declaration of function ‘omp_get_thread_num’ [-Werror=implicit-function-declaration]
+             for ( cid = omp_get_thread_num() ; cid < s->nr_real ; cid += step ) {
+             ^
+engine.c:1873:0: error: ignoring #pragma omp atomic [-Werror=unknown-pragmas]
+             #pragma omp atomic
+ ^
+engine.c:1884:0: error: ignoring #pragma omp parallel [-Werror=unknown-pragmas]
+         #pragma omp parallel private(cid,c,pid,p,w,k,delta,c_dest,epot_local)
+ ^
+engine.c:1925:0: error: ignoring #pragma omp atomic [-Werror=unknown-pragmas]
+             #pragma omp atomic
+ ^
+engine.c:1930:0: error: ignoring #pragma omp parallel [-Werror=unknown-pragmas]
+         #pragma omp parallel for schedule(static)
+ ^
+cc1: all warnings being treated as errors
+make[3]: *** [libmdcore_la-engine.lo] Error 1
+make[3]: Leaving directory `/home/stephan/code/unversioned/mdcore-0.1.7/src'
+make[2]: *** [all-recursive] Error 1
+make[2]: Leaving directory `/home/stephan/code/unversioned/mdcore-0.1.7/src'
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory `/home/stephan/code/unversioned/mdcore-0.1.7'
+make: *** [all] Error 2

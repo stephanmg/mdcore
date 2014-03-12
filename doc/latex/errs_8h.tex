@@ -1,0 +1,113 @@
+\hypertarget{errs_8h}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/errs.h File Reference}
+\label{errs_8h}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/errs.\-h@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/errs.\-h}}
+}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{errs_8h_a55080fd44aa9c4ef50ab76a84afe6850}{errs\-\_\-maxstack}~100
+\item 
+\#define \hyperlink{errs_8h_a53c54d43b73fd3b4a69ee3d052747b15}{errs\-\_\-err\-\_\-ok}~0
+\item 
+\#define \hyperlink{errs_8h_a6255b619d61ad9520aa92b75962f2f22}{errs\-\_\-err\-\_\-io}~-\/1
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{errs_8h_ae37a9c0e0a0aa4a92dbe64c0f38ed95c}{errs\-\_\-register} (int \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id}, const char $\ast$\hyperlink{errs_8c_a2c3cb87d009c003069b9a90f020f8a9f}{msg}, int \hyperlink{errs_8c_a41ebd28ef1d7c6ade45642cb6acc1039}{line}, const char $\ast$\hyperlink{errs_8c_ac4d02c4762d7260b3ce0a2274521a3e3}{func}, char $\ast$\hyperlink{errs_8c_a29e8a72bd9d3020e517d381df2eab3cb}{file})
+\begin{DoxyCompactList}\small\item\em Dump an error onto the stack. \end{DoxyCompactList}\item 
+int \hyperlink{errs_8h_a53ac4bd636b094bc236f77ce50b5bee4}{errs\-\_\-dump} (F\-I\-L\-E $\ast$out)
+\begin{DoxyCompactList}\small\item\em Print the error stack out to the given F\-I\-L\-E pointer. \end{DoxyCompactList}\item 
+void \hyperlink{errs_8h_a338075835cd1e58d030a508c61355a06}{errs\-\_\-clear} ()
+\begin{DoxyCompactList}\small\item\em Re-\/set the error stack. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{errs_8h_a3c07fabfeecc3dd33e8b26f2167421af}{errs\-\_\-err}
+\item 
+const char $\ast$ \hyperlink{errs_8h_ae2eb04971756f0283efd3e7ad3fa5675}{errs\-\_\-err\-\_\-msg} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{errs_8h_a6255b619d61ad9520aa92b75962f2f22}{\index{errs.\-h@{errs.\-h}!errs\-\_\-err\-\_\-io@{errs\-\_\-err\-\_\-io}}
+\index{errs\-\_\-err\-\_\-io@{errs\-\_\-err\-\_\-io}!errs.h@{errs.\-h}}
+\subsubsection[{errs\-\_\-err\-\_\-io}]{\setlength{\rightskip}{0pt plus 5cm}\#define errs\-\_\-err\-\_\-io~-\/1}}\label{errs_8h_a6255b619d61ad9520aa92b75962f2f22}
+\hypertarget{errs_8h_a53c54d43b73fd3b4a69ee3d052747b15}{\index{errs.\-h@{errs.\-h}!errs\-\_\-err\-\_\-ok@{errs\-\_\-err\-\_\-ok}}
+\index{errs\-\_\-err\-\_\-ok@{errs\-\_\-err\-\_\-ok}!errs.h@{errs.\-h}}
+\subsubsection[{errs\-\_\-err\-\_\-ok}]{\setlength{\rightskip}{0pt plus 5cm}\#define errs\-\_\-err\-\_\-ok~0}}\label{errs_8h_a53c54d43b73fd3b4a69ee3d052747b15}
+\hypertarget{errs_8h_a55080fd44aa9c4ef50ab76a84afe6850}{\index{errs.\-h@{errs.\-h}!errs\-\_\-maxstack@{errs\-\_\-maxstack}}
+\index{errs\-\_\-maxstack@{errs\-\_\-maxstack}!errs.h@{errs.\-h}}
+\subsubsection[{errs\-\_\-maxstack}]{\setlength{\rightskip}{0pt plus 5cm}\#define errs\-\_\-maxstack~100}}\label{errs_8h_a55080fd44aa9c4ef50ab76a84afe6850}
+
+
+\subsection{Function Documentation}
+\hypertarget{errs_8h_a338075835cd1e58d030a508c61355a06}{\index{errs.\-h@{errs.\-h}!errs\-\_\-clear@{errs\-\_\-clear}}
+\index{errs\-\_\-clear@{errs\-\_\-clear}!errs.h@{errs.\-h}}
+\subsubsection[{errs\-\_\-clear}]{\setlength{\rightskip}{0pt plus 5cm}void errs\-\_\-clear (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{errs_8h_a338075835cd1e58d030a508c61355a06}
+
+
+Re-\/set the error stack. 
+
+\hypertarget{errs_8h_a53ac4bd636b094bc236f77ce50b5bee4}{\index{errs.\-h@{errs.\-h}!errs\-\_\-dump@{errs\-\_\-dump}}
+\index{errs\-\_\-dump@{errs\-\_\-dump}!errs.h@{errs.\-h}}
+\subsubsection[{errs\-\_\-dump}]{\setlength{\rightskip}{0pt plus 5cm}int errs\-\_\-dump (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{out}
+\end{DoxyParamCaption}
+)}}\label{errs_8h_a53ac4bd636b094bc236f77ce50b5bee4}
+
+
+Print the error stack out to the given F\-I\-L\-E pointer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & A pointer to a F\-I\-L\-E structure.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{errs_8h_a53c54d43b73fd3b4a69ee3d052747b15}{errs\-\_\-err\-\_\-ok} or $<$ 0 on failure. 
+\end{DoxyReturn}
+\hypertarget{errs_8h_ae37a9c0e0a0aa4a92dbe64c0f38ed95c}{\index{errs.\-h@{errs.\-h}!errs\-\_\-register@{errs\-\_\-register}}
+\index{errs\-\_\-register@{errs\-\_\-register}!errs.h@{errs.\-h}}
+\subsubsection[{errs\-\_\-register}]{\setlength{\rightskip}{0pt plus 5cm}int errs\-\_\-register (
+\begin{DoxyParamCaption}
+\item[{int}]{id, }
+\item[{const char $\ast$}]{msg, }
+\item[{int}]{line, }
+\item[{const char $\ast$}]{func, }
+\item[{char $\ast$}]{file}
+\end{DoxyParamCaption}
+)}}\label{errs_8h_ae37a9c0e0a0aa4a92dbe64c0f38ed95c}
+
+
+Dump an error onto the stack. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & An error identifier that will be returned. \\
+\hline
+{\em msg} & A pointer to a string containing a descriptive error message. \\
+\hline
+{\em line} & The line on which the error occured. \\
+\hline
+{\em func} & The name of the function in which the error occured. \\
+\hline
+{\em file} & The name of the file in which the error occured.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of {\ttfamily id}. 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\hypertarget{errs_8h_a3c07fabfeecc3dd33e8b26f2167421af}{\index{errs.\-h@{errs.\-h}!errs\-\_\-err@{errs\-\_\-err}}
+\index{errs\-\_\-err@{errs\-\_\-err}!errs.h@{errs.\-h}}
+\subsubsection[{errs\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}int errs\-\_\-err}}\label{errs_8h_a3c07fabfeecc3dd33e8b26f2167421af}
+\hypertarget{errs_8h_ae2eb04971756f0283efd3e7ad3fa5675}{\index{errs.\-h@{errs.\-h}!errs\-\_\-err\-\_\-msg@{errs\-\_\-err\-\_\-msg}}
+\index{errs\-\_\-err\-\_\-msg@{errs\-\_\-err\-\_\-msg}!errs.h@{errs.\-h}}
+\subsubsection[{errs\-\_\-err\-\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ errs\-\_\-err\-\_\-msg\mbox{[}$\,$\mbox{]}}}\label{errs_8h_ae2eb04971756f0283efd3e7ad3fa5675}

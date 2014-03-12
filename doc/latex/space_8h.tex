@@ -1,0 +1,426 @@
+\hypertarget{space_8h}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/space.h File Reference}
+\label{space_8h}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/space.\-h@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/space.\-h}}
+}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structspace}{space}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{space_8h_af0504055442a991f476ec24cbcb416f4}{space\-\_\-err\-\_\-ok}~0
+\item 
+\#define \hyperlink{space_8h_aea592ca2fbff81fa5f74e02cf65c68b5}{space\-\_\-err\-\_\-null}~-\/1
+\item 
+\#define \hyperlink{space_8h_a10b603c6f88d586144b3ab0737b1e4bf}{space\-\_\-err\-\_\-malloc}~-\/2
+\item 
+\#define \hyperlink{space_8h_ab6ed2de2102dced8138200e0d0fd15d1}{space\-\_\-err\-\_\-cell}~-\/3
+\item 
+\#define \hyperlink{space_8h_aee57533ef0f66387b0c9dd6851fc55ea}{space\-\_\-err\-\_\-pthread}~-\/4
+\item 
+\#define \hyperlink{space_8h_a92c4909733e26b180b1c719bf6d8b739}{space\-\_\-err\-\_\-range}~-\/5
+\item 
+\#define \hyperlink{space_8h_aa5ca04eade7d569d0c3d66d1a2838ac0}{space\-\_\-err\-\_\-maxpairs}~-\/6
+\item 
+\#define \hyperlink{space_8h_a5aeb515e003475bce7f8c0a357508d36}{space\-\_\-err\-\_\-nrtasks}~-\/7
+\item 
+\#define \hyperlink{space_8h_aa2feaf56477ad789a9bd87199e8c7a91}{space\-\_\-err\-\_\-task}~-\/8
+\item 
+\#define \hyperlink{space_8h_ab58b0e2142677e52dfb1b0c684f2eab5}{space\-\_\-periodic\-\_\-none}~0
+\item 
+\#define \hyperlink{space_8h_aa3e8aca251b78b9035e1914472bf617e}{space\-\_\-periodic\-\_\-x}~1
+\item 
+\#define \hyperlink{space_8h_a803b4ba602fc573ba82352ba2a64d99e}{space\-\_\-periodic\-\_\-y}~2
+\item 
+\#define \hyperlink{space_8h_a32350bed462c2b292aaa289243669e41}{space\-\_\-periodic\-\_\-z}~4
+\item 
+\#define \hyperlink{space_8h_af8d717d1aa6319532393f55728c75182}{space\-\_\-periodic\-\_\-full}~7
+\item 
+\#define \hyperlink{space_8h_a6ae52464da18d44dbfcb9004da2263a4}{space\-\_\-periodic\-\_\-ghost\-\_\-x}~8
+\item 
+\#define \hyperlink{space_8h_a6d51d26c45a79a3c067c94671277a373}{space\-\_\-periodic\-\_\-ghost\-\_\-y}~16
+\item 
+\#define \hyperlink{space_8h_a4ffbf9396334182d6d079b4dada8450f}{space\-\_\-periodic\-\_\-ghost\-\_\-z}~32
+\item 
+\#define \hyperlink{space_8h_a6bf1d58616f0b64273b9d6c73212ee5d}{space\-\_\-periodic\-\_\-ghost\-\_\-full}~56
+\item 
+\#define \hyperlink{space_8h_a6801e0922154953d066a1634aafc00d0}{space\-\_\-partlist\-\_\-incr}~100
+\item 
+\#define \hyperlink{space_8h_a8b8e48245b1fb91ab7e2b83922760171}{space\-\_\-maxtuples}~4
+\item 
+\#define \hyperlink{space_8h_ae410188ea1f1c4051458f3995f61c3a2}{space\-\_\-verlet\-\_\-maxpairs}~800
+\item 
+\#define \hyperlink{space_8h_a51fa33c84cea40f296d5d080d10210bd}{space\-\_\-cellid}(s, i, j, k)~(  ((i)$\ast$(s)-\/$>$cdim\mbox{[}1\mbox{]} + (j)) $\ast$ (s)-\/$>$cdim\mbox{[}2\mbox{]} + (k) )
+\item 
+\#define \hyperlink{space_8h_acea891dfbbb5a03ae878786aaa3fd038}{space\-\_\-pairind}(i, j)~( \hyperlink{space_8h_a8b8e48245b1fb91ab7e2b83922760171}{space\-\_\-maxtuples}$\ast$(i) -\/ (i)$\ast$((i)+1)/2 + (j) )
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{space_8h_a88f73b9b0b0762f64416e086833f7879}{space\-\_\-init} (struct \hyperlink{structspace}{space} $\ast$s, const double $\ast$origin, const double $\ast$dim, double $\ast$L, double cutoff, unsigned int period)
+\begin{DoxyCompactList}\small\item\em Initialize the space with the given dimensions. \end{DoxyCompactList}\item 
+int \hyperlink{space_8h_a330965ff212eba9fb51376216acd733f}{space\-\_\-getsid} (struct \hyperlink{structspace}{space} $\ast$s, struct \hyperlink{structcell}{cell} $\ast$$\ast$ci, struct \hyperlink{structcell}{cell} $\ast$$\ast$cj, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$shift)
+\begin{DoxyCompactList}\small\item\em Get the sort-\/\-I\-D and flip the cells if necessary. \end{DoxyCompactList}\item 
+int \hyperlink{space_8h_aff57036690d68e524b2d6204037fb4c3}{space\-\_\-shuffle} (struct \hyperlink{structspace}{space} $\ast$s)
+\begin{DoxyCompactList}\small\item\em Run through the cells of a \hyperlink{structspace}{space} and make sure every particle is in its place. \end{DoxyCompactList}\item 
+int \hyperlink{space_8h_a90d400d84b28e9ee1c2dfb7fc6110387}{space\-\_\-shuffle\-\_\-local} (struct \hyperlink{structspace}{space} $\ast$s)
+\begin{DoxyCompactList}\small\item\em Run through the non-\/ghost cells of a \hyperlink{structspace}{space} and make sure every particle is in its place. \end{DoxyCompactList}\item 
+int \hyperlink{space_8h_adcdb12d32832cf2768fc21e107ea4e4d}{space\-\_\-addpart} (struct \hyperlink{structspace}{space} $\ast$s, struct \hyperlink{structpart}{part} $\ast$p, double $\ast$\hyperlink{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{x})
+\begin{DoxyCompactList}\small\item\em Add a \hyperlink{structpart}{part} to a \hyperlink{structspace}{space} at the given coordinates. \end{DoxyCompactList}\item 
+int \hyperlink{space_8h_a471f5997090314affa8f975b1909afff}{space\-\_\-prepare} (struct \hyperlink{structspace}{space} $\ast$s)
+\begin{DoxyCompactList}\small\item\em Prepare the space before a time step. \end{DoxyCompactList}\item 
+int \hyperlink{space_8h_a1b308305a1cb1a20058e020b22e2f1fb}{space\-\_\-getpos} (struct \hyperlink{structspace}{space} $\ast$s, int \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id}, double $\ast$\hyperlink{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{x})
+\begin{DoxyCompactList}\small\item\em Get the absolute position of a particle. \end{DoxyCompactList}\item 
+int \hyperlink{space_8h_a4dc93f36d1eb8b1fe3ad2a27076cf096}{space\-\_\-setpos} (struct \hyperlink{structspace}{space} $\ast$s, int \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id}, double $\ast$\hyperlink{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{x})
+\item 
+int \hyperlink{space_8h_a2b5b7a8fa67dd3ebfbe1ceb457459985}{space\-\_\-flush} (struct \hyperlink{structspace}{space} $\ast$s)
+\begin{DoxyCompactList}\small\item\em Clear all particles from this \hyperlink{structspace}{space}. \end{DoxyCompactList}\item 
+int \hyperlink{space_8h_a1a9cec8a4fda5e2f9f5803fd85900885}{space\-\_\-flush\-\_\-ghosts} (struct \hyperlink{structspace}{space} $\ast$s)
+\begin{DoxyCompactList}\small\item\em Clear all particles from the ghost cells in this \hyperlink{structspace}{space}. \end{DoxyCompactList}\item 
+struct \hyperlink{structtask}{task} $\ast$ \hyperlink{space_8h_a9e98297dd65779f7b88eece573960f9d}{space\-\_\-addtask} (struct \hyperlink{structspace}{space} $\ast$s, int type, int subtype, int flags, int i, int j)
+\begin{DoxyCompactList}\small\item\em Add a task to the given space. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{space_8h_a26550d5c282672a89c766fcb8be67c14}{space\-\_\-err}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{space_8h_a51fa33c84cea40f296d5d080d10210bd}{\index{space.\-h@{space.\-h}!space\-\_\-cellid@{space\-\_\-cellid}}
+\index{space\-\_\-cellid@{space\-\_\-cellid}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-cellid}]{\setlength{\rightskip}{0pt plus 5cm}\#define space\-\_\-cellid(
+\begin{DoxyParamCaption}
+\item[{}]{s, }
+\item[{}]{i, }
+\item[{}]{j, }
+\item[{}]{k}
+\end{DoxyParamCaption}
+)~(  ((i)$\ast$(s)-\/$>$cdim\mbox{[}1\mbox{]} + (j)) $\ast$ (s)-\/$>$cdim\mbox{[}2\mbox{]} + (k) )}}\label{space_8h_a51fa33c84cea40f296d5d080d10210bd}
+Converts the index triplet ({\ttfamily i}, {\ttfamily j}, {\ttfamily k}) to the cell id in the \hyperlink{structspace}{space} {\ttfamily s}. \hypertarget{space_8h_ab6ed2de2102dced8138200e0d0fd15d1}{\index{space.\-h@{space.\-h}!space\-\_\-err\-\_\-cell@{space\-\_\-err\-\_\-cell}}
+\index{space\-\_\-err\-\_\-cell@{space\-\_\-err\-\_\-cell}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-err\-\_\-cell}]{\setlength{\rightskip}{0pt plus 5cm}\#define space\-\_\-err\-\_\-cell~-\/3}}\label{space_8h_ab6ed2de2102dced8138200e0d0fd15d1}
+\hypertarget{space_8h_a10b603c6f88d586144b3ab0737b1e4bf}{\index{space.\-h@{space.\-h}!space\-\_\-err\-\_\-malloc@{space\-\_\-err\-\_\-malloc}}
+\index{space\-\_\-err\-\_\-malloc@{space\-\_\-err\-\_\-malloc}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-err\-\_\-malloc}]{\setlength{\rightskip}{0pt plus 5cm}\#define space\-\_\-err\-\_\-malloc~-\/2}}\label{space_8h_a10b603c6f88d586144b3ab0737b1e4bf}
+\hypertarget{space_8h_aa5ca04eade7d569d0c3d66d1a2838ac0}{\index{space.\-h@{space.\-h}!space\-\_\-err\-\_\-maxpairs@{space\-\_\-err\-\_\-maxpairs}}
+\index{space\-\_\-err\-\_\-maxpairs@{space\-\_\-err\-\_\-maxpairs}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-err\-\_\-maxpairs}]{\setlength{\rightskip}{0pt plus 5cm}\#define space\-\_\-err\-\_\-maxpairs~-\/6}}\label{space_8h_aa5ca04eade7d569d0c3d66d1a2838ac0}
+\hypertarget{space_8h_a5aeb515e003475bce7f8c0a357508d36}{\index{space.\-h@{space.\-h}!space\-\_\-err\-\_\-nrtasks@{space\-\_\-err\-\_\-nrtasks}}
+\index{space\-\_\-err\-\_\-nrtasks@{space\-\_\-err\-\_\-nrtasks}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-err\-\_\-nrtasks}]{\setlength{\rightskip}{0pt plus 5cm}\#define space\-\_\-err\-\_\-nrtasks~-\/7}}\label{space_8h_a5aeb515e003475bce7f8c0a357508d36}
+\hypertarget{space_8h_aea592ca2fbff81fa5f74e02cf65c68b5}{\index{space.\-h@{space.\-h}!space\-\_\-err\-\_\-null@{space\-\_\-err\-\_\-null}}
+\index{space\-\_\-err\-\_\-null@{space\-\_\-err\-\_\-null}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-err\-\_\-null}]{\setlength{\rightskip}{0pt plus 5cm}\#define space\-\_\-err\-\_\-null~-\/1}}\label{space_8h_aea592ca2fbff81fa5f74e02cf65c68b5}
+\hypertarget{space_8h_af0504055442a991f476ec24cbcb416f4}{\index{space.\-h@{space.\-h}!space\-\_\-err\-\_\-ok@{space\-\_\-err\-\_\-ok}}
+\index{space\-\_\-err\-\_\-ok@{space\-\_\-err\-\_\-ok}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-err\-\_\-ok}]{\setlength{\rightskip}{0pt plus 5cm}\#define space\-\_\-err\-\_\-ok~0}}\label{space_8h_af0504055442a991f476ec24cbcb416f4}
+\hypertarget{space_8h_aee57533ef0f66387b0c9dd6851fc55ea}{\index{space.\-h@{space.\-h}!space\-\_\-err\-\_\-pthread@{space\-\_\-err\-\_\-pthread}}
+\index{space\-\_\-err\-\_\-pthread@{space\-\_\-err\-\_\-pthread}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-err\-\_\-pthread}]{\setlength{\rightskip}{0pt plus 5cm}\#define space\-\_\-err\-\_\-pthread~-\/4}}\label{space_8h_aee57533ef0f66387b0c9dd6851fc55ea}
+\hypertarget{space_8h_a92c4909733e26b180b1c719bf6d8b739}{\index{space.\-h@{space.\-h}!space\-\_\-err\-\_\-range@{space\-\_\-err\-\_\-range}}
+\index{space\-\_\-err\-\_\-range@{space\-\_\-err\-\_\-range}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-err\-\_\-range}]{\setlength{\rightskip}{0pt plus 5cm}\#define space\-\_\-err\-\_\-range~-\/5}}\label{space_8h_a92c4909733e26b180b1c719bf6d8b739}
+\hypertarget{space_8h_aa2feaf56477ad789a9bd87199e8c7a91}{\index{space.\-h@{space.\-h}!space\-\_\-err\-\_\-task@{space\-\_\-err\-\_\-task}}
+\index{space\-\_\-err\-\_\-task@{space\-\_\-err\-\_\-task}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-err\-\_\-task}]{\setlength{\rightskip}{0pt plus 5cm}\#define space\-\_\-err\-\_\-task~-\/8}}\label{space_8h_aa2feaf56477ad789a9bd87199e8c7a91}
+\hypertarget{space_8h_a8b8e48245b1fb91ab7e2b83922760171}{\index{space.\-h@{space.\-h}!space\-\_\-maxtuples@{space\-\_\-maxtuples}}
+\index{space\-\_\-maxtuples@{space\-\_\-maxtuples}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-maxtuples}]{\setlength{\rightskip}{0pt plus 5cm}\#define space\-\_\-maxtuples~4}}\label{space_8h_a8b8e48245b1fb91ab7e2b83922760171}
+Maximum number of cells per tuple. \hypertarget{space_8h_acea891dfbbb5a03ae878786aaa3fd038}{\index{space.\-h@{space.\-h}!space\-\_\-pairind@{space\-\_\-pairind}}
+\index{space\-\_\-pairind@{space\-\_\-pairind}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-pairind}]{\setlength{\rightskip}{0pt plus 5cm}\#define space\-\_\-pairind(
+\begin{DoxyParamCaption}
+\item[{}]{i, }
+\item[{}]{j}
+\end{DoxyParamCaption}
+)~( {\bf space\-\_\-maxtuples}$\ast$(i) -\/ (i)$\ast$((i)+1)/2 + (j) )}}\label{space_8h_acea891dfbbb5a03ae878786aaa3fd038}
+Convert tuple ids into the pairid index. \hypertarget{space_8h_a6801e0922154953d066a1634aafc00d0}{\index{space.\-h@{space.\-h}!space\-\_\-partlist\-\_\-incr@{space\-\_\-partlist\-\_\-incr}}
+\index{space\-\_\-partlist\-\_\-incr@{space\-\_\-partlist\-\_\-incr}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-partlist\-\_\-incr}]{\setlength{\rightskip}{0pt plus 5cm}\#define space\-\_\-partlist\-\_\-incr~100}}\label{space_8h_a6801e0922154953d066a1634aafc00d0}
+\hypertarget{space_8h_af8d717d1aa6319532393f55728c75182}{\index{space.\-h@{space.\-h}!space\-\_\-periodic\-\_\-full@{space\-\_\-periodic\-\_\-full}}
+\index{space\-\_\-periodic\-\_\-full@{space\-\_\-periodic\-\_\-full}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-periodic\-\_\-full}]{\setlength{\rightskip}{0pt plus 5cm}\#define space\-\_\-periodic\-\_\-full~7}}\label{space_8h_af8d717d1aa6319532393f55728c75182}
+\hypertarget{space_8h_a6bf1d58616f0b64273b9d6c73212ee5d}{\index{space.\-h@{space.\-h}!space\-\_\-periodic\-\_\-ghost\-\_\-full@{space\-\_\-periodic\-\_\-ghost\-\_\-full}}
+\index{space\-\_\-periodic\-\_\-ghost\-\_\-full@{space\-\_\-periodic\-\_\-ghost\-\_\-full}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-periodic\-\_\-ghost\-\_\-full}]{\setlength{\rightskip}{0pt plus 5cm}\#define space\-\_\-periodic\-\_\-ghost\-\_\-full~56}}\label{space_8h_a6bf1d58616f0b64273b9d6c73212ee5d}
+\hypertarget{space_8h_a6ae52464da18d44dbfcb9004da2263a4}{\index{space.\-h@{space.\-h}!space\-\_\-periodic\-\_\-ghost\-\_\-x@{space\-\_\-periodic\-\_\-ghost\-\_\-x}}
+\index{space\-\_\-periodic\-\_\-ghost\-\_\-x@{space\-\_\-periodic\-\_\-ghost\-\_\-x}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-periodic\-\_\-ghost\-\_\-x}]{\setlength{\rightskip}{0pt plus 5cm}\#define space\-\_\-periodic\-\_\-ghost\-\_\-x~8}}\label{space_8h_a6ae52464da18d44dbfcb9004da2263a4}
+\hypertarget{space_8h_a6d51d26c45a79a3c067c94671277a373}{\index{space.\-h@{space.\-h}!space\-\_\-periodic\-\_\-ghost\-\_\-y@{space\-\_\-periodic\-\_\-ghost\-\_\-y}}
+\index{space\-\_\-periodic\-\_\-ghost\-\_\-y@{space\-\_\-periodic\-\_\-ghost\-\_\-y}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-periodic\-\_\-ghost\-\_\-y}]{\setlength{\rightskip}{0pt plus 5cm}\#define space\-\_\-periodic\-\_\-ghost\-\_\-y~16}}\label{space_8h_a6d51d26c45a79a3c067c94671277a373}
+\hypertarget{space_8h_a4ffbf9396334182d6d079b4dada8450f}{\index{space.\-h@{space.\-h}!space\-\_\-periodic\-\_\-ghost\-\_\-z@{space\-\_\-periodic\-\_\-ghost\-\_\-z}}
+\index{space\-\_\-periodic\-\_\-ghost\-\_\-z@{space\-\_\-periodic\-\_\-ghost\-\_\-z}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-periodic\-\_\-ghost\-\_\-z}]{\setlength{\rightskip}{0pt plus 5cm}\#define space\-\_\-periodic\-\_\-ghost\-\_\-z~32}}\label{space_8h_a4ffbf9396334182d6d079b4dada8450f}
+\hypertarget{space_8h_ab58b0e2142677e52dfb1b0c684f2eab5}{\index{space.\-h@{space.\-h}!space\-\_\-periodic\-\_\-none@{space\-\_\-periodic\-\_\-none}}
+\index{space\-\_\-periodic\-\_\-none@{space\-\_\-periodic\-\_\-none}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-periodic\-\_\-none}]{\setlength{\rightskip}{0pt plus 5cm}\#define space\-\_\-periodic\-\_\-none~0}}\label{space_8h_ab58b0e2142677e52dfb1b0c684f2eab5}
+\hypertarget{space_8h_aa3e8aca251b78b9035e1914472bf617e}{\index{space.\-h@{space.\-h}!space\-\_\-periodic\-\_\-x@{space\-\_\-periodic\-\_\-x}}
+\index{space\-\_\-periodic\-\_\-x@{space\-\_\-periodic\-\_\-x}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-periodic\-\_\-x}]{\setlength{\rightskip}{0pt plus 5cm}\#define space\-\_\-periodic\-\_\-x~1}}\label{space_8h_aa3e8aca251b78b9035e1914472bf617e}
+\hypertarget{space_8h_a803b4ba602fc573ba82352ba2a64d99e}{\index{space.\-h@{space.\-h}!space\-\_\-periodic\-\_\-y@{space\-\_\-periodic\-\_\-y}}
+\index{space\-\_\-periodic\-\_\-y@{space\-\_\-periodic\-\_\-y}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-periodic\-\_\-y}]{\setlength{\rightskip}{0pt plus 5cm}\#define space\-\_\-periodic\-\_\-y~2}}\label{space_8h_a803b4ba602fc573ba82352ba2a64d99e}
+\hypertarget{space_8h_a32350bed462c2b292aaa289243669e41}{\index{space.\-h@{space.\-h}!space\-\_\-periodic\-\_\-z@{space\-\_\-periodic\-\_\-z}}
+\index{space\-\_\-periodic\-\_\-z@{space\-\_\-periodic\-\_\-z}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-periodic\-\_\-z}]{\setlength{\rightskip}{0pt plus 5cm}\#define space\-\_\-periodic\-\_\-z~4}}\label{space_8h_a32350bed462c2b292aaa289243669e41}
+\hypertarget{space_8h_ae410188ea1f1c4051458f3995f61c3a2}{\index{space.\-h@{space.\-h}!space\-\_\-verlet\-\_\-maxpairs@{space\-\_\-verlet\-\_\-maxpairs}}
+\index{space\-\_\-verlet\-\_\-maxpairs@{space\-\_\-verlet\-\_\-maxpairs}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-verlet\-\_\-maxpairs}]{\setlength{\rightskip}{0pt plus 5cm}\#define space\-\_\-verlet\-\_\-maxpairs~800}}\label{space_8h_ae410188ea1f1c4051458f3995f61c3a2}
+Maximum number of interactions per particle in the Verlet list. 
+
+\subsection{Function Documentation}
+\hypertarget{space_8h_adcdb12d32832cf2768fc21e107ea4e4d}{\index{space.\-h@{space.\-h}!space\-\_\-addpart@{space\-\_\-addpart}}
+\index{space\-\_\-addpart@{space\-\_\-addpart}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-addpart}]{\setlength{\rightskip}{0pt plus 5cm}int space\-\_\-addpart (
+\begin{DoxyParamCaption}
+\item[{struct {\bf space} $\ast$}]{s, }
+\item[{struct {\bf part} $\ast$}]{p, }
+\item[{double $\ast$}]{x}
+\end{DoxyParamCaption}
+)}}\label{space_8h_adcdb12d32832cf2768fc21e107ea4e4d}
+
+
+Add a \hyperlink{structpart}{part} to a \hyperlink{structspace}{space} at the given coordinates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The space to which {\ttfamily p} should be added. \\
+\hline
+{\em p} & The \hyperlink{structpart}{part} to be added. \\
+\hline
+{\em x} & A pointer to an array of three doubles containing the particle position.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{space_8h_af0504055442a991f476ec24cbcb416f4}{space\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{space_8h_a26550d5c282672a89c766fcb8be67c14}{space\-\_\-err}).
+\end{DoxyReturn}
+Inserts a \hyperlink{structpart}{part} {\ttfamily p} into the \hyperlink{structspace}{space} {\ttfamily s} at the position {\ttfamily x}. Note that since particle positions in \hyperlink{structpart}{part} are relative to the cell, that data in {\ttfamily p} is overwritten and {\ttfamily x} is used. \hypertarget{space_8h_a9e98297dd65779f7b88eece573960f9d}{\index{space.\-h@{space.\-h}!space\-\_\-addtask@{space\-\_\-addtask}}
+\index{space\-\_\-addtask@{space\-\_\-addtask}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-addtask}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf task}$\ast$ space\-\_\-addtask (
+\begin{DoxyParamCaption}
+\item[{struct {\bf space} $\ast$}]{s, }
+\item[{int}]{type, }
+\item[{int}]{subtype, }
+\item[{int}]{flags, }
+\item[{int}]{i, }
+\item[{int}]{j}
+\end{DoxyParamCaption}
+)}}\label{space_8h_a9e98297dd65779f7b88eece573960f9d}
+
+
+Add a task to the given space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The \hyperlink{structspace}{space}. \\
+\hline
+{\em type} & The task type. \\
+\hline
+{\em subtype} & The task subtype. \\
+\hline
+{\em flags} & The task flags. \\
+\hline
+{\em i} & Index of the first cell/domain. \\
+\hline
+{\em j} & Index of the second cell/domain.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly added \hyperlink{structtask}{task} or {\ttfamily N\-U\-L\-L} if anything went wrong. 
+\end{DoxyReturn}
+\hypertarget{space_8h_a2b5b7a8fa67dd3ebfbe1ceb457459985}{\index{space.\-h@{space.\-h}!space\-\_\-flush@{space\-\_\-flush}}
+\index{space\-\_\-flush@{space\-\_\-flush}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-flush}]{\setlength{\rightskip}{0pt plus 5cm}int space\-\_\-flush (
+\begin{DoxyParamCaption}
+\item[{struct {\bf space} $\ast$}]{s}
+\end{DoxyParamCaption}
+)}}\label{space_8h_a2b5b7a8fa67dd3ebfbe1ceb457459985}
+
+
+Clear all particles from this \hyperlink{structspace}{space}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The \hyperlink{structspace}{space} to flush.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{space_8h_af0504055442a991f476ec24cbcb416f4}{space\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{space_8h_a26550d5c282672a89c766fcb8be67c14}{space\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{space_8h_a1a9cec8a4fda5e2f9f5803fd85900885}{\index{space.\-h@{space.\-h}!space\-\_\-flush\-\_\-ghosts@{space\-\_\-flush\-\_\-ghosts}}
+\index{space\-\_\-flush\-\_\-ghosts@{space\-\_\-flush\-\_\-ghosts}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-flush\-\_\-ghosts}]{\setlength{\rightskip}{0pt plus 5cm}int space\-\_\-flush\-\_\-ghosts (
+\begin{DoxyParamCaption}
+\item[{struct {\bf space} $\ast$}]{s}
+\end{DoxyParamCaption}
+)}}\label{space_8h_a1a9cec8a4fda5e2f9f5803fd85900885}
+
+
+Clear all particles from the ghost cells in this \hyperlink{structspace}{space}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The \hyperlink{structspace}{space} to flush.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{space_8h_af0504055442a991f476ec24cbcb416f4}{space\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{space_8h_a26550d5c282672a89c766fcb8be67c14}{space\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{space_8h_a1b308305a1cb1a20058e020b22e2f1fb}{\index{space.\-h@{space.\-h}!space\-\_\-getpos@{space\-\_\-getpos}}
+\index{space\-\_\-getpos@{space\-\_\-getpos}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-getpos}]{\setlength{\rightskip}{0pt plus 5cm}int space\-\_\-getpos (
+\begin{DoxyParamCaption}
+\item[{struct {\bf space} $\ast$}]{s, }
+\item[{int}]{id, }
+\item[{double $\ast$}]{x}
+\end{DoxyParamCaption}
+)}}\label{space_8h_a1b308305a1cb1a20058e020b22e2f1fb}
+
+
+Get the absolute position of a particle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The \hyperlink{structspace}{space} in which the particle resides. \\
+\hline
+{\em id} & The local id of the \hyperlink{structpart}{part}. \\
+\hline
+{\em x} & A pointer to a vector of at least three {\ttfamily doubles} in which to store the particle position. \\
+\hline
+\end{DoxyParams}
+\hypertarget{space_8h_a330965ff212eba9fb51376216acd733f}{\index{space.\-h@{space.\-h}!space\-\_\-getsid@{space\-\_\-getsid}}
+\index{space\-\_\-getsid@{space\-\_\-getsid}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-getsid}]{\setlength{\rightskip}{0pt plus 5cm}int space\-\_\-getsid (
+\begin{DoxyParamCaption}
+\item[{struct {\bf space} $\ast$}]{s, }
+\item[{struct {\bf cell} $\ast$$\ast$}]{ci, }
+\item[{struct {\bf cell} $\ast$$\ast$}]{cj, }
+\item[{{\bf F\-P\-T\-Y\-P\-E} $\ast$}]{shift}
+\end{DoxyParamCaption}
+)}}\label{space_8h_a330965ff212eba9fb51376216acd733f}
+
+
+Get the sort-\/\-I\-D and flip the cells if necessary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The \hyperlink{structspace}{space}. \\
+\hline
+{\em ci} & Double pointer to the first \hyperlink{structcell}{cell}. \\
+\hline
+{\em cj} & Double pointer to the second \hyperlink{structcell}{cell}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The sort I\-D of both cells, which may be swapped. 
+\end{DoxyReturn}
+\hypertarget{space_8h_a88f73b9b0b0762f64416e086833f7879}{\index{space.\-h@{space.\-h}!space\-\_\-init@{space\-\_\-init}}
+\index{space\-\_\-init@{space\-\_\-init}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}int space\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{struct {\bf space} $\ast$}]{s, }
+\item[{const double $\ast$}]{origin, }
+\item[{const double $\ast$}]{dim, }
+\item[{double $\ast$}]{L, }
+\item[{double}]{cutoff, }
+\item[{unsigned int}]{period}
+\end{DoxyParamCaption}
+)}}\label{space_8h_a88f73b9b0b0762f64416e086833f7879}
+
+
+Initialize the space with the given dimensions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The \hyperlink{structspace}{space} to initialize. \\
+\hline
+{\em origin} & Pointer to an array of three doubles specifying the origin of the rectangular domain. \\
+\hline
+{\em dim} & Pointer to an array of three doubles specifying the length of the rectangular domain along each dimension. \\
+\hline
+{\em L} & The minimum cell edge length, in each dimension. \\
+\hline
+{\em cutoff} & A double-\/precision value containing the maximum cutoff lenght that will be used in the potentials. \\
+\hline
+{\em period} & Unsigned integer containing the flags \hyperlink{space_8h_aa3e8aca251b78b9035e1914472bf617e}{space\-\_\-periodic\-\_\-x}, \hyperlink{space_8h_a803b4ba602fc573ba82352ba2a64d99e}{space\-\_\-periodic\-\_\-y} and/or \hyperlink{space_8h_a32350bed462c2b292aaa289243669e41}{space\-\_\-periodic\-\_\-z} or \hyperlink{space_8h_af8d717d1aa6319532393f55728c75182}{space\-\_\-periodic\-\_\-full}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{space_8h_af0504055442a991f476ec24cbcb416f4}{space\-\_\-err\-\_\-ok} or $<$0 on error (see \hyperlink{space_8h_a26550d5c282672a89c766fcb8be67c14}{space\-\_\-err}).
+\end{DoxyReturn}
+This routine initializes the fields of the \hyperlink{structspace}{space} {\ttfamily s}, creates the cells and generates the cell-\/pair list. \hypertarget{space_8h_a471f5997090314affa8f975b1909afff}{\index{space.\-h@{space.\-h}!space\-\_\-prepare@{space\-\_\-prepare}}
+\index{space\-\_\-prepare@{space\-\_\-prepare}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-prepare}]{\setlength{\rightskip}{0pt plus 5cm}int space\-\_\-prepare (
+\begin{DoxyParamCaption}
+\item[{struct {\bf space} $\ast$}]{s}
+\end{DoxyParamCaption}
+)}}\label{space_8h_a471f5997090314affa8f975b1909afff}
+
+
+Prepare the space before a time step. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & A pointer to the \hyperlink{structspace}{space} to prepare.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{space_8h_af0504055442a991f476ec24cbcb416f4}{space\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{space_8h_a26550d5c282672a89c766fcb8be67c14}{space\-\_\-err})
+\end{DoxyReturn}
+Initializes a \hyperlink{structspace}{space} for a single time step. This routine runs through the particles and sets their forces to zero. \hypertarget{space_8h_a4dc93f36d1eb8b1fe3ad2a27076cf096}{\index{space.\-h@{space.\-h}!space\-\_\-setpos@{space\-\_\-setpos}}
+\index{space\-\_\-setpos@{space\-\_\-setpos}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-setpos}]{\setlength{\rightskip}{0pt plus 5cm}int space\-\_\-setpos (
+\begin{DoxyParamCaption}
+\item[{struct {\bf space} $\ast$}]{s, }
+\item[{int}]{id, }
+\item[{double $\ast$}]{x}
+\end{DoxyParamCaption}
+)}}\label{space_8h_a4dc93f36d1eb8b1fe3ad2a27076cf096}
+\hypertarget{space_8h_aff57036690d68e524b2d6204037fb4c3}{\index{space.\-h@{space.\-h}!space\-\_\-shuffle@{space\-\_\-shuffle}}
+\index{space\-\_\-shuffle@{space\-\_\-shuffle}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-shuffle}]{\setlength{\rightskip}{0pt plus 5cm}int space\-\_\-shuffle (
+\begin{DoxyParamCaption}
+\item[{struct {\bf space} $\ast$}]{s}
+\end{DoxyParamCaption}
+)}}\label{space_8h_aff57036690d68e524b2d6204037fb4c3}
+
+
+Run through the cells of a \hyperlink{structspace}{space} and make sure every particle is in its place. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The \hyperlink{structspace}{space} on which to operate.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{space_8h_af0504055442a991f476ec24cbcb416f4}{space\-\_\-err\-\_\-ok} or $<$ 0 on error.
+\end{DoxyReturn}
+Runs through the cells of {\ttfamily s} and if a particle has stepped outside the cell bounds, moves it to the correct cell. \hypertarget{space_8h_a90d400d84b28e9ee1c2dfb7fc6110387}{\index{space.\-h@{space.\-h}!space\-\_\-shuffle\-\_\-local@{space\-\_\-shuffle\-\_\-local}}
+\index{space\-\_\-shuffle\-\_\-local@{space\-\_\-shuffle\-\_\-local}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-shuffle\-\_\-local}]{\setlength{\rightskip}{0pt plus 5cm}int space\-\_\-shuffle\-\_\-local (
+\begin{DoxyParamCaption}
+\item[{struct {\bf space} $\ast$}]{s}
+\end{DoxyParamCaption}
+)}}\label{space_8h_a90d400d84b28e9ee1c2dfb7fc6110387}
+
+
+Run through the non-\/ghost cells of a \hyperlink{structspace}{space} and make sure every particle is in its place. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The \hyperlink{structspace}{space} on which to operate.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{space_8h_af0504055442a991f476ec24cbcb416f4}{space\-\_\-err\-\_\-ok} or $<$ 0 on error.
+\end{DoxyReturn}
+Runs through the cells of {\ttfamily s} and if a particle has stepped outside the cell bounds, moves it to the correct cell. 
+
+\subsection{Variable Documentation}
+\hypertarget{space_8h_a26550d5c282672a89c766fcb8be67c14}{\index{space.\-h@{space.\-h}!space\-\_\-err@{space\-\_\-err}}
+\index{space\-\_\-err@{space\-\_\-err}!space.h@{space.\-h}}
+\subsubsection[{space\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}int space\-\_\-err}}\label{space_8h_a26550d5c282672a89c766fcb8be67c14}
+I\-D of the last error 

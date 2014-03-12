@@ -1,0 +1,161 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/engine_rigid.c" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/engine_rigid.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <pthread\&.h>\fP
+.br
+\fC#include <math\&.h>\fP
+.br
+\fC#include <float\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include '\&.\&./config\&.h'\fP
+.br
+\fC#include <omp\&.h>\fP
+.br
+\fC#include 'cycle\&.h'\fP
+.br
+\fC#include 'errs\&.h'\fP
+.br
+\fC#include 'fptype\&.h'\fP
+.br
+\fC#include 'lock\&.h'\fP
+.br
+\fC#include 'part\&.h'\fP
+.br
+\fC#include 'cell\&.h'\fP
+.br
+\fC#include 'space\&.h'\fP
+.br
+\fC#include 'potential\&.h'\fP
+.br
+\fC#include 'runner\&.h'\fP
+.br
+\fC#include 'bond\&.h'\fP
+.br
+\fC#include 'rigid\&.h'\fP
+.br
+\fC#include 'angle\&.h'\fP
+.br
+\fC#include 'dihedral\&.h'\fP
+.br
+\fC#include 'exclusion\&.h'\fP
+.br
+\fC#include 'reader\&.h'\fP
+.br
+\fC#include 'engine\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBerror\fP(\fBid\fP)   ( \fBengine_err\fP = \fBerrs_register\fP( \fBid\fP , \fBengine_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBengine_rigid_add\fP (struct \fBengine\fP *\fBe\fP, int pid, int pjd, double d)"
+.br
+.RI "\fIAdd a rigid constraint to the engine\&. \fP"
+.ti -1c
+.RI "int \fBengine_rigid_unsort\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fIShuffle the rigid constraints randomly\&. \fP"
+.ti -1c
+.RI "int \fBengine_rigid_sort\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fISplit the rigids into local, semilocal and non-local\&. \fP"
+.ti -1c
+.RI "int \fBengine_rigid_eval\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fIResolve the constraints\&. \fP"
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define error(\fBid\fP)   ( \fBengine_err\fP = \fBerrs_register\fP( \fBid\fP , \fBengine_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+
+.SH "Function Documentation"
+.PP 
+.SS "int engine_rigid_add (struct \fBengine\fP *e, intpid, intpjd, doubled)"
+
+.PP
+Add a rigid constraint to the engine\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&. 
+.br
+\fIpid\fP The ID of the first \fBpart\fP\&. 
+.br
+\fIpjd\fP The ID of the second \fBpart\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The index of the rigid constraint or < 0 on error (see \fBengine_err\fP)\&.
+.RE
+.PP
+Beware that currently all particles have to have been inserted before the rigid constraints are added! 
+.SS "int engine_rigid_eval (struct \fBengine\fP *e)"
+
+.PP
+Resolve the constraints\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&.
+.RE
+.PP
+Note that if in parallel, \fBengine_rigid_sort\fP should be called before this routine\&. 
+.SS "int engine_rigid_sort (struct \fBengine\fP *e)"
+
+.PP
+Split the rigids into local, semilocal and non-local\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_rigid_unsort (struct \fBengine\fP *e)"
+
+.PP
+Shuffle the rigid constraints randomly\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

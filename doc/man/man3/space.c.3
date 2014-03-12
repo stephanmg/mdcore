@@ -1,0 +1,318 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/space.c" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/space.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <strings\&.h>\fP
+.br
+\fC#include <alloca\&.h>\fP
+.br
+\fC#include <pthread\&.h>\fP
+.br
+\fC#include <math\&.h>\fP
+.br
+\fC#include '\&.\&./config\&.h'\fP
+.br
+\fC#include <omp\&.h>\fP
+.br
+\fC#include 'errs\&.h'\fP
+.br
+\fC#include 'fptype\&.h'\fP
+.br
+\fC#include 'lock\&.h'\fP
+.br
+\fC#include 'part\&.h'\fP
+.br
+\fC#include 'cell\&.h'\fP
+.br
+\fC#include 'task\&.h'\fP
+.br
+\fC#include 'space\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBerror\fP(\fBid\fP)   ( \fBspace_err\fP = \fBerrs_register\fP( \fBid\fP , \fBspace_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBspace_getsid\fP (struct \fBspace\fP *s, struct \fBcell\fP **ci, struct \fBcell\fP **cj, \fBFPTYPE\fP *shift)"
+.br
+.RI "\fIGet the sort-ID and flip the cells if necessary\&. \fP"
+.ti -1c
+.RI "int \fBspace_flush_ghosts\fP (struct \fBspace\fP *s)"
+.br
+.RI "\fIClear all particles from the ghost cells in this \fBspace\fP\&. \fP"
+.ti -1c
+.RI "int \fBspace_flush\fP (struct \fBspace\fP *s)"
+.br
+.RI "\fIClear all particles from this \fBspace\fP\&. \fP"
+.ti -1c
+.RI "int \fBspace_prepare\fP (struct \fBspace\fP *s)"
+.br
+.RI "\fIPrepare the space before a time step\&. \fP"
+.ti -1c
+.RI "int \fBspace_shuffle\fP (struct \fBspace\fP *s)"
+.br
+.RI "\fIRun through the cells of a \fBspace\fP and make sure every particle is in its place\&. \fP"
+.ti -1c
+.RI "int \fBspace_shuffle_local\fP (struct \fBspace\fP *s)"
+.br
+.RI "\fIRun through the non-ghost cells of a \fBspace\fP and make sure every particle is in its place\&. \fP"
+.ti -1c
+.RI "int \fBspace_addpart\fP (struct \fBspace\fP *s, struct \fBpart\fP *p, double *\fBx\fP)"
+.br
+.RI "\fIAdd a \fBpart\fP to a \fBspace\fP at the given coordinates\&. \fP"
+.ti -1c
+.RI "int \fBspace_getpos\fP (struct \fBspace\fP *s, int \fBid\fP, double *\fBx\fP)"
+.br
+.RI "\fIGet the absolute position of a particle\&. \fP"
+.ti -1c
+.RI "struct \fBtask\fP * \fBspace_addtask\fP (struct \fBspace\fP *s, int type, int subtype, int flags, int i, int j)"
+.br
+.RI "\fIAdd a task to the given space\&. \fP"
+.ti -1c
+.RI "int \fBspace_init\fP (struct \fBspace\fP *s, const double *origin, const double *dim, double *L, double cutoff, unsigned int period)"
+.br
+.RI "\fIInitialize the space with the given dimensions\&. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBspace_err\fP = \fBspace_err_ok\fP"
+.br
+.ti -1c
+.RI "char * \fBspace_err_msg\fP [9]"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define error(\fBid\fP)   ( \fBspace_err\fP = \fBerrs_register\fP( \fBid\fP , \fBspace_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+
+.SH "Function Documentation"
+.PP 
+.SS "int space_addpart (struct \fBspace\fP *s, struct \fBpart\fP *p, double *x)"
+
+.PP
+Add a \fBpart\fP to a \fBspace\fP at the given coordinates\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIs\fP The space to which \fCp\fP should be added\&. 
+.br
+\fIp\fP The \fBpart\fP to be added\&. 
+.br
+\fIx\fP A pointer to an array of three doubles containing the particle position\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBspace_err_ok\fP or < 0 on error (see \fBspace_err\fP)\&.
+.RE
+.PP
+Inserts a \fBpart\fP \fCp\fP into the \fBspace\fP \fCs\fP at the position \fCx\fP\&. Note that since particle positions in \fBpart\fP are relative to the cell, that data in \fCp\fP is overwritten and \fCx\fP is used\&. 
+.SS "struct \fBtask\fP* space_addtask (struct \fBspace\fP *s, inttype, intsubtype, intflags, inti, intj)"
+
+.PP
+Add a task to the given space\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIs\fP The \fBspace\fP\&. 
+.br
+\fItype\fP The task type\&. 
+.br
+\fIsubtype\fP The task subtype\&. 
+.br
+\fIflags\fP The task flags\&. 
+.br
+\fIi\fP Index of the first cell/domain\&. 
+.br
+\fIj\fP Index of the second cell/domain\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A pointer to the newly added \fBtask\fP or \fCNULL\fP if anything went wrong\&. 
+.RE
+.PP
+
+.SS "int space_flush (struct \fBspace\fP *s)"
+
+.PP
+Clear all particles from this \fBspace\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIs\fP The \fBspace\fP to flush\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBspace_err_ok\fP or < 0 on error (see \fBspace_err\fP)\&. 
+.RE
+.PP
+
+.SS "int space_flush_ghosts (struct \fBspace\fP *s)"
+
+.PP
+Clear all particles from the ghost cells in this \fBspace\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIs\fP The \fBspace\fP to flush\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBspace_err_ok\fP or < 0 on error (see \fBspace_err\fP)\&. 
+.RE
+.PP
+
+.SS "int space_getpos (struct \fBspace\fP *s, intid, double *x)"
+
+.PP
+Get the absolute position of a particle\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIs\fP The \fBspace\fP in which the particle resides\&. 
+.br
+\fIid\fP The local id of the \fBpart\fP\&. 
+.br
+\fIx\fP A pointer to a vector of at least three \fCdoubles\fP in which to store the particle position\&. 
+.RE
+.PP
+
+.SS "int space_getsid (struct \fBspace\fP *s, struct \fBcell\fP **ci, struct \fBcell\fP **cj, \fBFPTYPE\fP *shift)"
+
+.PP
+Get the sort-ID and flip the cells if necessary\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIs\fP The \fBspace\fP\&. 
+.br
+\fIci\fP Double pointer to the first \fBcell\fP\&. 
+.br
+\fIcj\fP Double pointer to the second \fBcell\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The sort ID of both cells, which may be swapped\&. 
+.RE
+.PP
+
+.SS "int space_init (struct \fBspace\fP *s, const double *origin, const double *dim, double *L, doublecutoff, unsigned intperiod)"
+
+.PP
+Initialize the space with the given dimensions\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIs\fP The \fBspace\fP to initialize\&. 
+.br
+\fIorigin\fP Pointer to an array of three doubles specifying the origin of the rectangular domain\&. 
+.br
+\fIdim\fP Pointer to an array of three doubles specifying the length of the rectangular domain along each dimension\&. 
+.br
+\fIL\fP The minimum cell edge length, in each dimension\&. 
+.br
+\fIcutoff\fP A double-precision value containing the maximum cutoff lenght that will be used in the potentials\&. 
+.br
+\fIperiod\fP Unsigned integer containing the flags \fBspace_periodic_x\fP, \fBspace_periodic_y\fP and/or \fBspace_periodic_z\fP or \fBspace_periodic_full\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBspace_err_ok\fP or <0 on error (see \fBspace_err\fP)\&.
+.RE
+.PP
+This routine initializes the fields of the \fBspace\fP \fCs\fP, creates the cells and generates the cell-pair list\&. 
+.SS "int space_prepare (struct \fBspace\fP *s)"
+
+.PP
+Prepare the space before a time step\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIs\fP A pointer to the \fBspace\fP to prepare\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBspace_err_ok\fP or < 0 on error (see \fBspace_err\fP)
+.RE
+.PP
+Initializes a \fBspace\fP for a single time step\&. This routine runs through the particles and sets their forces to zero\&. 
+.SS "int space_shuffle (struct \fBspace\fP *s)"
+
+.PP
+Run through the cells of a \fBspace\fP and make sure every particle is in its place\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIs\fP The \fBspace\fP on which to operate\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBspace_err_ok\fP or < 0 on error\&.
+.RE
+.PP
+Runs through the cells of \fCs\fP and if a particle has stepped outside the cell bounds, moves it to the correct cell\&. 
+.SS "int space_shuffle_local (struct \fBspace\fP *s)"
+
+.PP
+Run through the non-ghost cells of a \fBspace\fP and make sure every particle is in its place\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIs\fP The \fBspace\fP on which to operate\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBspace_err_ok\fP or < 0 on error\&.
+.RE
+.PP
+Runs through the cells of \fCs\fP and if a particle has stepped outside the cell bounds, moves it to the correct cell\&. 
+.SH "Variable Documentation"
+.PP 
+.SS "int space_err = \fBspace_err_ok\fP"
+ID of the last error 
+.SS "char* space_err_msg[9]"
+\fBInitial value:\fP
+.PP
+.nf
+= {
+        "Nothing bad happened\&.",
+    "An unexpected NULL pointer was encountered\&.",
+    "A call to malloc failed, probably due to insufficient memory\&.",
+    "An error occured when calling a cell function\&.",
+    "A call to a pthread routine failed\&.",
+    "One or more values were outside of the allowed range\&.",
+    "Too many pairs associated with a single particle in Verlet list\&.",
+    "Task list too short\&.",
+    "An error occured when calling a task function\&.",
+        }
+.fi
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

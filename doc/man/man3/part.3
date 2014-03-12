@@ -1,0 +1,71 @@
+.TH "part" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+part \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <part\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBFPTYPE\fP \fBx\fP[4] \fB__attribute__\fP ((aligned(16)))"
+.br
+.ti -1c
+.RI "\fBFPTYPE\fP v[4] \fB__attribute__\fP ((aligned(16)))"
+.br
+.ti -1c
+.RI "\fBFPTYPE\fP \fBf\fP[4] \fB__attribute__\fP ((aligned(16)))"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "float \fBq\fP"
+.br
+.ti -1c
+.RI "int \fBid\fP"
+.br
+.ti -1c
+.RI "int \fBvid\fP"
+.br
+.ti -1c
+.RI "short int \fBtype\fP"
+.br
+.ti -1c
+.RI "unsigned short int \fBflags\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The \fBpart\fP data structure\&.
+.PP
+Note that the arrays for \fCx\fP, \fCv\fP and \fCf\fP are 4 entries long for propper alignment\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBFPTYPE\fP \fBx\fP [4] __attribute__ ((aligned(16)))"
+Particle position 
+.SS "\fBFPTYPE\fP v [4] __attribute__ ((aligned(16)))"
+Particle velocity 
+.SS "\fBFPTYPE\fP \fBf\fP [4] __attribute__ ((aligned(16)))"
+Particle force 
+.SH "Field Documentation"
+.PP 
+.SS "unsigned short int flags"
+Particle flags 
+.SS "int id"
+Particle id and type 
+.SS "float q"
+individual particle charge, if needed\&. 
+.SS "short int type"
+particle type\&. 
+.SS "int vid"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

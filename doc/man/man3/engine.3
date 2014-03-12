@@ -1,0 +1,283 @@
+.TH "engine" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+engine \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <engine\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBflags\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBflags_cuda\fP"
+.br
+.ti -1c
+.RI "struct \fBspace\fP \fBs\fP"
+.br
+.ti -1c
+.RI "int \fBtime\fP"
+.br
+.ti -1c
+.RI "double \fBdt\fP"
+.br
+.ti -1c
+.RI "int \fBmax_type\fP"
+.br
+.ti -1c
+.RI "int \fBnr_types\fP"
+.br
+.ti -1c
+.RI "struct \fBpart_type\fP * \fBtypes\fP"
+.br
+.ti -1c
+.RI "struct \fBpotential\fP ** \fBp\fP"
+.br
+.ti -1c
+.RI "struct \fBpotential\fP ** \fBp_bond\fP"
+.br
+.ti -1c
+.RI "struct \fBpotential\fP ** \fBp_angle\fP"
+.br
+.ti -1c
+.RI "struct \fBpotential\fP ** \fBp_dihedral\fP"
+.br
+.ti -1c
+.RI "struct \fBpotential\fP * \fBep\fP"
+.br
+.ti -1c
+.RI "pthread_mutex_t \fBbarrier_mutex\fP"
+.br
+.ti -1c
+.RI "pthread_cond_t \fBbarrier_cond\fP"
+.br
+.ti -1c
+.RI "pthread_cond_t \fBdone_cond\fP"
+.br
+.ti -1c
+.RI "int \fBbarrier_count\fP"
+.br
+.ti -1c
+.RI "int \fBnr_runners\fP"
+.br
+.ti -1c
+.RI "struct \fBrunner\fP * \fBrunners\fP"
+.br
+.ti -1c
+.RI "struct \fBqueue\fP * \fBqueues\fP"
+.br
+.ti -1c
+.RI "int \fBnr_queues\fP"
+.br
+.ti -1c
+.RI "int \fBnodeID\fP"
+.br
+.ti -1c
+.RI "int \fBnr_nodes\fP"
+.br
+.ti -1c
+.RI "struct \fBengine_comm\fP * \fBsend\fP"
+.br
+.ti -1c
+.RI "struct \fBengine_comm\fP * \fBrecv\fP"
+.br
+.ti -1c
+.RI "struct \fBbond\fP * \fBbonds\fP"
+.br
+.ti -1c
+.RI "int \fBnr_bonds\fP"
+.br
+.ti -1c
+.RI "int \fBbonds_size\fP"
+.br
+.ti -1c
+.RI "struct \fBexclusion\fP * \fBexclusions\fP"
+.br
+.ti -1c
+.RI "int \fBnr_exclusions\fP"
+.br
+.ti -1c
+.RI "int \fBexclusions_size\fP"
+.br
+.ti -1c
+.RI "struct \fBrigid\fP * \fBrigids\fP"
+.br
+.ti -1c
+.RI "int * \fBpart2rigid\fP"
+.br
+.ti -1c
+.RI "int \fBnr_rigids\fP"
+.br
+.ti -1c
+.RI "int \fBrigids_size\fP"
+.br
+.ti -1c
+.RI "int \fBnr_constr\fP"
+.br
+.ti -1c
+.RI "int \fBrigids_local\fP"
+.br
+.ti -1c
+.RI "int \fBrigids_semilocal\fP"
+.br
+.ti -1c
+.RI "double \fBtol_rigid\fP"
+.br
+.ti -1c
+.RI "struct \fBangle\fP * \fBangles\fP"
+.br
+.ti -1c
+.RI "int \fBnr_angles\fP"
+.br
+.ti -1c
+.RI "int \fBangles_size\fP"
+.br
+.ti -1c
+.RI "int \fBnr_anglepots\fP"
+.br
+.ti -1c
+.RI "int \fBanglepots_size\fP"
+.br
+.ti -1c
+.RI "struct \fBdihedral\fP * \fBdihedrals\fP"
+.br
+.ti -1c
+.RI "int \fBnr_dihedrals\fP"
+.br
+.ti -1c
+.RI "int \fBdihedrals_size\fP"
+.br
+.ti -1c
+.RI "int \fBnr_dihedralpots\fP"
+.br
+.ti -1c
+.RI "int \fBdihedralpots_size\fP"
+.br
+.ti -1c
+.RI "ticks \fBtimers\fP [\fBengine_timer_last\fP]"
+.br
+.ti -1c
+.RI "struct \fBengine_set\fP * \fBsets\fP"
+.br
+.ti -1c
+.RI "int \fBnr_sets\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The \fBengine\fP structure\&. 
+.SH "Field Documentation"
+.PP 
+.SS "int anglepots_size"
+
+.SS "struct \fBangle\fP* angles"
+List of angles\&. 
+.SS "int angles_size"
+
+.SS "pthread_cond_t barrier_cond"
+
+.SS "int barrier_count"
+
+.SS "pthread_mutex_t barrier_mutex"
+Mutexes, conditions and counters for the barrier 
+.SS "struct \fBbond\fP* bonds"
+List of bonds\&. 
+.SS "int bonds_size"
+
+.SS "int dihedralpots_size"
+
+.SS "struct \fBdihedral\fP* dihedrals"
+List of dihedrals\&. 
+.SS "int dihedrals_size"
+
+.SS "pthread_cond_t done_cond"
+
+.SS "double dt"
+
+.SS "struct \fBpotential\fP* ep"
+The explicit electrostatic potential\&. 
+.SS "struct \fBexclusion\fP* exclusions"
+List of exclusions\&. 
+.SS "int exclusions_size"
+
+.SS "unsigned int flags"
+Some flags controlling how this engine works\&. 
+.SS "unsigned int flags_cuda"
+Some flags controlling which cuda scheduling we use\&. 
+.SS "int max_type"
+What is the maximum nr of types? 
+.SS "int nodeID"
+The ID of the computational node we are on\&. 
+.SS "int nr_anglepots"
+
+.SS "int nr_angles"
+Nr\&. of angles\&. 
+.SS "int nr_bonds"
+Nr\&. of bonds\&. 
+.SS "int nr_constr"
+
+.SS "int nr_dihedralpots"
+
+.SS "int nr_dihedrals"
+Nr\&. of dihedrals\&. 
+.SS "int nr_exclusions"
+Nr\&. of exclusions\&. 
+.SS "int nr_nodes"
+
+.SS "int nr_queues"
+
+.SS "int nr_rigids"
+Nr\&. of rigids\&. 
+.SS "int nr_runners"
+Nr of runners 
+.SS "int nr_sets"
+
+.SS "int nr_types"
+
+.SS "struct \fBpotential\fP** p"
+The interaction matrix 
+.SS "struct \fBpotential\fP ** p_angle"
+
+.SS "struct \fBpotential\fP ** p_bond"
+
+.SS "struct \fBpotential\fP ** p_dihedral"
+
+.SS "int* part2rigid"
+List linking parts to rigids\&. 
+.SS "struct \fBqueue\fP* queues"
+The queues for the runners\&. 
+.SS "struct \fBengine_comm\fP * recv"
+
+.SS "struct \fBrigid\fP* rigids"
+List of rigid bodies\&. 
+.SS "int rigids_local"
+
+.SS "int rigids_semilocal"
+
+.SS "int rigids_size"
+
+.SS "struct \fBrunner\fP* runners"
+The runners 
+.SS "struct \fBspace\fP s"
+The space on which to work 
+.SS "struct \fBengine_comm\fP* send"
+Lists of cells to exchange with other nodes\&. 
+.SS "struct \fBengine_set\fP* sets"
+Bonded sets\&. 
+.SS "int time"
+Time variables 
+.SS "ticks timers[\fBengine_timer_last\fP]"
+The Comm object for mpi\&. Pointers to device data for CUDA\&. Timers\&. 
+.SS "double tol_rigid"
+Rigid solver tolerance\&. 
+.SS "struct \fBpart_type\fP* types"
+The particle types\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

@@ -1,0 +1,102 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/part.h" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/part.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBpart\fP"
+.br
+.ti -1c
+.RI "struct \fBpart_type\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBpart_err_ok\fP   0"
+.br
+.ti -1c
+.RI "#define \fBpart_err_null\fP   -1"
+.br
+.ti -1c
+.RI "#define \fBpart_err_malloc\fP   -2"
+.br
+.ti -1c
+.RI "#define \fBpart_flag_none\fP   0"
+.br
+.ti -1c
+.RI "#define \fBpart_flag_frozen\fP   1"
+.br
+.ti -1c
+.RI "#define \fBpart_flag_ghost\fP   2"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBpart_init\fP (struct \fBpart\fP *p, int vid, int type, unsigned int flags)"
+.br
+.RI "\fIInitialize a \fBpart\fP\&. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBpart_err\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define part_err_malloc   -2"
+
+.SS "#define part_err_null   -1"
+
+.SS "#define part_err_ok   0"
+
+.SS "#define part_flag_frozen   1"
+
+.SS "#define part_flag_ghost   2"
+
+.SS "#define part_flag_none   0"
+
+.SH "Function Documentation"
+.PP 
+.SS "int part_init (struct \fBpart\fP *p, intvid, inttype, unsigned intflags)"
+
+.PP
+Initialize a \fBpart\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP The \fBpart\fP to be initialized\&. 
+.br
+\fIvid\fP The virtual id of this \fBpart\fP\&. 
+.br
+\fItype\fP The numerical id of the particle type\&. 
+.br
+\fIflags\fP The particle flags\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBpart_err_ok\fP or < 0 on error (see \fBpart_err\fP)\&. 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "int part_err"
+ID of the last error\&.
+.PP
+ID of the last error 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

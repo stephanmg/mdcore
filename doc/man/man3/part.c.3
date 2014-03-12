@@ -1,0 +1,63 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/part.c" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/part.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <math\&.h>\fP
+.br
+\fC#include 'fptype\&.h'\fP
+.br
+\fC#include 'part\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBpart_init\fP (struct \fBpart\fP *p, int vid, int type, unsigned int flags)"
+.br
+.RI "\fIInitialize a \fBpart\fP\&. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBpart_err\fP = \fBpart_err_ok\fP"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "int part_init (struct \fBpart\fP *p, intvid, inttype, unsigned intflags)"
+
+.PP
+Initialize a \fBpart\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP The \fBpart\fP to be initialized\&. 
+.br
+\fIvid\fP The virtual id of this \fBpart\fP\&. 
+.br
+\fItype\fP The numerical id of the particle type\&. 
+.br
+\fIflags\fP The particle flags\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBpart_err_ok\fP or < 0 on error (see \fBpart_err\fP)\&. 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "int part_err = \fBpart_err_ok\fP"
+ID of the last error 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

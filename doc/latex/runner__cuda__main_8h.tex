@@ -1,0 +1,64 @@
+\hypertarget{runner__cuda__main_8h}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/runner\-\_\-cuda\-\_\-main.h File Reference}
+\label{runner__cuda__main_8h}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/runner\-\_\-cuda\-\_\-main.\-h@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/runner\-\_\-cuda\-\_\-main.\-h}}
+}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{runner__cuda__main_8h_a9ac9dd35b93432c0b194466d2aa84788}{P\-A\-S\-T\-E}(\hyperlink{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{x}, y)~\hyperlink{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{x} \#\# \-\_\- \#\# y
+\item 
+\#define \hyperlink{runner__cuda__main_8h_ab17dd133fe6422a1f9c57843d9c901ef}{runner\-\_\-run\-\_\-verlet\-\_\-cuda}(N)~\hyperlink{runner__cuda__main_8h_a9ac9dd35b93432c0b194466d2aa84788}{P\-A\-S\-T\-E}(runner\-\_\-run\-\_\-verlet\-\_\-cuda,N)
+\item 
+\#define \hyperlink{runner__cuda__main_8h_abaf0160db5cd22e6c46609765918727a}{runner\-\_\-run\-\_\-cuda}(N)~\hyperlink{runner__cuda__main_8h_a9ac9dd35b93432c0b194466d2aa84788}{P\-A\-S\-T\-E}(runner\-\_\-run\-\_\-cuda,N)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\-\_\-\-\_\-global\-\_\-\-\_\- void \hyperlink{runner__cuda__main_8h_abaf0160db5cd22e6c46609765918727a}{runner\-\_\-run\-\_\-cuda}() \hyperlink{runner__cuda__main_8h_af9b99e494b96da14450765c296ee9444}{cuda\-\_\-nparts} (float $\ast$forces, int $\ast$counts, int $\ast$\hyperlink{potential__eval_8h_aa1a517e3e42b3d109bc480c74e3a655c}{ind}, int verlet\-\_\-rebuild)
+\begin{DoxyCompactList}\small\item\em Loop over the cell pairs and process them. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{runner__cuda__main_8h_a9ac9dd35b93432c0b194466d2aa84788}{\index{runner\-\_\-cuda\-\_\-main.\-h@{runner\-\_\-cuda\-\_\-main.\-h}!P\-A\-S\-T\-E@{P\-A\-S\-T\-E}}
+\index{P\-A\-S\-T\-E@{P\-A\-S\-T\-E}!runner_cuda_main.h@{runner\-\_\-cuda\-\_\-main.\-h}}
+\subsubsection[{P\-A\-S\-T\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-A\-S\-T\-E(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf x}, }
+\item[{}]{y}
+\end{DoxyParamCaption}
+)~{\bf x} \#\# \-\_\- \#\# y}}\label{runner__cuda__main_8h_a9ac9dd35b93432c0b194466d2aa84788}
+\hypertarget{runner__cuda__main_8h_abaf0160db5cd22e6c46609765918727a}{\index{runner\-\_\-cuda\-\_\-main.\-h@{runner\-\_\-cuda\-\_\-main.\-h}!runner\-\_\-run\-\_\-cuda@{runner\-\_\-run\-\_\-cuda}}
+\index{runner\-\_\-run\-\_\-cuda@{runner\-\_\-run\-\_\-cuda}!runner_cuda_main.h@{runner\-\_\-cuda\-\_\-main.\-h}}
+\subsubsection[{runner\-\_\-run\-\_\-cuda}]{\setlength{\rightskip}{0pt plus 5cm}\#define runner\-\_\-run\-\_\-cuda(
+\begin{DoxyParamCaption}
+\item[{}]{N}
+\end{DoxyParamCaption}
+)~{\bf P\-A\-S\-T\-E}(runner\-\_\-run\-\_\-cuda,N)}}\label{runner__cuda__main_8h_abaf0160db5cd22e6c46609765918727a}
+\hypertarget{runner__cuda__main_8h_ab17dd133fe6422a1f9c57843d9c901ef}{\index{runner\-\_\-cuda\-\_\-main.\-h@{runner\-\_\-cuda\-\_\-main.\-h}!runner\-\_\-run\-\_\-verlet\-\_\-cuda@{runner\-\_\-run\-\_\-verlet\-\_\-cuda}}
+\index{runner\-\_\-run\-\_\-verlet\-\_\-cuda@{runner\-\_\-run\-\_\-verlet\-\_\-cuda}!runner_cuda_main.h@{runner\-\_\-cuda\-\_\-main.\-h}}
+\subsubsection[{runner\-\_\-run\-\_\-verlet\-\_\-cuda}]{\setlength{\rightskip}{0pt plus 5cm}\#define runner\-\_\-run\-\_\-verlet\-\_\-cuda(
+\begin{DoxyParamCaption}
+\item[{}]{N}
+\end{DoxyParamCaption}
+)~{\bf P\-A\-S\-T\-E}(runner\-\_\-run\-\_\-verlet\-\_\-cuda,N)}}\label{runner__cuda__main_8h_ab17dd133fe6422a1f9c57843d9c901ef}
+
+
+\subsection{Function Documentation}
+\hypertarget{runner__cuda__main_8h_af9b99e494b96da14450765c296ee9444}{\index{runner\-\_\-cuda\-\_\-main.\-h@{runner\-\_\-cuda\-\_\-main.\-h}!cuda\-\_\-nparts@{cuda\-\_\-nparts}}
+\index{cuda\-\_\-nparts@{cuda\-\_\-nparts}!runner_cuda_main.h@{runner\-\_\-cuda\-\_\-main.\-h}}
+\subsubsection[{cuda\-\_\-nparts}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-global\-\_\-\-\_\- void {\bf runner\-\_\-run\-\_\-cuda}() cuda\-\_\-nparts (
+\begin{DoxyParamCaption}
+\item[{float $\ast$}]{forces, }
+\item[{int $\ast$}]{counts, }
+\item[{int $\ast$}]{ind, }
+\item[{int}]{verlet\-\_\-rebuild}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda__main_8h_af9b99e494b96da14450765c296ee9444}
+
+
+Loop over the cell pairs and process them. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cells} & Array of cells on the device. \\
+\hline
+\end{DoxyParams}

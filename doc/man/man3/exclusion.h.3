@@ -1,0 +1,89 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/exclusion.h" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/exclusion.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBexclusion\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBexclusion_err_ok\fP   0"
+.br
+.ti -1c
+.RI "#define \fBexclusion_err_null\fP   -1"
+.br
+.ti -1c
+.RI "#define \fBexclusion_err_malloc\fP   -2"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBexclusion_eval\fP (struct \fBexclusion\fP *b, int N, struct \fBengine\fP *\fBe\fP, double *epot_out)"
+.br
+.RI "\fIEvaluate a list of exclusioned interactoins\&. \fP"
+.ti -1c
+.RI "int \fBexclusion_evalf\fP (struct \fBexclusion\fP *b, int N, struct \fBengine\fP *\fBe\fP, \fBFPTYPE\fP *\fBf\fP, double *epot_out)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBexclusion_err\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define exclusion_err_malloc   -2"
+
+.SS "#define exclusion_err_null   -1"
+
+.SS "#define exclusion_err_ok   0"
+
+.SH "Function Documentation"
+.PP 
+.SS "int exclusion_eval (struct \fBexclusion\fP *b, intN, struct \fBengine\fP *e, double *epot_out)"
+
+.PP
+Evaluate a list of exclusioned interactoins\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIb\fP Pointer to an array of \fBexclusion\fP\&. 
+.br
+\fIN\fP Nr of exclusions in \fCb\fP\&. 
+.br
+\fIe\fP Pointer to the \fBengine\fP in which these exclusions are evaluated\&. 
+.br
+\fIepot_out\fP Pointer to a double in which to aggregate the potential energy\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBexclusion_err_ok\fP or <0 on error (see \fBexclusion_err\fP) 
+.RE
+.PP
+
+.SS "int exclusion_evalf (struct \fBexclusion\fP *b, intN, struct \fBengine\fP *e, \fBFPTYPE\fP *f, double *epot_out)"
+
+.SH "Variable Documentation"
+.PP 
+.SS "int exclusion_err"
+ID of the last error
+.PP
+The ID of the last error\&. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

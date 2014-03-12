@@ -1,0 +1,1113 @@
+\hypertarget{runner__cuda_8cu}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/runner\-\_\-cuda.cu File Reference}
+\label{runner__cuda_8cu}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/runner\-\_\-cuda.\-cu@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/runner\-\_\-cuda.\-cu}}
+}
+{\ttfamily \#include \char`\"{}../config.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$pthread.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include $<$float.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$limits.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}cutil\-\_\-math.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$mpi.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}cycle.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}errs.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fptype.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lock.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}part.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}cell.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}space.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}task.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}potential.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}engine.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}runner\-\_\-cuda.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}runner\-\_\-cuda\-\_\-main.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{runner__cuda_8cu_ac6e14cd493e803bd2fca28d5c99fdeff}{F\-P\-T\-Y\-P\-E\-\_\-\-S\-I\-N\-G\-L\-E}~1
+\item 
+\#define \hyperlink{runner__cuda_8cu_a7673862d447029edaf3172ebd94aa28e}{error}(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})~( \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err} = \hyperlink{errs_8h_ae37a9c0e0a0aa4a92dbe64c0f38ed95c}{errs\-\_\-register}( \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id} , \hyperlink{engine_8h_aa489083c5e5d436bafd05a7860b21804}{engine\-\_\-err\-\_\-msg}\mbox{[}-\/(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )
+\item 
+\#define \hyperlink{runner__cuda_8cu_a0295c5fc38a1d1e9a381a97ba0adb616}{cuda\-\_\-error}(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})~( \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err} = \hyperlink{errs_8h_ae37a9c0e0a0aa4a92dbe64c0f38ed95c}{errs\-\_\-register}( \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id} , cuda\-Get\-Error\-String(cuda\-Get\-Last\-Error()) , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )
+\item 
+\#define \hyperlink{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{cuda\-\_\-nparts}~32
+\item 
+\#define \hyperlink{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{cuda\-\_\-nparts}~64
+\item 
+\#define \hyperlink{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{cuda\-\_\-nparts}~96
+\item 
+\#define \hyperlink{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{cuda\-\_\-nparts}~128
+\item 
+\#define \hyperlink{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{cuda\-\_\-nparts}~160
+\item 
+\#define \hyperlink{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{cuda\-\_\-nparts}~192
+\item 
+\#define \hyperlink{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{cuda\-\_\-nparts}~224
+\item 
+\#define \hyperlink{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{cuda\-\_\-nparts}~256
+\item 
+\#define \hyperlink{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{cuda\-\_\-nparts}~288
+\item 
+\#define \hyperlink{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{cuda\-\_\-nparts}~320
+\item 
+\#define \hyperlink{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{cuda\-\_\-nparts}~352
+\item 
+\#define \hyperlink{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{cuda\-\_\-nparts}~384
+\item 
+\#define \hyperlink{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{cuda\-\_\-nparts}~416
+\item 
+\#define \hyperlink{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{cuda\-\_\-nparts}~448
+\item 
+\#define \hyperlink{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{cuda\-\_\-nparts}~480
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_aea4f0251309d40830f5fb37a015eebd3}{cuda\-\_\-mutex\-\_\-lock} (int $\ast$m)
+\begin{DoxyCompactList}\small\item\em Lock a device mutex. \end{DoxyCompactList}\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- int \hyperlink{runner__cuda_8cu_a5b8f0605e3985b926f1c040d39034b8b}{cuda\-\_\-mutex\-\_\-trylock} (int $\ast$m)
+\begin{DoxyCompactList}\small\item\em Attempt to lock a device mutex. \end{DoxyCompactList}\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- int \hyperlink{runner__cuda_8cu_a0110545814e100d0d65c4f6cd94d7639}{cuda\-\_\-mutex\-\_\-lock\-\_\-cond} (int $\ast$m, int $\ast$\hyperlink{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{c})
+\begin{DoxyCompactList}\small\item\em Lock a device mutex with an additional condition. \end{DoxyCompactList}\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_a2552c4e328a29ee844960efbf70c9051}{cuda\-\_\-mutex\-\_\-unlock} (int $\ast$m)
+\begin{DoxyCompactList}\small\item\em Unlock a device mutex. \end{DoxyCompactList}\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- int \hyperlink{runner__cuda_8cu_af7b7097ec53ae42d307b4a9152c2253d}{cuda\-\_\-queue\-\_\-gettask} (struct \hyperlink{structqueue__cuda}{queue\-\_\-cuda} $\ast$q)
+\begin{DoxyCompactList}\small\item\em Get a task I\-D from the given queue. \end{DoxyCompactList}\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_ad674fe3f07a1bf103db57106fde5a0f0}{cuda\-\_\-queue\-\_\-puttask} (struct \hyperlink{structqueue__cuda}{queue\-\_\-cuda} $\ast$q, int tid)
+\begin{DoxyCompactList}\small\item\em Put a task onto the given queue. \end{DoxyCompactList}\item 
+\-\_\-\-\_\-noinline\-\_\-\-\_\- \-\_\-\-\_\-device\-\_\-\-\_\- \hyperlink{cutil__math_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint} \hyperlink{runner__cuda_8cu_a9b15b637f9f95f8fa7cdfd82b9c6850b}{get\-\_\-smid} (void)
+\begin{DoxyCompactList}\small\item\em Get the I\-D of the block's S\-M. \end{DoxyCompactList}\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- int \hyperlink{runner__cuda_8cu_a0acaac4463958ebb0bb3b44331c8336a}{runner\-\_\-cuda\-\_\-gettask} (struct \hyperlink{structqueue__cuda}{queue\-\_\-cuda} $\ast$q, int steal)
+\begin{DoxyCompactList}\small\item\em Get a task from the given task queue. \end{DoxyCompactList}\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- int \hyperlink{runner__cuda_8cu_ae2ff2ee002de54b831589e87e7d9e0c1}{runner\-\_\-cuda\-\_\-gettask\-\_\-nolock} (struct \hyperlink{structqueue__cuda}{queue\-\_\-cuda} $\ast$q, int steal)
+\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_a0c54b12fff51973c046378b4d86dbb20}{cuda\-\_\-memcpy} (void $\ast$dest, void $\ast$source, int count)
+\begin{DoxyCompactList}\small\item\em Copy bulk memory in a strided way. \end{DoxyCompactList}\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_ad5f3cd9b1432f30ded613655992627b9}{cuda\-\_\-memcpy\-\_\-old} (void $\ast$dest, void $\ast$source, int count)
+\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_ae0c16e79b4b365dc93f0f16ca79de787}{cuda\-\_\-sum} (float $\ast$a, float $\ast$b, int count)
+\begin{DoxyCompactList}\small\item\em Sum two vectors in a strided way. \end{DoxyCompactList}\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_a86eff53a000379a0773f8e442ea9a59a}{cuda\-\_\-sort\-\_\-descending} (unsigned int $\ast$a, int count)
+\begin{DoxyCompactList}\small\item\em Sort the given data w.\-r.\-t. the lowest 16 bits in decending order. \end{DoxyCompactList}\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_a01c8032e5d4495edadcc8540a36bba7e}{cuda\-\_\-sort\-\_\-ascending} (unsigned int $\ast$a, int count)
+\begin{DoxyCompactList}\small\item\em Sort the given data w.\-r.\-t. the lowest 16 bits in ascending order. \end{DoxyCompactList}\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_a4f847a3ee804e94e33154c1b0b3c1d26}{potential\-\_\-eval\-\_\-cuda\-\_\-tex} (int pid, float \hyperlink{potential__eval_8h_aaa7f6ac275af5eb6de39bc858a218035}{r2}, float $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, float $\ast$\hyperlink{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}{f})
+\begin{DoxyCompactList}\small\item\em Evaluates the given potential at the given point (interpolated) using texture memory on the device. \end{DoxyCompactList}\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_ad7ac64705f23cc0ce5d9d73369162309}{potential\-\_\-eval4\-\_\-cuda\-\_\-tex} (int4 pid, float4 \hyperlink{potential__eval_8h_aaa7f6ac275af5eb6de39bc858a218035}{r2}, float4 $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, float4 $\ast$\hyperlink{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}{f})
+\begin{DoxyCompactList}\small\item\em Evaluates the given potential at the given point (interpolated) using texture memory on the device. \end{DoxyCompactList}\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_a84663dbc518d6061f158eee8652d1c45}{potential\-\_\-eval\-\_\-cuda} (struct \hyperlink{structpotential}{potential} $\ast$p, float \hyperlink{potential__eval_8h_aaa7f6ac275af5eb6de39bc858a218035}{r2}, float $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, float $\ast$\hyperlink{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}{f})
+\begin{DoxyCompactList}\small\item\em Evaluates the given potential at the given point (interpolated). \end{DoxyCompactList}\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_a45e0ea4d8e8da106e1a963bc453ab8be}{runner\-\_\-dopair\-\_\-unsorted\-\_\-cuda} (float4 $\ast$parts\-\_\-i, int count\-\_\-i, float4 $\ast$parts\-\_\-j, int count\-\_\-j, float $\ast$forces\-\_\-i, float $\ast$forces\-\_\-j, float $\ast$shift, float $\ast$epot\-\_\-global)
+\begin{DoxyCompactList}\small\item\em Compute the pairwise interactions for the given pair on a C\-U\-D\-A device. \end{DoxyCompactList}\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_a441bf9c8f9589d0f3523dacbd52247ce}{runner\-\_\-dopair4\-\_\-unsorted\-\_\-cuda} (float4 $\ast$parts\-\_\-i, int count\-\_\-i, float4 $\ast$parts\-\_\-j, int count\-\_\-j, float $\ast$forces\-\_\-i, float $\ast$forces\-\_\-j, float $\ast$shift, float $\ast$epot\-\_\-global)
+\begin{DoxyCompactList}\small\item\em Compute the pairwise interactions for the given pair on a C\-U\-D\-A device. \end{DoxyCompactList}\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_a83c1d82042c124182356657ac4c47bea}{runner\-\_\-dosort\-\_\-cuda} (float4 $\ast$parts\-\_\-i, int count\-\_\-i, unsigned int $\ast$sort\-\_\-i, int sid)
+\begin{DoxyCompactList}\small\item\em Compute the pairwise interactions for the given pair on a C\-U\-D\-A device. \end{DoxyCompactList}\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_ac2dd3aec316aa072a957464a646b48d3}{runner\-\_\-dopair\-\_\-cuda} (float4 $\ast$parts\-\_\-i, int count\-\_\-i, float4 $\ast$parts\-\_\-j, int count\-\_\-j, float $\ast$forces\-\_\-i, float $\ast$forces\-\_\-j, unsigned int $\ast$sort\-\_\-i, unsigned int $\ast$sort\-\_\-j, float $\ast$shift, unsigned int dshift, float $\ast$epot\-\_\-global)
+\begin{DoxyCompactList}\small\item\em Compute the pairwise interactions for the given pair on a C\-U\-D\-A device. \end{DoxyCompactList}\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_ac0ad184f688f3a3b79c58f73f642b611}{runner\-\_\-dopair\-\_\-left\-\_\-cuda} (float4 $\ast$parts\-\_\-i, int count\-\_\-i, float4 $\ast$parts\-\_\-j, int count\-\_\-j, float $\ast$forces\-\_\-i, float $\ast$forces\-\_\-j, unsigned int $\ast$sort\-\_\-i, unsigned int $\ast$sort\-\_\-j, float $\ast$shift, unsigned int dshift, float $\ast$epot\-\_\-global)
+\begin{DoxyCompactList}\small\item\em Compute the pairwise interactions for the given pair on a C\-U\-D\-A device. \end{DoxyCompactList}\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_a3dd671b11851b775b5fef7b8ae178c9e}{runner\-\_\-dopair\-\_\-right\-\_\-cuda} (float4 $\ast$parts\-\_\-i, int count\-\_\-i, float4 $\ast$parts\-\_\-j, int count\-\_\-j, float $\ast$forces\-\_\-i, float $\ast$forces\-\_\-j, unsigned int $\ast$sort\-\_\-i, unsigned int $\ast$sort\-\_\-j, float $\ast$shift, unsigned int dshift, float $\ast$epot\-\_\-global)
+\begin{DoxyCompactList}\small\item\em Compute the pairwise interactions for the given pair on a C\-U\-D\-A device. \end{DoxyCompactList}\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_a1c924aa03f90fa43d741e4b95ac4f185}{runner\-\_\-doself\-\_\-cuda} (float4 $\ast$parts, int count, float $\ast$forces, float $\ast$epot\-\_\-global)
+\begin{DoxyCompactList}\small\item\em Compute the self interactions for the given cell on a C\-U\-D\-A device. \end{DoxyCompactList}\item 
+\-\_\-\-\_\-global\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_a3e3d193762e74ec5046ce21883c869ca}{cuda\-\_\-memset\-\_\-float} (float $\ast$data, float val, int N)
+\begin{DoxyCompactList}\small\item\em Our very own memset for the particle forces as cuda\-Memset\-Async requires a device switch when using streams on different devices. \end{DoxyCompactList}\item 
+int \hyperlink{runner__cuda_8cu_abdd3e423279f5335dea30af84aa539a1}{engine\-\_\-nonbond\-\_\-cuda} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Offload and compute the nonbonded interactions on a C\-U\-D\-A device. \end{DoxyCompactList}\item 
+int \hyperlink{runner__cuda_8cu_ab0d9b84f18b2171f13e7b563f3f023f9}{engine\-\_\-cuda\-\_\-load\-\_\-parts} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Load the cell data onto the C\-U\-D\-A device. \end{DoxyCompactList}\item 
+int \hyperlink{runner__cuda_8cu_a24fe668d11a9f02087983cacebacc005}{engine\-\_\-cuda\-\_\-unload\-\_\-parts} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Load the cell data from the C\-U\-D\-A device. \end{DoxyCompactList}\item 
+int \hyperlink{runner__cuda_8cu_a350f16fa3cd8830b375ea6a35d4f6628}{engine\-\_\-cuda\-\_\-queues\-\_\-load} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Load the queues onto the C\-U\-D\-A device. \end{DoxyCompactList}\item 
+int \hyperlink{runner__cuda_8cu_a9c7e994c307502452bdb87b0e60fb9cc}{engine\-\_\-cuda\-\_\-load} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Load the potentials and cell pairs onto the C\-U\-D\-A device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\-\_\-\-\_\-constant\-\_\-\-\_\- struct \hyperlink{structpotential}{potential} $\ast$ \hyperlink{runner__cuda_8cu_a4f0b849536c8706d83970da4de5dbba5}{potential\-\_\-null\-\_\-cuda} = N\-U\-L\-L
+\item 
+\-\_\-\-\_\-constant\-\_\-\-\_\- int \hyperlink{runner__cuda_8cu_a6702eee3500e190b55a613b7fef9ec47}{cuda\-\_\-nr\-\_\-cells} = 0
+\item 
+\-\_\-\-\_\-constant\-\_\-\-\_\- float4 $\ast$ \hyperlink{runner__cuda_8cu_ac58ae810788e08dcbd4eef99b70053b9}{cuda\-\_\-parts}
+\item 
+\-\_\-\-\_\-constant\-\_\-\-\_\- int \hyperlink{runner__cuda_8cu_acef4db95588c53945d1d78c666f5b002}{cuda\-\_\-nr\-\_\-parts}
+\item 
+\-\_\-\-\_\-constant\-\_\-\-\_\- unsigned int $\ast$ \hyperlink{runner__cuda_8cu_a88d83370f6fd3c3e2f491b487471e630}{cuda\-\_\-pind}
+\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- int \hyperlink{runner__cuda_8cu_a8c78226a6267a5d427d17a6a505fc8b3}{cuda\-\_\-cell\-\_\-mutex} = 0
+\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- int \hyperlink{runner__cuda_8cu_a329318e5b37cb5b963996d4ed945cbf8}{cuda\-\_\-barrier} = 0
+\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- volatile int \hyperlink{runner__cuda_8cu_af9bd293eee8e022bec689d20692b967b}{N\-A\-M\-D\-\_\-barrier} = 0
+\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- int \hyperlink{runner__cuda_8cu_ac7e0a2e211db72c23b66ea880dd3a9ec}{cuda\-\_\-pair\-\_\-next} = 0
+\item 
+\-\_\-\-\_\-constant\-\_\-\-\_\- struct cellpair\-\_\-cuda $\ast$ \hyperlink{runner__cuda_8cu_afc0b6fa07354e6cf17317b112ec1090e}{cuda\-\_\-pairs}
+\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- int $\ast$ \hyperlink{runner__cuda_8cu_aa0b6600f0328ae28392b5ac1b928433a}{cuda\-\_\-taboo}
+\item 
+\-\_\-\-\_\-constant\-\_\-\-\_\- struct \hyperlink{structtask__cuda}{task\-\_\-cuda} $\ast$ \hyperlink{runner__cuda_8cu_aaa757a57fa1ece5a1cadbce0c44836b4}{cuda\-\_\-tasks}
+\item 
+\-\_\-\-\_\-constant\-\_\-\-\_\- int \hyperlink{runner__cuda_8cu_aa43645dc9edd3b54c32b838f09b4c0c1}{cuda\-\_\-nr\-\_\-tasks} = 0
+\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- struct \hyperlink{structqueue__cuda}{queue\-\_\-cuda} \hyperlink{runner__cuda_8cu_a56ac3129073b30259da639ccb7f59039}{cuda\-\_\-queues} \mbox{[}\hyperlink{runner__cuda_8h_aee6e4ee4eb535be4b539353983efdef6}{cuda\-\_\-maxqueues}\mbox{]}
+\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- struct \hyperlink{structqueue__cuda}{queue\-\_\-cuda} \hyperlink{runner__cuda_8cu_a27243fc18ae76301693c0cf9e1de4d16}{cuda\-\_\-sorts} \mbox{[}\hyperlink{runner__cuda_8h_aee6e4ee4eb535be4b539353983efdef6}{cuda\-\_\-maxqueues}\mbox{]}
+\item 
+\-\_\-\-\_\-constant\-\_\-\-\_\- int \hyperlink{runner__cuda_8cu_a72ce175a391d0819e319b612391afcf8}{cuda\-\_\-nrqueues}
+\item 
+\-\_\-\-\_\-constant\-\_\-\-\_\- int \hyperlink{runner__cuda_8cu_aedf21f3ce7ed33e1a27eb91f87e8035c}{cuda\-\_\-queue\-\_\-size}
+\item 
+\-\_\-\-\_\-constant\-\_\-\-\_\- float \hyperlink{runner__cuda_8cu_a2f0cb776d896068a04fa1ac16c764c87}{cuda\-\_\-cutoff2} = 0.\-0f
+\item 
+\-\_\-\-\_\-constant\-\_\-\-\_\- float \hyperlink{runner__cuda_8cu_ad237b5fd4f8529f32d2fecd27c801102}{cuda\-\_\-cutoff} = 0.\-0f
+\item 
+\-\_\-\-\_\-constant\-\_\-\-\_\- float \hyperlink{runner__cuda_8cu_ad3399eb242e27ceda517730bd00e6c5a}{cuda\-\_\-dscale} = 0.\-0f
+\item 
+\-\_\-\-\_\-constant\-\_\-\-\_\- float \hyperlink{runner__cuda_8cu_a14728b5d79f6d4c739246b839dd416c6}{cuda\-\_\-maxdist} = 0.\-0f
+\item 
+\-\_\-\-\_\-constant\-\_\-\-\_\- struct \hyperlink{structpotential}{potential} $\ast$$\ast$ \hyperlink{runner__cuda_8cu_a7a9f2a17f80b6789eb9ac6c2cd1ab118}{cuda\-\_\-p}
+\item 
+\-\_\-\-\_\-constant\-\_\-\-\_\- int \hyperlink{runner__cuda_8cu_ac0258954544fdb4a20f5bd7f9b7b40c0}{cuda\-\_\-maxtype} = 0
+\item 
+\-\_\-\-\_\-constant\-\_\-\-\_\- struct \hyperlink{structpotential}{potential} $\ast$ \hyperlink{runner__cuda_8cu_a1c76046250b64a69a6f09267f7d99320}{cuda\-\_\-pots}
+\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- unsigned int $\ast$ \hyperlink{runner__cuda_8cu_a8f61841655b1d6ac66a33b9c58a9451b}{cuda\-\_\-sortlists} = N\-U\-L\-L
+\item 
+texture$<$ float4, \\*
+cuda\-Texture\-Type2\-D $>$ \hyperlink{runner__cuda_8cu_ae2d751252687593dfcce55a03598e200}{tex\-\_\-coeffs}
+\item 
+texture$<$ float4, \\*
+cuda\-Texture\-Type2\-D $>$ \hyperlink{runner__cuda_8cu_a124f5902fd9b618e8cc624e58734bae4}{tex\-\_\-parts}
+\item 
+texture$<$ int, cuda\-Texture\-Type1\-D $>$ \hyperlink{runner__cuda_8cu_a00bdff2f6bb8d60e1c281a270157e997}{tex\-\_\-pind}
+\item 
+cuda\-Array $\ast$ \hyperlink{runner__cuda_8cu_a567f447b2269e42ebd0beb8da78e85b6}{cuda\-\_\-coeffs}
+\item 
+\-\_\-\-\_\-constant\-\_\-\-\_\- float $\ast$ \hyperlink{runner__cuda_8cu_a7216b473082d8c70f9773de9330a9486}{cuda\-\_\-corig}
+\item 
+\-\_\-\-\_\-constant\-\_\-\-\_\- float \hyperlink{runner__cuda_8cu_afaa91cdb5295e754320565ca2528833a}{cuda\-\_\-eps} \mbox{[}100\mbox{]}
+\item 
+\-\_\-\-\_\-constant\-\_\-\-\_\- float \hyperlink{runner__cuda_8cu_aa47a08191252ff206520de53f83c0306}{cuda\-\_\-rmin} \mbox{[}100\mbox{]}
+\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- float \hyperlink{runner__cuda_8cu_a0d5bb4cf118bd65faa233f51ab06717b}{cuda\-\_\-fio} \mbox{[}32\mbox{]}
+\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- int \hyperlink{runner__cuda_8cu_a4a6f04955b7d89ac10edc9ee0516306d}{cuda\-\_\-io} \mbox{[}32\mbox{]}
+\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- int \hyperlink{runner__cuda_8cu_a49faeb0f914251c44c21fc4fe7f1b269}{cuda\-\_\-rcount} = 0
+\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- float \hyperlink{runner__cuda_8cu_abfa914a5ea88381ad3e9cf8dfb5714fe}{cuda\-\_\-epot} = 0.\-0f
+\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- float \hyperlink{runner__cuda_8cu_a9df877247dba86e9b098b3f46d7e8415}{cuda\-\_\-epot\-\_\-out}
+\item 
+\-\_\-\-\_\-device\-\_\-\-\_\- float \hyperlink{runner__cuda_8cu_af29e45416fba4fd84a57a2ba85bc7fb1}{cuda\-\_\-timers} \mbox{[}\hyperlink{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06cac82444847af0e0bd0c65ecd886252dfc}{tid\-\_\-count}\mbox{]}
+\item 
+\-\_\-\-\_\-constant\-\_\-\-\_\- float \hyperlink{runner__cuda_8cu_a286561d77721b876ea4262816551ce07}{cuda\-\_\-shiftn} \mbox{[}13 $\ast$3\mbox{]}
+\item 
+\-\_\-\-\_\-constant\-\_\-\-\_\- float \hyperlink{runner__cuda_8cu_a1f84d7a25177e2cc11d37f2f52d0944c}{cuda\-\_\-shift} \mbox{[}13 $\ast$3\mbox{]}
+\item 
+\-\_\-\-\_\-constant\-\_\-\-\_\- float \hyperlink{runner__cuda_8cu_a4e88d06c74e1bc98b007758c62912963}{cuda\-\_\-h} \mbox{[}3\mbox{]}
+\item 
+\-\_\-\-\_\-constant\-\_\-\-\_\- float \hyperlink{runner__cuda_8cu_a78981fb3a9913c623f8d6e3371a6dada}{cuda\-\_\-dim} \mbox{[}3\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{runner__cuda_8cu_a0295c5fc38a1d1e9a381a97ba0adb616}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-error@{cuda\-\_\-error}}
+\index{cuda\-\_\-error@{cuda\-\_\-error}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-error}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-error(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf id}}
+\end{DoxyParamCaption}
+)~( {\bf engine\-\_\-err} = {\bf errs\-\_\-register}( {\bf id} , cuda\-Get\-Error\-String(cuda\-Get\-Last\-Error()) , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )}}\label{runner__cuda_8cu_a0295c5fc38a1d1e9a381a97ba0adb616}
+\hypertarget{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-nparts@{cuda\-\_\-nparts}}
+\index{cuda\-\_\-nparts@{cuda\-\_\-nparts}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-nparts}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-nparts~32}}\label{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda\-\_\-maxparts. \hypertarget{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-nparts@{cuda\-\_\-nparts}}
+\index{cuda\-\_\-nparts@{cuda\-\_\-nparts}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-nparts}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-nparts~64}}\label{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda\-\_\-maxparts. \hypertarget{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-nparts@{cuda\-\_\-nparts}}
+\index{cuda\-\_\-nparts@{cuda\-\_\-nparts}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-nparts}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-nparts~96}}\label{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda\-\_\-maxparts. \hypertarget{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-nparts@{cuda\-\_\-nparts}}
+\index{cuda\-\_\-nparts@{cuda\-\_\-nparts}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-nparts}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-nparts~128}}\label{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda\-\_\-maxparts. \hypertarget{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-nparts@{cuda\-\_\-nparts}}
+\index{cuda\-\_\-nparts@{cuda\-\_\-nparts}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-nparts}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-nparts~160}}\label{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda\-\_\-maxparts. \hypertarget{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-nparts@{cuda\-\_\-nparts}}
+\index{cuda\-\_\-nparts@{cuda\-\_\-nparts}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-nparts}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-nparts~192}}\label{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda\-\_\-maxparts. \hypertarget{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-nparts@{cuda\-\_\-nparts}}
+\index{cuda\-\_\-nparts@{cuda\-\_\-nparts}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-nparts}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-nparts~224}}\label{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda\-\_\-maxparts. \hypertarget{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-nparts@{cuda\-\_\-nparts}}
+\index{cuda\-\_\-nparts@{cuda\-\_\-nparts}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-nparts}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-nparts~256}}\label{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda\-\_\-maxparts. \hypertarget{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-nparts@{cuda\-\_\-nparts}}
+\index{cuda\-\_\-nparts@{cuda\-\_\-nparts}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-nparts}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-nparts~288}}\label{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda\-\_\-maxparts. \hypertarget{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-nparts@{cuda\-\_\-nparts}}
+\index{cuda\-\_\-nparts@{cuda\-\_\-nparts}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-nparts}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-nparts~320}}\label{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda\-\_\-maxparts. \hypertarget{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-nparts@{cuda\-\_\-nparts}}
+\index{cuda\-\_\-nparts@{cuda\-\_\-nparts}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-nparts}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-nparts~352}}\label{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda\-\_\-maxparts. \hypertarget{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-nparts@{cuda\-\_\-nparts}}
+\index{cuda\-\_\-nparts@{cuda\-\_\-nparts}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-nparts}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-nparts~384}}\label{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda\-\_\-maxparts. \hypertarget{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-nparts@{cuda\-\_\-nparts}}
+\index{cuda\-\_\-nparts@{cuda\-\_\-nparts}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-nparts}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-nparts~416}}\label{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda\-\_\-maxparts. \hypertarget{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-nparts@{cuda\-\_\-nparts}}
+\index{cuda\-\_\-nparts@{cuda\-\_\-nparts}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-nparts}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-nparts~448}}\label{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda\-\_\-maxparts. \hypertarget{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-nparts@{cuda\-\_\-nparts}}
+\index{cuda\-\_\-nparts@{cuda\-\_\-nparts}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-nparts}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-nparts~480}}\label{runner__cuda_8cu_a73a9582f0db5b61423deb6c2e5ade9e8}
+This set of defines and includes produces kernels with buffers for multiples of 32 particles up to 512 cuda\-\_\-maxparts. \hypertarget{runner__cuda_8cu_a7673862d447029edaf3172ebd94aa28e}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!error@{error}}
+\index{error@{error}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{error}]{\setlength{\rightskip}{0pt plus 5cm}\#define error(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf id}}
+\end{DoxyParamCaption}
+)~( {\bf engine\-\_\-err} = {\bf errs\-\_\-register}( {\bf id} , {\bf engine\-\_\-err\-\_\-msg}\mbox{[}-\/({\bf id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )}}\label{runner__cuda_8cu_a7673862d447029edaf3172ebd94aa28e}
+\hypertarget{runner__cuda_8cu_ac6e14cd493e803bd2fca28d5c99fdeff}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!F\-P\-T\-Y\-P\-E\-\_\-\-S\-I\-N\-G\-L\-E@{F\-P\-T\-Y\-P\-E\-\_\-\-S\-I\-N\-G\-L\-E}}
+\index{F\-P\-T\-Y\-P\-E\-\_\-\-S\-I\-N\-G\-L\-E@{F\-P\-T\-Y\-P\-E\-\_\-\-S\-I\-N\-G\-L\-E}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{F\-P\-T\-Y\-P\-E\-\_\-\-S\-I\-N\-G\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\-P\-T\-Y\-P\-E\-\_\-\-S\-I\-N\-G\-L\-E~1}}\label{runner__cuda_8cu_ac6e14cd493e803bd2fca28d5c99fdeff}
+
+
+\subsection{Function Documentation}
+\hypertarget{runner__cuda_8cu_a0c54b12fff51973c046378b4d86dbb20}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-memcpy@{cuda\-\_\-memcpy}}
+\index{cuda\-\_\-memcpy@{cuda\-\_\-memcpy}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-memcpy}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- void cuda\-\_\-memcpy (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{dest, }
+\item[{void $\ast$}]{source, }
+\item[{int}]{count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{runner__cuda_8cu_a0c54b12fff51973c046378b4d86dbb20}
+
+
+Copy bulk memory in a strided way. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & Pointer to destination memory. \\
+\hline
+{\em source} & Pointer to source memory. \\
+\hline
+{\em count} & Number of bytes to copy, must be a multiple of sizeof(int). \\
+\hline
+\end{DoxyParams}
+\hypertarget{runner__cuda_8cu_ad5f3cd9b1432f30ded613655992627b9}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-memcpy\-\_\-old@{cuda\-\_\-memcpy\-\_\-old}}
+\index{cuda\-\_\-memcpy\-\_\-old@{cuda\-\_\-memcpy\-\_\-old}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-memcpy\-\_\-old}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- void cuda\-\_\-memcpy\-\_\-old (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{dest, }
+\item[{void $\ast$}]{source, }
+\item[{int}]{count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{runner__cuda_8cu_ad5f3cd9b1432f30ded613655992627b9}
+\hypertarget{runner__cuda_8cu_a3e3d193762e74ec5046ce21883c869ca}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-memset\-\_\-float@{cuda\-\_\-memset\-\_\-float}}
+\index{cuda\-\_\-memset\-\_\-float@{cuda\-\_\-memset\-\_\-float}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-memset\-\_\-float}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-global\-\_\-\-\_\- void cuda\-\_\-memset\-\_\-float (
+\begin{DoxyParamCaption}
+\item[{float $\ast$}]{data, }
+\item[{float}]{val, }
+\item[{int}]{N}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8cu_a3e3d193762e74ec5046ce21883c869ca}
+
+
+Our very own memset for the particle forces as cuda\-Memset\-Async requires a device switch when using streams on different devices. 
+
+\hypertarget{runner__cuda_8cu_aea4f0251309d40830f5fb37a015eebd3}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-mutex\-\_\-lock@{cuda\-\_\-mutex\-\_\-lock}}
+\index{cuda\-\_\-mutex\-\_\-lock@{cuda\-\_\-mutex\-\_\-lock}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-mutex\-\_\-lock}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- void cuda\-\_\-mutex\-\_\-lock (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{m}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8cu_aea4f0251309d40830f5fb37a015eebd3}
+
+
+Lock a device mutex. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & The mutex.\\
+\hline
+\end{DoxyParams}
+Loops until the mutex can be set. Note that only one thread can do this at a time, so to synchronize blocks, only a single thread of each block should call it. \hypertarget{runner__cuda_8cu_a0110545814e100d0d65c4f6cd94d7639}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-mutex\-\_\-lock\-\_\-cond@{cuda\-\_\-mutex\-\_\-lock\-\_\-cond}}
+\index{cuda\-\_\-mutex\-\_\-lock\-\_\-cond@{cuda\-\_\-mutex\-\_\-lock\-\_\-cond}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-mutex\-\_\-lock\-\_\-cond}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- int cuda\-\_\-mutex\-\_\-lock\-\_\-cond (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{m, }
+\item[{int $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8cu_a0110545814e100d0d65c4f6cd94d7639}
+
+
+Lock a device mutex with an additional condition. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & The mutex. \\
+\hline
+{\em c} & the condition\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily 1} if the mutex could be locked or zero if the condition {\ttfamily c} was reached first.
+\end{DoxyReturn}
+Loops until the mutex can be set or until {\ttfamily $\ast$c} is non-\/zero. Note that only one thread can do this at a time, so to synchronize blocks, only a single thread of each block should call it. \hypertarget{runner__cuda_8cu_a5b8f0605e3985b926f1c040d39034b8b}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-mutex\-\_\-trylock@{cuda\-\_\-mutex\-\_\-trylock}}
+\index{cuda\-\_\-mutex\-\_\-trylock@{cuda\-\_\-mutex\-\_\-trylock}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-mutex\-\_\-trylock}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- int cuda\-\_\-mutex\-\_\-trylock (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{m}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8cu_a5b8f0605e3985b926f1c040d39034b8b}
+
+
+Attempt to lock a device mutex. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & The mutex.\\
+\hline
+\end{DoxyParams}
+Try to grab the mutex. Note that only one thread can do this at a time, so to synchronize blocks, only a single thread of each block should call it. \hypertarget{runner__cuda_8cu_a2552c4e328a29ee844960efbf70c9051}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-mutex\-\_\-unlock@{cuda\-\_\-mutex\-\_\-unlock}}
+\index{cuda\-\_\-mutex\-\_\-unlock@{cuda\-\_\-mutex\-\_\-unlock}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-mutex\-\_\-unlock}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- void cuda\-\_\-mutex\-\_\-unlock (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{m}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8cu_a2552c4e328a29ee844960efbf70c9051}
+
+
+Unlock a device mutex. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & The mutex.\\
+\hline
+\end{DoxyParams}
+Does not check if the mutex had been locked. \hypertarget{runner__cuda_8cu_af7b7097ec53ae42d307b4a9152c2253d}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-queue\-\_\-gettask@{cuda\-\_\-queue\-\_\-gettask}}
+\index{cuda\-\_\-queue\-\_\-gettask@{cuda\-\_\-queue\-\_\-gettask}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-queue\-\_\-gettask}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- int cuda\-\_\-queue\-\_\-gettask (
+\begin{DoxyParamCaption}
+\item[{struct {\bf queue\-\_\-cuda} $\ast$}]{q}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8cu_af7b7097ec53ae42d307b4a9152c2253d}
+
+
+Get a task I\-D from the given queue. 
+
+\hypertarget{runner__cuda_8cu_ad674fe3f07a1bf103db57106fde5a0f0}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-queue\-\_\-puttask@{cuda\-\_\-queue\-\_\-puttask}}
+\index{cuda\-\_\-queue\-\_\-puttask@{cuda\-\_\-queue\-\_\-puttask}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-queue\-\_\-puttask}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- void cuda\-\_\-queue\-\_\-puttask (
+\begin{DoxyParamCaption}
+\item[{struct {\bf queue\-\_\-cuda} $\ast$}]{q, }
+\item[{int}]{tid}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8cu_ad674fe3f07a1bf103db57106fde5a0f0}
+
+
+Put a task onto the given queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tid} & The task I\-D to add to the end of the queue. \\
+\hline
+\end{DoxyParams}
+\hypertarget{runner__cuda_8cu_a01c8032e5d4495edadcc8540a36bba7e}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-sort\-\_\-ascending@{cuda\-\_\-sort\-\_\-ascending}}
+\index{cuda\-\_\-sort\-\_\-ascending@{cuda\-\_\-sort\-\_\-ascending}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-sort\-\_\-ascending}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- void cuda\-\_\-sort\-\_\-ascending (
+\begin{DoxyParamCaption}
+\item[{unsigned int $\ast$}]{a, }
+\item[{int}]{count}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8cu_a01c8032e5d4495edadcc8540a36bba7e}
+
+
+Sort the given data w.\-r.\-t. the lowest 16 bits in ascending order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The array to sort. \\
+\hline
+{\em count} & The number of elements. \\
+\hline
+\end{DoxyParams}
+\hypertarget{runner__cuda_8cu_a86eff53a000379a0773f8e442ea9a59a}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-sort\-\_\-descending@{cuda\-\_\-sort\-\_\-descending}}
+\index{cuda\-\_\-sort\-\_\-descending@{cuda\-\_\-sort\-\_\-descending}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-sort\-\_\-descending}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- void cuda\-\_\-sort\-\_\-descending (
+\begin{DoxyParamCaption}
+\item[{unsigned int $\ast$}]{a, }
+\item[{int}]{count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{runner__cuda_8cu_a86eff53a000379a0773f8e442ea9a59a}
+
+
+Sort the given data w.\-r.\-t. the lowest 16 bits in decending order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The array to sort. \\
+\hline
+{\em count} & The number of elements. \\
+\hline
+\end{DoxyParams}
+\hypertarget{runner__cuda_8cu_ae0c16e79b4b365dc93f0f16ca79de787}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-sum@{cuda\-\_\-sum}}
+\index{cuda\-\_\-sum@{cuda\-\_\-sum}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-sum}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- void cuda\-\_\-sum (
+\begin{DoxyParamCaption}
+\item[{float $\ast$}]{a, }
+\item[{float $\ast$}]{b, }
+\item[{int}]{count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{runner__cuda_8cu_ae0c16e79b4b365dc93f0f16ca79de787}
+
+
+Sum two vectors in a strided way. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Pointer to destination memory. \\
+\hline
+{\em b} & Pointer to source memory. \\
+\hline
+{\em count} & Number of floats to sum.\\
+\hline
+\end{DoxyParams}
+Computes {\ttfamily a}\mbox{[}k\mbox{]} += b\mbox{[}k\mbox{]} for k=1..count. \hypertarget{runner__cuda_8cu_a9c7e994c307502452bdb87b0e60fb9cc}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!engine\-\_\-cuda\-\_\-load@{engine\-\_\-cuda\-\_\-load}}
+\index{engine\-\_\-cuda\-\_\-load@{engine\-\_\-cuda\-\_\-load}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{engine\-\_\-cuda\-\_\-load}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-cuda\-\_\-load (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8cu_a9c7e994c307502452bdb87b0e60fb9cc}
+
+
+Load the potentials and cell pairs onto the C\-U\-D\-A device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{runner__cuda_8cu_ab0d9b84f18b2171f13e7b563f3f023f9}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!engine\-\_\-cuda\-\_\-load\-\_\-parts@{engine\-\_\-cuda\-\_\-load\-\_\-parts}}
+\index{engine\-\_\-cuda\-\_\-load\-\_\-parts@{engine\-\_\-cuda\-\_\-load\-\_\-parts}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{engine\-\_\-cuda\-\_\-load\-\_\-parts}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-cuda\-\_\-load\-\_\-parts (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8cu_ab0d9b84f18b2171f13e7b563f3f023f9}
+
+
+Load the cell data onto the C\-U\-D\-A device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maximum number of parts per cell or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{runner__cuda_8cu_a350f16fa3cd8830b375ea6a35d4f6628}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!engine\-\_\-cuda\-\_\-queues\-\_\-load@{engine\-\_\-cuda\-\_\-queues\-\_\-load}}
+\index{engine\-\_\-cuda\-\_\-queues\-\_\-load@{engine\-\_\-cuda\-\_\-queues\-\_\-load}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{engine\-\_\-cuda\-\_\-queues\-\_\-load}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-cuda\-\_\-queues\-\_\-load (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8cu_a350f16fa3cd8830b375ea6a35d4f6628}
+
+
+Load the queues onto the C\-U\-D\-A device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{runner__cuda_8cu_a24fe668d11a9f02087983cacebacc005}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!engine\-\_\-cuda\-\_\-unload\-\_\-parts@{engine\-\_\-cuda\-\_\-unload\-\_\-parts}}
+\index{engine\-\_\-cuda\-\_\-unload\-\_\-parts@{engine\-\_\-cuda\-\_\-unload\-\_\-parts}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{engine\-\_\-cuda\-\_\-unload\-\_\-parts}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-cuda\-\_\-unload\-\_\-parts (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8cu_a24fe668d11a9f02087983cacebacc005}
+
+
+Load the cell data from the C\-U\-D\-A device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{runner__cuda_8cu_abdd3e423279f5335dea30af84aa539a1}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!engine\-\_\-nonbond\-\_\-cuda@{engine\-\_\-nonbond\-\_\-cuda}}
+\index{engine\-\_\-nonbond\-\_\-cuda@{engine\-\_\-nonbond\-\_\-cuda}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{engine\-\_\-nonbond\-\_\-cuda}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-nonbond\-\_\-cuda (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8cu_abdd3e423279f5335dea30af84aa539a1}
+
+
+Offload and compute the nonbonded interactions on a C\-U\-D\-A device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{runner__cuda_8cu_a9b15b637f9f95f8fa7cdfd82b9c6850b}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!get\-\_\-smid@{get\-\_\-smid}}
+\index{get\-\_\-smid@{get\-\_\-smid}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{get\-\_\-smid}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-noinline\-\_\-\-\_\- \-\_\-\-\_\-device\-\_\-\-\_\- {\bf uint} get\-\_\-smid (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8cu_a9b15b637f9f95f8fa7cdfd82b9c6850b}
+
+
+Get the I\-D of the block's S\-M. 
+
+\hypertarget{runner__cuda_8cu_ad7ac64705f23cc0ce5d9d73369162309}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!potential\-\_\-eval4\-\_\-cuda\-\_\-tex@{potential\-\_\-eval4\-\_\-cuda\-\_\-tex}}
+\index{potential\-\_\-eval4\-\_\-cuda\-\_\-tex@{potential\-\_\-eval4\-\_\-cuda\-\_\-tex}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{potential\-\_\-eval4\-\_\-cuda\-\_\-tex}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- void potential\-\_\-eval4\-\_\-cuda\-\_\-tex (
+\begin{DoxyParamCaption}
+\item[{int4}]{pid, }
+\item[{float4}]{r2, }
+\item[{float4 $\ast$}]{e, }
+\item[{float4 $\ast$}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{runner__cuda_8cu_ad7ac64705f23cc0ce5d9d73369162309}
+
+
+Evaluates the given potential at the given point (interpolated) using texture memory on the device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pid} & The index of the \hyperlink{structpotential}{potential} to be evaluated. \\
+\hline
+{\em r2} & The radius at which it is to be evaluated, squared. \\
+\hline
+{\em e} & Pointer to a floating-\/point value in which to store the interaction energy. \\
+\hline
+{\em f} & Pointer to a floating-\/point value in which to store the magnitude of the interaction force divided by r.\\
+\hline
+\end{DoxyParams}
+Note that for efficiency reasons, this function does not check if any of the parameters are {\ttfamily N\-U\-L\-L} or if {\ttfamily sqrt(r2)} is within the interval of the \hyperlink{structpotential}{potential} {\ttfamily p}. \hypertarget{runner__cuda_8cu_a84663dbc518d6061f158eee8652d1c45}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!potential\-\_\-eval\-\_\-cuda@{potential\-\_\-eval\-\_\-cuda}}
+\index{potential\-\_\-eval\-\_\-cuda@{potential\-\_\-eval\-\_\-cuda}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{potential\-\_\-eval\-\_\-cuda}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- void potential\-\_\-eval\-\_\-cuda (
+\begin{DoxyParamCaption}
+\item[{struct {\bf potential} $\ast$}]{p, }
+\item[{float}]{r2, }
+\item[{float $\ast$}]{e, }
+\item[{float $\ast$}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{runner__cuda_8cu_a84663dbc518d6061f158eee8652d1c45}
+
+
+Evaluates the given potential at the given point (interpolated). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & The \hyperlink{structpotential}{potential} to be evaluated. \\
+\hline
+{\em r2} & The radius at which it is to be evaluated, squared. \\
+\hline
+{\em e} & Pointer to a floating-\/point value in which to store the interaction energy. \\
+\hline
+{\em f} & Pointer to a floating-\/point value in which to store the magnitude of the interaction force divided by r.\\
+\hline
+\end{DoxyParams}
+Note that for efficiency reasons, this function does not check if any of the parameters are {\ttfamily N\-U\-L\-L} or if {\ttfamily sqrt(r2)} is within the interval of the \hyperlink{structpotential}{potential} {\ttfamily p}. \hypertarget{runner__cuda_8cu_a4f847a3ee804e94e33154c1b0b3c1d26}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!potential\-\_\-eval\-\_\-cuda\-\_\-tex@{potential\-\_\-eval\-\_\-cuda\-\_\-tex}}
+\index{potential\-\_\-eval\-\_\-cuda\-\_\-tex@{potential\-\_\-eval\-\_\-cuda\-\_\-tex}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{potential\-\_\-eval\-\_\-cuda\-\_\-tex}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- void potential\-\_\-eval\-\_\-cuda\-\_\-tex (
+\begin{DoxyParamCaption}
+\item[{int}]{pid, }
+\item[{float}]{r2, }
+\item[{float $\ast$}]{e, }
+\item[{float $\ast$}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{runner__cuda_8cu_a4f847a3ee804e94e33154c1b0b3c1d26}
+
+
+Evaluates the given potential at the given point (interpolated) using texture memory on the device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pid} & The index of the \hyperlink{structpotential}{potential} to be evaluated. \\
+\hline
+{\em r2} & The radius at which it is to be evaluated, squared. \\
+\hline
+{\em e} & Pointer to a floating-\/point value in which to store the interaction energy. \\
+\hline
+{\em f} & Pointer to a floating-\/point value in which to store the magnitude of the interaction force divided by r.\\
+\hline
+\end{DoxyParams}
+Note that for efficiency reasons, this function does not check if any of the parameters are {\ttfamily N\-U\-L\-L} or if {\ttfamily sqrt(r2)} is within the interval of the \hyperlink{structpotential}{potential} {\ttfamily p}. \hypertarget{runner__cuda_8cu_a0acaac4463958ebb0bb3b44331c8336a}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!runner\-\_\-cuda\-\_\-gettask@{runner\-\_\-cuda\-\_\-gettask}}
+\index{runner\-\_\-cuda\-\_\-gettask@{runner\-\_\-cuda\-\_\-gettask}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{runner\-\_\-cuda\-\_\-gettask}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- int runner\-\_\-cuda\-\_\-gettask (
+\begin{DoxyParamCaption}
+\item[{struct {\bf queue\-\_\-cuda} $\ast$}]{q, }
+\item[{int}]{steal}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8cu_a0acaac4463958ebb0bb3b44331c8336a}
+
+
+Get a task from the given task queue. 
+
+Picks tasks from the queue sequentially and checks if they can be computed. If not, they are returned to the queue.
+
+This routine blocks until a valid task is picked up, or the specified queue is empty. \hypertarget{runner__cuda_8cu_ae2ff2ee002de54b831589e87e7d9e0c1}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!runner\-\_\-cuda\-\_\-gettask\-\_\-nolock@{runner\-\_\-cuda\-\_\-gettask\-\_\-nolock}}
+\index{runner\-\_\-cuda\-\_\-gettask\-\_\-nolock@{runner\-\_\-cuda\-\_\-gettask\-\_\-nolock}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{runner\-\_\-cuda\-\_\-gettask\-\_\-nolock}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- int runner\-\_\-cuda\-\_\-gettask\-\_\-nolock (
+\begin{DoxyParamCaption}
+\item[{struct {\bf queue\-\_\-cuda} $\ast$}]{q, }
+\item[{int}]{steal}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8cu_ae2ff2ee002de54b831589e87e7d9e0c1}
+\hypertarget{runner__cuda_8cu_a441bf9c8f9589d0f3523dacbd52247ce}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!runner\-\_\-dopair4\-\_\-unsorted\-\_\-cuda@{runner\-\_\-dopair4\-\_\-unsorted\-\_\-cuda}}
+\index{runner\-\_\-dopair4\-\_\-unsorted\-\_\-cuda@{runner\-\_\-dopair4\-\_\-unsorted\-\_\-cuda}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{runner\-\_\-dopair4\-\_\-unsorted\-\_\-cuda}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- void runner\-\_\-dopair4\-\_\-unsorted\-\_\-cuda (
+\begin{DoxyParamCaption}
+\item[{float4 $\ast$}]{parts\-\_\-i, }
+\item[{int}]{count\-\_\-i, }
+\item[{float4 $\ast$}]{parts\-\_\-j, }
+\item[{int}]{count\-\_\-j, }
+\item[{float $\ast$}]{forces\-\_\-i, }
+\item[{float $\ast$}]{forces\-\_\-j, }
+\item[{float $\ast$}]{shift, }
+\item[{float $\ast$}]{epot\-\_\-global}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8cu_a441bf9c8f9589d0f3523dacbd52247ce}
+
+
+Compute the pairwise interactions for the given pair on a C\-U\-D\-A device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em icid} & Array of parts in the first cell. \\
+\hline
+{\em count\-\_\-i} & Number of parts in the first cell. \\
+\hline
+{\em icjd} & Array of parts in the second cell. \\
+\hline
+{\em count\-\_\-j} & Number of parts in the second cell. \\
+\hline
+{\em pshift} & A pointer to an array of three floating point values containing the vector separating the centers of {\ttfamily cell\-\_\-i} and {\ttfamily cell\-\_\-j}. \\
+\hline
+{\em cid} & Part buffer in local memory. \\
+\hline
+{\em cjd} & Part buffer in local memory.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{runner_8h_a6cb13fe8af38a570bbe14b210ba323b7}{runner\-\_\-dopair}. 
+\end{DoxySeeAlso}
+\hypertarget{runner__cuda_8cu_ac2dd3aec316aa072a957464a646b48d3}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!runner\-\_\-dopair\-\_\-cuda@{runner\-\_\-dopair\-\_\-cuda}}
+\index{runner\-\_\-dopair\-\_\-cuda@{runner\-\_\-dopair\-\_\-cuda}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{runner\-\_\-dopair\-\_\-cuda}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- void runner\-\_\-dopair\-\_\-cuda (
+\begin{DoxyParamCaption}
+\item[{float4 $\ast$}]{parts\-\_\-i, }
+\item[{int}]{count\-\_\-i, }
+\item[{float4 $\ast$}]{parts\-\_\-j, }
+\item[{int}]{count\-\_\-j, }
+\item[{float $\ast$}]{forces\-\_\-i, }
+\item[{float $\ast$}]{forces\-\_\-j, }
+\item[{unsigned int $\ast$}]{sort\-\_\-i, }
+\item[{unsigned int $\ast$}]{sort\-\_\-j, }
+\item[{float $\ast$}]{shift, }
+\item[{unsigned int}]{dshift, }
+\item[{float $\ast$}]{epot\-\_\-global}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8cu_ac2dd3aec316aa072a957464a646b48d3}
+
+
+Compute the pairwise interactions for the given pair on a C\-U\-D\-A device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em icid} & Array of parts in the first cell. \\
+\hline
+{\em count\-\_\-i} & Number of parts in the first cell. \\
+\hline
+{\em icjd} & Array of parts in the second cell. \\
+\hline
+{\em count\-\_\-j} & Number of parts in the second cell. \\
+\hline
+{\em pshift} & A pointer to an array of three floating point values containing the vector separating the centers of {\ttfamily cell\-\_\-i} and {\ttfamily cell\-\_\-j}. \\
+\hline
+{\em cid} & Part buffer in local memory. \\
+\hline
+{\em cjd} & Part buffer in local memory.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{runner_8h_a6cb13fe8af38a570bbe14b210ba323b7}{runner\-\_\-dopair}. 
+\end{DoxySeeAlso}
+\hypertarget{runner__cuda_8cu_ac0ad184f688f3a3b79c58f73f642b611}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!runner\-\_\-dopair\-\_\-left\-\_\-cuda@{runner\-\_\-dopair\-\_\-left\-\_\-cuda}}
+\index{runner\-\_\-dopair\-\_\-left\-\_\-cuda@{runner\-\_\-dopair\-\_\-left\-\_\-cuda}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{runner\-\_\-dopair\-\_\-left\-\_\-cuda}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- void runner\-\_\-dopair\-\_\-left\-\_\-cuda (
+\begin{DoxyParamCaption}
+\item[{float4 $\ast$}]{parts\-\_\-i, }
+\item[{int}]{count\-\_\-i, }
+\item[{float4 $\ast$}]{parts\-\_\-j, }
+\item[{int}]{count\-\_\-j, }
+\item[{float $\ast$}]{forces\-\_\-i, }
+\item[{float $\ast$}]{forces\-\_\-j, }
+\item[{unsigned int $\ast$}]{sort\-\_\-i, }
+\item[{unsigned int $\ast$}]{sort\-\_\-j, }
+\item[{float $\ast$}]{shift, }
+\item[{unsigned int}]{dshift, }
+\item[{float $\ast$}]{epot\-\_\-global}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8cu_ac0ad184f688f3a3b79c58f73f642b611}
+
+
+Compute the pairwise interactions for the given pair on a C\-U\-D\-A device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em icid} & Array of parts in the first cell. \\
+\hline
+{\em count\-\_\-i} & Number of parts in the first cell. \\
+\hline
+{\em icjd} & Array of parts in the second cell. \\
+\hline
+{\em count\-\_\-j} & Number of parts in the second cell. \\
+\hline
+{\em pshift} & A pointer to an array of three floating point values containing the vector separating the centers of {\ttfamily cell\-\_\-i} and {\ttfamily cell\-\_\-j}. \\
+\hline
+{\em cid} & Part buffer in local memory. \\
+\hline
+{\em cjd} & Part buffer in local memory.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{runner_8h_a6cb13fe8af38a570bbe14b210ba323b7}{runner\-\_\-dopair}. 
+\end{DoxySeeAlso}
+\hypertarget{runner__cuda_8cu_a3dd671b11851b775b5fef7b8ae178c9e}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!runner\-\_\-dopair\-\_\-right\-\_\-cuda@{runner\-\_\-dopair\-\_\-right\-\_\-cuda}}
+\index{runner\-\_\-dopair\-\_\-right\-\_\-cuda@{runner\-\_\-dopair\-\_\-right\-\_\-cuda}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{runner\-\_\-dopair\-\_\-right\-\_\-cuda}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- void runner\-\_\-dopair\-\_\-right\-\_\-cuda (
+\begin{DoxyParamCaption}
+\item[{float4 $\ast$}]{parts\-\_\-i, }
+\item[{int}]{count\-\_\-i, }
+\item[{float4 $\ast$}]{parts\-\_\-j, }
+\item[{int}]{count\-\_\-j, }
+\item[{float $\ast$}]{forces\-\_\-i, }
+\item[{float $\ast$}]{forces\-\_\-j, }
+\item[{unsigned int $\ast$}]{sort\-\_\-i, }
+\item[{unsigned int $\ast$}]{sort\-\_\-j, }
+\item[{float $\ast$}]{shift, }
+\item[{unsigned int}]{dshift, }
+\item[{float $\ast$}]{epot\-\_\-global}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8cu_a3dd671b11851b775b5fef7b8ae178c9e}
+
+
+Compute the pairwise interactions for the given pair on a C\-U\-D\-A device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em icid} & Array of parts in the first cell. \\
+\hline
+{\em count\-\_\-i} & Number of parts in the first cell. \\
+\hline
+{\em icjd} & Array of parts in the second cell. \\
+\hline
+{\em count\-\_\-j} & Number of parts in the second cell. \\
+\hline
+{\em pshift} & A pointer to an array of three floating point values containing the vector separating the centers of {\ttfamily cell\-\_\-i} and {\ttfamily cell\-\_\-j}. \\
+\hline
+{\em cid} & Part buffer in local memory. \\
+\hline
+{\em cjd} & Part buffer in local memory.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{runner_8h_a6cb13fe8af38a570bbe14b210ba323b7}{runner\-\_\-dopair}. 
+\end{DoxySeeAlso}
+\hypertarget{runner__cuda_8cu_a45e0ea4d8e8da106e1a963bc453ab8be}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!runner\-\_\-dopair\-\_\-unsorted\-\_\-cuda@{runner\-\_\-dopair\-\_\-unsorted\-\_\-cuda}}
+\index{runner\-\_\-dopair\-\_\-unsorted\-\_\-cuda@{runner\-\_\-dopair\-\_\-unsorted\-\_\-cuda}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{runner\-\_\-dopair\-\_\-unsorted\-\_\-cuda}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- void runner\-\_\-dopair\-\_\-unsorted\-\_\-cuda (
+\begin{DoxyParamCaption}
+\item[{float4 $\ast$}]{parts\-\_\-i, }
+\item[{int}]{count\-\_\-i, }
+\item[{float4 $\ast$}]{parts\-\_\-j, }
+\item[{int}]{count\-\_\-j, }
+\item[{float $\ast$}]{forces\-\_\-i, }
+\item[{float $\ast$}]{forces\-\_\-j, }
+\item[{float $\ast$}]{shift, }
+\item[{float $\ast$}]{epot\-\_\-global}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8cu_a45e0ea4d8e8da106e1a963bc453ab8be}
+
+
+Compute the pairwise interactions for the given pair on a C\-U\-D\-A device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em icid} & Array of parts in the first cell. \\
+\hline
+{\em count\-\_\-i} & Number of parts in the first cell. \\
+\hline
+{\em icjd} & Array of parts in the second cell. \\
+\hline
+{\em count\-\_\-j} & Number of parts in the second cell. \\
+\hline
+{\em pshift} & A pointer to an array of three floating point values containing the vector separating the centers of {\ttfamily cell\-\_\-i} and {\ttfamily cell\-\_\-j}. \\
+\hline
+{\em cid} & Part buffer in local memory. \\
+\hline
+{\em cjd} & Part buffer in local memory.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{runner_8h_a6cb13fe8af38a570bbe14b210ba323b7}{runner\-\_\-dopair}. 
+\end{DoxySeeAlso}
+\hypertarget{runner__cuda_8cu_a1c924aa03f90fa43d741e4b95ac4f185}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!runner\-\_\-doself\-\_\-cuda@{runner\-\_\-doself\-\_\-cuda}}
+\index{runner\-\_\-doself\-\_\-cuda@{runner\-\_\-doself\-\_\-cuda}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{runner\-\_\-doself\-\_\-cuda}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- void runner\-\_\-doself\-\_\-cuda (
+\begin{DoxyParamCaption}
+\item[{float4 $\ast$}]{parts, }
+\item[{int}]{count, }
+\item[{float $\ast$}]{forces, }
+\item[{float $\ast$}]{epot\-\_\-global}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8cu_a1c924aa03f90fa43d741e4b95ac4f185}
+
+
+Compute the self interactions for the given cell on a C\-U\-D\-A device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em iparts} & Array of parts in this cell. \\
+\hline
+{\em count} & Number of parts in the cell. \\
+\hline
+{\em parts} & Part buffer in local memory.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{runner_8h_a6cb13fe8af38a570bbe14b210ba323b7}{runner\-\_\-dopair}. 
+\end{DoxySeeAlso}
+\hypertarget{runner__cuda_8cu_a83c1d82042c124182356657ac4c47bea}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!runner\-\_\-dosort\-\_\-cuda@{runner\-\_\-dosort\-\_\-cuda}}
+\index{runner\-\_\-dosort\-\_\-cuda@{runner\-\_\-dosort\-\_\-cuda}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{runner\-\_\-dosort\-\_\-cuda}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- void runner\-\_\-dosort\-\_\-cuda (
+\begin{DoxyParamCaption}
+\item[{float4 $\ast$}]{parts\-\_\-i, }
+\item[{int}]{count\-\_\-i, }
+\item[{unsigned int $\ast$}]{sort\-\_\-i, }
+\item[{int}]{sid}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{runner__cuda_8cu_a83c1d82042c124182356657ac4c47bea}
+
+
+Compute the pairwise interactions for the given pair on a C\-U\-D\-A device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em icid} & Array of parts in the first cell. \\
+\hline
+{\em count\-\_\-i} & Number of parts in the first cell. \\
+\hline
+{\em icjd} & Array of parts in the second cell. \\
+\hline
+{\em count\-\_\-j} & Number of parts in the second cell. \\
+\hline
+{\em pshift} & A pointer to an array of three floating point values containing the vector separating the centers of {\ttfamily cell\-\_\-i} and {\ttfamily cell\-\_\-j}. \\
+\hline
+{\em cid} & Part buffer in local memory. \\
+\hline
+{\em cjd} & Part buffer in local memory.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{runner_8h_a6cb13fe8af38a570bbe14b210ba323b7}{runner\-\_\-dopair}. 
+\end{DoxySeeAlso}
+
+
+\subsection{Variable Documentation}
+\hypertarget{runner__cuda_8cu_a329318e5b37cb5b963996d4ed945cbf8}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-barrier@{cuda\-\_\-barrier}}
+\index{cuda\-\_\-barrier@{cuda\-\_\-barrier}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-barrier}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- int cuda\-\_\-barrier = 0}}\label{runner__cuda_8cu_a329318e5b37cb5b963996d4ed945cbf8}
+\hypertarget{runner__cuda_8cu_a8c78226a6267a5d427d17a6a505fc8b3}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-cell\-\_\-mutex@{cuda\-\_\-cell\-\_\-mutex}}
+\index{cuda\-\_\-cell\-\_\-mutex@{cuda\-\_\-cell\-\_\-mutex}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-cell\-\_\-mutex}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- int cuda\-\_\-cell\-\_\-mutex = 0}}\label{runner__cuda_8cu_a8c78226a6267a5d427d17a6a505fc8b3}
+\hypertarget{runner__cuda_8cu_a567f447b2269e42ebd0beb8da78e85b6}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-coeffs@{cuda\-\_\-coeffs}}
+\index{cuda\-\_\-coeffs@{cuda\-\_\-coeffs}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-coeffs}]{\setlength{\rightskip}{0pt plus 5cm}cuda\-Array$\ast$ cuda\-\_\-coeffs}}\label{runner__cuda_8cu_a567f447b2269e42ebd0beb8da78e85b6}
+\hypertarget{runner__cuda_8cu_a7216b473082d8c70f9773de9330a9486}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-corig@{cuda\-\_\-corig}}
+\index{cuda\-\_\-corig@{cuda\-\_\-corig}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-corig}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-constant\-\_\-\-\_\- float$\ast$ cuda\-\_\-corig}}\label{runner__cuda_8cu_a7216b473082d8c70f9773de9330a9486}
+\hypertarget{runner__cuda_8cu_ad237b5fd4f8529f32d2fecd27c801102}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-cutoff@{cuda\-\_\-cutoff}}
+\index{cuda\-\_\-cutoff@{cuda\-\_\-cutoff}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-cutoff}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-constant\-\_\-\-\_\- float cuda\-\_\-cutoff = 0.\-0f}}\label{runner__cuda_8cu_ad237b5fd4f8529f32d2fecd27c801102}
+\hypertarget{runner__cuda_8cu_a2f0cb776d896068a04fa1ac16c764c87}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-cutoff2@{cuda\-\_\-cutoff2}}
+\index{cuda\-\_\-cutoff2@{cuda\-\_\-cutoff2}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-cutoff2}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-constant\-\_\-\-\_\- float cuda\-\_\-cutoff2 = 0.\-0f}}\label{runner__cuda_8cu_a2f0cb776d896068a04fa1ac16c764c87}
+\hypertarget{runner__cuda_8cu_a78981fb3a9913c623f8d6e3371a6dada}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-dim@{cuda\-\_\-dim}}
+\index{cuda\-\_\-dim@{cuda\-\_\-dim}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-dim}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-constant\-\_\-\-\_\- float cuda\-\_\-dim\mbox{[}3\mbox{]}}}\label{runner__cuda_8cu_a78981fb3a9913c623f8d6e3371a6dada}
+\hypertarget{runner__cuda_8cu_ad3399eb242e27ceda517730bd00e6c5a}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-dscale@{cuda\-\_\-dscale}}
+\index{cuda\-\_\-dscale@{cuda\-\_\-dscale}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-dscale}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-constant\-\_\-\-\_\- float cuda\-\_\-dscale = 0.\-0f}}\label{runner__cuda_8cu_ad3399eb242e27ceda517730bd00e6c5a}
+\hypertarget{runner__cuda_8cu_abfa914a5ea88381ad3e9cf8dfb5714fe}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-epot@{cuda\-\_\-epot}}
+\index{cuda\-\_\-epot@{cuda\-\_\-epot}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-epot}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- float cuda\-\_\-epot = 0.\-0f}}\label{runner__cuda_8cu_abfa914a5ea88381ad3e9cf8dfb5714fe}
+\hypertarget{runner__cuda_8cu_a9df877247dba86e9b098b3f46d7e8415}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-epot\-\_\-out@{cuda\-\_\-epot\-\_\-out}}
+\index{cuda\-\_\-epot\-\_\-out@{cuda\-\_\-epot\-\_\-out}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-epot\-\_\-out}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- float cuda\-\_\-epot\-\_\-out}}\label{runner__cuda_8cu_a9df877247dba86e9b098b3f46d7e8415}
+\hypertarget{runner__cuda_8cu_afaa91cdb5295e754320565ca2528833a}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-eps@{cuda\-\_\-eps}}
+\index{cuda\-\_\-eps@{cuda\-\_\-eps}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-eps}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-constant\-\_\-\-\_\- float cuda\-\_\-eps\mbox{[}100\mbox{]}}}\label{runner__cuda_8cu_afaa91cdb5295e754320565ca2528833a}
+\hypertarget{runner__cuda_8cu_a0d5bb4cf118bd65faa233f51ab06717b}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-fio@{cuda\-\_\-fio}}
+\index{cuda\-\_\-fio@{cuda\-\_\-fio}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-fio}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- float cuda\-\_\-fio\mbox{[}32\mbox{]}}}\label{runner__cuda_8cu_a0d5bb4cf118bd65faa233f51ab06717b}
+\hypertarget{runner__cuda_8cu_a4e88d06c74e1bc98b007758c62912963}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-h@{cuda\-\_\-h}}
+\index{cuda\-\_\-h@{cuda\-\_\-h}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-h}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-constant\-\_\-\-\_\- float cuda\-\_\-h\mbox{[}3\mbox{]}}}\label{runner__cuda_8cu_a4e88d06c74e1bc98b007758c62912963}
+\hypertarget{runner__cuda_8cu_a4a6f04955b7d89ac10edc9ee0516306d}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-io@{cuda\-\_\-io}}
+\index{cuda\-\_\-io@{cuda\-\_\-io}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-io}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- int cuda\-\_\-io\mbox{[}32\mbox{]}}}\label{runner__cuda_8cu_a4a6f04955b7d89ac10edc9ee0516306d}
+\hypertarget{runner__cuda_8cu_a14728b5d79f6d4c739246b839dd416c6}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-maxdist@{cuda\-\_\-maxdist}}
+\index{cuda\-\_\-maxdist@{cuda\-\_\-maxdist}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-maxdist}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-constant\-\_\-\-\_\- float cuda\-\_\-maxdist = 0.\-0f}}\label{runner__cuda_8cu_a14728b5d79f6d4c739246b839dd416c6}
+\hypertarget{runner__cuda_8cu_ac0258954544fdb4a20f5bd7f9b7b40c0}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-maxtype@{cuda\-\_\-maxtype}}
+\index{cuda\-\_\-maxtype@{cuda\-\_\-maxtype}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-maxtype}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-constant\-\_\-\-\_\- int cuda\-\_\-maxtype = 0}}\label{runner__cuda_8cu_ac0258954544fdb4a20f5bd7f9b7b40c0}
+\hypertarget{runner__cuda_8cu_a6702eee3500e190b55a613b7fef9ec47}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-nr\-\_\-cells@{cuda\-\_\-nr\-\_\-cells}}
+\index{cuda\-\_\-nr\-\_\-cells@{cuda\-\_\-nr\-\_\-cells}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-nr\-\_\-cells}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-constant\-\_\-\-\_\- int cuda\-\_\-nr\-\_\-cells = 0}}\label{runner__cuda_8cu_a6702eee3500e190b55a613b7fef9ec47}
+\hypertarget{runner__cuda_8cu_acef4db95588c53945d1d78c666f5b002}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-nr\-\_\-parts@{cuda\-\_\-nr\-\_\-parts}}
+\index{cuda\-\_\-nr\-\_\-parts@{cuda\-\_\-nr\-\_\-parts}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-nr\-\_\-parts}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-constant\-\_\-\-\_\- int cuda\-\_\-nr\-\_\-parts}}\label{runner__cuda_8cu_acef4db95588c53945d1d78c666f5b002}
+\hypertarget{runner__cuda_8cu_aa43645dc9edd3b54c32b838f09b4c0c1}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-nr\-\_\-tasks@{cuda\-\_\-nr\-\_\-tasks}}
+\index{cuda\-\_\-nr\-\_\-tasks@{cuda\-\_\-nr\-\_\-tasks}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-nr\-\_\-tasks}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-constant\-\_\-\-\_\- int cuda\-\_\-nr\-\_\-tasks = 0}}\label{runner__cuda_8cu_aa43645dc9edd3b54c32b838f09b4c0c1}
+\hypertarget{runner__cuda_8cu_a72ce175a391d0819e319b612391afcf8}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-nrqueues@{cuda\-\_\-nrqueues}}
+\index{cuda\-\_\-nrqueues@{cuda\-\_\-nrqueues}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-nrqueues}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-constant\-\_\-\-\_\- int cuda\-\_\-nrqueues}}\label{runner__cuda_8cu_a72ce175a391d0819e319b612391afcf8}
+\hypertarget{runner__cuda_8cu_a7a9f2a17f80b6789eb9ac6c2cd1ab118}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-p@{cuda\-\_\-p}}
+\index{cuda\-\_\-p@{cuda\-\_\-p}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-p}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-constant\-\_\-\-\_\- struct {\bf potential}$\ast$$\ast$ cuda\-\_\-p}}\label{runner__cuda_8cu_a7a9f2a17f80b6789eb9ac6c2cd1ab118}
+\hypertarget{runner__cuda_8cu_ac7e0a2e211db72c23b66ea880dd3a9ec}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-pair\-\_\-next@{cuda\-\_\-pair\-\_\-next}}
+\index{cuda\-\_\-pair\-\_\-next@{cuda\-\_\-pair\-\_\-next}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-pair\-\_\-next}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- int cuda\-\_\-pair\-\_\-next = 0}}\label{runner__cuda_8cu_ac7e0a2e211db72c23b66ea880dd3a9ec}
+\hypertarget{runner__cuda_8cu_afc0b6fa07354e6cf17317b112ec1090e}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-pairs@{cuda\-\_\-pairs}}
+\index{cuda\-\_\-pairs@{cuda\-\_\-pairs}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-pairs}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-constant\-\_\-\-\_\- struct cellpair\-\_\-cuda$\ast$ cuda\-\_\-pairs}}\label{runner__cuda_8cu_afc0b6fa07354e6cf17317b112ec1090e}
+\hypertarget{runner__cuda_8cu_ac58ae810788e08dcbd4eef99b70053b9}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-parts@{cuda\-\_\-parts}}
+\index{cuda\-\_\-parts@{cuda\-\_\-parts}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-parts}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-constant\-\_\-\-\_\- float4$\ast$ cuda\-\_\-parts}}\label{runner__cuda_8cu_ac58ae810788e08dcbd4eef99b70053b9}
+\hypertarget{runner__cuda_8cu_a88d83370f6fd3c3e2f491b487471e630}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-pind@{cuda\-\_\-pind}}
+\index{cuda\-\_\-pind@{cuda\-\_\-pind}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-pind}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-constant\-\_\-\-\_\- unsigned int$\ast$ cuda\-\_\-pind}}\label{runner__cuda_8cu_a88d83370f6fd3c3e2f491b487471e630}
+\hypertarget{runner__cuda_8cu_a1c76046250b64a69a6f09267f7d99320}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-pots@{cuda\-\_\-pots}}
+\index{cuda\-\_\-pots@{cuda\-\_\-pots}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-pots}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-constant\-\_\-\-\_\- struct {\bf potential}$\ast$ cuda\-\_\-pots}}\label{runner__cuda_8cu_a1c76046250b64a69a6f09267f7d99320}
+\hypertarget{runner__cuda_8cu_aedf21f3ce7ed33e1a27eb91f87e8035c}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-queue\-\_\-size@{cuda\-\_\-queue\-\_\-size}}
+\index{cuda\-\_\-queue\-\_\-size@{cuda\-\_\-queue\-\_\-size}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-queue\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-constant\-\_\-\-\_\- int cuda\-\_\-queue\-\_\-size}}\label{runner__cuda_8cu_aedf21f3ce7ed33e1a27eb91f87e8035c}
+\hypertarget{runner__cuda_8cu_a56ac3129073b30259da639ccb7f59039}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-queues@{cuda\-\_\-queues}}
+\index{cuda\-\_\-queues@{cuda\-\_\-queues}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-queues}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- struct {\bf queue\-\_\-cuda} cuda\-\_\-queues\mbox{[}{\bf cuda\-\_\-maxqueues}\mbox{]}}}\label{runner__cuda_8cu_a56ac3129073b30259da639ccb7f59039}
+\hypertarget{runner__cuda_8cu_a49faeb0f914251c44c21fc4fe7f1b269}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-rcount@{cuda\-\_\-rcount}}
+\index{cuda\-\_\-rcount@{cuda\-\_\-rcount}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-rcount}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- int cuda\-\_\-rcount = 0}}\label{runner__cuda_8cu_a49faeb0f914251c44c21fc4fe7f1b269}
+\hypertarget{runner__cuda_8cu_aa47a08191252ff206520de53f83c0306}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-rmin@{cuda\-\_\-rmin}}
+\index{cuda\-\_\-rmin@{cuda\-\_\-rmin}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-rmin}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-constant\-\_\-\-\_\- float cuda\-\_\-rmin\mbox{[}100\mbox{]}}}\label{runner__cuda_8cu_aa47a08191252ff206520de53f83c0306}
+\hypertarget{runner__cuda_8cu_a1f84d7a25177e2cc11d37f2f52d0944c}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-shift@{cuda\-\_\-shift}}
+\index{cuda\-\_\-shift@{cuda\-\_\-shift}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-shift}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-constant\-\_\-\-\_\- float cuda\-\_\-shift\mbox{[}13 $\ast$3\mbox{]}}}\label{runner__cuda_8cu_a1f84d7a25177e2cc11d37f2f52d0944c}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= \{
+     1.0 ,  1.0 ,  1.0 ,
+     1.0 ,  1.0 ,  0.0 ,
+     1.0 ,  1.0 , -1.0 ,
+     1.0 ,  0.0 ,  1.0 ,
+     1.0 ,  0.0 ,  0.0 ,
+     1.0 ,  0.0 , -1.0 ,
+     1.0 , -1.0 ,  1.0 ,
+     1.0 , -1.0 ,  0.0 ,
+     1.0 , -1.0 , -1.0 ,
+     0.0 ,  1.0 ,  1.0 ,
+     0.0 ,  1.0 ,  0.0 ,
+     0.0 ,  1.0 , -1.0 ,
+     0.0 ,  0.0 ,  1.0 ,
+    \}
+\end{DoxyCode}
+\hypertarget{runner__cuda_8cu_a286561d77721b876ea4262816551ce07}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-shiftn@{cuda\-\_\-shiftn}}
+\index{cuda\-\_\-shiftn@{cuda\-\_\-shiftn}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-shiftn}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-constant\-\_\-\-\_\- float cuda\-\_\-shiftn\mbox{[}13 $\ast$3\mbox{]}}}\label{runner__cuda_8cu_a286561d77721b876ea4262816551ce07}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= \{
+     5.773502691896258e-01 ,  5.773502691896258e-01 ,  5.773502691896258e-01 ,
+     7.071067811865475e-01 ,  7.071067811865475e-01 ,  0.0                   ,
+     5.773502691896258e-01 ,  5.773502691896258e-01 , -5.773502691896258e-01 ,
+     7.071067811865475e-01 ,  0.0                   ,  7.071067811865475e-01 ,
+     1.0                   ,  0.0                   ,  0.0                   ,
+     7.071067811865475e-01 ,  0.0                   , -7.071067811865475e-01 ,
+     5.773502691896258e-01 , -5.773502691896258e-01 ,  5.773502691896258e-01 ,
+     7.071067811865475e-01 , -7.071067811865475e-01 ,  0.0                   ,
+     5.773502691896258e-01 , -5.773502691896258e-01 , -5.773502691896258e-01 ,
+     0.0                   ,  7.071067811865475e-01 ,  7.071067811865475e-01 ,
+     0.0                   ,  1.0                   ,  0.0                   ,
+     0.0                   ,  7.071067811865475e-01 , -7.071067811865475e-01 ,
+     0.0                   ,  0.0                   ,  1.0                   ,
+     \}
+\end{DoxyCode}
+\hypertarget{runner__cuda_8cu_a8f61841655b1d6ac66a33b9c58a9451b}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-sortlists@{cuda\-\_\-sortlists}}
+\index{cuda\-\_\-sortlists@{cuda\-\_\-sortlists}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-sortlists}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- unsigned int$\ast$ cuda\-\_\-sortlists = N\-U\-L\-L}}\label{runner__cuda_8cu_a8f61841655b1d6ac66a33b9c58a9451b}
+\hypertarget{runner__cuda_8cu_a27243fc18ae76301693c0cf9e1de4d16}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-sorts@{cuda\-\_\-sorts}}
+\index{cuda\-\_\-sorts@{cuda\-\_\-sorts}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-sorts}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- struct {\bf queue\-\_\-cuda} cuda\-\_\-sorts\mbox{[}{\bf cuda\-\_\-maxqueues}\mbox{]}}}\label{runner__cuda_8cu_a27243fc18ae76301693c0cf9e1de4d16}
+\hypertarget{runner__cuda_8cu_aa0b6600f0328ae28392b5ac1b928433a}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-taboo@{cuda\-\_\-taboo}}
+\index{cuda\-\_\-taboo@{cuda\-\_\-taboo}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-taboo}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- int$\ast$ cuda\-\_\-taboo}}\label{runner__cuda_8cu_aa0b6600f0328ae28392b5ac1b928433a}
+\hypertarget{runner__cuda_8cu_aaa757a57fa1ece5a1cadbce0c44836b4}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-tasks@{cuda\-\_\-tasks}}
+\index{cuda\-\_\-tasks@{cuda\-\_\-tasks}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-tasks}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-constant\-\_\-\-\_\- struct {\bf task\-\_\-cuda}$\ast$ cuda\-\_\-tasks}}\label{runner__cuda_8cu_aaa757a57fa1ece5a1cadbce0c44836b4}
+\hypertarget{runner__cuda_8cu_af29e45416fba4fd84a57a2ba85bc7fb1}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!cuda\-\_\-timers@{cuda\-\_\-timers}}
+\index{cuda\-\_\-timers@{cuda\-\_\-timers}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{cuda\-\_\-timers}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- float cuda\-\_\-timers\mbox{[}{\bf tid\-\_\-count}\mbox{]}}}\label{runner__cuda_8cu_af29e45416fba4fd84a57a2ba85bc7fb1}
+\hypertarget{runner__cuda_8cu_af9bd293eee8e022bec689d20692b967b}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!N\-A\-M\-D\-\_\-barrier@{N\-A\-M\-D\-\_\-barrier}}
+\index{N\-A\-M\-D\-\_\-barrier@{N\-A\-M\-D\-\_\-barrier}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{N\-A\-M\-D\-\_\-barrier}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-device\-\_\-\-\_\- volatile int N\-A\-M\-D\-\_\-barrier = 0}}\label{runner__cuda_8cu_af9bd293eee8e022bec689d20692b967b}
+\hypertarget{runner__cuda_8cu_a4f0b849536c8706d83970da4de5dbba5}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!potential\-\_\-null\-\_\-cuda@{potential\-\_\-null\-\_\-cuda}}
+\index{potential\-\_\-null\-\_\-cuda@{potential\-\_\-null\-\_\-cuda}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{potential\-\_\-null\-\_\-cuda}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-constant\-\_\-\-\_\- struct {\bf potential}$\ast$ potential\-\_\-null\-\_\-cuda = N\-U\-L\-L}}\label{runner__cuda_8cu_a4f0b849536c8706d83970da4de5dbba5}
+\hypertarget{runner__cuda_8cu_ae2d751252687593dfcce55a03598e200}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!tex\-\_\-coeffs@{tex\-\_\-coeffs}}
+\index{tex\-\_\-coeffs@{tex\-\_\-coeffs}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{tex\-\_\-coeffs}]{\setlength{\rightskip}{0pt plus 5cm}texture$<$ float4 , cuda\-Texture\-Type2\-D $>$ tex\-\_\-coeffs}}\label{runner__cuda_8cu_ae2d751252687593dfcce55a03598e200}
+\hypertarget{runner__cuda_8cu_a124f5902fd9b618e8cc624e58734bae4}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!tex\-\_\-parts@{tex\-\_\-parts}}
+\index{tex\-\_\-parts@{tex\-\_\-parts}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{tex\-\_\-parts}]{\setlength{\rightskip}{0pt plus 5cm}texture$<$ float4 , cuda\-Texture\-Type2\-D $>$ tex\-\_\-parts}}\label{runner__cuda_8cu_a124f5902fd9b618e8cc624e58734bae4}
+\hypertarget{runner__cuda_8cu_a00bdff2f6bb8d60e1c281a270157e997}{\index{runner\-\_\-cuda.\-cu@{runner\-\_\-cuda.\-cu}!tex\-\_\-pind@{tex\-\_\-pind}}
+\index{tex\-\_\-pind@{tex\-\_\-pind}!runner_cuda.cu@{runner\-\_\-cuda.\-cu}}
+\subsubsection[{tex\-\_\-pind}]{\setlength{\rightskip}{0pt plus 5cm}texture$<$ int , cuda\-Texture\-Type1\-D $>$ tex\-\_\-pind}}\label{runner__cuda_8cu_a00bdff2f6bb8d60e1c281a270157e997}

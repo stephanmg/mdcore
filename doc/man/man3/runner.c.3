@@ -1,0 +1,245 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/runner.c" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/runner.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include '\&.\&./config\&.h'\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <pthread\&.h>\fP
+.br
+\fC#include <math\&.h>\fP
+.br
+\fC#include <float\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <limits\&.h>\fP
+.br
+\fC#include <sched\&.h>\fP
+.br
+\fC#include 'cycle\&.h'\fP
+.br
+\fC#include 'errs\&.h'\fP
+.br
+\fC#include 'fptype\&.h'\fP
+.br
+\fC#include 'lock\&.h'\fP
+.br
+\fC#include 'part\&.h'\fP
+.br
+\fC#include 'queue\&.h'\fP
+.br
+\fC#include 'cell\&.h'\fP
+.br
+\fC#include 'task\&.h'\fP
+.br
+\fC#include 'space\&.h'\fP
+.br
+\fC#include 'potential\&.h'\fP
+.br
+\fC#include 'engine\&.h'\fP
+.br
+\fC#include 'runner\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBerror\fP(\fBid\fP)   ( \fBrunner_err\fP = \fBerrs_register\fP( \fBid\fP , \fBrunner_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBrunner_sort_descending\fP (unsigned int *parts, int N)"
+.br
+.RI "\fISort the particles in descending order using QuickSort\&. \fP"
+.ti -1c
+.RI "void \fBrunner_sort_ascending\fP (unsigned int *parts, int N)"
+.br
+.RI "\fISort the particles in ascending order using QuickSort\&. \fP"
+.ti -1c
+.RI "int \fBrunner_run_cell\fP (struct \fBrunner\fP *\fBr\fP)"
+.br
+.RI "\fIThe \fBrunner\fP's main routine (for the Cell/BE SPU)\&. \fP"
+.ti -1c
+.RI "int \fBrunner_run_cell_tuples\fP (struct \fBrunner\fP *\fBr\fP)"
+.br
+.RI "\fIThe \fBrunner\fP's main routine (for the Cell/BE SPU, using tuples)\&. \fP"
+.ti -1c
+.RI "int \fBrunner_run\fP (struct \fBrunner\fP *\fBr\fP)"
+.br
+.ti -1c
+.RI "int \fBrunner_init_SPU\fP (struct \fBrunner\fP *\fBr\fP, struct \fBengine\fP *\fBe\fP, int \fBid\fP)"
+.br
+.RI "\fIInitialize the runner associated to the given engine and attach it to an SPU\&. \fP"
+.ti -1c
+.RI "int \fBrunner_init\fP (struct \fBrunner\fP *\fBr\fP, struct \fBengine\fP *\fBe\fP, int \fBid\fP)"
+.br
+.RI "\fIInitialize the runner associated to the given engine\&. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBrunner_err\fP = \fBrunner_err_ok\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBrunner_rcount\fP = 0"
+.br
+.ti -1c
+.RI "ticks \fBrunner_timers\fP [\fBrunner_timer_count\fP]"
+.br
+.ti -1c
+.RI "char * \fBrunner_err_msg\fP [12]"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define error(\fBid\fP)   ( \fBrunner_err\fP = \fBerrs_register\fP( \fBid\fP , \fBrunner_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+
+.SH "Function Documentation"
+.PP 
+.SS "int runner_init (struct \fBrunner\fP *r, struct \fBengine\fP *e, intid)"
+
+.PP
+Initialize the runner associated to the given engine\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The \fBrunner\fP to be initialized\&. 
+.br
+\fIe\fP The \fBengine\fP with which it is associated\&. 
+.br
+\fIid\fP The ID of this \fBrunner\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBrunner_err_ok\fP or < 0 on error (see \fBrunner_err\fP)\&. 
+.RE
+.PP
+
+.SS "int runner_init_SPU (struct \fBrunner\fP *r, struct \fBengine\fP *e, intid)"
+
+.PP
+Initialize the runner associated to the given engine and attach it to an SPU\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The \fBrunner\fP to be initialized\&. 
+.br
+\fIe\fP The \fBengine\fP with which it is associated\&. 
+.br
+\fIid\fP The ID of this \fBrunner\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBrunner_err_ok\fP or < 0 on error (see \fBrunner_err\fP)\&.
+.RE
+.PP
+If \fCCELL\fP is not defined, this routine will fail! 
+.SS "int runner_run (struct \fBrunner\fP *r)"
+
+.SS "int runner_run_cell (struct \fBrunner\fP *r)"
+
+.PP
+The \fBrunner\fP's main routine (for the Cell/BE SPU)\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP Pointer to the \fBrunner\fP to run\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBrunner_err_ok\fP or <0 on error (see \fBrunner_err\fP)\&.
+.RE
+.PP
+This is the main routine for the \fBrunner\fP\&. When called, it enters an infinite loop in which it waits at the \fBengine\fP \fCr->e\fP barrier and, once having paSSEd, calls #space_getpair until there are no pairs available\&.
+.PP
+Note that this routine is only compiled if \fCCELL\fP has been defined\&. 
+.SS "int runner_run_cell_tuples (struct \fBrunner\fP *r)"
+
+.PP
+The \fBrunner\fP's main routine (for the Cell/BE SPU, using tuples)\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP Pointer to the \fBrunner\fP to run\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBrunner_err_ok\fP or <0 on error (see \fBrunner_err\fP)\&.
+.RE
+.PP
+This is the main routine for the \fBrunner\fP\&. When called, it enters an infinite loop in which it waits at the \fBengine\fP \fCr->e\fP barrier and, once having paSSEd, calls #space_gettuple until there are no tuples available\&.
+.PP
+Note that this routine is only compiled if \fCCELL\fP has been defined\&. 
+.SS "void runner_sort_ascending (unsigned int *parts, intN)"
+
+.PP
+Sort the particles in ascending order using QuickSort\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIparts\fP The particle IDs and distances in compact form 
+.br
+\fIN\fP The number of particles\&.
+.RE
+.PP
+The particle data is assumed to contain the distance in the lower 16 bits and the particle ID in the upper 16 bits\&. 
+.SS "void runner_sort_descending (unsigned int *parts, intN)"
+
+.PP
+Sort the particles in descending order using QuickSort\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIparts\fP The particle IDs and distances in compact form 
+.br
+\fIN\fP The number of particles\&.
+.RE
+.PP
+The particle data is assumed to contain the distance in the lower 16 bits and the particle ID in the upper 16 bits\&. 
+.SH "Variable Documentation"
+.PP 
+.SS "int runner_err = \fBrunner_err_ok\fP"
+The ID of the last error\&. 
+.SS "char* runner_err_msg[12]"
+\fBInitial value:\fP
+.PP
+.nf
+= {
+        "Nothing bad happened\&.",
+    "An unexpected NULL pointer was encountered\&.",
+    "A call to malloc failed, probably due to insufficient memory\&.",
+    "An error occured when calling a space function\&.",
+    "A call to a pthread routine failed\&.",
+    "An error occured when calling an engine function\&.",
+    "An error occured when calling an SPE function\&.",
+    "An error occured with the memory flow controler\&.",
+    "The requested functionality is not available\&." ,
+    "An error occured when calling an fifo function\&." ,
+    "Error filling Verlet list: too many neighbours\&." , 
+    "Unknown task type\&." , 
+        }
+.fi
+.SS "unsigned int runner_rcount = 0"
+
+.SS "ticks runner_timers[\fBrunner_timer_count\fP]"
+Timers\&. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

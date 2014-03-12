@@ -1,0 +1,63 @@
+.TH "task" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+task \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <task\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "short int \fBtype\fP"
+.br
+.ti -1c
+.RI "short int \fBsubtype\fP"
+.br
+.ti -1c
+.RI "int \fBwait\fP"
+.br
+.ti -1c
+.RI "int \fBflags\fP"
+.br
+.ti -1c
+.RI "int \fBi\fP"
+.br
+.ti -1c
+.RI "int \fBj\fP"
+.br
+.ti -1c
+.RI "int \fBnr_unlock\fP"
+.br
+.ti -1c
+.RI "struct \fBtask\fP * \fBunlock\fP [\fBtask_max_unlock\fP]"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The task structure 
+.SH "Field Documentation"
+.PP 
+.SS "int flags"
+Task flags\&. 
+.SS "int i"
+Indices of the cells/domain involved\&. 
+.SS "int j"
+
+.SS "int nr_unlock"
+Nr of task that this task unlocks\&. 
+.SS "short int subtype"
+
+.SS "short int type"
+Task type/subtype\&. 
+.SS "struct \fBtask\fP* unlock[\fBtask_max_unlock\fP]"
+List of task that this task unlocks (dependencies)\&. 
+.SS "int wait"
+Wait counters\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

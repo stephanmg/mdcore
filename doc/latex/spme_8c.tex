@@ -1,0 +1,196 @@
+\hypertarget{spme_8c}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/spme.c File Reference}
+\label{spme_8c}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/spme.\-c@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/spme.\-c}}
+}
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$strings.\-h$>$}\\*
+{\ttfamily \#include $<$alloca.\-h$>$}\\*
+{\ttfamily \#include $<$pthread.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}../config.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$omp.\-h$>$}\\*
+{\ttfamily \#include $<$complex.\-h$>$}\\*
+{\ttfamily \#include $<$fftw3.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}errs.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fptype.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lock.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}part.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}cell.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}spme.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{spme_8c_a7673862d447029edaf3172ebd94aa28e}{error}(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})~( \hyperlink{spme_8h_a59e0f46ca62391c6a515bd037211e680}{spme\-\_\-err} = \hyperlink{errs_8h_ae37a9c0e0a0aa4a92dbe64c0f38ed95c}{errs\-\_\-register}( \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id} , \hyperlink{spme_8c_a571659328036e93d85548441e063a542}{spme\-\_\-err\-\_\-msg}\mbox{[}-\/(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{spme_8c_a78871cfc7fda054dd1caf89749eddf33}{spme\-\_\-doconv} (struct \hyperlink{structspme}{spme} $\ast$s)
+\begin{DoxyCompactList}\small\item\em Do the convolution stuff. \end{DoxyCompactList}\item 
+void \hyperlink{spme_8c_a4ddfaa47c4e4b9c53d17796cc5cdf5cd}{spme\-\_\-iact} (struct \hyperlink{structspme}{spme} $\ast$restrict s, struct \hyperlink{structcell}{cell} $\ast$restrict cp, struct \hyperlink{structcell}{cell} $\ast$restrict cg)
+\begin{DoxyCompactList}\small\item\em Compute the interactions between the particles and grid. \end{DoxyCompactList}\item 
+void \hyperlink{spme_8c_a7130fed167959b4c9621f49a01502fed}{spme\-\_\-bspline} (float $\ast$\hyperlink{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{x}, int N, float $\ast$b, float $\ast$dbdx)
+\begin{DoxyCompactList}\small\item\em Evaluate the B-\/spline and its derivatives at the given points. \end{DoxyCompactList}\item 
+float \hyperlink{spme_8c_a742206678cf73614023f2ba0fb390028}{spme\-\_\-\-M} (int k, float \hyperlink{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{x})
+\item 
+int \hyperlink{spme_8c_ae97820157f5f03965461a039724dabfe}{spme\-\_\-init} (struct \hyperlink{structspme}{spme} $\ast$s, int $\ast$dim, float $\ast$h, float \hyperlink{potential__eval_8h_a92aaed300d50590bc36b14bc871fca42}{kappa})
+\begin{DoxyCompactList}\small\item\em Sort the cell pairs in a spme according to their direction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{spme_8c_a59e0f46ca62391c6a515bd037211e680}{spme\-\_\-err} = \hyperlink{spme_8h_a930db4717cea6d6ac010dee502f859ba}{spme\-\_\-err\-\_\-ok}
+\item 
+char $\ast$ \hyperlink{spme_8c_a571659328036e93d85548441e063a542}{spme\-\_\-err\-\_\-msg} \mbox{[}5\mbox{]}
+\item 
+float \hyperlink{spme_8c_a2a9ce5154a63323b3a658d432959cb73}{spme\-\_\-coeffs} \mbox{[}12\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{spme_8c_a7673862d447029edaf3172ebd94aa28e}{\index{spme.\-c@{spme.\-c}!error@{error}}
+\index{error@{error}!spme.c@{spme.\-c}}
+\subsubsection[{error}]{\setlength{\rightskip}{0pt plus 5cm}\#define error(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf id}}
+\end{DoxyParamCaption}
+)~( {\bf spme\-\_\-err} = {\bf errs\-\_\-register}( {\bf id} , {\bf spme\-\_\-err\-\_\-msg}\mbox{[}-\/({\bf id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )}}\label{spme_8c_a7673862d447029edaf3172ebd94aa28e}
+
+
+\subsection{Function Documentation}
+\hypertarget{spme_8c_a7130fed167959b4c9621f49a01502fed}{\index{spme.\-c@{spme.\-c}!spme\-\_\-bspline@{spme\-\_\-bspline}}
+\index{spme\-\_\-bspline@{spme\-\_\-bspline}!spme.c@{spme.\-c}}
+\subsubsection[{spme\-\_\-bspline}]{\setlength{\rightskip}{0pt plus 5cm}void spme\-\_\-bspline (
+\begin{DoxyParamCaption}
+\item[{float $\ast$}]{x, }
+\item[{int}]{N, }
+\item[{float $\ast$}]{b, }
+\item[{float $\ast$}]{dbdx}
+\end{DoxyParamCaption}
+)}}\label{spme_8c_a7130fed167959b4c9621f49a01502fed}
+
+
+Evaluate the B-\/spline and its derivatives at the given points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The distances, normalized. \\
+\hline
+{\em N} & The number of points. \\
+\hline
+{\em b} & A vector in which to store the B-\/splines. \\
+\hline
+{\em dbdx} & A vector in which to store the derivative. \\
+\hline
+\end{DoxyParams}
+\hypertarget{spme_8c_a78871cfc7fda054dd1caf89749eddf33}{\index{spme.\-c@{spme.\-c}!spme\-\_\-doconv@{spme\-\_\-doconv}}
+\index{spme\-\_\-doconv@{spme\-\_\-doconv}!spme.c@{spme.\-c}}
+\subsubsection[{spme\-\_\-doconv}]{\setlength{\rightskip}{0pt plus 5cm}int spme\-\_\-doconv (
+\begin{DoxyParamCaption}
+\item[{struct {\bf spme} $\ast$}]{s}
+\end{DoxyParamCaption}
+)}}\label{spme_8c_a78871cfc7fda054dd1caf89749eddf33}
+
+
+Do the convolution stuff. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The \hyperlink{structspme}{spme}. \\
+\hline
+\end{DoxyParams}
+\hypertarget{spme_8c_a4ddfaa47c4e4b9c53d17796cc5cdf5cd}{\index{spme.\-c@{spme.\-c}!spme\-\_\-iact@{spme\-\_\-iact}}
+\index{spme\-\_\-iact@{spme\-\_\-iact}!spme.c@{spme.\-c}}
+\subsubsection[{spme\-\_\-iact}]{\setlength{\rightskip}{0pt plus 5cm}void spme\-\_\-iact (
+\begin{DoxyParamCaption}
+\item[{struct {\bf spme} $\ast$restrict}]{s, }
+\item[{struct {\bf cell} $\ast$restrict}]{cp, }
+\item[{struct {\bf cell} $\ast$restrict}]{cg}
+\end{DoxyParamCaption}
+)}}\label{spme_8c_a4ddfaa47c4e4b9c53d17796cc5cdf5cd}
+
+
+Compute the interactions between the particles and grid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em spme} & The \hyperlink{structspme}{spme} object. \\
+\hline
+{\em cp} & The \hyperlink{structcell}{cell} containing the parts \\
+\hline
+{\em cg} & The \hyperlink{structcell}{cell} containing the grid \\
+\hline
+{\em shift} & The shift vector from {\ttfamily cp} to {\ttfamily cg}. \\
+\hline
+\end{DoxyParams}
+\hypertarget{spme_8c_ae97820157f5f03965461a039724dabfe}{\index{spme.\-c@{spme.\-c}!spme\-\_\-init@{spme\-\_\-init}}
+\index{spme\-\_\-init@{spme\-\_\-init}!spme.c@{spme.\-c}}
+\subsubsection[{spme\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}int spme\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{struct {\bf spme} $\ast$}]{s, }
+\item[{int $\ast$}]{dim, }
+\item[{float $\ast$}]{h, }
+\item[{float}]{kappa}
+\end{DoxyParamCaption}
+)}}\label{spme_8c_ae97820157f5f03965461a039724dabfe}
+
+
+Sort the cell pairs in a spme according to their direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The \hyperlink{structspme}{spme} data structure. \\
+\hline
+{\em dim} & The S\-P\-M\-E grid dimensions. \\
+\hline
+{\em h} & The grid spacing in each dimension.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{spme_8h_a930db4717cea6d6ac010dee502f859ba}{spme\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{spme_8h_a59e0f46ca62391c6a515bd037211e680}{spme\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{spme_8c_a742206678cf73614023f2ba0fb390028}{\index{spme.\-c@{spme.\-c}!spme\-\_\-\-M@{spme\-\_\-\-M}}
+\index{spme\-\_\-\-M@{spme\-\_\-\-M}!spme.c@{spme.\-c}}
+\subsubsection[{spme\-\_\-\-M}]{\setlength{\rightskip}{0pt plus 5cm}float spme\-\_\-\-M (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{float}]{x}
+\end{DoxyParamCaption}
+)}}\label{spme_8c_a742206678cf73614023f2ba0fb390028}
+Recursive definition of the cardinal B-\/spline
+
+
+\begin{DoxyParams}{Parameters}
+{\em k} & B-\/spline order. \\
+\hline
+{\em x} & Point at which the function will be evaluated. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Variable Documentation}
+\hypertarget{spme_8c_a2a9ce5154a63323b3a658d432959cb73}{\index{spme.\-c@{spme.\-c}!spme\-\_\-coeffs@{spme\-\_\-coeffs}}
+\index{spme\-\_\-coeffs@{spme\-\_\-coeffs}!spme.c@{spme.\-c}}
+\subsubsection[{spme\-\_\-coeffs}]{\setlength{\rightskip}{0pt plus 5cm}float spme\-\_\-coeffs\mbox{[}12\mbox{]}}}\label{spme_8c_a2a9ce5154a63323b3a658d432959cb73}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= \{ 2.0f/3.0f , 0.0f , -1.0f , 0.5f ,
+                          4.0f/3.0f , -2.0f , 1.0f , -1.0f/6.0f ,
+                          0.0f , 0.0f , 0.0f , 0.0f \}
+\end{DoxyCode}
+\hypertarget{spme_8c_a59e0f46ca62391c6a515bd037211e680}{\index{spme.\-c@{spme.\-c}!spme\-\_\-err@{spme\-\_\-err}}
+\index{spme\-\_\-err@{spme\-\_\-err}!spme.c@{spme.\-c}}
+\subsubsection[{spme\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}int spme\-\_\-err = {\bf spme\-\_\-err\-\_\-ok}}}\label{spme_8c_a59e0f46ca62391c6a515bd037211e680}
+I\-D of the last error \hypertarget{spme_8c_a571659328036e93d85548441e063a542}{\index{spme.\-c@{spme.\-c}!spme\-\_\-err\-\_\-msg@{spme\-\_\-err\-\_\-msg}}
+\index{spme\-\_\-err\-\_\-msg@{spme\-\_\-err\-\_\-msg}!spme.c@{spme.\-c}}
+\subsubsection[{spme\-\_\-err\-\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ spme\-\_\-err\-\_\-msg\mbox{[}5\mbox{]}}}\label{spme_8c_a571659328036e93d85548441e063a542}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= \{
+        \textcolor{stringliteral}{"Nothing bad happened."},
+    \textcolor{stringliteral}{"An unexpected NULL pointer was encountered."},
+    \textcolor{stringliteral}{"A call to malloc failed, probably due to insufficient memory."},
+    \textcolor{stringliteral}{"SMPE not available, mdcore was not compiled with fftw3."},
+    \textcolor{stringliteral}{"An error occured when calling an fftw3 funciton."}
+        \}
+\end{DoxyCode}

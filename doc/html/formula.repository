@@ -1,0 +1,10 @@
+\form#0:$ \left( \frac{A}{r^{12}} - \frac{B}{r^6} \right) $
+\form#1:$ \frac{1}{4\pi r} $
+\form#2:$ \frac{\mbox{erfc}( \kappa r )}{r} $
+\form#3:$ K(r-r_0)^2 $
+\form#4:$[a,b]$
+\form#5:$ K(1 + \cos(n\arccos(r)-delta) $
+\form#6:$[-1,1]$
+\form#7:$ K(\arccos(r)-r_0)^2 $
+\form#8:$ q\frac{\mbox{erfc}(\kappa r}{r} $
+\form#9:$\alpha$

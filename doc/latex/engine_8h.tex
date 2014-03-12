@@ -1,0 +1,1771 @@
+\hypertarget{engine_8h}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/engine.h File Reference}
+\label{engine_8h}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/engine.\-h@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/engine.\-h}}
+}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structengine}{engine}
+\item 
+struct \hyperlink{structengine__set}{engine\-\_\-set}
+\item 
+struct \hyperlink{structengine__comm}{engine\-\_\-comm}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok}~0
+\item 
+\#define \hyperlink{engine_8h_a0ef6b34a3e2ad2ba326d456113269d91}{engine\-\_\-err\-\_\-null}~-\/1
+\item 
+\#define \hyperlink{engine_8h_a888a5d1ec6d5ccbe334df91723bf2c33}{engine\-\_\-err\-\_\-malloc}~-\/2
+\item 
+\#define \hyperlink{engine_8h_a955175f9c52ba2afeeb5f2ce831c6aa9}{engine\-\_\-err\-\_\-space}~-\/3
+\item 
+\#define \hyperlink{engine_8h_a12e16266dc692b6f771989b37073408b}{engine\-\_\-err\-\_\-pthread}~-\/4
+\item 
+\#define \hyperlink{engine_8h_ac595a85a346397351f3e15e1150999ba}{engine\-\_\-err\-\_\-runner}~-\/5
+\item 
+\#define \hyperlink{engine_8h_afbfd9b5d2af63f8ebbdeb61c9e62d29f}{engine\-\_\-err\-\_\-range}~-\/6
+\item 
+\#define \hyperlink{engine_8h_a5374ceb067ab0127b0daa3eaa480b4b0}{engine\-\_\-err\-\_\-cell}~-\/7
+\item 
+\#define \hyperlink{engine_8h_aec15bd2f24d0404f7068402e408ec87c}{engine\-\_\-err\-\_\-domain}~-\/8
+\item 
+\#define \hyperlink{engine_8h_aef9c4f3b5df326d47030f3006a8a07fc}{engine\-\_\-err\-\_\-nompi}~-\/9
+\item 
+\#define \hyperlink{engine_8h_a48faee976638e39201ed854e3f1dfc01}{engine\-\_\-err\-\_\-mpi}~-\/10
+\item 
+\#define \hyperlink{engine_8h_acf83587e66c16d07f6aae2c1df3f3594}{engine\-\_\-err\-\_\-bond}~-\/11
+\item 
+\#define \hyperlink{engine_8h_acdbeb26583ad36aa5fdc0b578556af0c}{engine\-\_\-err\-\_\-angle}~-\/12
+\item 
+\#define \hyperlink{engine_8h_a743028a880dfc177c0fdddd627b95976}{engine\-\_\-err\-\_\-reader}~-\/13
+\item 
+\#define \hyperlink{engine_8h_afb94d2344ff3e8ff1a26b9fd01f9f017}{engine\-\_\-err\-\_\-psf}~-\/14
+\item 
+\#define \hyperlink{engine_8h_a67f975dff6cecd21b023d0abac301acd}{engine\-\_\-err\-\_\-pdb}~-\/15
+\item 
+\#define \hyperlink{engine_8h_a860207d43030a57706dc1627024d3ac4}{engine\-\_\-err\-\_\-cpf}~-\/16
+\item 
+\#define \hyperlink{engine_8h_ac0f29b4cb0e753119448599770f90580}{engine\-\_\-err\-\_\-potential}~-\/17
+\item 
+\#define \hyperlink{engine_8h_ae01d442cbbb2d5485dbc106f90c1d328}{engine\-\_\-err\-\_\-exclusion}~-\/18
+\item 
+\#define \hyperlink{engine_8h_a3b93515a5a1141405a319b90cee86933}{engine\-\_\-err\-\_\-sets}~-\/19
+\item 
+\#define \hyperlink{engine_8h_ae3b586de6b9951704005150a42dc4d40}{engine\-\_\-err\-\_\-dihedral}~-\/20
+\item 
+\#define \hyperlink{engine_8h_a6f9412e51b7a5c58f043629c35f4f380}{engine\-\_\-err\-\_\-cuda}~-\/21
+\item 
+\#define \hyperlink{engine_8h_abb09102564317fa4f1359d081489cb91}{engine\-\_\-err\-\_\-nocuda}~-\/22
+\item 
+\#define \hyperlink{engine_8h_a16609fb2c46ead79be2ba181d4c46be3}{engine\-\_\-err\-\_\-cudasp}~-\/23
+\item 
+\#define \hyperlink{engine_8h_ae7900b6f9c2726e4813b129343799b41}{engine\-\_\-err\-\_\-maxparts}~-\/24
+\item 
+\#define \hyperlink{engine_8h_aa7d94c4a6546e4376da1c187d78a9195}{engine\-\_\-err\-\_\-queue}~-\/25
+\item 
+\#define \hyperlink{engine_8h_a878bb7ba4816191990881c1a9867c80e}{engine\-\_\-err\-\_\-rigid}~-\/26
+\item 
+\#define \hyperlink{engine_8h_a0d22605acc7c51a1367e237baec84b06}{engine\-\_\-err\-\_\-cutoff}~-\/27
+\item 
+\#define \hyperlink{engine_8h_aa06a569299d594d8a261c5dbf54cdf8a}{engine\-\_\-err\-\_\-nometis}~-\/28
+\item 
+\#define \hyperlink{engine_8h_a58b9a683416b58b6782f462e5f7fffd4}{engine\-\_\-flag\-\_\-none}~0
+\item 
+\#define \hyperlink{engine_8h_ab47fb75f59e0641e9cfaae524d4314b8}{engine\-\_\-flag\-\_\-static}~1
+\item 
+\#define \hyperlink{engine_8h_af24c7dc4b6f99633baef27ecb5b7a613}{engine\-\_\-flag\-\_\-localparts}~2
+\item 
+\#define \hyperlink{engine_8h_a299e60d7eb5e0c59b9ce995e1ffb36f6}{engine\-\_\-flag\-\_\-cuda}~4
+\item 
+\#define \hyperlink{engine_8h_ad551f1485c9d3adda913dfbe2f5a5b58}{engine\-\_\-flag\-\_\-explepot}~8
+\item 
+\#define \hyperlink{engine_8h_a716de72d1838a6369cafefde6feb7581}{engine\-\_\-flag\-\_\-verlet}~16
+\item 
+\#define \hyperlink{engine_8h_a764c2343bda60c0d6466e92a25d1b1f3}{engine\-\_\-flag\-\_\-verlet\-\_\-pairwise}~32
+\item 
+\#define \hyperlink{engine_8h_ae56b1f290f464f070651304590f69f0e}{engine\-\_\-flag\-\_\-affinity}~64
+\item 
+\#define \hyperlink{engine_8h_acc72ba15eec8d0b98eb1b9e41d6b89ae}{engine\-\_\-flag\-\_\-prefetch}~128
+\item 
+\#define \hyperlink{engine_8h_a4092444585fafaf2a5d676161efae302}{engine\-\_\-flag\-\_\-verlet\-\_\-pseudo}~256
+\item 
+\#define \hyperlink{engine_8h_a5e80aa8ccffff1e10a0960ff72824feb}{engine\-\_\-flag\-\_\-unsorted}~512
+\item 
+\#define \hyperlink{engine_8h_ad415dc9d9c52a776395af92db5da86cf}{engine\-\_\-flag\-\_\-shake}~1024
+\item 
+\#define \hyperlink{engine_8h_a6d5eafda046a751593c4abebac8ba6f2}{engine\-\_\-flag\-\_\-mpi}~2048
+\item 
+\#define \hyperlink{engine_8h_a4b14c0d4454982658a0e9107de14bad8}{engine\-\_\-flag\-\_\-parbonded}~4096
+\item 
+\#define \hyperlink{engine_8h_a40bd30189720133d5e17fac9294977b4}{engine\-\_\-flag\-\_\-async}~8192
+\item 
+\#define \hyperlink{engine_8h_ac682fd4a0738d29efbc69cd32b766129}{engine\-\_\-flag\-\_\-sets}~16384
+\item 
+\#define \hyperlink{engine_8h_a6080296b140762223baeae0453404dff}{engine\-\_\-flag\-\_\-nullpart}~32768
+\item 
+\#define \hyperlink{engine_8h_a273ee2de66436e9e5e472787c37ce022}{engine\-\_\-bonds\-\_\-chunk}~100
+\item 
+\#define \hyperlink{engine_8h_a4fb3fc7d580558e980ec7553a855067c}{engine\-\_\-angles\-\_\-chunk}~100
+\item 
+\#define \hyperlink{engine_8h_ace9678cc2ca5c905baa354c8be101ac1}{engine\-\_\-rigids\-\_\-chunk}~50
+\item 
+\#define \hyperlink{engine_8h_a0e744e5183d896fe4bf30861b3f8bbe1}{engine\-\_\-dihedrals\-\_\-chunk}~100
+\item 
+\#define \hyperlink{engine_8h_a947ed24f326addc8dd2b52dbb950ca2e}{engine\-\_\-exclusions\-\_\-chunk}~100
+\item 
+\#define \hyperlink{engine_8h_a57dc2682fde272c06e0911cafb7b4197}{engine\-\_\-readbuff}~16384
+\item 
+\#define \hyperlink{engine_8h_a5d6f21fad43e8aeee37189a0d8c7651c}{engine\-\_\-maxgpu}~10
+\item 
+\#define \hyperlink{engine_8h_a2aa020d74916c4e69f6015fd1889d867}{engine\-\_\-pshake\-\_\-steps}~20
+\item 
+\#define \hyperlink{engine_8h_a05b28f1317a421a489308c5d941f5dcc}{engine\-\_\-max\-Kcutoff}~2
+\item 
+\#define \hyperlink{engine_8h_a992960d7ad0e471b6fd057f852149356}{engine\-\_\-split\-\_\-\-M\-P\-I}~1
+\item 
+\#define \hyperlink{engine_8h_a287e7babd525c7fe222b4f756478d2e8}{engine\-\_\-split\-\_\-\-G\-P\-U}~2
+\item 
+\#define \hyperlink{engine_8h_ab050bafc657c777277a1d5d54583236a}{engine\-\_\-bonded\-\_\-maxnrthreads}~16
+\item 
+\#define \hyperlink{engine_8h_ae2db23b026a961951fb2f4a1918b577e}{engine\-\_\-bonded\-\_\-nrthreads}~((omp\-\_\-get\-\_\-num\-\_\-threads()$<$\hyperlink{engine_8h_ab050bafc657c777277a1d5d54583236a}{engine\-\_\-bonded\-\_\-maxnrthreads})?omp\-\_\-get\-\_\-num\-\_\-threads()\-:\hyperlink{engine_8h_ab050bafc657c777277a1d5d54583236a}{engine\-\_\-bonded\-\_\-maxnrthreads})
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \\*
+\hyperlink{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba6188736cebd64f033c852c3361320410}{engine\-\_\-timer\-\_\-step} = 0, 
+\hyperlink{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba692a545ffc4a5b298e929608578c9f5d}{engine\-\_\-timer\-\_\-prepare}, 
+\hyperlink{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba40241c51c2c7135010d0e7dfd6fa3f6b}{engine\-\_\-timer\-\_\-verlet}, 
+\hyperlink{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba8fecc329e7f92f4c2ba08323fc40e236}{engine\-\_\-timer\-\_\-exchange1}, 
+\\*
+\hyperlink{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba71d4f48dcba63889b284c8f00237a361}{engine\-\_\-timer\-\_\-nonbond}, 
+\hyperlink{engine_8h_a06fc87d81c62e9abb8790b6e5713c55bacb0606487470e0e7eeed7aa13392005e}{engine\-\_\-timer\-\_\-bonded}, 
+\hyperlink{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba14f40fc588586aca5e1908172c6ccaee}{engine\-\_\-timer\-\_\-bonded\-\_\-sort}, 
+\hyperlink{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba0e4b12e01dc7c7fc21473dd963ae8ced}{engine\-\_\-timer\-\_\-bonds}, 
+\\*
+\hyperlink{engine_8h_a06fc87d81c62e9abb8790b6e5713c55bade961b710d5fca9d3d7ed6bb1fcad528}{engine\-\_\-timer\-\_\-angles}, 
+\hyperlink{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba71ccd2c505f97b5251de26095431f9c2}{engine\-\_\-timer\-\_\-dihedrals}, 
+\hyperlink{engine_8h_a06fc87d81c62e9abb8790b6e5713c55babab3d9cb9ce787537965d7a9edcf6490}{engine\-\_\-timer\-\_\-exclusions}, 
+\hyperlink{engine_8h_a06fc87d81c62e9abb8790b6e5713c55baa7bb9b503c74076926401cad5178a0b2}{engine\-\_\-timer\-\_\-advance}, 
+\\*
+\hyperlink{engine_8h_a06fc87d81c62e9abb8790b6e5713c55bae6e2e59705f7c6b8845b7bec6114efa9}{engine\-\_\-timer\-\_\-rigid}, 
+\hyperlink{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba5f5dcc0e2c0f93dac3215950a6aa9851}{engine\-\_\-timer\-\_\-exchange2}, 
+\hyperlink{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba958fdfaef17a335686e831c3d1ca19bb}{engine\-\_\-timer\-\_\-shuffle}, 
+\hyperlink{engine_8h_a06fc87d81c62e9abb8790b6e5713c55badb6dfe2a0b702a0e9055a0ec5453273a}{engine\-\_\-timer\-\_\-cuda\-\_\-load}, 
+\\*
+\hyperlink{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba276814c75656099072e7c4a7779478c4}{engine\-\_\-timer\-\_\-cuda\-\_\-unload}, 
+\hyperlink{engine_8h_a06fc87d81c62e9abb8790b6e5713c55bad38362a51c5902d671d14730deff3296}{engine\-\_\-timer\-\_\-cuda\-\_\-dopairs}, 
+\hyperlink{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba193f5be157573b064ca69240a194d5e1}{engine\-\_\-timer\-\_\-last}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{engine_8h_a0fc5afb224fc0eead89b3ece8e141b29}{engine\-\_\-addpot} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, struct \hyperlink{structpotential}{potential} $\ast$p, int i, int j)
+\begin{DoxyCompactList}\small\item\em Add an interaction potential. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_ae5c581d9626ae3f47da431ecd65b223a}{engine\-\_\-addtype} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, double mass, double charge, char $\ast$name, char $\ast$name2)
+\begin{DoxyCompactList}\small\item\em Add a type definition. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a8660144250e66e9a085023904c9c5285}{engine\-\_\-advance} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Update the particle velocities and positions, re-\/shuffle if appropriate. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_ae9e8ee413a8c582a7e7605bf93a7466e}{engine\-\_\-angle\-\_\-addpot} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, struct \hyperlink{structpotential}{potential} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Add a angle potential. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a9233c5ae9b841e227922260c1747df9a}{engine\-\_\-angle\-\_\-add} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int i, int j, int k, int pid)
+\begin{DoxyCompactList}\small\item\em Add a angle interaction to the engine. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a4b50a370eff915c24f435206adc9e69a}{engine\-\_\-angle\-\_\-eval} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Compute the angled interactions stored in this engine. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_aac762f402ed94cd5529bf50c771db96f}{engine\-\_\-barrier} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Barrier routine to hold the {\ttfamily runners} back. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_ae71d4fc7b237c821f4d6303f6518d369}{engine\-\_\-bond\-\_\-addpot} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, struct \hyperlink{structpotential}{potential} $\ast$p, int i, int j)
+\begin{DoxyCompactList}\small\item\em Add a bond potential. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a9bfc2c0c4d6a22191424ee0a1a428202}{engine\-\_\-bond\-\_\-add} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int i, int j)
+\begin{DoxyCompactList}\small\item\em Add a bonded interaction to the engine. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a933e8a837ef1b6c6b8b7cd1853911f90}{engine\-\_\-bond\-\_\-eval} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Compute the bonded interactions stored in this engine. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_af7db4a2e3357cd92cdda4e17b111b43b}{engine\-\_\-bonded\-\_\-eval} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Compute all bonded interactions stored in this engine. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a283869cb42958585b07d8da489560d38}{engine\-\_\-bonded\-\_\-eval\-\_\-sets} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Compute all bonded interactions stored in this engine. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a1f2a4097ab35dec39a77ccad1e212596}{engine\-\_\-bonded\-\_\-sets} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int max\-\_\-sets)
+\begin{DoxyCompactList}\small\item\em Assemble non-\/conflicting sets of bonded interactions. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a0a1196791936f88ca5d6bbf5363fb78f}{engine\-\_\-dihedral\-\_\-add} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int i, int j, int k, int l, int pid)
+\begin{DoxyCompactList}\small\item\em Add a dihedral interaction to the engine. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_ad01a436b55b2214e91fb7229faa64a4e}{engine\-\_\-dihedral\-\_\-addpot} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, struct \hyperlink{structpotential}{potential} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Add a dihedral potential. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_ab36c8e8f6eba5ad7d7a134c157505de4}{engine\-\_\-dihedral\-\_\-eval} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Compute the dihedral interactions stored in this engine. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a97284ead9f5348093b3d7d95401ccbff}{engine\-\_\-dump\-\_\-\-P\-S\-F} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, F\-I\-L\-E $\ast$psf, F\-I\-L\-E $\ast$pdb, char $\ast$excl\mbox{[}$\,$\mbox{]}, int nr\-\_\-excl)
+\begin{DoxyCompactList}\small\item\em Dump the contents of the enginge to a P\-S\-F and P\-D\-B file. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a8c09326908e15e1509f495c33619e761}{engine\-\_\-exclusion\-\_\-add} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int i, int j)
+\begin{DoxyCompactList}\small\item\em Add a exclusioned interaction to the engine. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a40f43733856ad7022c172be2b7946246}{engine\-\_\-exclusion\-\_\-eval} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Compute the exclusioned interactions stored in this engine. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a7f4a778e88593837c2fb2d7b61894f5c}{engine\-\_\-exclusion\-\_\-shrink} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Remove duplicate exclusions. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a5958b9991d32fbed9413b86b2434a3de}{engine\-\_\-finalize} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Initialize an \hyperlink{structengine}{engine} with the given data and M\-P\-I enabled. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a55d13cd5411d205e44e0b0571cde9f95}{engine\-\_\-flush\-\_\-ghosts} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Clear all particles from this \hyperlink{structengine}{engine}'s ghost cells. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_aec725cc5cea5de5ab0cfd4649acee54b}{engine\-\_\-flush} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Clear all particles from this \hyperlink{structengine}{engine}. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a7f5eb4b18d014939b82c7329f200c64d}{engine\-\_\-gettype} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Look for a given type by name. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a5e46198e54b67d4c8a16f1cf9d3c3533}{engine\-\_\-gettype2} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, char $\ast$name2)
+\begin{DoxyCompactList}\small\item\em Look for a given type by its second name. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a44f518099f47e5692cd6a46022594172}{engine\-\_\-init} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, const double $\ast$origin, const double $\ast$dim, double $\ast$L, double cutoff, unsigned int period, int max\-\_\-type, unsigned int flags)
+\begin{DoxyCompactList}\small\item\em Initialize an \hyperlink{structengine}{engine} with the given data. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a49b6058437aa43ae800e63ce46f69ea1}{engine\-\_\-load\-\_\-ghosts} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, double $\ast$\hyperlink{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{x}, double $\ast$v, int $\ast$type, int $\ast$pid, int $\ast$vid, double $\ast$q, unsigned int $\ast$flags, int N)
+\begin{DoxyCompactList}\small\item\em Load a set of particle data as ghosts. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a0e7ff85de70a1950505df5117690b04a}{engine\-\_\-load} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, double $\ast$\hyperlink{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{x}, double $\ast$v, int $\ast$type, int $\ast$pid, int $\ast$vid, double $\ast$charge, unsigned int $\ast$flags, int N)
+\begin{DoxyCompactList}\small\item\em Load a set of particle data. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a743f563fdca707aeae7edc1726e13996}{engine\-\_\-nonbond\-\_\-eval} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Compute the nonbonded interactions in the current step. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a34524364f411a9d5e6a7e46dd88146e8}{engine\-\_\-read\-\_\-cpf} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int cpf, double \hyperlink{potential__eval_8h_a92aaed300d50590bc36b14bc871fca42}{kappa}, double tol, int rigid\-H)
+\begin{DoxyCompactList}\small\item\em Read the potentials from a C\-H\-A\-R\-M\-M parameter file. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a6a5d23442a757983ad642bfab5ec231c}{engine\-\_\-read\-\_\-psf} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int psf, int pdb)
+\begin{DoxyCompactList}\small\item\em Read the simulation setup from a P\-S\-F and P\-D\-B file pair. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a9299806d7c4bdf1fb622ba4aa409eaa1}{engine\-\_\-read\-\_\-xplor} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int xplor, double \hyperlink{potential__eval_8h_a92aaed300d50590bc36b14bc871fca42}{kappa}, double tol, int rigid\-H)
+\begin{DoxyCompactList}\small\item\em Read the potentials from a X\-P\-L\-O\-R parameter file. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a6f09206374580e9eeef8c16dea4419f3}{engine\-\_\-rigid\-\_\-add} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int pid, int pjd, double d)
+\begin{DoxyCompactList}\small\item\em Add a rigid constraint to the engine. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a3aab981531b097b166448a23f234eaf4}{engine\-\_\-rigid\-\_\-eval} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Resolve the constraints. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_aaa4ca8f891331f7c68bd5770b63aa341}{engine\-\_\-rigid\-\_\-sort} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Split the rigids into local, semilocal and non-\/local. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a0c8bedfc38955b879b7db720ebb896f9}{engine\-\_\-rigid\-\_\-unsort} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Shuffle the rigid constraints randomly. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a6a5018069671d0762806896d927f3a95}{engine\-\_\-setexplepot} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, struct \hyperlink{structpotential}{potential} $\ast$ep)
+\begin{DoxyCompactList}\small\item\em Set the explicit electrostatic potential. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_aee24cd486d7bc6be737df5ecd43cd68b}{engine\-\_\-shuffle} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Re-\/shuffle the particles in the engine. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_ad8e0c8513f4fbf6fc18f3166b4484044}{engine\-\_\-split\-\_\-bisect} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int N)
+\begin{DoxyCompactList}\small\item\em Split the computational domain over a number of nodes using bisection. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a58eed0f9b4140be350b08e1742627f87}{engine\-\_\-split} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Set-\/up the engine for distributed-\/memory parallel operation. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_acd1955f16ceb52c87d569b923648d52b}{engine\-\_\-start\-\_\-\-S\-P\-U} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int nr\-\_\-runners)
+\begin{DoxyCompactList}\small\item\em Start the S\-P\-U-\/associated runners in the given \hyperlink{structengine}{engine}. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a94831a2a9b41da551a85764b2cffe8f7}{engine\-\_\-start} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int nr\-\_\-runners, int nr\-\_\-queues)
+\begin{DoxyCompactList}\small\item\em Start the runners in the given \hyperlink{structengine}{engine}. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_ab169ee7ceb11536d4907c4a07ae62044}{engine\-\_\-step} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Run the engine for a single time step. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_ad67df51519859e9386275e0cc084f840}{engine\-\_\-timers\-\_\-reset} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Set all the engine timers to 0. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a977a0035dcac10dd069867a10e882c8d}{engine\-\_\-unload\-\_\-marked} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, double $\ast$\hyperlink{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{x}, double $\ast$v, int $\ast$type, int $\ast$pid, int $\ast$vid, double $\ast$q, unsigned int $\ast$flags, double $\ast$epot, int N)
+\begin{DoxyCompactList}\small\item\em Unload a set of particle data from the marked cells of an \hyperlink{structengine}{engine}. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a699b49b6f65144fdd950812231e4c387}{engine\-\_\-unload\-\_\-strays} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, double $\ast$\hyperlink{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{x}, double $\ast$v, int $\ast$type, int $\ast$pid, int $\ast$vid, double $\ast$q, unsigned int $\ast$flags, double $\ast$epot, int N)
+\begin{DoxyCompactList}\small\item\em Unload real particles that may have wandered into a ghost cell. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a6ea030db3b58209416bd976c4b364327}{engine\-\_\-unload} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, double $\ast$\hyperlink{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{x}, double $\ast$v, int $\ast$type, int $\ast$pid, int $\ast$vid, double $\ast$charge, unsigned int $\ast$flags, double $\ast$epot, int N)
+\begin{DoxyCompactList}\small\item\em Unload a set of particle data from the \hyperlink{structengine}{engine}. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_a83702eb8b53c1de5addc229530571f1e}{engine\-\_\-verlet\-\_\-update} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Check if the Verlet-\/list needs to be updated. \end{DoxyCompactList}\item 
+int \hyperlink{engine_8h_af88982963377c8df684162bda505fe9d}{engine\-\_\-split\-\_\-\-M\-E\-T\-I\-S} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int N, int flags)
+\begin{DoxyCompactList}\small\item\em Split the computation domain over a number of nodes using M\-E\-T\-I\-S graph partitioning. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}
+\item 
+char $\ast$ \hyperlink{engine_8h_aa489083c5e5d436bafd05a7860b21804}{engine\-\_\-err\-\_\-msg} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{engine_8h_a4fb3fc7d580558e980ec7553a855067c}{\index{engine.\-h@{engine.\-h}!engine\-\_\-angles\-\_\-chunk@{engine\-\_\-angles\-\_\-chunk}}
+\index{engine\-\_\-angles\-\_\-chunk@{engine\-\_\-angles\-\_\-chunk}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-angles\-\_\-chunk}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-angles\-\_\-chunk~100}}\label{engine_8h_a4fb3fc7d580558e980ec7553a855067c}
+\hypertarget{engine_8h_ab050bafc657c777277a1d5d54583236a}{\index{engine.\-h@{engine.\-h}!engine\-\_\-bonded\-\_\-maxnrthreads@{engine\-\_\-bonded\-\_\-maxnrthreads}}
+\index{engine\-\_\-bonded\-\_\-maxnrthreads@{engine\-\_\-bonded\-\_\-maxnrthreads}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-bonded\-\_\-maxnrthreads}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-bonded\-\_\-maxnrthreads~16}}\label{engine_8h_ab050bafc657c777277a1d5d54583236a}
+\hypertarget{engine_8h_ae2db23b026a961951fb2f4a1918b577e}{\index{engine.\-h@{engine.\-h}!engine\-\_\-bonded\-\_\-nrthreads@{engine\-\_\-bonded\-\_\-nrthreads}}
+\index{engine\-\_\-bonded\-\_\-nrthreads@{engine\-\_\-bonded\-\_\-nrthreads}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-bonded\-\_\-nrthreads}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-bonded\-\_\-nrthreads~((omp\-\_\-get\-\_\-num\-\_\-threads()$<${\bf engine\-\_\-bonded\-\_\-maxnrthreads})?omp\-\_\-get\-\_\-num\-\_\-threads()\-:{\bf engine\-\_\-bonded\-\_\-maxnrthreads})}}\label{engine_8h_ae2db23b026a961951fb2f4a1918b577e}
+\hypertarget{engine_8h_a273ee2de66436e9e5e472787c37ce022}{\index{engine.\-h@{engine.\-h}!engine\-\_\-bonds\-\_\-chunk@{engine\-\_\-bonds\-\_\-chunk}}
+\index{engine\-\_\-bonds\-\_\-chunk@{engine\-\_\-bonds\-\_\-chunk}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-bonds\-\_\-chunk}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-bonds\-\_\-chunk~100}}\label{engine_8h_a273ee2de66436e9e5e472787c37ce022}
+\hypertarget{engine_8h_a0e744e5183d896fe4bf30861b3f8bbe1}{\index{engine.\-h@{engine.\-h}!engine\-\_\-dihedrals\-\_\-chunk@{engine\-\_\-dihedrals\-\_\-chunk}}
+\index{engine\-\_\-dihedrals\-\_\-chunk@{engine\-\_\-dihedrals\-\_\-chunk}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-dihedrals\-\_\-chunk}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-dihedrals\-\_\-chunk~100}}\label{engine_8h_a0e744e5183d896fe4bf30861b3f8bbe1}
+\hypertarget{engine_8h_acdbeb26583ad36aa5fdc0b578556af0c}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-angle@{engine\-\_\-err\-\_\-angle}}
+\index{engine\-\_\-err\-\_\-angle@{engine\-\_\-err\-\_\-angle}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-angle}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-angle~-\/12}}\label{engine_8h_acdbeb26583ad36aa5fdc0b578556af0c}
+\hypertarget{engine_8h_acf83587e66c16d07f6aae2c1df3f3594}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-bond@{engine\-\_\-err\-\_\-bond}}
+\index{engine\-\_\-err\-\_\-bond@{engine\-\_\-err\-\_\-bond}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-bond}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-bond~-\/11}}\label{engine_8h_acf83587e66c16d07f6aae2c1df3f3594}
+\hypertarget{engine_8h_a5374ceb067ab0127b0daa3eaa480b4b0}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-cell@{engine\-\_\-err\-\_\-cell}}
+\index{engine\-\_\-err\-\_\-cell@{engine\-\_\-err\-\_\-cell}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-cell}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-cell~-\/7}}\label{engine_8h_a5374ceb067ab0127b0daa3eaa480b4b0}
+\hypertarget{engine_8h_a860207d43030a57706dc1627024d3ac4}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-cpf@{engine\-\_\-err\-\_\-cpf}}
+\index{engine\-\_\-err\-\_\-cpf@{engine\-\_\-err\-\_\-cpf}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-cpf}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-cpf~-\/16}}\label{engine_8h_a860207d43030a57706dc1627024d3ac4}
+\hypertarget{engine_8h_a6f9412e51b7a5c58f043629c35f4f380}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-cuda@{engine\-\_\-err\-\_\-cuda}}
+\index{engine\-\_\-err\-\_\-cuda@{engine\-\_\-err\-\_\-cuda}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-cuda}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-cuda~-\/21}}\label{engine_8h_a6f9412e51b7a5c58f043629c35f4f380}
+\hypertarget{engine_8h_a16609fb2c46ead79be2ba181d4c46be3}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-cudasp@{engine\-\_\-err\-\_\-cudasp}}
+\index{engine\-\_\-err\-\_\-cudasp@{engine\-\_\-err\-\_\-cudasp}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-cudasp}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-cudasp~-\/23}}\label{engine_8h_a16609fb2c46ead79be2ba181d4c46be3}
+\hypertarget{engine_8h_a0d22605acc7c51a1367e237baec84b06}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-cutoff@{engine\-\_\-err\-\_\-cutoff}}
+\index{engine\-\_\-err\-\_\-cutoff@{engine\-\_\-err\-\_\-cutoff}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-cutoff}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-cutoff~-\/27}}\label{engine_8h_a0d22605acc7c51a1367e237baec84b06}
+\hypertarget{engine_8h_ae3b586de6b9951704005150a42dc4d40}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-dihedral@{engine\-\_\-err\-\_\-dihedral}}
+\index{engine\-\_\-err\-\_\-dihedral@{engine\-\_\-err\-\_\-dihedral}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-dihedral}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-dihedral~-\/20}}\label{engine_8h_ae3b586de6b9951704005150a42dc4d40}
+\hypertarget{engine_8h_aec15bd2f24d0404f7068402e408ec87c}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-domain@{engine\-\_\-err\-\_\-domain}}
+\index{engine\-\_\-err\-\_\-domain@{engine\-\_\-err\-\_\-domain}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-domain}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-domain~-\/8}}\label{engine_8h_aec15bd2f24d0404f7068402e408ec87c}
+\hypertarget{engine_8h_ae01d442cbbb2d5485dbc106f90c1d328}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-exclusion@{engine\-\_\-err\-\_\-exclusion}}
+\index{engine\-\_\-err\-\_\-exclusion@{engine\-\_\-err\-\_\-exclusion}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-exclusion}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-exclusion~-\/18}}\label{engine_8h_ae01d442cbbb2d5485dbc106f90c1d328}
+\hypertarget{engine_8h_a888a5d1ec6d5ccbe334df91723bf2c33}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-malloc@{engine\-\_\-err\-\_\-malloc}}
+\index{engine\-\_\-err\-\_\-malloc@{engine\-\_\-err\-\_\-malloc}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-malloc}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-malloc~-\/2}}\label{engine_8h_a888a5d1ec6d5ccbe334df91723bf2c33}
+\hypertarget{engine_8h_ae7900b6f9c2726e4813b129343799b41}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-maxparts@{engine\-\_\-err\-\_\-maxparts}}
+\index{engine\-\_\-err\-\_\-maxparts@{engine\-\_\-err\-\_\-maxparts}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-maxparts}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-maxparts~-\/24}}\label{engine_8h_ae7900b6f9c2726e4813b129343799b41}
+\hypertarget{engine_8h_a48faee976638e39201ed854e3f1dfc01}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-mpi@{engine\-\_\-err\-\_\-mpi}}
+\index{engine\-\_\-err\-\_\-mpi@{engine\-\_\-err\-\_\-mpi}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-mpi}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-mpi~-\/10}}\label{engine_8h_a48faee976638e39201ed854e3f1dfc01}
+\hypertarget{engine_8h_abb09102564317fa4f1359d081489cb91}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-nocuda@{engine\-\_\-err\-\_\-nocuda}}
+\index{engine\-\_\-err\-\_\-nocuda@{engine\-\_\-err\-\_\-nocuda}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-nocuda}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-nocuda~-\/22}}\label{engine_8h_abb09102564317fa4f1359d081489cb91}
+\hypertarget{engine_8h_aa06a569299d594d8a261c5dbf54cdf8a}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-nometis@{engine\-\_\-err\-\_\-nometis}}
+\index{engine\-\_\-err\-\_\-nometis@{engine\-\_\-err\-\_\-nometis}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-nometis}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-nometis~-\/28}}\label{engine_8h_aa06a569299d594d8a261c5dbf54cdf8a}
+\hypertarget{engine_8h_aef9c4f3b5df326d47030f3006a8a07fc}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-nompi@{engine\-\_\-err\-\_\-nompi}}
+\index{engine\-\_\-err\-\_\-nompi@{engine\-\_\-err\-\_\-nompi}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-nompi}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-nompi~-\/9}}\label{engine_8h_aef9c4f3b5df326d47030f3006a8a07fc}
+\hypertarget{engine_8h_a0ef6b34a3e2ad2ba326d456113269d91}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-null@{engine\-\_\-err\-\_\-null}}
+\index{engine\-\_\-err\-\_\-null@{engine\-\_\-err\-\_\-null}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-null}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-null~-\/1}}\label{engine_8h_a0ef6b34a3e2ad2ba326d456113269d91}
+\hypertarget{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-ok@{engine\-\_\-err\-\_\-ok}}
+\index{engine\-\_\-err\-\_\-ok@{engine\-\_\-err\-\_\-ok}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-ok}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-ok~0}}\label{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}
+\hypertarget{engine_8h_a67f975dff6cecd21b023d0abac301acd}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-pdb@{engine\-\_\-err\-\_\-pdb}}
+\index{engine\-\_\-err\-\_\-pdb@{engine\-\_\-err\-\_\-pdb}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-pdb}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-pdb~-\/15}}\label{engine_8h_a67f975dff6cecd21b023d0abac301acd}
+\hypertarget{engine_8h_ac0f29b4cb0e753119448599770f90580}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-potential@{engine\-\_\-err\-\_\-potential}}
+\index{engine\-\_\-err\-\_\-potential@{engine\-\_\-err\-\_\-potential}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-potential}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-potential~-\/17}}\label{engine_8h_ac0f29b4cb0e753119448599770f90580}
+\hypertarget{engine_8h_afb94d2344ff3e8ff1a26b9fd01f9f017}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-psf@{engine\-\_\-err\-\_\-psf}}
+\index{engine\-\_\-err\-\_\-psf@{engine\-\_\-err\-\_\-psf}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-psf}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-psf~-\/14}}\label{engine_8h_afb94d2344ff3e8ff1a26b9fd01f9f017}
+\hypertarget{engine_8h_a12e16266dc692b6f771989b37073408b}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-pthread@{engine\-\_\-err\-\_\-pthread}}
+\index{engine\-\_\-err\-\_\-pthread@{engine\-\_\-err\-\_\-pthread}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-pthread}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-pthread~-\/4}}\label{engine_8h_a12e16266dc692b6f771989b37073408b}
+\hypertarget{engine_8h_aa7d94c4a6546e4376da1c187d78a9195}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-queue@{engine\-\_\-err\-\_\-queue}}
+\index{engine\-\_\-err\-\_\-queue@{engine\-\_\-err\-\_\-queue}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-queue}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-queue~-\/25}}\label{engine_8h_aa7d94c4a6546e4376da1c187d78a9195}
+\hypertarget{engine_8h_afbfd9b5d2af63f8ebbdeb61c9e62d29f}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-range@{engine\-\_\-err\-\_\-range}}
+\index{engine\-\_\-err\-\_\-range@{engine\-\_\-err\-\_\-range}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-range}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-range~-\/6}}\label{engine_8h_afbfd9b5d2af63f8ebbdeb61c9e62d29f}
+\hypertarget{engine_8h_a743028a880dfc177c0fdddd627b95976}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-reader@{engine\-\_\-err\-\_\-reader}}
+\index{engine\-\_\-err\-\_\-reader@{engine\-\_\-err\-\_\-reader}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-reader}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-reader~-\/13}}\label{engine_8h_a743028a880dfc177c0fdddd627b95976}
+\hypertarget{engine_8h_a878bb7ba4816191990881c1a9867c80e}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-rigid@{engine\-\_\-err\-\_\-rigid}}
+\index{engine\-\_\-err\-\_\-rigid@{engine\-\_\-err\-\_\-rigid}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-rigid}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-rigid~-\/26}}\label{engine_8h_a878bb7ba4816191990881c1a9867c80e}
+\hypertarget{engine_8h_ac595a85a346397351f3e15e1150999ba}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-runner@{engine\-\_\-err\-\_\-runner}}
+\index{engine\-\_\-err\-\_\-runner@{engine\-\_\-err\-\_\-runner}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-runner}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-runner~-\/5}}\label{engine_8h_ac595a85a346397351f3e15e1150999ba}
+\hypertarget{engine_8h_a3b93515a5a1141405a319b90cee86933}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-sets@{engine\-\_\-err\-\_\-sets}}
+\index{engine\-\_\-err\-\_\-sets@{engine\-\_\-err\-\_\-sets}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-sets}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-sets~-\/19}}\label{engine_8h_a3b93515a5a1141405a319b90cee86933}
+\hypertarget{engine_8h_a955175f9c52ba2afeeb5f2ce831c6aa9}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-space@{engine\-\_\-err\-\_\-space}}
+\index{engine\-\_\-err\-\_\-space@{engine\-\_\-err\-\_\-space}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-space}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-err\-\_\-space~-\/3}}\label{engine_8h_a955175f9c52ba2afeeb5f2ce831c6aa9}
+\hypertarget{engine_8h_a947ed24f326addc8dd2b52dbb950ca2e}{\index{engine.\-h@{engine.\-h}!engine\-\_\-exclusions\-\_\-chunk@{engine\-\_\-exclusions\-\_\-chunk}}
+\index{engine\-\_\-exclusions\-\_\-chunk@{engine\-\_\-exclusions\-\_\-chunk}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-exclusions\-\_\-chunk}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-exclusions\-\_\-chunk~100}}\label{engine_8h_a947ed24f326addc8dd2b52dbb950ca2e}
+\hypertarget{engine_8h_ae56b1f290f464f070651304590f69f0e}{\index{engine.\-h@{engine.\-h}!engine\-\_\-flag\-\_\-affinity@{engine\-\_\-flag\-\_\-affinity}}
+\index{engine\-\_\-flag\-\_\-affinity@{engine\-\_\-flag\-\_\-affinity}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-flag\-\_\-affinity}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-flag\-\_\-affinity~64}}\label{engine_8h_ae56b1f290f464f070651304590f69f0e}
+\hypertarget{engine_8h_a40bd30189720133d5e17fac9294977b4}{\index{engine.\-h@{engine.\-h}!engine\-\_\-flag\-\_\-async@{engine\-\_\-flag\-\_\-async}}
+\index{engine\-\_\-flag\-\_\-async@{engine\-\_\-flag\-\_\-async}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-flag\-\_\-async}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-flag\-\_\-async~8192}}\label{engine_8h_a40bd30189720133d5e17fac9294977b4}
+\hypertarget{engine_8h_a299e60d7eb5e0c59b9ce995e1ffb36f6}{\index{engine.\-h@{engine.\-h}!engine\-\_\-flag\-\_\-cuda@{engine\-\_\-flag\-\_\-cuda}}
+\index{engine\-\_\-flag\-\_\-cuda@{engine\-\_\-flag\-\_\-cuda}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-flag\-\_\-cuda}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-flag\-\_\-cuda~4}}\label{engine_8h_a299e60d7eb5e0c59b9ce995e1ffb36f6}
+\hypertarget{engine_8h_ad551f1485c9d3adda913dfbe2f5a5b58}{\index{engine.\-h@{engine.\-h}!engine\-\_\-flag\-\_\-explepot@{engine\-\_\-flag\-\_\-explepot}}
+\index{engine\-\_\-flag\-\_\-explepot@{engine\-\_\-flag\-\_\-explepot}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-flag\-\_\-explepot}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-flag\-\_\-explepot~8}}\label{engine_8h_ad551f1485c9d3adda913dfbe2f5a5b58}
+\hypertarget{engine_8h_af24c7dc4b6f99633baef27ecb5b7a613}{\index{engine.\-h@{engine.\-h}!engine\-\_\-flag\-\_\-localparts@{engine\-\_\-flag\-\_\-localparts}}
+\index{engine\-\_\-flag\-\_\-localparts@{engine\-\_\-flag\-\_\-localparts}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-flag\-\_\-localparts}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-flag\-\_\-localparts~2}}\label{engine_8h_af24c7dc4b6f99633baef27ecb5b7a613}
+\hypertarget{engine_8h_a6d5eafda046a751593c4abebac8ba6f2}{\index{engine.\-h@{engine.\-h}!engine\-\_\-flag\-\_\-mpi@{engine\-\_\-flag\-\_\-mpi}}
+\index{engine\-\_\-flag\-\_\-mpi@{engine\-\_\-flag\-\_\-mpi}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-flag\-\_\-mpi}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-flag\-\_\-mpi~2048}}\label{engine_8h_a6d5eafda046a751593c4abebac8ba6f2}
+\hypertarget{engine_8h_a58b9a683416b58b6782f462e5f7fffd4}{\index{engine.\-h@{engine.\-h}!engine\-\_\-flag\-\_\-none@{engine\-\_\-flag\-\_\-none}}
+\index{engine\-\_\-flag\-\_\-none@{engine\-\_\-flag\-\_\-none}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-flag\-\_\-none}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-flag\-\_\-none~0}}\label{engine_8h_a58b9a683416b58b6782f462e5f7fffd4}
+\hypertarget{engine_8h_a6080296b140762223baeae0453404dff}{\index{engine.\-h@{engine.\-h}!engine\-\_\-flag\-\_\-nullpart@{engine\-\_\-flag\-\_\-nullpart}}
+\index{engine\-\_\-flag\-\_\-nullpart@{engine\-\_\-flag\-\_\-nullpart}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-flag\-\_\-nullpart}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-flag\-\_\-nullpart~32768}}\label{engine_8h_a6080296b140762223baeae0453404dff}
+\hypertarget{engine_8h_a4b14c0d4454982658a0e9107de14bad8}{\index{engine.\-h@{engine.\-h}!engine\-\_\-flag\-\_\-parbonded@{engine\-\_\-flag\-\_\-parbonded}}
+\index{engine\-\_\-flag\-\_\-parbonded@{engine\-\_\-flag\-\_\-parbonded}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-flag\-\_\-parbonded}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-flag\-\_\-parbonded~4096}}\label{engine_8h_a4b14c0d4454982658a0e9107de14bad8}
+\hypertarget{engine_8h_acc72ba15eec8d0b98eb1b9e41d6b89ae}{\index{engine.\-h@{engine.\-h}!engine\-\_\-flag\-\_\-prefetch@{engine\-\_\-flag\-\_\-prefetch}}
+\index{engine\-\_\-flag\-\_\-prefetch@{engine\-\_\-flag\-\_\-prefetch}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-flag\-\_\-prefetch}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-flag\-\_\-prefetch~128}}\label{engine_8h_acc72ba15eec8d0b98eb1b9e41d6b89ae}
+\hypertarget{engine_8h_ac682fd4a0738d29efbc69cd32b766129}{\index{engine.\-h@{engine.\-h}!engine\-\_\-flag\-\_\-sets@{engine\-\_\-flag\-\_\-sets}}
+\index{engine\-\_\-flag\-\_\-sets@{engine\-\_\-flag\-\_\-sets}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-flag\-\_\-sets}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-flag\-\_\-sets~16384}}\label{engine_8h_ac682fd4a0738d29efbc69cd32b766129}
+\hypertarget{engine_8h_ad415dc9d9c52a776395af92db5da86cf}{\index{engine.\-h@{engine.\-h}!engine\-\_\-flag\-\_\-shake@{engine\-\_\-flag\-\_\-shake}}
+\index{engine\-\_\-flag\-\_\-shake@{engine\-\_\-flag\-\_\-shake}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-flag\-\_\-shake}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-flag\-\_\-shake~1024}}\label{engine_8h_ad415dc9d9c52a776395af92db5da86cf}
+\hypertarget{engine_8h_ab47fb75f59e0641e9cfaae524d4314b8}{\index{engine.\-h@{engine.\-h}!engine\-\_\-flag\-\_\-static@{engine\-\_\-flag\-\_\-static}}
+\index{engine\-\_\-flag\-\_\-static@{engine\-\_\-flag\-\_\-static}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-flag\-\_\-static}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-flag\-\_\-static~1}}\label{engine_8h_ab47fb75f59e0641e9cfaae524d4314b8}
+\hypertarget{engine_8h_a5e80aa8ccffff1e10a0960ff72824feb}{\index{engine.\-h@{engine.\-h}!engine\-\_\-flag\-\_\-unsorted@{engine\-\_\-flag\-\_\-unsorted}}
+\index{engine\-\_\-flag\-\_\-unsorted@{engine\-\_\-flag\-\_\-unsorted}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-flag\-\_\-unsorted}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-flag\-\_\-unsorted~512}}\label{engine_8h_a5e80aa8ccffff1e10a0960ff72824feb}
+\hypertarget{engine_8h_a716de72d1838a6369cafefde6feb7581}{\index{engine.\-h@{engine.\-h}!engine\-\_\-flag\-\_\-verlet@{engine\-\_\-flag\-\_\-verlet}}
+\index{engine\-\_\-flag\-\_\-verlet@{engine\-\_\-flag\-\_\-verlet}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-flag\-\_\-verlet}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-flag\-\_\-verlet~16}}\label{engine_8h_a716de72d1838a6369cafefde6feb7581}
+\hypertarget{engine_8h_a764c2343bda60c0d6466e92a25d1b1f3}{\index{engine.\-h@{engine.\-h}!engine\-\_\-flag\-\_\-verlet\-\_\-pairwise@{engine\-\_\-flag\-\_\-verlet\-\_\-pairwise}}
+\index{engine\-\_\-flag\-\_\-verlet\-\_\-pairwise@{engine\-\_\-flag\-\_\-verlet\-\_\-pairwise}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-flag\-\_\-verlet\-\_\-pairwise}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-flag\-\_\-verlet\-\_\-pairwise~32}}\label{engine_8h_a764c2343bda60c0d6466e92a25d1b1f3}
+\hypertarget{engine_8h_a4092444585fafaf2a5d676161efae302}{\index{engine.\-h@{engine.\-h}!engine\-\_\-flag\-\_\-verlet\-\_\-pseudo@{engine\-\_\-flag\-\_\-verlet\-\_\-pseudo}}
+\index{engine\-\_\-flag\-\_\-verlet\-\_\-pseudo@{engine\-\_\-flag\-\_\-verlet\-\_\-pseudo}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-flag\-\_\-verlet\-\_\-pseudo}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-flag\-\_\-verlet\-\_\-pseudo~256}}\label{engine_8h_a4092444585fafaf2a5d676161efae302}
+\hypertarget{engine_8h_a5d6f21fad43e8aeee37189a0d8c7651c}{\index{engine.\-h@{engine.\-h}!engine\-\_\-maxgpu@{engine\-\_\-maxgpu}}
+\index{engine\-\_\-maxgpu@{engine\-\_\-maxgpu}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-maxgpu}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-maxgpu~10}}\label{engine_8h_a5d6f21fad43e8aeee37189a0d8c7651c}
+\hypertarget{engine_8h_a05b28f1317a421a489308c5d941f5dcc}{\index{engine.\-h@{engine.\-h}!engine\-\_\-max\-Kcutoff@{engine\-\_\-max\-Kcutoff}}
+\index{engine\-\_\-max\-Kcutoff@{engine\-\_\-max\-Kcutoff}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-max\-Kcutoff}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-max\-Kcutoff~2}}\label{engine_8h_a05b28f1317a421a489308c5d941f5dcc}
+\hypertarget{engine_8h_a2aa020d74916c4e69f6015fd1889d867}{\index{engine.\-h@{engine.\-h}!engine\-\_\-pshake\-\_\-steps@{engine\-\_\-pshake\-\_\-steps}}
+\index{engine\-\_\-pshake\-\_\-steps@{engine\-\_\-pshake\-\_\-steps}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-pshake\-\_\-steps}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-pshake\-\_\-steps~20}}\label{engine_8h_a2aa020d74916c4e69f6015fd1889d867}
+\hypertarget{engine_8h_a57dc2682fde272c06e0911cafb7b4197}{\index{engine.\-h@{engine.\-h}!engine\-\_\-readbuff@{engine\-\_\-readbuff}}
+\index{engine\-\_\-readbuff@{engine\-\_\-readbuff}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-readbuff}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-readbuff~16384}}\label{engine_8h_a57dc2682fde272c06e0911cafb7b4197}
+\hypertarget{engine_8h_ace9678cc2ca5c905baa354c8be101ac1}{\index{engine.\-h@{engine.\-h}!engine\-\_\-rigids\-\_\-chunk@{engine\-\_\-rigids\-\_\-chunk}}
+\index{engine\-\_\-rigids\-\_\-chunk@{engine\-\_\-rigids\-\_\-chunk}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-rigids\-\_\-chunk}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-rigids\-\_\-chunk~50}}\label{engine_8h_ace9678cc2ca5c905baa354c8be101ac1}
+\hypertarget{engine_8h_a287e7babd525c7fe222b4f756478d2e8}{\index{engine.\-h@{engine.\-h}!engine\-\_\-split\-\_\-\-G\-P\-U@{engine\-\_\-split\-\_\-\-G\-P\-U}}
+\index{engine\-\_\-split\-\_\-\-G\-P\-U@{engine\-\_\-split\-\_\-\-G\-P\-U}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-split\-\_\-\-G\-P\-U}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-split\-\_\-\-G\-P\-U~2}}\label{engine_8h_a287e7babd525c7fe222b4f756478d2e8}
+\hypertarget{engine_8h_a992960d7ad0e471b6fd057f852149356}{\index{engine.\-h@{engine.\-h}!engine\-\_\-split\-\_\-\-M\-P\-I@{engine\-\_\-split\-\_\-\-M\-P\-I}}
+\index{engine\-\_\-split\-\_\-\-M\-P\-I@{engine\-\_\-split\-\_\-\-M\-P\-I}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-split\-\_\-\-M\-P\-I}]{\setlength{\rightskip}{0pt plus 5cm}\#define engine\-\_\-split\-\_\-\-M\-P\-I~1}}\label{engine_8h_a992960d7ad0e471b6fd057f852149356}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{engine_8h_a06fc87d81c62e9abb8790b6e5713c55b}{\subsubsection[{anonymous enum}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}}\label{engine_8h_a06fc87d81c62e9abb8790b6e5713c55b}
+Timmer I\-Ds. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{engine\-\_\-timer\-\_\-step@{engine\-\_\-timer\-\_\-step}!engine.\-h@{engine.\-h}}\index{engine.\-h@{engine.\-h}!engine\-\_\-timer\-\_\-step@{engine\-\_\-timer\-\_\-step}}\item[{\em 
+\hypertarget{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba6188736cebd64f033c852c3361320410}{engine\-\_\-timer\-\_\-step}\label{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba6188736cebd64f033c852c3361320410}
+}]\index{engine\-\_\-timer\-\_\-prepare@{engine\-\_\-timer\-\_\-prepare}!engine.\-h@{engine.\-h}}\index{engine.\-h@{engine.\-h}!engine\-\_\-timer\-\_\-prepare@{engine\-\_\-timer\-\_\-prepare}}\item[{\em 
+\hypertarget{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba692a545ffc4a5b298e929608578c9f5d}{engine\-\_\-timer\-\_\-prepare}\label{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba692a545ffc4a5b298e929608578c9f5d}
+}]\index{engine\-\_\-timer\-\_\-verlet@{engine\-\_\-timer\-\_\-verlet}!engine.\-h@{engine.\-h}}\index{engine.\-h@{engine.\-h}!engine\-\_\-timer\-\_\-verlet@{engine\-\_\-timer\-\_\-verlet}}\item[{\em 
+\hypertarget{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba40241c51c2c7135010d0e7dfd6fa3f6b}{engine\-\_\-timer\-\_\-verlet}\label{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba40241c51c2c7135010d0e7dfd6fa3f6b}
+}]\index{engine\-\_\-timer\-\_\-exchange1@{engine\-\_\-timer\-\_\-exchange1}!engine.\-h@{engine.\-h}}\index{engine.\-h@{engine.\-h}!engine\-\_\-timer\-\_\-exchange1@{engine\-\_\-timer\-\_\-exchange1}}\item[{\em 
+\hypertarget{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba8fecc329e7f92f4c2ba08323fc40e236}{engine\-\_\-timer\-\_\-exchange1}\label{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba8fecc329e7f92f4c2ba08323fc40e236}
+}]\index{engine\-\_\-timer\-\_\-nonbond@{engine\-\_\-timer\-\_\-nonbond}!engine.\-h@{engine.\-h}}\index{engine.\-h@{engine.\-h}!engine\-\_\-timer\-\_\-nonbond@{engine\-\_\-timer\-\_\-nonbond}}\item[{\em 
+\hypertarget{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba71d4f48dcba63889b284c8f00237a361}{engine\-\_\-timer\-\_\-nonbond}\label{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba71d4f48dcba63889b284c8f00237a361}
+}]\index{engine\-\_\-timer\-\_\-bonded@{engine\-\_\-timer\-\_\-bonded}!engine.\-h@{engine.\-h}}\index{engine.\-h@{engine.\-h}!engine\-\_\-timer\-\_\-bonded@{engine\-\_\-timer\-\_\-bonded}}\item[{\em 
+\hypertarget{engine_8h_a06fc87d81c62e9abb8790b6e5713c55bacb0606487470e0e7eeed7aa13392005e}{engine\-\_\-timer\-\_\-bonded}\label{engine_8h_a06fc87d81c62e9abb8790b6e5713c55bacb0606487470e0e7eeed7aa13392005e}
+}]\index{engine\-\_\-timer\-\_\-bonded\-\_\-sort@{engine\-\_\-timer\-\_\-bonded\-\_\-sort}!engine.\-h@{engine.\-h}}\index{engine.\-h@{engine.\-h}!engine\-\_\-timer\-\_\-bonded\-\_\-sort@{engine\-\_\-timer\-\_\-bonded\-\_\-sort}}\item[{\em 
+\hypertarget{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba14f40fc588586aca5e1908172c6ccaee}{engine\-\_\-timer\-\_\-bonded\-\_\-sort}\label{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba14f40fc588586aca5e1908172c6ccaee}
+}]\index{engine\-\_\-timer\-\_\-bonds@{engine\-\_\-timer\-\_\-bonds}!engine.\-h@{engine.\-h}}\index{engine.\-h@{engine.\-h}!engine\-\_\-timer\-\_\-bonds@{engine\-\_\-timer\-\_\-bonds}}\item[{\em 
+\hypertarget{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba0e4b12e01dc7c7fc21473dd963ae8ced}{engine\-\_\-timer\-\_\-bonds}\label{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba0e4b12e01dc7c7fc21473dd963ae8ced}
+}]\index{engine\-\_\-timer\-\_\-angles@{engine\-\_\-timer\-\_\-angles}!engine.\-h@{engine.\-h}}\index{engine.\-h@{engine.\-h}!engine\-\_\-timer\-\_\-angles@{engine\-\_\-timer\-\_\-angles}}\item[{\em 
+\hypertarget{engine_8h_a06fc87d81c62e9abb8790b6e5713c55bade961b710d5fca9d3d7ed6bb1fcad528}{engine\-\_\-timer\-\_\-angles}\label{engine_8h_a06fc87d81c62e9abb8790b6e5713c55bade961b710d5fca9d3d7ed6bb1fcad528}
+}]\index{engine\-\_\-timer\-\_\-dihedrals@{engine\-\_\-timer\-\_\-dihedrals}!engine.\-h@{engine.\-h}}\index{engine.\-h@{engine.\-h}!engine\-\_\-timer\-\_\-dihedrals@{engine\-\_\-timer\-\_\-dihedrals}}\item[{\em 
+\hypertarget{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba71ccd2c505f97b5251de26095431f9c2}{engine\-\_\-timer\-\_\-dihedrals}\label{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba71ccd2c505f97b5251de26095431f9c2}
+}]\index{engine\-\_\-timer\-\_\-exclusions@{engine\-\_\-timer\-\_\-exclusions}!engine.\-h@{engine.\-h}}\index{engine.\-h@{engine.\-h}!engine\-\_\-timer\-\_\-exclusions@{engine\-\_\-timer\-\_\-exclusions}}\item[{\em 
+\hypertarget{engine_8h_a06fc87d81c62e9abb8790b6e5713c55babab3d9cb9ce787537965d7a9edcf6490}{engine\-\_\-timer\-\_\-exclusions}\label{engine_8h_a06fc87d81c62e9abb8790b6e5713c55babab3d9cb9ce787537965d7a9edcf6490}
+}]\index{engine\-\_\-timer\-\_\-advance@{engine\-\_\-timer\-\_\-advance}!engine.\-h@{engine.\-h}}\index{engine.\-h@{engine.\-h}!engine\-\_\-timer\-\_\-advance@{engine\-\_\-timer\-\_\-advance}}\item[{\em 
+\hypertarget{engine_8h_a06fc87d81c62e9abb8790b6e5713c55baa7bb9b503c74076926401cad5178a0b2}{engine\-\_\-timer\-\_\-advance}\label{engine_8h_a06fc87d81c62e9abb8790b6e5713c55baa7bb9b503c74076926401cad5178a0b2}
+}]\index{engine\-\_\-timer\-\_\-rigid@{engine\-\_\-timer\-\_\-rigid}!engine.\-h@{engine.\-h}}\index{engine.\-h@{engine.\-h}!engine\-\_\-timer\-\_\-rigid@{engine\-\_\-timer\-\_\-rigid}}\item[{\em 
+\hypertarget{engine_8h_a06fc87d81c62e9abb8790b6e5713c55bae6e2e59705f7c6b8845b7bec6114efa9}{engine\-\_\-timer\-\_\-rigid}\label{engine_8h_a06fc87d81c62e9abb8790b6e5713c55bae6e2e59705f7c6b8845b7bec6114efa9}
+}]\index{engine\-\_\-timer\-\_\-exchange2@{engine\-\_\-timer\-\_\-exchange2}!engine.\-h@{engine.\-h}}\index{engine.\-h@{engine.\-h}!engine\-\_\-timer\-\_\-exchange2@{engine\-\_\-timer\-\_\-exchange2}}\item[{\em 
+\hypertarget{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba5f5dcc0e2c0f93dac3215950a6aa9851}{engine\-\_\-timer\-\_\-exchange2}\label{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba5f5dcc0e2c0f93dac3215950a6aa9851}
+}]\index{engine\-\_\-timer\-\_\-shuffle@{engine\-\_\-timer\-\_\-shuffle}!engine.\-h@{engine.\-h}}\index{engine.\-h@{engine.\-h}!engine\-\_\-timer\-\_\-shuffle@{engine\-\_\-timer\-\_\-shuffle}}\item[{\em 
+\hypertarget{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba958fdfaef17a335686e831c3d1ca19bb}{engine\-\_\-timer\-\_\-shuffle}\label{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba958fdfaef17a335686e831c3d1ca19bb}
+}]\index{engine\-\_\-timer\-\_\-cuda\-\_\-load@{engine\-\_\-timer\-\_\-cuda\-\_\-load}!engine.\-h@{engine.\-h}}\index{engine.\-h@{engine.\-h}!engine\-\_\-timer\-\_\-cuda\-\_\-load@{engine\-\_\-timer\-\_\-cuda\-\_\-load}}\item[{\em 
+\hypertarget{engine_8h_a06fc87d81c62e9abb8790b6e5713c55badb6dfe2a0b702a0e9055a0ec5453273a}{engine\-\_\-timer\-\_\-cuda\-\_\-load}\label{engine_8h_a06fc87d81c62e9abb8790b6e5713c55badb6dfe2a0b702a0e9055a0ec5453273a}
+}]\index{engine\-\_\-timer\-\_\-cuda\-\_\-unload@{engine\-\_\-timer\-\_\-cuda\-\_\-unload}!engine.\-h@{engine.\-h}}\index{engine.\-h@{engine.\-h}!engine\-\_\-timer\-\_\-cuda\-\_\-unload@{engine\-\_\-timer\-\_\-cuda\-\_\-unload}}\item[{\em 
+\hypertarget{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba276814c75656099072e7c4a7779478c4}{engine\-\_\-timer\-\_\-cuda\-\_\-unload}\label{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba276814c75656099072e7c4a7779478c4}
+}]\index{engine\-\_\-timer\-\_\-cuda\-\_\-dopairs@{engine\-\_\-timer\-\_\-cuda\-\_\-dopairs}!engine.\-h@{engine.\-h}}\index{engine.\-h@{engine.\-h}!engine\-\_\-timer\-\_\-cuda\-\_\-dopairs@{engine\-\_\-timer\-\_\-cuda\-\_\-dopairs}}\item[{\em 
+\hypertarget{engine_8h_a06fc87d81c62e9abb8790b6e5713c55bad38362a51c5902d671d14730deff3296}{engine\-\_\-timer\-\_\-cuda\-\_\-dopairs}\label{engine_8h_a06fc87d81c62e9abb8790b6e5713c55bad38362a51c5902d671d14730deff3296}
+}]\index{engine\-\_\-timer\-\_\-last@{engine\-\_\-timer\-\_\-last}!engine.\-h@{engine.\-h}}\index{engine.\-h@{engine.\-h}!engine\-\_\-timer\-\_\-last@{engine\-\_\-timer\-\_\-last}}\item[{\em 
+\hypertarget{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba193f5be157573b064ca69240a194d5e1}{engine\-\_\-timer\-\_\-last}\label{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba193f5be157573b064ca69240a194d5e1}
+}]\end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\hypertarget{engine_8h_a0fc5afb224fc0eead89b3ece8e141b29}{\index{engine.\-h@{engine.\-h}!engine\-\_\-addpot@{engine\-\_\-addpot}}
+\index{engine\-\_\-addpot@{engine\-\_\-addpot}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-addpot}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-addpot (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{struct {\bf potential} $\ast$}]{p, }
+\item[{int}]{i, }
+\item[{int}]{j}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a0fc5afb224fc0eead89b3ece8e141b29}
+
+
+Add an interaction potential. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em p} & The \hyperlink{structpotential}{potential} to add to the \hyperlink{structengine}{engine}. \\
+\hline
+{\em i} & I\-D of particle type for this interaction. \\
+\hline
+{\em j} & I\-D of second particle type for this interaction.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}).
+\end{DoxyReturn}
+Adds the given potential for pairs of particles of type {\ttfamily i} and {\ttfamily j}, where {\ttfamily i} and {\ttfamily j} may be the same type I\-D. \hypertarget{engine_8h_ae5c581d9626ae3f47da431ecd65b223a}{\index{engine.\-h@{engine.\-h}!engine\-\_\-addtype@{engine\-\_\-addtype}}
+\index{engine\-\_\-addtype@{engine\-\_\-addtype}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-addtype}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-addtype (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{double}]{mass, }
+\item[{double}]{charge, }
+\item[{char $\ast$}]{name, }
+\item[{char $\ast$}]{name2}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_ae5c581d9626ae3f47da431ecd65b223a}
+
+
+Add a type definition. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em mass} & The particle type mass. \\
+\hline
+{\em charge} & The particle type charge. \\
+\hline
+{\em name} & Particle name, can be {\ttfamily N\-U\-L\-L}. \\
+\hline
+{\em name2} & Particle second name, can be {\ttfamily N\-U\-L\-L}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The type I\-D or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}).
+\end{DoxyReturn}
+The particle type I\-D must be an integer greater or equal to 0 and less than the value {\ttfamily max\-\_\-type} specified in \hyperlink{engine_8h_a44f518099f47e5692cd6a46022594172}{engine\-\_\-init}. \hypertarget{engine_8h_a8660144250e66e9a085023904c9c5285}{\index{engine.\-h@{engine.\-h}!engine\-\_\-advance@{engine\-\_\-advance}}
+\index{engine\-\_\-advance@{engine\-\_\-advance}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-advance}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-advance (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a8660144250e66e9a085023904c9c5285}
+
+
+Update the particle velocities and positions, re-\/shuffle if appropriate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine} on which to run.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_a9233c5ae9b841e227922260c1747df9a}{\index{engine.\-h@{engine.\-h}!engine\-\_\-angle\-\_\-add@{engine\-\_\-angle\-\_\-add}}
+\index{engine\-\_\-angle\-\_\-add@{engine\-\_\-angle\-\_\-add}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-angle\-\_\-add}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-angle\-\_\-add (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{int}]{k, }
+\item[{int}]{pid}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a9233c5ae9b841e227922260c1747df9a}
+
+
+Add a angle interaction to the engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em i} & The I\-D of the first \hyperlink{structpart}{part}. \\
+\hline
+{\em j} & The I\-D of the second \hyperlink{structpart}{part}. \\
+\hline
+{\em k} & The I\-D of the third \hyperlink{structpart}{part}. \\
+\hline
+{\em pid} & Index of the \hyperlink{structpotential}{potential} for this bond.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_ae9e8ee413a8c582a7e7605bf93a7466e}{\index{engine.\-h@{engine.\-h}!engine\-\_\-angle\-\_\-addpot@{engine\-\_\-angle\-\_\-addpot}}
+\index{engine\-\_\-angle\-\_\-addpot@{engine\-\_\-angle\-\_\-addpot}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-angle\-\_\-addpot}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-angle\-\_\-addpot (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{struct {\bf potential} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_ae9e8ee413a8c582a7e7605bf93a7466e}
+
+
+Add a angle potential. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em p} & The \hyperlink{structpotential}{potential} to add to the \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The I\-D of the added angle potential or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_a4b50a370eff915c24f435206adc9e69a}{\index{engine.\-h@{engine.\-h}!engine\-\_\-angle\-\_\-eval@{engine\-\_\-angle\-\_\-eval}}
+\index{engine\-\_\-angle\-\_\-eval@{engine\-\_\-angle\-\_\-eval}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-angle\-\_\-eval}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-angle\-\_\-eval (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a4b50a370eff915c24f435206adc9e69a}
+
+
+Compute the angled interactions stored in this engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_aac762f402ed94cd5529bf50c771db96f}{\index{engine.\-h@{engine.\-h}!engine\-\_\-barrier@{engine\-\_\-barrier}}
+\index{engine\-\_\-barrier@{engine\-\_\-barrier}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-barrier}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-barrier (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_aac762f402ed94cd5529bf50c771db96f}
+
+
+Barrier routine to hold the {\ttfamily runners} back. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine} to wait on.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}).
+\end{DoxyReturn}
+After being initialized, and after every timestep, every \hyperlink{structrunner}{runner} calls this routine which blocks until all the runners have returned and the \hyperlink{structengine}{engine} signals the next timestep. \hypertarget{engine_8h_a9bfc2c0c4d6a22191424ee0a1a428202}{\index{engine.\-h@{engine.\-h}!engine\-\_\-bond\-\_\-add@{engine\-\_\-bond\-\_\-add}}
+\index{engine\-\_\-bond\-\_\-add@{engine\-\_\-bond\-\_\-add}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-bond\-\_\-add}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-bond\-\_\-add (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{int}]{i, }
+\item[{int}]{j}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a9bfc2c0c4d6a22191424ee0a1a428202}
+
+
+Add a bonded interaction to the engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em i} & The I\-D of the first \hyperlink{structpart}{part}. \\
+\hline
+{\em j} & The I\-D of the second \hyperlink{structpart}{part}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_ae71d4fc7b237c821f4d6303f6518d369}{\index{engine.\-h@{engine.\-h}!engine\-\_\-bond\-\_\-addpot@{engine\-\_\-bond\-\_\-addpot}}
+\index{engine\-\_\-bond\-\_\-addpot@{engine\-\_\-bond\-\_\-addpot}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-bond\-\_\-addpot}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-bond\-\_\-addpot (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{struct {\bf potential} $\ast$}]{p, }
+\item[{int}]{i, }
+\item[{int}]{j}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_ae71d4fc7b237c821f4d6303f6518d369}
+
+
+Add a bond potential. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em p} & The \hyperlink{structpotential}{potential} to add to the \hyperlink{structengine}{engine}. \\
+\hline
+{\em i} & I\-D of particle type for this interaction. \\
+\hline
+{\em j} & I\-D of second particle type for this interaction.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}).
+\end{DoxyReturn}
+Adds the given bonded potential for pairs of particles of type {\ttfamily i} and {\ttfamily j}, where {\ttfamily i} and {\ttfamily j} may be the same type I\-D. \hypertarget{engine_8h_a933e8a837ef1b6c6b8b7cd1853911f90}{\index{engine.\-h@{engine.\-h}!engine\-\_\-bond\-\_\-eval@{engine\-\_\-bond\-\_\-eval}}
+\index{engine\-\_\-bond\-\_\-eval@{engine\-\_\-bond\-\_\-eval}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-bond\-\_\-eval}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-bond\-\_\-eval (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a933e8a837ef1b6c6b8b7cd1853911f90}
+
+
+Compute the bonded interactions stored in this engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_af7db4a2e3357cd92cdda4e17b111b43b}{\index{engine.\-h@{engine.\-h}!engine\-\_\-bonded\-\_\-eval@{engine\-\_\-bonded\-\_\-eval}}
+\index{engine\-\_\-bonded\-\_\-eval@{engine\-\_\-bonded\-\_\-eval}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-bonded\-\_\-eval}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-bonded\-\_\-eval (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_af7db4a2e3357cd92cdda4e17b111b43b}
+
+
+Compute all bonded interactions stored in this engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}).
+\end{DoxyReturn}
+Does the same as \hyperlink{engine__bonded_8c_a933e8a837ef1b6c6b8b7cd1853911f90}{engine\-\_\-bond\-\_\-eval}, \hyperlink{engine__bonded_8c_a4b50a370eff915c24f435206adc9e69a}{engine\-\_\-angle\-\_\-eval} and \#engine\-\_\-dihedral eval, yet all in one go to avoid excessive updates of the particle forces. \hypertarget{engine_8h_a283869cb42958585b07d8da489560d38}{\index{engine.\-h@{engine.\-h}!engine\-\_\-bonded\-\_\-eval\-\_\-sets@{engine\-\_\-bonded\-\_\-eval\-\_\-sets}}
+\index{engine\-\_\-bonded\-\_\-eval\-\_\-sets@{engine\-\_\-bonded\-\_\-eval\-\_\-sets}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-bonded\-\_\-eval\-\_\-sets}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-bonded\-\_\-eval\-\_\-sets (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a283869cb42958585b07d8da489560d38}
+
+
+Compute all bonded interactions stored in this engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}).
+\end{DoxyReturn}
+Does the same as \hyperlink{engine__bonded_8c_a933e8a837ef1b6c6b8b7cd1853911f90}{engine\-\_\-bond\-\_\-eval}, \hyperlink{engine__bonded_8c_a4b50a370eff915c24f435206adc9e69a}{engine\-\_\-angle\-\_\-eval} and \#engine\-\_\-dihedral eval, yet all in one go to avoid excessive updates of the particle forces. \hypertarget{engine_8h_a1f2a4097ab35dec39a77ccad1e212596}{\index{engine.\-h@{engine.\-h}!engine\-\_\-bonded\-\_\-sets@{engine\-\_\-bonded\-\_\-sets}}
+\index{engine\-\_\-bonded\-\_\-sets@{engine\-\_\-bonded\-\_\-sets}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-bonded\-\_\-sets}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-bonded\-\_\-sets (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{int}]{max\-\_\-sets}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a1f2a4097ab35dec39a77ccad1e212596}
+
+
+Assemble non-\/conflicting sets of bonded interactions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_a0a1196791936f88ca5d6bbf5363fb78f}{\index{engine.\-h@{engine.\-h}!engine\-\_\-dihedral\-\_\-add@{engine\-\_\-dihedral\-\_\-add}}
+\index{engine\-\_\-dihedral\-\_\-add@{engine\-\_\-dihedral\-\_\-add}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-dihedral\-\_\-add}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-dihedral\-\_\-add (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{int}]{k, }
+\item[{int}]{l, }
+\item[{int}]{pid}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a0a1196791936f88ca5d6bbf5363fb78f}
+
+
+Add a dihedral interaction to the engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em i} & The I\-D of the first \hyperlink{structpart}{part}. \\
+\hline
+{\em j} & The I\-D of the second \hyperlink{structpart}{part}. \\
+\hline
+{\em k} & The I\-D of the third \hyperlink{structpart}{part}. \\
+\hline
+{\em l} & The I\-D of the fourth \hyperlink{structpart}{part}. \\
+\hline
+{\em pid} & Index of the \hyperlink{structpotential}{potential} for this bond.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_ad01a436b55b2214e91fb7229faa64a4e}{\index{engine.\-h@{engine.\-h}!engine\-\_\-dihedral\-\_\-addpot@{engine\-\_\-dihedral\-\_\-addpot}}
+\index{engine\-\_\-dihedral\-\_\-addpot@{engine\-\_\-dihedral\-\_\-addpot}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-dihedral\-\_\-addpot}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-dihedral\-\_\-addpot (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{struct {\bf potential} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_ad01a436b55b2214e91fb7229faa64a4e}
+
+
+Add a dihedral potential. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em p} & The \hyperlink{structpotential}{potential} to add to the \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The I\-D of the added dihedral potential or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_ab36c8e8f6eba5ad7d7a134c157505de4}{\index{engine.\-h@{engine.\-h}!engine\-\_\-dihedral\-\_\-eval@{engine\-\_\-dihedral\-\_\-eval}}
+\index{engine\-\_\-dihedral\-\_\-eval@{engine\-\_\-dihedral\-\_\-eval}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-dihedral\-\_\-eval}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-dihedral\-\_\-eval (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_ab36c8e8f6eba5ad7d7a134c157505de4}
+
+
+Compute the dihedral interactions stored in this engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_a97284ead9f5348093b3d7d95401ccbff}{\index{engine.\-h@{engine.\-h}!engine\-\_\-dump\-\_\-\-P\-S\-F@{engine\-\_\-dump\-\_\-\-P\-S\-F}}
+\index{engine\-\_\-dump\-\_\-\-P\-S\-F@{engine\-\_\-dump\-\_\-\-P\-S\-F}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-dump\-\_\-\-P\-S\-F}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-dump\-\_\-\-P\-S\-F (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{F\-I\-L\-E $\ast$}]{psf, }
+\item[{F\-I\-L\-E $\ast$}]{pdb, }
+\item[{char $\ast$}]{excl\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{nr\-\_\-excl}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a97284ead9f5348093b3d7d95401ccbff}
+
+
+Dump the contents of the enginge to a P\-S\-F and P\-D\-B file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em psf} & A pointer to {\ttfamily F\-I\-L\-E} to which to write the P\-S\-F file. \\
+\hline
+{\em pdb} & A pointer to {\ttfamily F\-I\-L\-E} to which to write the P\-D\-B file.\\
+\hline
+\end{DoxyParams}
+If any of {\ttfamily psf} or {\ttfamily pdb} are {\ttfamily N\-U\-L\-L}, the respective output will not be generated.
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_a8c09326908e15e1509f495c33619e761}{\index{engine.\-h@{engine.\-h}!engine\-\_\-exclusion\-\_\-add@{engine\-\_\-exclusion\-\_\-add}}
+\index{engine\-\_\-exclusion\-\_\-add@{engine\-\_\-exclusion\-\_\-add}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-exclusion\-\_\-add}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-exclusion\-\_\-add (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{int}]{i, }
+\item[{int}]{j}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a8c09326908e15e1509f495c33619e761}
+
+
+Add a exclusioned interaction to the engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em i} & The I\-D of the first \hyperlink{structpart}{part}. \\
+\hline
+{\em j} & The I\-D of the second \hyperlink{structpart}{part}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_a40f43733856ad7022c172be2b7946246}{\index{engine.\-h@{engine.\-h}!engine\-\_\-exclusion\-\_\-eval@{engine\-\_\-exclusion\-\_\-eval}}
+\index{engine\-\_\-exclusion\-\_\-eval@{engine\-\_\-exclusion\-\_\-eval}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-exclusion\-\_\-eval}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-exclusion\-\_\-eval (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a40f43733856ad7022c172be2b7946246}
+
+
+Compute the exclusioned interactions stored in this engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_a7f4a778e88593837c2fb2d7b61894f5c}{\index{engine.\-h@{engine.\-h}!engine\-\_\-exclusion\-\_\-shrink@{engine\-\_\-exclusion\-\_\-shrink}}
+\index{engine\-\_\-exclusion\-\_\-shrink@{engine\-\_\-exclusion\-\_\-shrink}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-exclusion\-\_\-shrink}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-exclusion\-\_\-shrink (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a7f4a778e88593837c2fb2d7b61894f5c}
+
+
+Remove duplicate exclusions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of unique exclusions or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_a5958b9991d32fbed9413b86b2434a3de}{\index{engine.\-h@{engine.\-h}!engine\-\_\-finalize@{engine\-\_\-finalize}}
+\index{engine\-\_\-finalize@{engine\-\_\-finalize}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-finalize}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-finalize (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a5958b9991d32fbed9413b86b2434a3de}
+
+
+Initialize an \hyperlink{structengine}{engine} with the given data and M\-P\-I enabled. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine} to initialize. \\
+\hline
+{\em origin} & An array of three doubles containing the cartesian origin of the space. \\
+\hline
+{\em dim} & An array of three doubles containing the size of the space. \\
+\hline
+{\em L} & The minimum cell edge length, should be at least {\ttfamily cutoff}. \\
+\hline
+{\em cutoff} & The maximum interaction cutoff to use. \\
+\hline
+{\em period} & A bitmask describing the periodicity of the domain (see \hyperlink{space_8h_af8d717d1aa6319532393f55728c75182}{space\-\_\-periodic\-\_\-full}). \\
+\hline
+{\em max\-\_\-type} & The maximum number of particle types that will be used by this engine. \\
+\hline
+{\em flags} & Bit-\/mask containing the flags for this engine. \\
+\hline
+{\em comm} & The M\-P\-I comm to use. \\
+\hline
+{\em rank} & The I\-D of this node.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). Kill all runners and de-\/allocate the data of an engine.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em e} & the \hyperlink{structengine}{engine} to finalize.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_aec725cc5cea5de5ab0cfd4649acee54b}{\index{engine.\-h@{engine.\-h}!engine\-\_\-flush@{engine\-\_\-flush}}
+\index{engine\-\_\-flush@{engine\-\_\-flush}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-flush}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-flush (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_aec725cc5cea5de5ab0cfd4649acee54b}
+
+
+Clear all particles from this \hyperlink{structengine}{engine}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine} to flush.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_a55d13cd5411d205e44e0b0571cde9f95}{\index{engine.\-h@{engine.\-h}!engine\-\_\-flush\-\_\-ghosts@{engine\-\_\-flush\-\_\-ghosts}}
+\index{engine\-\_\-flush\-\_\-ghosts@{engine\-\_\-flush\-\_\-ghosts}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-flush\-\_\-ghosts}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-flush\-\_\-ghosts (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a55d13cd5411d205e44e0b0571cde9f95}
+
+
+Clear all particles from this \hyperlink{structengine}{engine}'s ghost cells. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine} to flush.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_a7f5eb4b18d014939b82c7329f200c64d}{\index{engine.\-h@{engine.\-h}!engine\-\_\-gettype@{engine\-\_\-gettype}}
+\index{engine\-\_\-gettype@{engine\-\_\-gettype}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-gettype}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-gettype (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a7f5eb4b18d014939b82c7329f200c64d}
+
+
+Look for a given type by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em name} & The type name.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The type I\-D or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_a5e46198e54b67d4c8a16f1cf9d3c3533}{\index{engine.\-h@{engine.\-h}!engine\-\_\-gettype2@{engine\-\_\-gettype2}}
+\index{engine\-\_\-gettype2@{engine\-\_\-gettype2}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-gettype2}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-gettype2 (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{char $\ast$}]{name2}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a5e46198e54b67d4c8a16f1cf9d3c3533}
+
+
+Look for a given type by its second name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em name2} & The type name2.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The type I\-D or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_a44f518099f47e5692cd6a46022594172}{\index{engine.\-h@{engine.\-h}!engine\-\_\-init@{engine\-\_\-init}}
+\index{engine\-\_\-init@{engine\-\_\-init}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{const double $\ast$}]{origin, }
+\item[{const double $\ast$}]{dim, }
+\item[{double $\ast$}]{L, }
+\item[{double}]{cutoff, }
+\item[{unsigned int}]{period, }
+\item[{int}]{max\-\_\-type, }
+\item[{unsigned int}]{flags}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a44f518099f47e5692cd6a46022594172}
+
+
+Initialize an \hyperlink{structengine}{engine} with the given data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine} to initialize. \\
+\hline
+{\em origin} & An array of three doubles containing the cartesian origin of the space. \\
+\hline
+{\em dim} & An array of three doubles containing the size of the space. \\
+\hline
+{\em L} & The minimum cell edge length in each dimension. \\
+\hline
+{\em cutoff} & The maximum interaction cutoff to use. \\
+\hline
+{\em period} & A bitmask describing the periodicity of the domain (see \hyperlink{space_8h_af8d717d1aa6319532393f55728c75182}{space\-\_\-periodic\-\_\-full}). \\
+\hline
+{\em max\-\_\-type} & The maximum number of particle types that will be used by this engine. \\
+\hline
+{\em flags} & Bit-\/mask containing the flags for this engine.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_a0e7ff85de70a1950505df5117690b04a}{\index{engine.\-h@{engine.\-h}!engine\-\_\-load@{engine\-\_\-load}}
+\index{engine\-\_\-load@{engine\-\_\-load}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-load}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-load (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{double $\ast$}]{x, }
+\item[{double $\ast$}]{v, }
+\item[{int $\ast$}]{type, }
+\item[{int $\ast$}]{pid, }
+\item[{int $\ast$}]{vid, }
+\item[{double $\ast$}]{q, }
+\item[{unsigned int $\ast$}]{flags, }
+\item[{int}]{N}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a0e7ff85de70a1950505df5117690b04a}
+
+
+Load a set of particle data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em x} & An {\ttfamily N} times 3 array of the particle positions. \\
+\hline
+{\em v} & An {\ttfamily N} times 3 array of the particle velocities. \\
+\hline
+{\em type} & A vector of length {\ttfamily N} of the particle type I\-Ds. \\
+\hline
+{\em pid} & A vector of length {\ttfamily N} of the particle I\-Ds. \\
+\hline
+{\em vid} & A vector of length {\ttfamily N} of the particle virtual I\-Ds. \\
+\hline
+{\em q} & A vector of length {\ttfamily N} of the individual particle charges. \\
+\hline
+{\em flags} & A vector of length {\ttfamily N} of the particle flags. \\
+\hline
+{\em N} & the number of particles to load.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}).
+\end{DoxyReturn}
+If the parameters {\ttfamily v}, {\ttfamily flags}, {\ttfamily vid} or {\ttfamily q} are {\ttfamily N\-U\-L\-L}, then these values are set to zero. \hypertarget{engine_8h_a49b6058437aa43ae800e63ce46f69ea1}{\index{engine.\-h@{engine.\-h}!engine\-\_\-load\-\_\-ghosts@{engine\-\_\-load\-\_\-ghosts}}
+\index{engine\-\_\-load\-\_\-ghosts@{engine\-\_\-load\-\_\-ghosts}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-load\-\_\-ghosts}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-load\-\_\-ghosts (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{double $\ast$}]{x, }
+\item[{double $\ast$}]{v, }
+\item[{int $\ast$}]{type, }
+\item[{int $\ast$}]{pid, }
+\item[{int $\ast$}]{vid, }
+\item[{double $\ast$}]{q, }
+\item[{unsigned int $\ast$}]{flags, }
+\item[{int}]{N}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a49b6058437aa43ae800e63ce46f69ea1}
+
+
+Load a set of particle data as ghosts. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em x} & An {\ttfamily N} times 3 array of the particle positions. \\
+\hline
+{\em v} & An {\ttfamily N} times 3 array of the particle velocities. \\
+\hline
+{\em type} & A vector of length {\ttfamily N} of the particle type I\-Ds. \\
+\hline
+{\em pid} & A vector of length {\ttfamily N} of the particle I\-Ds. \\
+\hline
+{\em vid} & A vector of length {\ttfamily N} of the particle virtual I\-Ds. \\
+\hline
+{\em q} & A vector of length {\ttfamily N} of the individual particle charges. \\
+\hline
+{\em flags} & A vector of length {\ttfamily N} of the particle flags. \\
+\hline
+{\em N} & the number of particles to load.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}).
+\end{DoxyReturn}
+If the parameters {\ttfamily v}, {\ttfamily flags}, {\ttfamily vid} or {\ttfamily q} are {\ttfamily N\-U\-L\-L}, then these values are set to zero. \hypertarget{engine_8h_a743f563fdca707aeae7edc1726e13996}{\index{engine.\-h@{engine.\-h}!engine\-\_\-nonbond\-\_\-eval@{engine\-\_\-nonbond\-\_\-eval}}
+\index{engine\-\_\-nonbond\-\_\-eval@{engine\-\_\-nonbond\-\_\-eval}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-nonbond\-\_\-eval}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-nonbond\-\_\-eval (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a743f563fdca707aeae7edc1726e13996}
+
+
+Compute the nonbonded interactions in the current step. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine} on which to run.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}).
+\end{DoxyReturn}
+This routine advances the timestep counter by one, prepares the \hyperlink{structspace}{space} for a timestep, releases the \hyperlink{structrunner}{runner}'s associated with the \hyperlink{structengine}{engine} and waits for them to finnish. \hypertarget{engine_8h_a34524364f411a9d5e6a7e46dd88146e8}{\index{engine.\-h@{engine.\-h}!engine\-\_\-read\-\_\-cpf@{engine\-\_\-read\-\_\-cpf}}
+\index{engine\-\_\-read\-\_\-cpf@{engine\-\_\-read\-\_\-cpf}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-read\-\_\-cpf}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-read\-\_\-cpf (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{int}]{cpf, }
+\item[{double}]{kappa, }
+\item[{double}]{tol, }
+\item[{int}]{rigid\-H}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a34524364f411a9d5e6a7e46dd88146e8}
+
+
+Read the potentials from a C\-H\-A\-R\-M\-M parameter file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em cpf} & The open C\-H\-A\-R\-M\-M parameter file. \\
+\hline
+{\em kappa} & The P\-M\-E screening width. \\
+\hline
+{\em tol} & The absolute tolerance for interpolation. \\
+\hline
+{\em rigid\-H} & Convert all bonds over a type starting with 'H' to a rigid constraint.\\
+\hline
+\end{DoxyParams}
+If {\ttfamily kappa} is zero, truncated Coulomb electrostatic interactions are assumed. If {\ttfamily kappa} is less than zero, no electrostatic interactions are computed.
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_a6a5d23442a757983ad642bfab5ec231c}{\index{engine.\-h@{engine.\-h}!engine\-\_\-read\-\_\-psf@{engine\-\_\-read\-\_\-psf}}
+\index{engine\-\_\-read\-\_\-psf@{engine\-\_\-read\-\_\-psf}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-read\-\_\-psf}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-read\-\_\-psf (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{int}]{psf, }
+\item[{int}]{pdb}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a6a5d23442a757983ad642bfab5ec231c}
+
+
+Read the simulation setup from a P\-S\-F and P\-D\-B file pair. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em psf} & The open P\-S\-F file. \\
+\hline
+{\em pdb} & The open P\-D\-B file.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_a9299806d7c4bdf1fb622ba4aa409eaa1}{\index{engine.\-h@{engine.\-h}!engine\-\_\-read\-\_\-xplor@{engine\-\_\-read\-\_\-xplor}}
+\index{engine\-\_\-read\-\_\-xplor@{engine\-\_\-read\-\_\-xplor}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-read\-\_\-xplor}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-read\-\_\-xplor (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{int}]{xplor, }
+\item[{double}]{kappa, }
+\item[{double}]{tol, }
+\item[{int}]{rigid\-H}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a9299806d7c4bdf1fb622ba4aa409eaa1}
+
+
+Read the potentials from a X\-P\-L\-O\-R parameter file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em xplor} & The open X\-P\-L\-O\-R parameter file. \\
+\hline
+{\em kappa} & The P\-M\-E screening width. \\
+\hline
+{\em tol} & The absolute tolerance for interpolation. \\
+\hline
+{\em rigid\-H} & Convert all bonds over a type starting with 'H' to a rigid constraint.\\
+\hline
+\end{DoxyParams}
+If {\ttfamily kappa} is zero, truncated Coulomb electrostatic interactions are assumed. If {\ttfamily kappa} is less than zero, no electrostatic interactions are computed.
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_a6f09206374580e9eeef8c16dea4419f3}{\index{engine.\-h@{engine.\-h}!engine\-\_\-rigid\-\_\-add@{engine\-\_\-rigid\-\_\-add}}
+\index{engine\-\_\-rigid\-\_\-add@{engine\-\_\-rigid\-\_\-add}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-rigid\-\_\-add}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-rigid\-\_\-add (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{int}]{pid, }
+\item[{int}]{pjd, }
+\item[{double}]{d}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a6f09206374580e9eeef8c16dea4419f3}
+
+
+Add a rigid constraint to the engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em pid} & The I\-D of the first \hyperlink{structpart}{part}. \\
+\hline
+{\em pjd} & The I\-D of the second \hyperlink{structpart}{part}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The index of the rigid constraint or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}).
+\end{DoxyReturn}
+Beware that currently all particles have to have been inserted before the rigid constraints are added! \hypertarget{engine_8h_a3aab981531b097b166448a23f234eaf4}{\index{engine.\-h@{engine.\-h}!engine\-\_\-rigid\-\_\-eval@{engine\-\_\-rigid\-\_\-eval}}
+\index{engine\-\_\-rigid\-\_\-eval@{engine\-\_\-rigid\-\_\-eval}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-rigid\-\_\-eval}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-rigid\-\_\-eval (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a3aab981531b097b166448a23f234eaf4}
+
+
+Resolve the constraints. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}).
+\end{DoxyReturn}
+Note that if in parallel, \hyperlink{engine__rigid_8c_aaa4ca8f891331f7c68bd5770b63aa341}{engine\-\_\-rigid\-\_\-sort} should be called before this routine. \hypertarget{engine_8h_aaa4ca8f891331f7c68bd5770b63aa341}{\index{engine.\-h@{engine.\-h}!engine\-\_\-rigid\-\_\-sort@{engine\-\_\-rigid\-\_\-sort}}
+\index{engine\-\_\-rigid\-\_\-sort@{engine\-\_\-rigid\-\_\-sort}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-rigid\-\_\-sort}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-rigid\-\_\-sort (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_aaa4ca8f891331f7c68bd5770b63aa341}
+
+
+Split the rigids into local, semilocal and non-\/local. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_a0c8bedfc38955b879b7db720ebb896f9}{\index{engine.\-h@{engine.\-h}!engine\-\_\-rigid\-\_\-unsort@{engine\-\_\-rigid\-\_\-unsort}}
+\index{engine\-\_\-rigid\-\_\-unsort@{engine\-\_\-rigid\-\_\-unsort}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-rigid\-\_\-unsort}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-rigid\-\_\-unsort (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a0c8bedfc38955b879b7db720ebb896f9}
+
+
+Shuffle the rigid constraints randomly. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_a6a5018069671d0762806896d927f3a95}{\index{engine.\-h@{engine.\-h}!engine\-\_\-setexplepot@{engine\-\_\-setexplepot}}
+\index{engine\-\_\-setexplepot@{engine\-\_\-setexplepot}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-setexplepot}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-setexplepot (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{struct {\bf potential} $\ast$}]{ep}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a6a5018069671d0762806896d927f3a95}
+
+
+Set the explicit electrostatic potential. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em ep} & The electrostatic \hyperlink{structpotential}{potential}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}).
+\end{DoxyReturn}
+If {\ttfamily ep} is not {\ttfamily N\-U\-L\-L}, the flag \hyperlink{engine_8h_ad551f1485c9d3adda913dfbe2f5a5b58}{engine\-\_\-flag\-\_\-explepot} is set, otherwise it is cleared. \hypertarget{engine_8h_aee24cd486d7bc6be737df5ecd43cd68b}{\index{engine.\-h@{engine.\-h}!engine\-\_\-shuffle@{engine\-\_\-shuffle}}
+\index{engine\-\_\-shuffle@{engine\-\_\-shuffle}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-shuffle}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-shuffle (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_aee24cd486d7bc6be737df5ecd43cd68b}
+
+
+Re-\/shuffle the particles in the engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine} on which to run.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_a58eed0f9b4140be350b08e1742627f87}{\index{engine.\-h@{engine.\-h}!engine\-\_\-split@{engine\-\_\-split}}
+\index{engine\-\_\-split@{engine\-\_\-split}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-split}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-split (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a58eed0f9b4140be350b08e1742627f87}
+
+
+Set-\/up the engine for distributed-\/memory parallel operation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine} to set-\/up.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}).
+\end{DoxyReturn}
+This function assumes that \hyperlink{engine_8h_ad8e0c8513f4fbf6fc18f3166b4484044}{engine\-\_\-split\-\_\-bisect} or some similar function has already been called and that \#node\-I\-D, \#nr\-\_\-nodes as well as the \hyperlink{structcell}{cell} {\ttfamily node\-I\-Ds} have been set. \hypertarget{engine_8h_ad8e0c8513f4fbf6fc18f3166b4484044}{\index{engine.\-h@{engine.\-h}!engine\-\_\-split\-\_\-bisect@{engine\-\_\-split\-\_\-bisect}}
+\index{engine\-\_\-split\-\_\-bisect@{engine\-\_\-split\-\_\-bisect}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-split\-\_\-bisect}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-split\-\_\-bisect (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{int}]{N}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_ad8e0c8513f4fbf6fc18f3166b4484044}
+
+
+Split the computational domain over a number of nodes using bisection. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine} to split up. \\
+\hline
+{\em N} & The number of computational nodes.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_af88982963377c8df684162bda505fe9d}{\index{engine.\-h@{engine.\-h}!engine\-\_\-split\-\_\-\-M\-E\-T\-I\-S@{engine\-\_\-split\-\_\-\-M\-E\-T\-I\-S}}
+\index{engine\-\_\-split\-\_\-\-M\-E\-T\-I\-S@{engine\-\_\-split\-\_\-\-M\-E\-T\-I\-S}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-split\-\_\-\-M\-E\-T\-I\-S}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-split\-\_\-\-M\-E\-T\-I\-S (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{int}]{N, }
+\item[{int}]{flags}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_af88982963377c8df684162bda505fe9d}
+
+
+Split the computation domain over a number of nodes using M\-E\-T\-I\-S graph partitioning. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine} to split up. \\
+\hline
+{\em N} & The number of computational nodes. \\
+\hline
+{\em flags} & Flag telling whether to split the space for M\-P\-I or for G\-P\-Us.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_a94831a2a9b41da551a85764b2cffe8f7}{\index{engine.\-h@{engine.\-h}!engine\-\_\-start@{engine\-\_\-start}}
+\index{engine\-\_\-start@{engine\-\_\-start}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-start}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-start (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{int}]{nr\-\_\-runners, }
+\item[{int}]{nr\-\_\-queues}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a94831a2a9b41da551a85764b2cffe8f7}
+
+
+Start the runners in the given \hyperlink{structengine}{engine}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine} to start. \\
+\hline
+{\em nr\-\_\-runners} & The number of runners start.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}).
+\end{DoxyReturn}
+Allocates and starts the specified number of \hyperlink{structrunner}{runner}. Also initializes the Verlet lists. \hypertarget{engine_8h_acd1955f16ceb52c87d569b923648d52b}{\index{engine.\-h@{engine.\-h}!engine\-\_\-start\-\_\-\-S\-P\-U@{engine\-\_\-start\-\_\-\-S\-P\-U}}
+\index{engine\-\_\-start\-\_\-\-S\-P\-U@{engine\-\_\-start\-\_\-\-S\-P\-U}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-start\-\_\-\-S\-P\-U}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-start\-\_\-\-S\-P\-U (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{int}]{nr\-\_\-runners}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_acd1955f16ceb52c87d569b923648d52b}
+
+
+Start the S\-P\-U-\/associated runners in the given \hyperlink{structengine}{engine}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine} to start. \\
+\hline
+{\em nr\-\_\-runners} & The number of runners start.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}).
+\end{DoxyReturn}
+Allocates and starts the specified number of \hyperlink{structrunner}{runner}. \hypertarget{engine_8h_ab169ee7ceb11536d4907c4a07ae62044}{\index{engine.\-h@{engine.\-h}!engine\-\_\-step@{engine\-\_\-step}}
+\index{engine\-\_\-step@{engine\-\_\-step}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-step}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-step (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_ab169ee7ceb11536d4907c4a07ae62044}
+
+
+Run the engine for a single time step. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine} on which to run.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}).
+\end{DoxyReturn}
+This routine advances the timestep counter by one, prepares the \hyperlink{structspace}{space} for a timestep, releases the \hyperlink{structrunner}{runner}'s associated with the \hyperlink{structengine}{engine} and waits for them to finnish.
+
+Once all the \hyperlink{structrunner}{runner}'s are done, the particle velocities and positions are updated and the particles are re-\/sorted in the \hyperlink{structspace}{space}. \hypertarget{engine_8h_ad67df51519859e9386275e0cc084f840}{\index{engine.\-h@{engine.\-h}!engine\-\_\-timers\-\_\-reset@{engine\-\_\-timers\-\_\-reset}}
+\index{engine\-\_\-timers\-\_\-reset@{engine\-\_\-timers\-\_\-reset}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-timers\-\_\-reset}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-timers\-\_\-reset (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_ad67df51519859e9386275e0cc084f840}
+
+
+Set all the engine timers to 0. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine_8h_a6ea030db3b58209416bd976c4b364327}{\index{engine.\-h@{engine.\-h}!engine\-\_\-unload@{engine\-\_\-unload}}
+\index{engine\-\_\-unload@{engine\-\_\-unload}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-unload}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-unload (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{double $\ast$}]{x, }
+\item[{double $\ast$}]{v, }
+\item[{int $\ast$}]{type, }
+\item[{int $\ast$}]{pid, }
+\item[{int $\ast$}]{vid, }
+\item[{double $\ast$}]{q, }
+\item[{unsigned int $\ast$}]{flags, }
+\item[{double $\ast$}]{epot, }
+\item[{int}]{N}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a6ea030db3b58209416bd976c4b364327}
+
+
+Unload a set of particle data from the \hyperlink{structengine}{engine}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em x} & An {\ttfamily N} times 3 array of the particle positions. \\
+\hline
+{\em v} & An {\ttfamily N} times 3 array of the particle velocities. \\
+\hline
+{\em type} & A vector of length {\ttfamily N} of the particle type I\-Ds. \\
+\hline
+{\em pid} & A vector of length {\ttfamily N} of the particle I\-Ds. \\
+\hline
+{\em vid} & A vector of length {\ttfamily N} of the particle virtual I\-Ds. \\
+\hline
+{\em q} & A vector of length {\ttfamily N} of the individual particle charges. \\
+\hline
+{\em flags} & A vector of length {\ttfamily N} of the particle flags. \\
+\hline
+{\em epot} & A pointer to a \#double in which to store the total potential energy. \\
+\hline
+{\em N} & the maximum number of particles.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of particles unloaded or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}).
+\end{DoxyReturn}
+The fields {\ttfamily x}, {\ttfamily v}, {\ttfamily type}, {\ttfamily pid}, {\ttfamily vid}, {\ttfamily q}, {\ttfamily epot} and/or {\ttfamily flags} may be N\-U\-L\-L. \hypertarget{engine_8h_a977a0035dcac10dd069867a10e882c8d}{\index{engine.\-h@{engine.\-h}!engine\-\_\-unload\-\_\-marked@{engine\-\_\-unload\-\_\-marked}}
+\index{engine\-\_\-unload\-\_\-marked@{engine\-\_\-unload\-\_\-marked}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-unload\-\_\-marked}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-unload\-\_\-marked (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{double $\ast$}]{x, }
+\item[{double $\ast$}]{v, }
+\item[{int $\ast$}]{type, }
+\item[{int $\ast$}]{pid, }
+\item[{int $\ast$}]{vid, }
+\item[{double $\ast$}]{q, }
+\item[{unsigned int $\ast$}]{flags, }
+\item[{double $\ast$}]{epot, }
+\item[{int}]{N}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a977a0035dcac10dd069867a10e882c8d}
+
+
+Unload a set of particle data from the marked cells of an \hyperlink{structengine}{engine}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em x} & An {\ttfamily N} times 3 array of the particle positions. \\
+\hline
+{\em v} & An {\ttfamily N} times 3 array of the particle velocities. \\
+\hline
+{\em type} & A vector of length {\ttfamily N} of the particle type I\-Ds. \\
+\hline
+{\em pid} & A vector of length {\ttfamily N} of the particle I\-Ds. \\
+\hline
+{\em vid} & A vector of length {\ttfamily N} of the particle virtual I\-Ds. \\
+\hline
+{\em q} & A vector of length {\ttfamily N} of the individual particle charges. \\
+\hline
+{\em flags} & A vector of length {\ttfamily N} of the particle flags. \\
+\hline
+{\em epot} & A pointer to a \#double in which to store the total potential energy. \\
+\hline
+{\em N} & the maximum number of particles.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of particles unloaded or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}).
+\end{DoxyReturn}
+The fields {\ttfamily x}, {\ttfamily v}, {\ttfamily type}, {\ttfamily pid}, {\ttfamily vid}, {\ttfamily q}, {\ttfamily epot} and/or {\ttfamily flags} may be N\-U\-L\-L. \hypertarget{engine_8h_a699b49b6f65144fdd950812231e4c387}{\index{engine.\-h@{engine.\-h}!engine\-\_\-unload\-\_\-strays@{engine\-\_\-unload\-\_\-strays}}
+\index{engine\-\_\-unload\-\_\-strays@{engine\-\_\-unload\-\_\-strays}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-unload\-\_\-strays}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-unload\-\_\-strays (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{double $\ast$}]{x, }
+\item[{double $\ast$}]{v, }
+\item[{int $\ast$}]{type, }
+\item[{int $\ast$}]{pid, }
+\item[{int $\ast$}]{vid, }
+\item[{double $\ast$}]{q, }
+\item[{unsigned int $\ast$}]{flags, }
+\item[{double $\ast$}]{epot, }
+\item[{int}]{N}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a699b49b6f65144fdd950812231e4c387}
+
+
+Unload real particles that may have wandered into a ghost cell. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em x} & An {\ttfamily N} times 3 array of the particle positions. \\
+\hline
+{\em v} & An {\ttfamily N} times 3 array of the particle velocities. \\
+\hline
+{\em type} & A vector of length {\ttfamily N} of the particle type I\-Ds. \\
+\hline
+{\em pid} & A vector of length {\ttfamily N} of the particle I\-Ds. \\
+\hline
+{\em vid} & A vector of length {\ttfamily N} of the particle virtual I\-Ds. \\
+\hline
+{\em q} & A vector of length {\ttfamily N} of the individual particle charges. \\
+\hline
+{\em flags} & A vector of length {\ttfamily N} of the particle flags. \\
+\hline
+{\em epot} & A pointer to a \#double in which to store the total potential energy. \\
+\hline
+{\em N} & the maximum number of particles.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of particles unloaded or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}).
+\end{DoxyReturn}
+The fields {\ttfamily x}, {\ttfamily v}, {\ttfamily type}, {\ttfamily vid}, {\ttfamily pid}, {\ttfamily q}, {\ttfamily epot} and/or {\ttfamily flags} may be N\-U\-L\-L. \hypertarget{engine_8h_a83702eb8b53c1de5addc229530571f1e}{\index{engine.\-h@{engine.\-h}!engine\-\_\-verlet\-\_\-update@{engine\-\_\-verlet\-\_\-update}}
+\index{engine\-\_\-verlet\-\_\-update@{engine\-\_\-verlet\-\_\-update}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-verlet\-\_\-update}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-verlet\-\_\-update (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine_8h_a83702eb8b53c1de5addc229530571f1e}
+
+
+Check if the Verlet-\/list needs to be updated. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\hypertarget{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err@{engine\-\_\-err}}
+\index{engine\-\_\-err@{engine\-\_\-err}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-err}}\label{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}
+I\-D of the last error. \hypertarget{engine_8h_aa489083c5e5d436bafd05a7860b21804}{\index{engine.\-h@{engine.\-h}!engine\-\_\-err\-\_\-msg@{engine\-\_\-err\-\_\-msg}}
+\index{engine\-\_\-err\-\_\-msg@{engine\-\_\-err\-\_\-msg}!engine.h@{engine.\-h}}
+\subsubsection[{engine\-\_\-err\-\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ engine\-\_\-err\-\_\-msg\mbox{[}$\,$\mbox{]}}}\label{engine_8h_aa489083c5e5d436bafd05a7860b21804}
+List of error messages. 

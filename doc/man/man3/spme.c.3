@@ -1,0 +1,195 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/spme.c" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/spme.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <strings\&.h>\fP
+.br
+\fC#include <alloca\&.h>\fP
+.br
+\fC#include <pthread\&.h>\fP
+.br
+\fC#include <math\&.h>\fP
+.br
+\fC#include '\&.\&./config\&.h'\fP
+.br
+\fC#include <omp\&.h>\fP
+.br
+\fC#include <complex\&.h>\fP
+.br
+\fC#include <fftw3\&.h>\fP
+.br
+\fC#include 'errs\&.h'\fP
+.br
+\fC#include 'fptype\&.h'\fP
+.br
+\fC#include 'lock\&.h'\fP
+.br
+\fC#include 'part\&.h'\fP
+.br
+\fC#include 'cell\&.h'\fP
+.br
+\fC#include 'spme\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBerror\fP(\fBid\fP)   ( \fBspme_err\fP = \fBerrs_register\fP( \fBid\fP , \fBspme_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBspme_doconv\fP (struct \fBspme\fP *s)"
+.br
+.RI "\fIDo the convolution stuff\&. \fP"
+.ti -1c
+.RI "void \fBspme_iact\fP (struct \fBspme\fP *restrict s, struct \fBcell\fP *restrict cp, struct \fBcell\fP *restrict cg)"
+.br
+.RI "\fICompute the interactions between the particles and grid\&. \fP"
+.ti -1c
+.RI "void \fBspme_bspline\fP (float *\fBx\fP, int N, float *b, float *dbdx)"
+.br
+.RI "\fIEvaluate the B-spline and its derivatives at the given points\&. \fP"
+.ti -1c
+.RI "float \fBspme_M\fP (int k, float \fBx\fP)"
+.br
+.ti -1c
+.RI "int \fBspme_init\fP (struct \fBspme\fP *s, int *dim, float *h, float \fBkappa\fP)"
+.br
+.RI "\fISort the cell pairs in a spme according to their direction\&. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBspme_err\fP = \fBspme_err_ok\fP"
+.br
+.ti -1c
+.RI "char * \fBspme_err_msg\fP [5]"
+.br
+.ti -1c
+.RI "float \fBspme_coeffs\fP [12]"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define error(\fBid\fP)   ( \fBspme_err\fP = \fBerrs_register\fP( \fBid\fP , \fBspme_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+
+.SH "Function Documentation"
+.PP 
+.SS "void spme_bspline (float *x, intN, float *b, float *dbdx)"
+
+.PP
+Evaluate the B-spline and its derivatives at the given points\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP The distances, normalized\&. 
+.br
+\fIN\fP The number of points\&. 
+.br
+\fIb\fP A vector in which to store the B-splines\&. 
+.br
+\fIdbdx\fP A vector in which to store the derivative\&. 
+.RE
+.PP
+
+.SS "int spme_doconv (struct \fBspme\fP *s)"
+
+.PP
+Do the convolution stuff\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIs\fP The \fBspme\fP\&. 
+.RE
+.PP
+
+.SS "void spme_iact (struct \fBspme\fP *restricts, struct \fBcell\fP *restrictcp, struct \fBcell\fP *restrictcg)"
+
+.PP
+Compute the interactions between the particles and grid\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIspme\fP The \fBspme\fP object\&. 
+.br
+\fIcp\fP The \fBcell\fP containing the parts 
+.br
+\fIcg\fP The \fBcell\fP containing the grid 
+.br
+\fIshift\fP The shift vector from \fCcp\fP to \fCcg\fP\&. 
+.RE
+.PP
+
+.SS "int spme_init (struct \fBspme\fP *s, int *dim, float *h, floatkappa)"
+
+.PP
+Sort the cell pairs in a spme according to their direction\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIs\fP The \fBspme\fP data structure\&. 
+.br
+\fIdim\fP The SPME grid dimensions\&. 
+.br
+\fIh\fP The grid spacing in each dimension\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBspme_err_ok\fP or < 0 on error (see \fBspme_err\fP)\&. 
+.RE
+.PP
+
+.SS "float spme_M (intk, floatx)"
+Recursive definition of the cardinal B-spline
+.PP
+\fBParameters:\fP
+.RS 4
+\fIk\fP B-spline order\&. 
+.br
+\fIx\fP Point at which the function will be evaluated\&. 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "float spme_coeffs[12]"
+\fBInitial value:\fP
+.PP
+.nf
+= { 2\&.0f/3\&.0f , 0\&.0f , -1\&.0f , 0\&.5f ,
+                          4\&.0f/3\&.0f , -2\&.0f , 1\&.0f , -1\&.0f/6\&.0f ,
+                          0\&.0f , 0\&.0f , 0\&.0f , 0\&.0f }
+.fi
+.SS "int spme_err = \fBspme_err_ok\fP"
+ID of the last error 
+.SS "char* spme_err_msg[5]"
+\fBInitial value:\fP
+.PP
+.nf
+= {
+        "Nothing bad happened\&.",
+    "An unexpected NULL pointer was encountered\&.",
+    "A call to malloc failed, probably due to insufficient memory\&.",
+    "SMPE not available, mdcore was not compiled with fftw3\&.",
+    "An error occured when calling an fftw3 funciton\&."
+        }
+.fi
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

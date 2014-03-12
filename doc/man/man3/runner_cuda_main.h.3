@@ -1,0 +1,53 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/runner_cuda_main.h" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/runner_cuda_main.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBPASTE\fP(\fBx\fP, y)   \fBx\fP ## _ ## y"
+.br
+.ti -1c
+.RI "#define \fBrunner_run_verlet_cuda\fP(N)   \fBPASTE\fP(runner_run_verlet_cuda,N)"
+.br
+.ti -1c
+.RI "#define \fBrunner_run_cuda\fP(N)   \fBPASTE\fP(runner_run_cuda,N)"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "__global__ void \fBrunner_run_cuda\fP() \fBcuda_nparts\fP (float *forces, int *counts, int *\fBind\fP, int verlet_rebuild)"
+.br
+.RI "\fILoop over the cell pairs and process them\&. \fP"
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define PASTE(\fBx\fP, y)   \fBx\fP ## _ ## y"
+
+.SS "#define runner_run_cuda(N)   \fBPASTE\fP(runner_run_cuda,N)"
+
+.SS "#define runner_run_verlet_cuda(N)   \fBPASTE\fP(runner_run_verlet_cuda,N)"
+
+.SH "Function Documentation"
+.PP 
+.SS "__global__ void \fBrunner_run_cuda\fP() cuda_nparts (float *forces, int *counts, int *ind, intverlet_rebuild)"
+
+.PP
+Loop over the cell pairs and process them\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcells\fP Array of cells on the device\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

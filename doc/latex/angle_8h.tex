@@ -1,0 +1,112 @@
+\hypertarget{angle_8h}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/angle.h File Reference}
+\label{angle_8h}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/angle.\-h@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/angle.\-h}}
+}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structangle}{angle}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{angle_8h_ac8cb3760f6bac0824ca9634dd1f028aa}{angle\-\_\-err\-\_\-ok}~0
+\item 
+\#define \hyperlink{angle_8h_aa542edb5bf7c5b76a5599dfe96531ae4}{angle\-\_\-err\-\_\-null}~-\/1
+\item 
+\#define \hyperlink{angle_8h_ad421e4dae5a44e2ae1e5ec6bb7cda12e}{angle\-\_\-err\-\_\-malloc}~-\/2
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{angle_8h_a674627b10562e26769045c7250e79ce6}{angle\-\_\-eval} (struct \hyperlink{structangle}{angle} $\ast$a, int N, struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, double $\ast$epot\-\_\-out)
+\begin{DoxyCompactList}\small\item\em Evaluate a list of angleed interactions. \end{DoxyCompactList}\item 
+int \hyperlink{angle_8h_a4763dc3e94784ddccd673b7eef19d68c}{angle\-\_\-evalf} (struct \hyperlink{structangle}{angle} $\ast$a, int N, struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$\hyperlink{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}{f}, double $\ast$epot\-\_\-out)
+\begin{DoxyCompactList}\small\item\em Evaluate a list of angleed interactions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{angle_8h_ac4aa441b2f85a5f143e962b1c6eed47e}{angle\-\_\-err}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{angle_8h_ad421e4dae5a44e2ae1e5ec6bb7cda12e}{\index{angle.\-h@{angle.\-h}!angle\-\_\-err\-\_\-malloc@{angle\-\_\-err\-\_\-malloc}}
+\index{angle\-\_\-err\-\_\-malloc@{angle\-\_\-err\-\_\-malloc}!angle.h@{angle.\-h}}
+\subsubsection[{angle\-\_\-err\-\_\-malloc}]{\setlength{\rightskip}{0pt plus 5cm}\#define angle\-\_\-err\-\_\-malloc~-\/2}}\label{angle_8h_ad421e4dae5a44e2ae1e5ec6bb7cda12e}
+\hypertarget{angle_8h_aa542edb5bf7c5b76a5599dfe96531ae4}{\index{angle.\-h@{angle.\-h}!angle\-\_\-err\-\_\-null@{angle\-\_\-err\-\_\-null}}
+\index{angle\-\_\-err\-\_\-null@{angle\-\_\-err\-\_\-null}!angle.h@{angle.\-h}}
+\subsubsection[{angle\-\_\-err\-\_\-null}]{\setlength{\rightskip}{0pt plus 5cm}\#define angle\-\_\-err\-\_\-null~-\/1}}\label{angle_8h_aa542edb5bf7c5b76a5599dfe96531ae4}
+\hypertarget{angle_8h_ac8cb3760f6bac0824ca9634dd1f028aa}{\index{angle.\-h@{angle.\-h}!angle\-\_\-err\-\_\-ok@{angle\-\_\-err\-\_\-ok}}
+\index{angle\-\_\-err\-\_\-ok@{angle\-\_\-err\-\_\-ok}!angle.h@{angle.\-h}}
+\subsubsection[{angle\-\_\-err\-\_\-ok}]{\setlength{\rightskip}{0pt plus 5cm}\#define angle\-\_\-err\-\_\-ok~0}}\label{angle_8h_ac8cb3760f6bac0824ca9634dd1f028aa}
+
+
+\subsection{Function Documentation}
+\hypertarget{angle_8h_a674627b10562e26769045c7250e79ce6}{\index{angle.\-h@{angle.\-h}!angle\-\_\-eval@{angle\-\_\-eval}}
+\index{angle\-\_\-eval@{angle\-\_\-eval}!angle.h@{angle.\-h}}
+\subsubsection[{angle\-\_\-eval}]{\setlength{\rightskip}{0pt plus 5cm}int angle\-\_\-eval (
+\begin{DoxyParamCaption}
+\item[{struct {\bf angle} $\ast$}]{a, }
+\item[{int}]{N, }
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{double $\ast$}]{epot\-\_\-out}
+\end{DoxyParamCaption}
+)}}\label{angle_8h_a674627b10562e26769045c7250e79ce6}
+
+
+Evaluate a list of angleed interactions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & Pointer to an array of \hyperlink{structangle}{angle}. \\
+\hline
+{\em N} & Nr of angles in {\ttfamily b}. \\
+\hline
+{\em e} & Pointer to the \hyperlink{structengine}{engine} in which these angles are evaluated. \\
+\hline
+{\em epot\-\_\-out} & Pointer to a double in which to aggregate the potential energy.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{angle_8h_ac8cb3760f6bac0824ca9634dd1f028aa}{angle\-\_\-err\-\_\-ok} or $<$0 on error (see \hyperlink{angle_8h_ac4aa441b2f85a5f143e962b1c6eed47e}{angle\-\_\-err}) 
+\end{DoxyReturn}
+\hypertarget{angle_8h_a4763dc3e94784ddccd673b7eef19d68c}{\index{angle.\-h@{angle.\-h}!angle\-\_\-evalf@{angle\-\_\-evalf}}
+\index{angle\-\_\-evalf@{angle\-\_\-evalf}!angle.h@{angle.\-h}}
+\subsubsection[{angle\-\_\-evalf}]{\setlength{\rightskip}{0pt plus 5cm}int angle\-\_\-evalf (
+\begin{DoxyParamCaption}
+\item[{struct {\bf angle} $\ast$}]{a, }
+\item[{int}]{N, }
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{{\bf F\-P\-T\-Y\-P\-E} $\ast$}]{f, }
+\item[{double $\ast$}]{epot\-\_\-out}
+\end{DoxyParamCaption}
+)}}\label{angle_8h_a4763dc3e94784ddccd673b7eef19d68c}
+
+
+Evaluate a list of angleed interactions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & Pointer to an array of \hyperlink{structangle}{angle}. \\
+\hline
+{\em N} & Nr of angles in {\ttfamily b}. \\
+\hline
+{\em e} & Pointer to the \hyperlink{structengine}{engine} in which these angles are evaluated. \\
+\hline
+{\em epot\-\_\-out} & Pointer to a double in which to aggregate the potential energy.\\
+\hline
+\end{DoxyParams}
+This function differs from \hyperlink{angle_8h_a674627b10562e26769045c7250e79ce6}{angle\-\_\-eval} in that the forces are added to the array {\ttfamily f} instead of directly in the particle data.
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{angle_8h_ac8cb3760f6bac0824ca9634dd1f028aa}{angle\-\_\-err\-\_\-ok} or $<$0 on error (see \hyperlink{angle_8h_ac4aa441b2f85a5f143e962b1c6eed47e}{angle\-\_\-err}) 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\hypertarget{angle_8h_ac4aa441b2f85a5f143e962b1c6eed47e}{\index{angle.\-h@{angle.\-h}!angle\-\_\-err@{angle\-\_\-err}}
+\index{angle\-\_\-err@{angle\-\_\-err}!angle.h@{angle.\-h}}
+\subsubsection[{angle\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}int angle\-\_\-err}}\label{angle_8h_ac4aa441b2f85a5f143e962b1c6eed47e}
+I\-D of the last error
+
+The I\-D of the last error. 

@@ -1,0 +1,187 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/engine_io.c" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/engine_io.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <pthread\&.h>\fP
+.br
+\fC#include <math\&.h>\fP
+.br
+\fC#include <float\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include '\&.\&./config\&.h'\fP
+.br
+\fC#include <omp\&.h>\fP
+.br
+\fC#include 'cycle\&.h'\fP
+.br
+\fC#include 'errs\&.h'\fP
+.br
+\fC#include 'fptype\&.h'\fP
+.br
+\fC#include 'lock\&.h'\fP
+.br
+\fC#include 'part\&.h'\fP
+.br
+\fC#include 'cell\&.h'\fP
+.br
+\fC#include 'space\&.h'\fP
+.br
+\fC#include 'potential\&.h'\fP
+.br
+\fC#include 'runner\&.h'\fP
+.br
+\fC#include 'bond\&.h'\fP
+.br
+\fC#include 'rigid\&.h'\fP
+.br
+\fC#include 'angle\&.h'\fP
+.br
+\fC#include 'dihedral\&.h'\fP
+.br
+\fC#include 'exclusion\&.h'\fP
+.br
+\fC#include 'reader\&.h'\fP
+.br
+\fC#include 'engine\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBerror\fP(\fBid\fP)   ( \fBengine_err\fP = \fBerrs_register\fP( \fBid\fP , \fBengine_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBengine_read_xplor\fP (struct \fBengine\fP *\fBe\fP, int xplor, double \fBkappa\fP, double tol, int rigidH)"
+.br
+.RI "\fIRead the potentials from a XPLOR parameter file\&. \fP"
+.ti -1c
+.RI "int \fBengine_read_cpf\fP (struct \fBengine\fP *\fBe\fP, int cpf, double \fBkappa\fP, double tol, int rigidH)"
+.br
+.RI "\fIRead the potentials from a CHARMM parameter file\&. \fP"
+.ti -1c
+.RI "int \fBengine_read_psf\fP (struct \fBengine\fP *\fBe\fP, int psf, int pdb)"
+.br
+.RI "\fIRead the simulation setup from a PSF and PDB file pair\&. \fP"
+.ti -1c
+.RI "int \fBengine_dump_PSF\fP (struct \fBengine\fP *\fBe\fP, FILE *psf, FILE *pdb, char *excl[], int nr_excl)"
+.br
+.RI "\fIDump the contents of the enginge to a PSF and PDB file\&. \fP"
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define error(\fBid\fP)   ( \fBengine_err\fP = \fBerrs_register\fP( \fBid\fP , \fBengine_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+
+.SH "Function Documentation"
+.PP 
+.SS "int engine_dump_PSF (struct \fBengine\fP *e, FILE *psf, FILE *pdb, char *excl[], intnr_excl)"
+
+.PP
+Dump the contents of the enginge to a PSF and PDB file\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&. 
+.br
+\fIpsf\fP A pointer to \fCFILE\fP to which to write the PSF file\&. 
+.br
+\fIpdb\fP A pointer to \fCFILE\fP to which to write the PDB file\&.
+.RE
+.PP
+If any of \fCpsf\fP or \fCpdb\fP are \fCNULL\fP, the respective output will not be generated\&.
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_read_cpf (struct \fBengine\fP *e, intcpf, doublekappa, doubletol, intrigidH)"
+
+.PP
+Read the potentials from a CHARMM parameter file\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&. 
+.br
+\fIcpf\fP The open CHARMM parameter file\&. 
+.br
+\fIkappa\fP The PME screening width\&. 
+.br
+\fItol\fP The absolute tolerance for interpolation\&. 
+.br
+\fIrigidH\fP Convert all bonds over a type starting with 'H' to a rigid constraint\&.
+.RE
+.PP
+If \fCkappa\fP is zero, truncated Coulomb electrostatic interactions are assumed\&. If \fCkappa\fP is less than zero, no electrostatic interactions are computed\&.
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_read_psf (struct \fBengine\fP *e, intpsf, intpdb)"
+
+.PP
+Read the simulation setup from a PSF and PDB file pair\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&. 
+.br
+\fIpsf\fP The open PSF file\&. 
+.br
+\fIpdb\fP The open PDB file\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_read_xplor (struct \fBengine\fP *e, intxplor, doublekappa, doubletol, intrigidH)"
+
+.PP
+Read the potentials from a XPLOR parameter file\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&. 
+.br
+\fIxplor\fP The open XPLOR parameter file\&. 
+.br
+\fIkappa\fP The PME screening width\&. 
+.br
+\fItol\fP The absolute tolerance for interpolation\&. 
+.br
+\fIrigidH\fP Convert all bonds over a type starting with 'H' to a rigid constraint\&.
+.RE
+.PP
+If \fCkappa\fP is zero, truncated Coulomb electrostatic interactions are assumed\&. If \fCkappa\fP is less than zero, no electrostatic interactions are computed\&.
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

@@ -1,0 +1,134 @@
+\hypertarget{dihedral_8c}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/dihedral.c File Reference}
+\label{dihedral_8c}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/dihedral.\-c@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/dihedral.\-c}}
+}
+{\ttfamily \#include \char`\"{}../config.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$pthread.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include $<$float.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$limits.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}cycle.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}errs.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fptype.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lock.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}part.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}potential.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}potential\-\_\-eval.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}cell.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}space.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}engine.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}dihedral.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{dihedral_8c_a7673862d447029edaf3172ebd94aa28e}{error}(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})~( \hyperlink{dihedral_8h_a3c35a2f80c91a8c7e71666a44239d640}{dihedral\-\_\-err} = \hyperlink{errs_8h_ae37a9c0e0a0aa4a92dbe64c0f38ed95c}{errs\-\_\-register}( \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id} , \hyperlink{dihedral_8c_a74cf5d29bb43b276748d76957ba56b45}{dihedral\-\_\-err\-\_\-msg}\mbox{[}-\/(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{dihedral_8c_a54a09148d517365daab42cf8ce9bfa0b}{dihedral\-\_\-eval} (struct \hyperlink{structdihedral}{dihedral} $\ast$d, int N, struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, double $\ast$epot\-\_\-out)
+\begin{DoxyCompactList}\small\item\em Evaluate a list of dihedraled interactions. \end{DoxyCompactList}\item 
+int \hyperlink{dihedral_8c_aa731335f5910fa9bded26cdc17bb7d82}{dihedral\-\_\-evalf} (struct \hyperlink{structdihedral}{dihedral} $\ast$d, int N, struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$\hyperlink{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}{f}, double $\ast$epot\-\_\-out)
+\begin{DoxyCompactList}\small\item\em Evaluate a list of dihedraled interactions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{dihedral_8c_a3c35a2f80c91a8c7e71666a44239d640}{dihedral\-\_\-err} = \hyperlink{dihedral_8h_a1be99784aef49b4e1e745942c809531e}{dihedral\-\_\-err\-\_\-ok}
+\item 
+unsigned int \hyperlink{dihedral_8c_aa6dd9008a017d8f3eb880abdf7785374}{dihedral\-\_\-rcount} = 0
+\item 
+char $\ast$ \hyperlink{dihedral_8c_a74cf5d29bb43b276748d76957ba56b45}{dihedral\-\_\-err\-\_\-msg} \mbox{[}2\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{dihedral_8c_a7673862d447029edaf3172ebd94aa28e}{\index{dihedral.\-c@{dihedral.\-c}!error@{error}}
+\index{error@{error}!dihedral.c@{dihedral.\-c}}
+\subsubsection[{error}]{\setlength{\rightskip}{0pt plus 5cm}\#define error(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf id}}
+\end{DoxyParamCaption}
+)~( {\bf dihedral\-\_\-err} = {\bf errs\-\_\-register}( {\bf id} , {\bf dihedral\-\_\-err\-\_\-msg}\mbox{[}-\/({\bf id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )}}\label{dihedral_8c_a7673862d447029edaf3172ebd94aa28e}
+
+
+\subsection{Function Documentation}
+\hypertarget{dihedral_8c_a54a09148d517365daab42cf8ce9bfa0b}{\index{dihedral.\-c@{dihedral.\-c}!dihedral\-\_\-eval@{dihedral\-\_\-eval}}
+\index{dihedral\-\_\-eval@{dihedral\-\_\-eval}!dihedral.c@{dihedral.\-c}}
+\subsubsection[{dihedral\-\_\-eval}]{\setlength{\rightskip}{0pt plus 5cm}int dihedral\-\_\-eval (
+\begin{DoxyParamCaption}
+\item[{struct {\bf dihedral} $\ast$}]{d, }
+\item[{int}]{N, }
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{double $\ast$}]{epot\-\_\-out}
+\end{DoxyParamCaption}
+)}}\label{dihedral_8c_a54a09148d517365daab42cf8ce9bfa0b}
+
+
+Evaluate a list of dihedraled interactions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & Pointer to an array of \hyperlink{structdihedral}{dihedral}. \\
+\hline
+{\em N} & Nr of dihedrals in {\ttfamily b}. \\
+\hline
+{\em e} & Pointer to the \hyperlink{structengine}{engine} in which these dihedrals are evaluated. \\
+\hline
+{\em epot\-\_\-out} & Pointer to a double in which to aggregate the potential energy.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{dihedral_8h_a1be99784aef49b4e1e745942c809531e}{dihedral\-\_\-err\-\_\-ok} or $<$0 on error (see \hyperlink{dihedral_8h_a3c35a2f80c91a8c7e71666a44239d640}{dihedral\-\_\-err}) 
+\end{DoxyReturn}
+\hypertarget{dihedral_8c_aa731335f5910fa9bded26cdc17bb7d82}{\index{dihedral.\-c@{dihedral.\-c}!dihedral\-\_\-evalf@{dihedral\-\_\-evalf}}
+\index{dihedral\-\_\-evalf@{dihedral\-\_\-evalf}!dihedral.c@{dihedral.\-c}}
+\subsubsection[{dihedral\-\_\-evalf}]{\setlength{\rightskip}{0pt plus 5cm}int dihedral\-\_\-evalf (
+\begin{DoxyParamCaption}
+\item[{struct {\bf dihedral} $\ast$}]{d, }
+\item[{int}]{N, }
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{{\bf F\-P\-T\-Y\-P\-E} $\ast$}]{f, }
+\item[{double $\ast$}]{epot\-\_\-out}
+\end{DoxyParamCaption}
+)}}\label{dihedral_8c_aa731335f5910fa9bded26cdc17bb7d82}
+
+
+Evaluate a list of dihedraled interactions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & Pointer to an array of \hyperlink{structdihedral}{dihedral}. \\
+\hline
+{\em N} & Nr of dihedrals in {\ttfamily b}. \\
+\hline
+{\em e} & Pointer to the \hyperlink{structengine}{engine} in which these dihedrals are evaluated. \\
+\hline
+{\em epot\-\_\-out} & Pointer to a double in which to aggregate the potential energy.\\
+\hline
+\end{DoxyParams}
+This function differs from \hyperlink{dihedral_8h_a54a09148d517365daab42cf8ce9bfa0b}{dihedral\-\_\-eval} in that the forces are added to the array {\ttfamily f} instead of directly in the particle data.
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{dihedral_8h_a1be99784aef49b4e1e745942c809531e}{dihedral\-\_\-err\-\_\-ok} or $<$0 on error (see \hyperlink{dihedral_8h_a3c35a2f80c91a8c7e71666a44239d640}{dihedral\-\_\-err}) 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\hypertarget{dihedral_8c_a3c35a2f80c91a8c7e71666a44239d640}{\index{dihedral.\-c@{dihedral.\-c}!dihedral\-\_\-err@{dihedral\-\_\-err}}
+\index{dihedral\-\_\-err@{dihedral\-\_\-err}!dihedral.c@{dihedral.\-c}}
+\subsubsection[{dihedral\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}int dihedral\-\_\-err = {\bf dihedral\-\_\-err\-\_\-ok}}}\label{dihedral_8c_a3c35a2f80c91a8c7e71666a44239d640}
+The I\-D of the last error. \hypertarget{dihedral_8c_a74cf5d29bb43b276748d76957ba56b45}{\index{dihedral.\-c@{dihedral.\-c}!dihedral\-\_\-err\-\_\-msg@{dihedral\-\_\-err\-\_\-msg}}
+\index{dihedral\-\_\-err\-\_\-msg@{dihedral\-\_\-err\-\_\-msg}!dihedral.c@{dihedral.\-c}}
+\subsubsection[{dihedral\-\_\-err\-\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ dihedral\-\_\-err\-\_\-msg\mbox{[}2\mbox{]}}}\label{dihedral_8c_a74cf5d29bb43b276748d76957ba56b45}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= \{
+        \textcolor{stringliteral}{"Nothing bad happened."},
+    \textcolor{stringliteral}{"An unexpected NULL pointer was encountered."}
+        \}
+\end{DoxyCode}
+\hypertarget{dihedral_8c_aa6dd9008a017d8f3eb880abdf7785374}{\index{dihedral.\-c@{dihedral.\-c}!dihedral\-\_\-rcount@{dihedral\-\_\-rcount}}
+\index{dihedral\-\_\-rcount@{dihedral\-\_\-rcount}!dihedral.c@{dihedral.\-c}}
+\subsubsection[{dihedral\-\_\-rcount}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int dihedral\-\_\-rcount = 0}}\label{dihedral_8c_aa6dd9008a017d8f3eb880abdf7785374}

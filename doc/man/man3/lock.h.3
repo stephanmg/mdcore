@@ -1,0 +1,58 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/lock.h" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/lock.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBINLINE\fP   inline"
+.br
+.ti -1c
+.RI "#define \fBlock_type\fP   volatile int"
+.br
+.ti -1c
+.RI "#define \fBlock_init\fP(l)   ( *l = 0 )"
+.br
+.ti -1c
+.RI "#define \fBlock_destroy\fP(l)   0"
+.br
+.ti -1c
+.RI "#define \fBlock_trylock\fP(l)   ( ( *(l) ) ? 1 : __sync_val_compare_and_swap( l , 0 , 1 ) )"
+.br
+.ti -1c
+.RI "#define \fBlock_unlock\fP(l)   ( __sync_val_compare_and_swap( l , 1 , 0 ) != 1 )"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__attribute__\fP ((always_inline)) \fBINLINE\fP int lock_lock(volatile int *l)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define INLINE   inline"
+
+.SS "#define lock_destroy(l)   0"
+
+.SS "#define lock_init(l)   ( *l = 0 )"
+
+.SS "#define lock_trylock(l)   ( ( *(l) ) ? 1 : __sync_val_compare_and_swap( l , 0 , 1 ) )"
+
+.SS "#define lock_type   volatile int"
+
+.SS "#define lock_unlock(l)   ( __sync_val_compare_and_swap( l , 1 , 0 ) != 1 )"
+
+.SH "Function Documentation"
+.PP 
+.SS "__attribute__ ((always_inline)) volatile"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

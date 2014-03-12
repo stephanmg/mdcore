@@ -1,0 +1,114 @@
+\hypertarget{exclusion_8c}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/exclusion.c File Reference}
+\label{exclusion_8c}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/exclusion.\-c@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/exclusion.\-c}}
+}
+{\ttfamily \#include \char`\"{}../config.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$pthread.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include $<$float.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$limits.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}cycle.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}errs.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fptype.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lock.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}part.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}potential.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}potential\-\_\-eval.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}cell.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}space.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}engine.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}exclusion.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{exclusion_8c_a7673862d447029edaf3172ebd94aa28e}{error}(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})~( \hyperlink{exclusion_8h_af65781174780bfb5545cbc2977072e7e}{exclusion\-\_\-err} = \hyperlink{errs_8h_ae37a9c0e0a0aa4a92dbe64c0f38ed95c}{errs\-\_\-register}( \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id} , \hyperlink{exclusion_8c_aceea8984cf76801c75dba1b6b2bb5f01}{exclusion\-\_\-err\-\_\-msg}\mbox{[}-\/(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{exclusion_8c_a5d95a7a1d0cb461bcb2a10927b411fa3}{exclusion\-\_\-eval} (struct \hyperlink{structexclusion}{exclusion} $\ast$b, int N, struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, double $\ast$epot\-\_\-out)
+\begin{DoxyCompactList}\small\item\em Evaluate a list of exclusioned interactoins. \end{DoxyCompactList}\item 
+int \hyperlink{exclusion_8c_a173a444e714cec61a0d7e874068992ab}{exclusion\-\_\-evalf} (struct \hyperlink{structexclusion}{exclusion} $\ast$b, int N, struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$\hyperlink{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}{f}, double $\ast$epot\-\_\-out)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{exclusion_8c_af65781174780bfb5545cbc2977072e7e}{exclusion\-\_\-err} = \hyperlink{exclusion_8h_ac66f6fe50262763126545e21ad8f0ad8}{exclusion\-\_\-err\-\_\-ok}
+\item 
+unsigned int \hyperlink{exclusion_8c_a5adf0f1bb274c660d5ebbc49fabc67a4}{exclusion\-\_\-rcount} = 0
+\item 
+char $\ast$ \hyperlink{exclusion_8c_aceea8984cf76801c75dba1b6b2bb5f01}{exclusion\-\_\-err\-\_\-msg} \mbox{[}2\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{exclusion_8c_a7673862d447029edaf3172ebd94aa28e}{\index{exclusion.\-c@{exclusion.\-c}!error@{error}}
+\index{error@{error}!exclusion.c@{exclusion.\-c}}
+\subsubsection[{error}]{\setlength{\rightskip}{0pt plus 5cm}\#define error(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf id}}
+\end{DoxyParamCaption}
+)~( {\bf exclusion\-\_\-err} = {\bf errs\-\_\-register}( {\bf id} , {\bf exclusion\-\_\-err\-\_\-msg}\mbox{[}-\/({\bf id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )}}\label{exclusion_8c_a7673862d447029edaf3172ebd94aa28e}
+
+
+\subsection{Function Documentation}
+\hypertarget{exclusion_8c_a5d95a7a1d0cb461bcb2a10927b411fa3}{\index{exclusion.\-c@{exclusion.\-c}!exclusion\-\_\-eval@{exclusion\-\_\-eval}}
+\index{exclusion\-\_\-eval@{exclusion\-\_\-eval}!exclusion.c@{exclusion.\-c}}
+\subsubsection[{exclusion\-\_\-eval}]{\setlength{\rightskip}{0pt plus 5cm}int exclusion\-\_\-eval (
+\begin{DoxyParamCaption}
+\item[{struct {\bf exclusion} $\ast$}]{b, }
+\item[{int}]{N, }
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{double $\ast$}]{epot\-\_\-out}
+\end{DoxyParamCaption}
+)}}\label{exclusion_8c_a5d95a7a1d0cb461bcb2a10927b411fa3}
+
+
+Evaluate a list of exclusioned interactoins. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & Pointer to an array of \hyperlink{structexclusion}{exclusion}. \\
+\hline
+{\em N} & Nr of exclusions in {\ttfamily b}. \\
+\hline
+{\em e} & Pointer to the \hyperlink{structengine}{engine} in which these exclusions are evaluated. \\
+\hline
+{\em epot\-\_\-out} & Pointer to a double in which to aggregate the potential energy.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{exclusion_8h_ac66f6fe50262763126545e21ad8f0ad8}{exclusion\-\_\-err\-\_\-ok} or $<$0 on error (see \hyperlink{exclusion_8h_af65781174780bfb5545cbc2977072e7e}{exclusion\-\_\-err}) 
+\end{DoxyReturn}
+\hypertarget{exclusion_8c_a173a444e714cec61a0d7e874068992ab}{\index{exclusion.\-c@{exclusion.\-c}!exclusion\-\_\-evalf@{exclusion\-\_\-evalf}}
+\index{exclusion\-\_\-evalf@{exclusion\-\_\-evalf}!exclusion.c@{exclusion.\-c}}
+\subsubsection[{exclusion\-\_\-evalf}]{\setlength{\rightskip}{0pt plus 5cm}int exclusion\-\_\-evalf (
+\begin{DoxyParamCaption}
+\item[{struct {\bf exclusion} $\ast$}]{b, }
+\item[{int}]{N, }
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{{\bf F\-P\-T\-Y\-P\-E} $\ast$}]{f, }
+\item[{double $\ast$}]{epot\-\_\-out}
+\end{DoxyParamCaption}
+)}}\label{exclusion_8c_a173a444e714cec61a0d7e874068992ab}
+
+
+\subsection{Variable Documentation}
+\hypertarget{exclusion_8c_af65781174780bfb5545cbc2977072e7e}{\index{exclusion.\-c@{exclusion.\-c}!exclusion\-\_\-err@{exclusion\-\_\-err}}
+\index{exclusion\-\_\-err@{exclusion\-\_\-err}!exclusion.c@{exclusion.\-c}}
+\subsubsection[{exclusion\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}int exclusion\-\_\-err = {\bf exclusion\-\_\-err\-\_\-ok}}}\label{exclusion_8c_af65781174780bfb5545cbc2977072e7e}
+The I\-D of the last error. \hypertarget{exclusion_8c_aceea8984cf76801c75dba1b6b2bb5f01}{\index{exclusion.\-c@{exclusion.\-c}!exclusion\-\_\-err\-\_\-msg@{exclusion\-\_\-err\-\_\-msg}}
+\index{exclusion\-\_\-err\-\_\-msg@{exclusion\-\_\-err\-\_\-msg}!exclusion.c@{exclusion.\-c}}
+\subsubsection[{exclusion\-\_\-err\-\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ exclusion\-\_\-err\-\_\-msg\mbox{[}2\mbox{]}}}\label{exclusion_8c_aceea8984cf76801c75dba1b6b2bb5f01}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= \{
+        \textcolor{stringliteral}{"Nothing bad happened."},
+    \textcolor{stringliteral}{"An unexpected NULL pointer was encountered."}
+        \}
+\end{DoxyCode}
+\hypertarget{exclusion_8c_a5adf0f1bb274c660d5ebbc49fabc67a4}{\index{exclusion.\-c@{exclusion.\-c}!exclusion\-\_\-rcount@{exclusion\-\_\-rcount}}
+\index{exclusion\-\_\-rcount@{exclusion\-\_\-rcount}!exclusion.c@{exclusion.\-c}}
+\subsubsection[{exclusion\-\_\-rcount}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int exclusion\-\_\-rcount = 0}}\label{exclusion_8c_a5adf0f1bb274c660d5ebbc49fabc67a4}

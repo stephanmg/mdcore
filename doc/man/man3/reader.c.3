@@ -1,0 +1,340 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/reader.c" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/reader.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <unistd\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <strings\&.h>\fP
+.br
+\fC#include <alloca\&.h>\fP
+.br
+\fC#include '\&.\&./config\&.h'\fP
+.br
+\fC#include 'errs\&.h'\fP
+.br
+\fC#include 'reader\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBerror\fP(\fBr\fP, \fBid\fP)   \fBreader_error\fP( \fBr\fP , \fBid\fP , __LINE__ , __FUNCTION__ )"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBreader_error\fP (struct \fBreader\fP *\fBr\fP, int \fBid\fP, int \fBline\fP, const char *function)"
+.br
+.ti -1c
+.RI "void \fBreader_close\fP (struct \fBreader\fP *\fBr\fP)"
+.br
+.RI "\fIwrap-up a reader\&. \fP"
+.ti -1c
+.RI "int \fBreader_getc\fP (struct \fBreader\fP *\fBr\fP)"
+.br
+.RI "\fIRead the next char\&. \fP"
+.ti -1c
+.RI "int \fBreader_getline\fP (struct \fBreader\fP *\fBr\fP, char *buff, int buff_size)"
+.br
+.RI "\fIRead until a newline\&. \fP"
+.ti -1c
+.RI "int \fBreader_skipline\fP (struct \fBreader\fP *\fBr\fP)"
+.br
+.RI "\fISkip until a newline\&. \fP"
+.ti -1c
+.RI "int \fBreader_iscomm_stop\fP (struct \fBreader\fP *\fBr\fP, int \fBc\fP)"
+.br
+.RI "\fICheck if a character is a comment stop\&. \fP"
+.ti -1c
+.RI "int \fBreader_iscomm_start\fP (struct \fBreader\fP *\fBr\fP, int \fBc\fP)"
+.br
+.RI "\fICheck if a character is a comment start\&. \fP"
+.ti -1c
+.RI "int \fBreader_isws\fP (struct \fBreader\fP *\fBr\fP, int \fBc\fP)"
+.br
+.RI "\fICheck if a character is whitespace\&. \fP"
+.ti -1c
+.RI "int \fBreader_getcomment\fP (struct \fBreader\fP *\fBr\fP, char *buff, int buff_size)"
+.br
+.RI "\fIRead the next comment from the given reader\&. \fP"
+.ti -1c
+.RI "int \fBreader_skipcomment\fP (struct \fBreader\fP *\fBr\fP)"
+.br
+.RI "\fISkip the next comment from the given reader\&. \fP"
+.ti -1c
+.RI "int \fBreader_gettoken\fP (struct \fBreader\fP *\fBr\fP, char *buff, int buff_size)"
+.br
+.RI "\fIRead a token from the given reader\&. \fP"
+.ti -1c
+.RI "int \fBreader_skiptoken\fP (struct \fBreader\fP *\fBr\fP)"
+.br
+.RI "\fISkip a token from the given reader\&. \fP"
+.ti -1c
+.RI "int \fBreader_init\fP (struct \fBreader\fP *\fBr\fP, int fd, char *ws, char *comm_start, char *comm_stop, int buffsize)"
+.br
+.RI "\fIInitialize the reader\&. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBreader_err\fP = \fBreader_err_ok\fP"
+.br
+.ti -1c
+.RI "char * \fBreader_err_msg\fP [6]"
+.br
+.ti -1c
+.RI "char \fBreader_buff\fP [100]"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define error(\fBr\fP, \fBid\fP)   \fBreader_error\fP( \fBr\fP , \fBid\fP , __LINE__ , __FUNCTION__ )"
+
+.SH "Function Documentation"
+.PP 
+.SS "void reader_close (struct \fBreader\fP *r)"
+
+.PP
+wrap-up a reader\&. 
+.SS "int reader_error (struct \fBreader\fP *r, intid, intline, const char *function)"
+
+.SS "int reader_getc (struct \fBreader\fP *r)"
+
+.PP
+Read the next char\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The \fBreader\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The next character or < 0 on error (see \fBreader_err\fP)\&. 
+.RE
+.PP
+
+.SS "int reader_getcomment (struct \fBreader\fP *r, char *buff, intbuff_size)"
+
+.PP
+Read the next comment from the given reader\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP the \fBreader\fP\&. 
+.br
+\fIbuff\fP Pointer to \fCchar\fP at which to store the token\&. 
+.br
+\fIbuff_size\fP Size of the \fCbuff\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The number of read characters or < 0 on error (see \fBreader_err\fP)\&. 
+.RE
+.PP
+
+.SS "int reader_getline (struct \fBreader\fP *r, char *buff, intbuff_size)"
+
+.PP
+Read until a newline\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The \fBreader\fP\&. 
+.br
+\fIbuff\fP Pointer to \fCchar\fP at which to store the token\&. 
+.br
+\fIbuff_size\fP Size of the \fCbuff\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The number of read characters or < 0 on error (see \fBreader_err\fP)\&. 
+.RE
+.PP
+
+.SS "int reader_gettoken (struct \fBreader\fP *r, char *buff, intbuff_size)"
+
+.PP
+Read a token from the given reader\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The \fBreader\fP\&. 
+.br
+\fIbuff\fP Pointer to \fCchar\fP at which to store the token\&. 
+.br
+\fIbuff_size\fP Size of the \fCbuff\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The number of read characters or < 0 on error (see \fBreader_err\fP)\&. 
+.RE
+.PP
+
+.SS "int reader_init (struct \fBreader\fP *r, intfd, char *ws, char *comm_start, char *comm_stop, intbuffsize)"
+
+.PP
+Initialize the reader\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The \fBreader\fP structure\&. 
+.br
+\fIfile\fP The \fCFILE\fP with which the \fBreader\fP should be associated\&. 
+.br
+\fIws\fP String containing the accepted whitespace characters\&. 
+.br
+\fIcomm_start\fP String containing characters indicating the start of a comment\&. 
+.br
+\fIcomm_stop\fP String containing characters indicating the end of a comment\&.
+.RE
+.PP
+The \fCFILE\fP supplied should be open and will be read as of its current position\&.
+.PP
+\fBReturns:\fP
+.RS 4
+\fBreader_err_ok\fP or < 0 on error (see \fBreader_err\fP)\&. 
+.RE
+.PP
+
+.SS "int reader_iscomm_start (struct \fBreader\fP *r, intc)"
+
+.PP
+Check if a character is a comment start\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The \fBreader\fP\&. 
+.br
+\fIc\fP The character to verify\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if \fCc\fP is in the comm_start of the \fBreader\fP \fCr\fP or 0 otherwise\&. 
+.RE
+.PP
+
+.SS "int reader_iscomm_stop (struct \fBreader\fP *r, intc)"
+
+.PP
+Check if a character is a comment stop\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The \fBreader\fP\&. 
+.br
+\fIc\fP The character to verify\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if \fCc\fP is in the comm_stop of the \fBreader\fP \fCr\fP or 0 otherwise\&. 
+.RE
+.PP
+
+.SS "int reader_isws (struct \fBreader\fP *r, intc)"
+
+.PP
+Check if a character is whitespace\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The \fBreader\fP\&. 
+.br
+\fIc\fP The character to verify\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if \fCc\fP is in the comm_stop of the \fBreader\fP \fCr\fP or 0 otherwise\&. 
+.RE
+.PP
+
+.SS "int reader_skipcomment (struct \fBreader\fP *r)"
+
+.PP
+Skip the next comment from the given reader\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP the \fBreader\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The number of read characters or < 0 on error (see \fBreader_err\fP)\&. 
+.RE
+.PP
+
+.SS "int reader_skipline (struct \fBreader\fP *r)"
+
+.PP
+Skip until a newline\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The \fBreader\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The number of read characters or < 0 on error (see \fBreader_err\fP)\&. 
+.RE
+.PP
+
+.SS "int reader_skiptoken (struct \fBreader\fP *r)"
+
+.PP
+Skip a token from the given reader\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The \fBreader\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The number of read characters or < 0 on error (see \fBreader_err\fP)\&. 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "char reader_buff[100]"
+
+.SS "int reader_err = \fBreader_err_ok\fP"
+ID of the last error 
+.SS "char* reader_err_msg[6]"
+\fBInitial value:\fP
+.PP
+.nf
+= {
+        "Nothing bad happened\&.",
+    "An unexpected NULL pointer was encountered\&.",
+    "A call to malloc failed, probably due to insufficient memory\&.",
+    "An input-output error occurred\&.",
+    "Maximum buffer size reached\&.",
+    "End of file reached\&.",
+        }
+.fi
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

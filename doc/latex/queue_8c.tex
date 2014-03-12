@@ -1,0 +1,180 @@
+\hypertarget{queue_8c}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/queue.c File Reference}
+\label{queue_8c}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/queue.\-c@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/queue.\-c}}
+}
+{\ttfamily \#include \char`\"{}../config.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$pthread.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include $<$float.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$limits.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}cycle.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}errs.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fptype.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lock.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}part.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}cell.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}task.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}space.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}potential.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}engine.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}queue.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{queue_8c_a7673862d447029edaf3172ebd94aa28e}{error}(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})~( \hyperlink{queue_8h_a60f9ad73cef2758f4ceda86cd7a6d363}{queue\-\_\-err} = \hyperlink{errs_8h_ae37a9c0e0a0aa4a92dbe64c0f38ed95c}{errs\-\_\-register}( \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id} , \hyperlink{queue_8c_ae8c658c87870aabe30f16874efc8bf44}{queue\-\_\-err\-\_\-msg}\mbox{[}-\/(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structtask}{task} $\ast$ \hyperlink{queue_8c_a2ca24623d81936be7c3ec68d79cc13cb}{queue\-\_\-get} (struct \hyperlink{structqueue}{queue} $\ast$q, int rid, int keep)
+\begin{DoxyCompactList}\small\item\em Get a task from the queue. \end{DoxyCompactList}\item 
+void \hyperlink{queue_8c_ab2e2c0a86a9c9ddc0a91a98bb11f9e7e}{queue\-\_\-reset} (struct \hyperlink{structqueue}{queue} $\ast$q)
+\begin{DoxyCompactList}\small\item\em Reset the queue. \end{DoxyCompactList}\item 
+int \hyperlink{queue_8c_a17b4e18dc071a842e66588f988de84e9}{queue\-\_\-insert} (struct \hyperlink{structqueue}{queue} $\ast$q, struct \hyperlink{structtask}{task} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Add an index to the given queue. \end{DoxyCompactList}\item 
+int \hyperlink{queue_8c_a9e73d5793860530201de4c30537990cc}{queue\-\_\-init} (struct \hyperlink{structqueue}{queue} $\ast$q, int size, struct \hyperlink{structspace}{space} $\ast$s, struct \hyperlink{structtask}{task} $\ast$tasks)
+\begin{DoxyCompactList}\small\item\em Initialize a task queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{queue_8c_a60f9ad73cef2758f4ceda86cd7a6d363}{queue\-\_\-err} = \hyperlink{queue_8h_abe3d3632cd3a316ada5cd4ad638efb38}{queue\-\_\-err\-\_\-ok}
+\item 
+unsigned int \hyperlink{queue_8c_ac2d167c146eecb51197bb473b656fafb}{queue\-\_\-rcount} = 0
+\item 
+char $\ast$ \hyperlink{queue_8c_ae8c658c87870aabe30f16874efc8bf44}{queue\-\_\-err\-\_\-msg} \mbox{[}5\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{queue_8c_a7673862d447029edaf3172ebd94aa28e}{\index{queue.\-c@{queue.\-c}!error@{error}}
+\index{error@{error}!queue.c@{queue.\-c}}
+\subsubsection[{error}]{\setlength{\rightskip}{0pt plus 5cm}\#define error(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf id}}
+\end{DoxyParamCaption}
+)~( {\bf queue\-\_\-err} = {\bf errs\-\_\-register}( {\bf id} , {\bf queue\-\_\-err\-\_\-msg}\mbox{[}-\/({\bf id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )}}\label{queue_8c_a7673862d447029edaf3172ebd94aa28e}
+
+
+\subsection{Function Documentation}
+\hypertarget{queue_8c_a2ca24623d81936be7c3ec68d79cc13cb}{\index{queue.\-c@{queue.\-c}!queue\-\_\-get@{queue\-\_\-get}}
+\index{queue\-\_\-get@{queue\-\_\-get}!queue.c@{queue.\-c}}
+\subsubsection[{queue\-\_\-get}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf task}$\ast$ queue\-\_\-get (
+\begin{DoxyParamCaption}
+\item[{struct {\bf queue} $\ast$}]{q, }
+\item[{int}]{rid, }
+\item[{int}]{keep}
+\end{DoxyParamCaption}
+)}}\label{queue_8c_a2ca24623d81936be7c3ec68d79cc13cb}
+
+
+Get a task from the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & The \hyperlink{structqueue}{queue}. \\
+\hline
+{\em rid} & \hyperlink{structrunner}{runner} I\-D for ownership issues. \\
+\hline
+{\em keep} & If true, remove the returned index from the queue.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \hyperlink{structtask}{task} with no unresolved dependencies or conflicts or {\ttfamily N\-U\-L\-L} if none could be found. 
+\end{DoxyReturn}
+\hypertarget{queue_8c_a9e73d5793860530201de4c30537990cc}{\index{queue.\-c@{queue.\-c}!queue\-\_\-init@{queue\-\_\-init}}
+\index{queue\-\_\-init@{queue\-\_\-init}!queue.c@{queue.\-c}}
+\subsubsection[{queue\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}int queue\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{struct {\bf queue} $\ast$}]{q, }
+\item[{int}]{size, }
+\item[{struct {\bf space} $\ast$}]{s, }
+\item[{struct {\bf task} $\ast$}]{tasks}
+\end{DoxyParamCaption}
+)}}\label{queue_8c_a9e73d5793860530201de4c30537990cc}
+
+
+Initialize a task queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & The \hyperlink{structqueue}{queue} to initialize. \\
+\hline
+{\em size} & The maximum number of cellpairs in this queue. \\
+\hline
+{\em s} & The space with which this queue is associated. \\
+\hline
+{\em tasks} & An array containing the \hyperlink{structtask}{task} to which the queue indices will refer to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{queue_8h_abe3d3632cd3a316ada5cd4ad638efb38}{queue\-\_\-err\-\_\-ok} or $<$0 on error (see \hyperlink{queue_8h_a60f9ad73cef2758f4ceda86cd7a6d363}{queue\-\_\-err}).
+\end{DoxyReturn}
+Initializes a queue of the maximum given size. The initial queue is empty and can be filled with pair ids.
+
+\begin{DoxySeeAlso}{See Also}
+\#queue\-\_\-tuples\-\_\-init 
+\end{DoxySeeAlso}
+\hypertarget{queue_8c_a17b4e18dc071a842e66588f988de84e9}{\index{queue.\-c@{queue.\-c}!queue\-\_\-insert@{queue\-\_\-insert}}
+\index{queue\-\_\-insert@{queue\-\_\-insert}!queue.c@{queue.\-c}}
+\subsubsection[{queue\-\_\-insert}]{\setlength{\rightskip}{0pt plus 5cm}int queue\-\_\-insert (
+\begin{DoxyParamCaption}
+\item[{struct {\bf queue} $\ast$}]{q, }
+\item[{struct {\bf task} $\ast$}]{t}
+\end{DoxyParamCaption}
+)}}\label{queue_8c_a17b4e18dc071a842e66588f988de84e9}
+
+
+Add an index to the given queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & The \hyperlink{structqueue}{queue}. \\
+\hline
+{\em thing} & The thing to be inserted.\\
+\hline
+\end{DoxyParams}
+Inserts a task into the queue at the location of the next pointer and moves all remaining tasks up by one. Thus, if the queue is executing, the inserted task is considered to already have been taken.
+
+\begin{DoxyReturn}{Returns}
+1 on success, 0 if the queue is full and $<$0 on error (see \hyperlink{queue_8h_a60f9ad73cef2758f4ceda86cd7a6d363}{queue\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{queue_8c_ab2e2c0a86a9c9ddc0a91a98bb11f9e7e}{\index{queue.\-c@{queue.\-c}!queue\-\_\-reset@{queue\-\_\-reset}}
+\index{queue\-\_\-reset@{queue\-\_\-reset}!queue.c@{queue.\-c}}
+\subsubsection[{queue\-\_\-reset}]{\setlength{\rightskip}{0pt plus 5cm}void queue\-\_\-reset (
+\begin{DoxyParamCaption}
+\item[{struct {\bf queue} $\ast$}]{q}
+\end{DoxyParamCaption}
+)}}\label{queue_8c_ab2e2c0a86a9c9ddc0a91a98bb11f9e7e}
+
+
+Reset the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & The \hyperlink{structqueue}{queue}. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Variable Documentation}
+\hypertarget{queue_8c_a60f9ad73cef2758f4ceda86cd7a6d363}{\index{queue.\-c@{queue.\-c}!queue\-\_\-err@{queue\-\_\-err}}
+\index{queue\-\_\-err@{queue\-\_\-err}!queue.c@{queue.\-c}}
+\subsubsection[{queue\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}int queue\-\_\-err = {\bf queue\-\_\-err\-\_\-ok}}}\label{queue_8c_a60f9ad73cef2758f4ceda86cd7a6d363}
+The I\-D of the last error. \hypertarget{queue_8c_ae8c658c87870aabe30f16874efc8bf44}{\index{queue.\-c@{queue.\-c}!queue\-\_\-err\-\_\-msg@{queue\-\_\-err\-\_\-msg}}
+\index{queue\-\_\-err\-\_\-msg@{queue\-\_\-err\-\_\-msg}!queue.c@{queue.\-c}}
+\subsubsection[{queue\-\_\-err\-\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ queue\-\_\-err\-\_\-msg\mbox{[}5\mbox{]}}}\label{queue_8c_ae8c658c87870aabe30f16874efc8bf44}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= \{
+        \textcolor{stringliteral}{"Nothing bad happened."},
+    \textcolor{stringliteral}{"An unexpected NULL pointer was encountered."},
+    \textcolor{stringliteral}{"A call to malloc failed, probably due to insufficient memory."},
+    \textcolor{stringliteral}{"Attempted to insert into a full queue."},
+    \textcolor{stringliteral}{"An error occured in a lock function."}
+        \}
+\end{DoxyCode}
+\hypertarget{queue_8c_ac2d167c146eecb51197bb473b656fafb}{\index{queue.\-c@{queue.\-c}!queue\-\_\-rcount@{queue\-\_\-rcount}}
+\index{queue\-\_\-rcount@{queue\-\_\-rcount}!queue.c@{queue.\-c}}
+\subsubsection[{queue\-\_\-rcount}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int queue\-\_\-rcount = 0}}\label{queue_8c_ac2d167c146eecb51197bb473b656fafb}

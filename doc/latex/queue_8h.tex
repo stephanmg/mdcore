@@ -1,0 +1,170 @@
+\hypertarget{queue_8h}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/queue.h File Reference}
+\label{queue_8h}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/queue.\-h@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/queue.\-h}}
+}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structqueue}{queue}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{queue_8h_abe3d3632cd3a316ada5cd4ad638efb38}{queue\-\_\-err\-\_\-ok}~0
+\item 
+\#define \hyperlink{queue_8h_a8d95f067396b6276bac71877a0d5f970}{queue\-\_\-err\-\_\-null}~-\/1
+\item 
+\#define \hyperlink{queue_8h_aae2f9253fc15cc944cc33cf0f83025b9}{queue\-\_\-err\-\_\-malloc}~-\/2
+\item 
+\#define \hyperlink{queue_8h_a8d9d0f4df91aebb3dfa9a3d60c920763}{queue\-\_\-err\-\_\-full}~-\/3
+\item 
+\#define \hyperlink{queue_8h_aa504117af17908cd86ac349e673fc0b4}{queue\-\_\-err\-\_\-lock}~-\/4
+\item 
+\#define \hyperlink{queue_8h_ad37f4ab51e85cc8eaeb97bab0cafd3bd}{queue\-\_\-maxhit}~10
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{queue_8h_a9e73d5793860530201de4c30537990cc}{queue\-\_\-init} (struct \hyperlink{structqueue}{queue} $\ast$q, int size, struct \hyperlink{structspace}{space} $\ast$s, struct \hyperlink{structtask}{task} $\ast$tasks)
+\begin{DoxyCompactList}\small\item\em Initialize a task queue. \end{DoxyCompactList}\item 
+void \hyperlink{queue_8h_ab2e2c0a86a9c9ddc0a91a98bb11f9e7e}{queue\-\_\-reset} (struct \hyperlink{structqueue}{queue} $\ast$q)
+\begin{DoxyCompactList}\small\item\em Reset the queue. \end{DoxyCompactList}\item 
+int \hyperlink{queue_8h_a17b4e18dc071a842e66588f988de84e9}{queue\-\_\-insert} (struct \hyperlink{structqueue}{queue} $\ast$q, struct \hyperlink{structtask}{task} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Add an index to the given queue. \end{DoxyCompactList}\item 
+struct \hyperlink{structtask}{task} $\ast$ \hyperlink{queue_8h_a2ca24623d81936be7c3ec68d79cc13cb}{queue\-\_\-get} (struct \hyperlink{structqueue}{queue} $\ast$q, int rid, int keep)
+\begin{DoxyCompactList}\small\item\em Get a task from the queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{queue_8h_a60f9ad73cef2758f4ceda86cd7a6d363}{queue\-\_\-err}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{queue_8h_a8d9d0f4df91aebb3dfa9a3d60c920763}{\index{queue.\-h@{queue.\-h}!queue\-\_\-err\-\_\-full@{queue\-\_\-err\-\_\-full}}
+\index{queue\-\_\-err\-\_\-full@{queue\-\_\-err\-\_\-full}!queue.h@{queue.\-h}}
+\subsubsection[{queue\-\_\-err\-\_\-full}]{\setlength{\rightskip}{0pt plus 5cm}\#define queue\-\_\-err\-\_\-full~-\/3}}\label{queue_8h_a8d9d0f4df91aebb3dfa9a3d60c920763}
+\hypertarget{queue_8h_aa504117af17908cd86ac349e673fc0b4}{\index{queue.\-h@{queue.\-h}!queue\-\_\-err\-\_\-lock@{queue\-\_\-err\-\_\-lock}}
+\index{queue\-\_\-err\-\_\-lock@{queue\-\_\-err\-\_\-lock}!queue.h@{queue.\-h}}
+\subsubsection[{queue\-\_\-err\-\_\-lock}]{\setlength{\rightskip}{0pt plus 5cm}\#define queue\-\_\-err\-\_\-lock~-\/4}}\label{queue_8h_aa504117af17908cd86ac349e673fc0b4}
+\hypertarget{queue_8h_aae2f9253fc15cc944cc33cf0f83025b9}{\index{queue.\-h@{queue.\-h}!queue\-\_\-err\-\_\-malloc@{queue\-\_\-err\-\_\-malloc}}
+\index{queue\-\_\-err\-\_\-malloc@{queue\-\_\-err\-\_\-malloc}!queue.h@{queue.\-h}}
+\subsubsection[{queue\-\_\-err\-\_\-malloc}]{\setlength{\rightskip}{0pt plus 5cm}\#define queue\-\_\-err\-\_\-malloc~-\/2}}\label{queue_8h_aae2f9253fc15cc944cc33cf0f83025b9}
+\hypertarget{queue_8h_a8d95f067396b6276bac71877a0d5f970}{\index{queue.\-h@{queue.\-h}!queue\-\_\-err\-\_\-null@{queue\-\_\-err\-\_\-null}}
+\index{queue\-\_\-err\-\_\-null@{queue\-\_\-err\-\_\-null}!queue.h@{queue.\-h}}
+\subsubsection[{queue\-\_\-err\-\_\-null}]{\setlength{\rightskip}{0pt plus 5cm}\#define queue\-\_\-err\-\_\-null~-\/1}}\label{queue_8h_a8d95f067396b6276bac71877a0d5f970}
+\hypertarget{queue_8h_abe3d3632cd3a316ada5cd4ad638efb38}{\index{queue.\-h@{queue.\-h}!queue\-\_\-err\-\_\-ok@{queue\-\_\-err\-\_\-ok}}
+\index{queue\-\_\-err\-\_\-ok@{queue\-\_\-err\-\_\-ok}!queue.h@{queue.\-h}}
+\subsubsection[{queue\-\_\-err\-\_\-ok}]{\setlength{\rightskip}{0pt plus 5cm}\#define queue\-\_\-err\-\_\-ok~0}}\label{queue_8h_abe3d3632cd3a316ada5cd4ad638efb38}
+\hypertarget{queue_8h_ad37f4ab51e85cc8eaeb97bab0cafd3bd}{\index{queue.\-h@{queue.\-h}!queue\-\_\-maxhit@{queue\-\_\-maxhit}}
+\index{queue\-\_\-maxhit@{queue\-\_\-maxhit}!queue.h@{queue.\-h}}
+\subsubsection[{queue\-\_\-maxhit}]{\setlength{\rightskip}{0pt plus 5cm}\#define queue\-\_\-maxhit~10}}\label{queue_8h_ad37f4ab51e85cc8eaeb97bab0cafd3bd}
+
+
+\subsection{Function Documentation}
+\hypertarget{queue_8h_a2ca24623d81936be7c3ec68d79cc13cb}{\index{queue.\-h@{queue.\-h}!queue\-\_\-get@{queue\-\_\-get}}
+\index{queue\-\_\-get@{queue\-\_\-get}!queue.h@{queue.\-h}}
+\subsubsection[{queue\-\_\-get}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf task}$\ast$ queue\-\_\-get (
+\begin{DoxyParamCaption}
+\item[{struct {\bf queue} $\ast$}]{q, }
+\item[{int}]{rid, }
+\item[{int}]{keep}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_a2ca24623d81936be7c3ec68d79cc13cb}
+
+
+Get a task from the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & The \hyperlink{structqueue}{queue}. \\
+\hline
+{\em rid} & \hyperlink{structrunner}{runner} I\-D for ownership issues. \\
+\hline
+{\em keep} & If true, remove the returned index from the queue.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \hyperlink{structtask}{task} with no unresolved dependencies or conflicts or {\ttfamily N\-U\-L\-L} if none could be found. 
+\end{DoxyReturn}
+\hypertarget{queue_8h_a9e73d5793860530201de4c30537990cc}{\index{queue.\-h@{queue.\-h}!queue\-\_\-init@{queue\-\_\-init}}
+\index{queue\-\_\-init@{queue\-\_\-init}!queue.h@{queue.\-h}}
+\subsubsection[{queue\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}int queue\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{struct {\bf queue} $\ast$}]{q, }
+\item[{int}]{size, }
+\item[{struct {\bf space} $\ast$}]{s, }
+\item[{struct {\bf task} $\ast$}]{tasks}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_a9e73d5793860530201de4c30537990cc}
+
+
+Initialize a task queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & The \hyperlink{structqueue}{queue} to initialize. \\
+\hline
+{\em size} & The maximum number of cellpairs in this queue. \\
+\hline
+{\em s} & The space with which this queue is associated. \\
+\hline
+{\em tasks} & An array containing the \hyperlink{structtask}{task} to which the queue indices will refer to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{queue_8h_abe3d3632cd3a316ada5cd4ad638efb38}{queue\-\_\-err\-\_\-ok} or $<$0 on error (see \hyperlink{queue_8h_a60f9ad73cef2758f4ceda86cd7a6d363}{queue\-\_\-err}).
+\end{DoxyReturn}
+Initializes a queue of the maximum given size. The initial queue is empty and can be filled with pair ids.
+
+\begin{DoxySeeAlso}{See Also}
+\#queue\-\_\-tuples\-\_\-init 
+\end{DoxySeeAlso}
+\hypertarget{queue_8h_a17b4e18dc071a842e66588f988de84e9}{\index{queue.\-h@{queue.\-h}!queue\-\_\-insert@{queue\-\_\-insert}}
+\index{queue\-\_\-insert@{queue\-\_\-insert}!queue.h@{queue.\-h}}
+\subsubsection[{queue\-\_\-insert}]{\setlength{\rightskip}{0pt plus 5cm}int queue\-\_\-insert (
+\begin{DoxyParamCaption}
+\item[{struct {\bf queue} $\ast$}]{q, }
+\item[{struct {\bf task} $\ast$}]{t}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_a17b4e18dc071a842e66588f988de84e9}
+
+
+Add an index to the given queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & The \hyperlink{structqueue}{queue}. \\
+\hline
+{\em thing} & The thing to be inserted.\\
+\hline
+\end{DoxyParams}
+Inserts a task into the queue at the location of the next pointer and moves all remaining tasks up by one. Thus, if the queue is executing, the inserted task is considered to already have been taken.
+
+\begin{DoxyReturn}{Returns}
+1 on success, 0 if the queue is full and $<$0 on error (see \hyperlink{queue_8h_a60f9ad73cef2758f4ceda86cd7a6d363}{queue\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{queue_8h_ab2e2c0a86a9c9ddc0a91a98bb11f9e7e}{\index{queue.\-h@{queue.\-h}!queue\-\_\-reset@{queue\-\_\-reset}}
+\index{queue\-\_\-reset@{queue\-\_\-reset}!queue.h@{queue.\-h}}
+\subsubsection[{queue\-\_\-reset}]{\setlength{\rightskip}{0pt plus 5cm}void queue\-\_\-reset (
+\begin{DoxyParamCaption}
+\item[{struct {\bf queue} $\ast$}]{q}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_ab2e2c0a86a9c9ddc0a91a98bb11f9e7e}
+
+
+Reset the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & The \hyperlink{structqueue}{queue}. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Variable Documentation}
+\hypertarget{queue_8h_a60f9ad73cef2758f4ceda86cd7a6d363}{\index{queue.\-h@{queue.\-h}!queue\-\_\-err@{queue\-\_\-err}}
+\index{queue\-\_\-err@{queue\-\_\-err}!queue.h@{queue.\-h}}
+\subsubsection[{queue\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}int queue\-\_\-err}}\label{queue_8h_a60f9ad73cef2758f4ceda86cd7a6d363}
+I\-D of the last error
+
+The I\-D of the last error. 

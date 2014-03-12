@@ -1,0 +1,127 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/task.h" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/task.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBtask\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBtask_err_ok\fP   0"
+.br
+.ti -1c
+.RI "#define \fBtask_err_null\fP   -1"
+.br
+.ti -1c
+.RI "#define \fBtask_err_malloc\fP   -2"
+.br
+.ti -1c
+.RI "#define \fBtask_err_maxunlock\fP   -3"
+.br
+.ti -1c
+.RI "#define \fBtask_max_unlock\fP   124"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum { \fBtask_type_none\fP = 0, \fBtask_type_self\fP, \fBtask_type_pair\fP, \fBtask_type_sort\fP, \fBtask_type_bonded\fP, \fBtask_type_count\fP }"
+.br
+.ti -1c
+.RI "enum { \fBtask_subtype_none\fP = 0, \fBtask_subtype_real\fP, \fBtask_subtype_spme\fP, \fBtask_subtype_count\fP }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBtask_addunlock\fP (struct \fBtask\fP *ta, struct \fBtask\fP *tb)"
+.br
+.RI "\fIAdd a task dependency\&. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBtask_err\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define task_err_malloc   -2"
+
+.SS "#define task_err_maxunlock   -3"
+
+.SS "#define task_err_null   -1"
+
+.SS "#define task_err_ok   0"
+
+.SS "#define task_max_unlock   124"
+
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "anonymous enum"
+Task types\&. 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fItask_type_none \fP\fP
+.TP
+\fB\fItask_type_self \fP\fP
+.TP
+\fB\fItask_type_pair \fP\fP
+.TP
+\fB\fItask_type_sort \fP\fP
+.TP
+\fB\fItask_type_bonded \fP\fP
+.TP
+\fB\fItask_type_count \fP\fP
+.SS "anonymous enum"
+Task subtypes\&. 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fItask_subtype_none \fP\fP
+.TP
+\fB\fItask_subtype_real \fP\fP
+.TP
+\fB\fItask_subtype_spme \fP\fP
+.TP
+\fB\fItask_subtype_count \fP\fP
+.SH "Function Documentation"
+.PP 
+.SS "int task_addunlock (struct \fBtask\fP *ta, struct \fBtask\fP *tb)"
+
+.PP
+Add a task dependency\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIta\fP The unlocking \fBtask\fP\&. 
+.br
+\fItb\fP The unlocked \fBtask\fP\&. 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "int task_err"
+ID of the last error
+.PP
+The ID of the last error\&. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

@@ -1,0 +1,55 @@
+\hypertarget{part_8c}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/part.c File Reference}
+\label{part_8c}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/part.\-c@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/part.\-c}}
+}
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}fptype.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}part.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{part_8c_a25dabaee16e713c863bd3e1ec760fbbb}{part\-\_\-init} (struct \hyperlink{structpart}{part} $\ast$p, int vid, int type, unsigned int flags)
+\begin{DoxyCompactList}\small\item\em Initialize a \hyperlink{structpart}{part}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{part_8c_aa899ec62705c44c194b005c89ffa7e6c}{part\-\_\-err} = \hyperlink{part_8h_a7193e3f113e26331f9004d3bb03b6129}{part\-\_\-err\-\_\-ok}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{part_8c_a25dabaee16e713c863bd3e1ec760fbbb}{\index{part.\-c@{part.\-c}!part\-\_\-init@{part\-\_\-init}}
+\index{part\-\_\-init@{part\-\_\-init}!part.c@{part.\-c}}
+\subsubsection[{part\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}int part\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{struct {\bf part} $\ast$}]{p, }
+\item[{int}]{vid, }
+\item[{int}]{type, }
+\item[{unsigned int}]{flags}
+\end{DoxyParamCaption}
+)}}\label{part_8c_a25dabaee16e713c863bd3e1ec760fbbb}
+
+
+Initialize a \hyperlink{structpart}{part}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & The \hyperlink{structpart}{part} to be initialized. \\
+\hline
+{\em vid} & The virtual id of this \hyperlink{structpart}{part}. \\
+\hline
+{\em type} & The numerical id of the particle type. \\
+\hline
+{\em flags} & The particle flags.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{part_8h_a7193e3f113e26331f9004d3bb03b6129}{part\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{part_8h_aa899ec62705c44c194b005c89ffa7e6c}{part\-\_\-err}). 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\hypertarget{part_8c_aa899ec62705c44c194b005c89ffa7e6c}{\index{part.\-c@{part.\-c}!part\-\_\-err@{part\-\_\-err}}
+\index{part\-\_\-err@{part\-\_\-err}!part.c@{part.\-c}}
+\subsubsection[{part\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}int part\-\_\-err = {\bf part\-\_\-err\-\_\-ok}}}\label{part_8c_aa899ec62705c44c194b005c89ffa7e6c}
+I\-D of the last error 

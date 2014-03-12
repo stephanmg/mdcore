@@ -1,0 +1,98 @@
+.TH "reader" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+reader \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <reader\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBflags\fP"
+.br
+.ti -1c
+.RI "int \fBfd\fP"
+.br
+.ti -1c
+.RI "int \fBc\fP"
+.br
+.ti -1c
+.RI "char * \fBbuff\fP"
+.br
+.ti -1c
+.RI "int \fBfirst\fP"
+.br
+.ti -1c
+.RI "int \fBlast\fP"
+.br
+.ti -1c
+.RI "int \fBsize\fP"
+.br
+.ti -1c
+.RI "int \fBline\fP"
+.br
+.ti -1c
+.RI "int \fBcol\fP"
+.br
+.ti -1c
+.RI "char * \fBws\fP"
+.br
+.ti -1c
+.RI "int \fBnr_ws\fP"
+.br
+.ti -1c
+.RI "char * \fBcomm_start\fP"
+.br
+.ti -1c
+.RI "char * \fBcomm_stop\fP"
+.br
+.ti -1c
+.RI "int \fBnr_comm_start\fP"
+.br
+.ti -1c
+.RI "int \fBnr_comm_stop\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The reader structure 
+.SH "Field Documentation"
+.PP 
+.SS "char* buff"
+Character buffer\&. 
+.SS "int c"
+Current character\&. 
+.SS "int col"
+
+.SS "char* comm_start"
+Characters defined as comments\&. 
+.SS "char * comm_stop"
+
+.SS "int fd"
+File to which this reader is associated\&. 
+.SS "int first"
+
+.SS "unsigned int flags"
+Status flags\&. 
+.SS "int last"
+
+.SS "int line"
+Current location in file\&. 
+.SS "int nr_comm_start"
+
+.SS "int nr_comm_stop"
+
+.SS "int nr_ws"
+
+.SS "int size"
+
+.SS "char* ws"
+Characters defined as whitespace\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

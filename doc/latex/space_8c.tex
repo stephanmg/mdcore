@@ -1,0 +1,326 @@
+\hypertarget{space_8c}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/space.c File Reference}
+\label{space_8c}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/space.\-c@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/space.\-c}}
+}
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$strings.\-h$>$}\\*
+{\ttfamily \#include $<$alloca.\-h$>$}\\*
+{\ttfamily \#include $<$pthread.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}../config.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$omp.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}errs.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fptype.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lock.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}part.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}cell.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}task.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}space.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{space_8c_a7673862d447029edaf3172ebd94aa28e}{error}(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})~( \hyperlink{space_8h_a26550d5c282672a89c766fcb8be67c14}{space\-\_\-err} = \hyperlink{errs_8h_ae37a9c0e0a0aa4a92dbe64c0f38ed95c}{errs\-\_\-register}( \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id} , \hyperlink{space_8c_a69e18d3995f28ac5a3728abcdbaafd42}{space\-\_\-err\-\_\-msg}\mbox{[}-\/(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{space_8c_a330965ff212eba9fb51376216acd733f}{space\-\_\-getsid} (struct \hyperlink{structspace}{space} $\ast$s, struct \hyperlink{structcell}{cell} $\ast$$\ast$ci, struct \hyperlink{structcell}{cell} $\ast$$\ast$cj, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$shift)
+\begin{DoxyCompactList}\small\item\em Get the sort-\/\-I\-D and flip the cells if necessary. \end{DoxyCompactList}\item 
+int \hyperlink{space_8c_a1a9cec8a4fda5e2f9f5803fd85900885}{space\-\_\-flush\-\_\-ghosts} (struct \hyperlink{structspace}{space} $\ast$s)
+\begin{DoxyCompactList}\small\item\em Clear all particles from the ghost cells in this \hyperlink{structspace}{space}. \end{DoxyCompactList}\item 
+int \hyperlink{space_8c_a2b5b7a8fa67dd3ebfbe1ceb457459985}{space\-\_\-flush} (struct \hyperlink{structspace}{space} $\ast$s)
+\begin{DoxyCompactList}\small\item\em Clear all particles from this \hyperlink{structspace}{space}. \end{DoxyCompactList}\item 
+int \hyperlink{space_8c_a471f5997090314affa8f975b1909afff}{space\-\_\-prepare} (struct \hyperlink{structspace}{space} $\ast$s)
+\begin{DoxyCompactList}\small\item\em Prepare the space before a time step. \end{DoxyCompactList}\item 
+int \hyperlink{space_8c_aff57036690d68e524b2d6204037fb4c3}{space\-\_\-shuffle} (struct \hyperlink{structspace}{space} $\ast$s)
+\begin{DoxyCompactList}\small\item\em Run through the cells of a \hyperlink{structspace}{space} and make sure every particle is in its place. \end{DoxyCompactList}\item 
+int \hyperlink{space_8c_a90d400d84b28e9ee1c2dfb7fc6110387}{space\-\_\-shuffle\-\_\-local} (struct \hyperlink{structspace}{space} $\ast$s)
+\begin{DoxyCompactList}\small\item\em Run through the non-\/ghost cells of a \hyperlink{structspace}{space} and make sure every particle is in its place. \end{DoxyCompactList}\item 
+int \hyperlink{space_8c_adcdb12d32832cf2768fc21e107ea4e4d}{space\-\_\-addpart} (struct \hyperlink{structspace}{space} $\ast$s, struct \hyperlink{structpart}{part} $\ast$p, double $\ast$\hyperlink{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{x})
+\begin{DoxyCompactList}\small\item\em Add a \hyperlink{structpart}{part} to a \hyperlink{structspace}{space} at the given coordinates. \end{DoxyCompactList}\item 
+int \hyperlink{space_8c_a1b308305a1cb1a20058e020b22e2f1fb}{space\-\_\-getpos} (struct \hyperlink{structspace}{space} $\ast$s, int \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id}, double $\ast$\hyperlink{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{x})
+\begin{DoxyCompactList}\small\item\em Get the absolute position of a particle. \end{DoxyCompactList}\item 
+struct \hyperlink{structtask}{task} $\ast$ \hyperlink{space_8c_a9e98297dd65779f7b88eece573960f9d}{space\-\_\-addtask} (struct \hyperlink{structspace}{space} $\ast$s, int type, int subtype, int flags, int i, int j)
+\begin{DoxyCompactList}\small\item\em Add a task to the given space. \end{DoxyCompactList}\item 
+int \hyperlink{space_8c_a88f73b9b0b0762f64416e086833f7879}{space\-\_\-init} (struct \hyperlink{structspace}{space} $\ast$s, const double $\ast$origin, const double $\ast$dim, double $\ast$L, double cutoff, unsigned int period)
+\begin{DoxyCompactList}\small\item\em Initialize the space with the given dimensions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{space_8c_a26550d5c282672a89c766fcb8be67c14}{space\-\_\-err} = \hyperlink{space_8h_af0504055442a991f476ec24cbcb416f4}{space\-\_\-err\-\_\-ok}
+\item 
+char $\ast$ \hyperlink{space_8c_a69e18d3995f28ac5a3728abcdbaafd42}{space\-\_\-err\-\_\-msg} \mbox{[}9\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{space_8c_a7673862d447029edaf3172ebd94aa28e}{\index{space.\-c@{space.\-c}!error@{error}}
+\index{error@{error}!space.c@{space.\-c}}
+\subsubsection[{error}]{\setlength{\rightskip}{0pt plus 5cm}\#define error(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf id}}
+\end{DoxyParamCaption}
+)~( {\bf space\-\_\-err} = {\bf errs\-\_\-register}( {\bf id} , {\bf space\-\_\-err\-\_\-msg}\mbox{[}-\/({\bf id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )}}\label{space_8c_a7673862d447029edaf3172ebd94aa28e}
+
+
+\subsection{Function Documentation}
+\hypertarget{space_8c_adcdb12d32832cf2768fc21e107ea4e4d}{\index{space.\-c@{space.\-c}!space\-\_\-addpart@{space\-\_\-addpart}}
+\index{space\-\_\-addpart@{space\-\_\-addpart}!space.c@{space.\-c}}
+\subsubsection[{space\-\_\-addpart}]{\setlength{\rightskip}{0pt plus 5cm}int space\-\_\-addpart (
+\begin{DoxyParamCaption}
+\item[{struct {\bf space} $\ast$}]{s, }
+\item[{struct {\bf part} $\ast$}]{p, }
+\item[{double $\ast$}]{x}
+\end{DoxyParamCaption}
+)}}\label{space_8c_adcdb12d32832cf2768fc21e107ea4e4d}
+
+
+Add a \hyperlink{structpart}{part} to a \hyperlink{structspace}{space} at the given coordinates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The space to which {\ttfamily p} should be added. \\
+\hline
+{\em p} & The \hyperlink{structpart}{part} to be added. \\
+\hline
+{\em x} & A pointer to an array of three doubles containing the particle position.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{space_8h_af0504055442a991f476ec24cbcb416f4}{space\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{space_8h_a26550d5c282672a89c766fcb8be67c14}{space\-\_\-err}).
+\end{DoxyReturn}
+Inserts a \hyperlink{structpart}{part} {\ttfamily p} into the \hyperlink{structspace}{space} {\ttfamily s} at the position {\ttfamily x}. Note that since particle positions in \hyperlink{structpart}{part} are relative to the cell, that data in {\ttfamily p} is overwritten and {\ttfamily x} is used. \hypertarget{space_8c_a9e98297dd65779f7b88eece573960f9d}{\index{space.\-c@{space.\-c}!space\-\_\-addtask@{space\-\_\-addtask}}
+\index{space\-\_\-addtask@{space\-\_\-addtask}!space.c@{space.\-c}}
+\subsubsection[{space\-\_\-addtask}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf task}$\ast$ space\-\_\-addtask (
+\begin{DoxyParamCaption}
+\item[{struct {\bf space} $\ast$}]{s, }
+\item[{int}]{type, }
+\item[{int}]{subtype, }
+\item[{int}]{flags, }
+\item[{int}]{i, }
+\item[{int}]{j}
+\end{DoxyParamCaption}
+)}}\label{space_8c_a9e98297dd65779f7b88eece573960f9d}
+
+
+Add a task to the given space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The \hyperlink{structspace}{space}. \\
+\hline
+{\em type} & The task type. \\
+\hline
+{\em subtype} & The task subtype. \\
+\hline
+{\em flags} & The task flags. \\
+\hline
+{\em i} & Index of the first cell/domain. \\
+\hline
+{\em j} & Index of the second cell/domain.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly added \hyperlink{structtask}{task} or {\ttfamily N\-U\-L\-L} if anything went wrong. 
+\end{DoxyReturn}
+\hypertarget{space_8c_a2b5b7a8fa67dd3ebfbe1ceb457459985}{\index{space.\-c@{space.\-c}!space\-\_\-flush@{space\-\_\-flush}}
+\index{space\-\_\-flush@{space\-\_\-flush}!space.c@{space.\-c}}
+\subsubsection[{space\-\_\-flush}]{\setlength{\rightskip}{0pt plus 5cm}int space\-\_\-flush (
+\begin{DoxyParamCaption}
+\item[{struct {\bf space} $\ast$}]{s}
+\end{DoxyParamCaption}
+)}}\label{space_8c_a2b5b7a8fa67dd3ebfbe1ceb457459985}
+
+
+Clear all particles from this \hyperlink{structspace}{space}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The \hyperlink{structspace}{space} to flush.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{space_8h_af0504055442a991f476ec24cbcb416f4}{space\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{space_8h_a26550d5c282672a89c766fcb8be67c14}{space\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{space_8c_a1a9cec8a4fda5e2f9f5803fd85900885}{\index{space.\-c@{space.\-c}!space\-\_\-flush\-\_\-ghosts@{space\-\_\-flush\-\_\-ghosts}}
+\index{space\-\_\-flush\-\_\-ghosts@{space\-\_\-flush\-\_\-ghosts}!space.c@{space.\-c}}
+\subsubsection[{space\-\_\-flush\-\_\-ghosts}]{\setlength{\rightskip}{0pt plus 5cm}int space\-\_\-flush\-\_\-ghosts (
+\begin{DoxyParamCaption}
+\item[{struct {\bf space} $\ast$}]{s}
+\end{DoxyParamCaption}
+)}}\label{space_8c_a1a9cec8a4fda5e2f9f5803fd85900885}
+
+
+Clear all particles from the ghost cells in this \hyperlink{structspace}{space}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The \hyperlink{structspace}{space} to flush.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{space_8h_af0504055442a991f476ec24cbcb416f4}{space\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{space_8h_a26550d5c282672a89c766fcb8be67c14}{space\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{space_8c_a1b308305a1cb1a20058e020b22e2f1fb}{\index{space.\-c@{space.\-c}!space\-\_\-getpos@{space\-\_\-getpos}}
+\index{space\-\_\-getpos@{space\-\_\-getpos}!space.c@{space.\-c}}
+\subsubsection[{space\-\_\-getpos}]{\setlength{\rightskip}{0pt plus 5cm}int space\-\_\-getpos (
+\begin{DoxyParamCaption}
+\item[{struct {\bf space} $\ast$}]{s, }
+\item[{int}]{id, }
+\item[{double $\ast$}]{x}
+\end{DoxyParamCaption}
+)}}\label{space_8c_a1b308305a1cb1a20058e020b22e2f1fb}
+
+
+Get the absolute position of a particle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The \hyperlink{structspace}{space} in which the particle resides. \\
+\hline
+{\em id} & The local id of the \hyperlink{structpart}{part}. \\
+\hline
+{\em x} & A pointer to a vector of at least three {\ttfamily doubles} in which to store the particle position. \\
+\hline
+\end{DoxyParams}
+\hypertarget{space_8c_a330965ff212eba9fb51376216acd733f}{\index{space.\-c@{space.\-c}!space\-\_\-getsid@{space\-\_\-getsid}}
+\index{space\-\_\-getsid@{space\-\_\-getsid}!space.c@{space.\-c}}
+\subsubsection[{space\-\_\-getsid}]{\setlength{\rightskip}{0pt plus 5cm}int space\-\_\-getsid (
+\begin{DoxyParamCaption}
+\item[{struct {\bf space} $\ast$}]{s, }
+\item[{struct {\bf cell} $\ast$$\ast$}]{ci, }
+\item[{struct {\bf cell} $\ast$$\ast$}]{cj, }
+\item[{{\bf F\-P\-T\-Y\-P\-E} $\ast$}]{shift}
+\end{DoxyParamCaption}
+)}}\label{space_8c_a330965ff212eba9fb51376216acd733f}
+
+
+Get the sort-\/\-I\-D and flip the cells if necessary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The \hyperlink{structspace}{space}. \\
+\hline
+{\em ci} & Double pointer to the first \hyperlink{structcell}{cell}. \\
+\hline
+{\em cj} & Double pointer to the second \hyperlink{structcell}{cell}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The sort I\-D of both cells, which may be swapped. 
+\end{DoxyReturn}
+\hypertarget{space_8c_a88f73b9b0b0762f64416e086833f7879}{\index{space.\-c@{space.\-c}!space\-\_\-init@{space\-\_\-init}}
+\index{space\-\_\-init@{space\-\_\-init}!space.c@{space.\-c}}
+\subsubsection[{space\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}int space\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{struct {\bf space} $\ast$}]{s, }
+\item[{const double $\ast$}]{origin, }
+\item[{const double $\ast$}]{dim, }
+\item[{double $\ast$}]{L, }
+\item[{double}]{cutoff, }
+\item[{unsigned int}]{period}
+\end{DoxyParamCaption}
+)}}\label{space_8c_a88f73b9b0b0762f64416e086833f7879}
+
+
+Initialize the space with the given dimensions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The \hyperlink{structspace}{space} to initialize. \\
+\hline
+{\em origin} & Pointer to an array of three doubles specifying the origin of the rectangular domain. \\
+\hline
+{\em dim} & Pointer to an array of three doubles specifying the length of the rectangular domain along each dimension. \\
+\hline
+{\em L} & The minimum cell edge length, in each dimension. \\
+\hline
+{\em cutoff} & A double-\/precision value containing the maximum cutoff lenght that will be used in the potentials. \\
+\hline
+{\em period} & Unsigned integer containing the flags \hyperlink{space_8h_aa3e8aca251b78b9035e1914472bf617e}{space\-\_\-periodic\-\_\-x}, \hyperlink{space_8h_a803b4ba602fc573ba82352ba2a64d99e}{space\-\_\-periodic\-\_\-y} and/or \hyperlink{space_8h_a32350bed462c2b292aaa289243669e41}{space\-\_\-periodic\-\_\-z} or \hyperlink{space_8h_af8d717d1aa6319532393f55728c75182}{space\-\_\-periodic\-\_\-full}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{space_8h_af0504055442a991f476ec24cbcb416f4}{space\-\_\-err\-\_\-ok} or $<$0 on error (see \hyperlink{space_8h_a26550d5c282672a89c766fcb8be67c14}{space\-\_\-err}).
+\end{DoxyReturn}
+This routine initializes the fields of the \hyperlink{structspace}{space} {\ttfamily s}, creates the cells and generates the cell-\/pair list. \hypertarget{space_8c_a471f5997090314affa8f975b1909afff}{\index{space.\-c@{space.\-c}!space\-\_\-prepare@{space\-\_\-prepare}}
+\index{space\-\_\-prepare@{space\-\_\-prepare}!space.c@{space.\-c}}
+\subsubsection[{space\-\_\-prepare}]{\setlength{\rightskip}{0pt plus 5cm}int space\-\_\-prepare (
+\begin{DoxyParamCaption}
+\item[{struct {\bf space} $\ast$}]{s}
+\end{DoxyParamCaption}
+)}}\label{space_8c_a471f5997090314affa8f975b1909afff}
+
+
+Prepare the space before a time step. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & A pointer to the \hyperlink{structspace}{space} to prepare.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{space_8h_af0504055442a991f476ec24cbcb416f4}{space\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{space_8h_a26550d5c282672a89c766fcb8be67c14}{space\-\_\-err})
+\end{DoxyReturn}
+Initializes a \hyperlink{structspace}{space} for a single time step. This routine runs through the particles and sets their forces to zero. \hypertarget{space_8c_aff57036690d68e524b2d6204037fb4c3}{\index{space.\-c@{space.\-c}!space\-\_\-shuffle@{space\-\_\-shuffle}}
+\index{space\-\_\-shuffle@{space\-\_\-shuffle}!space.c@{space.\-c}}
+\subsubsection[{space\-\_\-shuffle}]{\setlength{\rightskip}{0pt plus 5cm}int space\-\_\-shuffle (
+\begin{DoxyParamCaption}
+\item[{struct {\bf space} $\ast$}]{s}
+\end{DoxyParamCaption}
+)}}\label{space_8c_aff57036690d68e524b2d6204037fb4c3}
+
+
+Run through the cells of a \hyperlink{structspace}{space} and make sure every particle is in its place. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The \hyperlink{structspace}{space} on which to operate.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{space_8h_af0504055442a991f476ec24cbcb416f4}{space\-\_\-err\-\_\-ok} or $<$ 0 on error.
+\end{DoxyReturn}
+Runs through the cells of {\ttfamily s} and if a particle has stepped outside the cell bounds, moves it to the correct cell. \hypertarget{space_8c_a90d400d84b28e9ee1c2dfb7fc6110387}{\index{space.\-c@{space.\-c}!space\-\_\-shuffle\-\_\-local@{space\-\_\-shuffle\-\_\-local}}
+\index{space\-\_\-shuffle\-\_\-local@{space\-\_\-shuffle\-\_\-local}!space.c@{space.\-c}}
+\subsubsection[{space\-\_\-shuffle\-\_\-local}]{\setlength{\rightskip}{0pt plus 5cm}int space\-\_\-shuffle\-\_\-local (
+\begin{DoxyParamCaption}
+\item[{struct {\bf space} $\ast$}]{s}
+\end{DoxyParamCaption}
+)}}\label{space_8c_a90d400d84b28e9ee1c2dfb7fc6110387}
+
+
+Run through the non-\/ghost cells of a \hyperlink{structspace}{space} and make sure every particle is in its place. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The \hyperlink{structspace}{space} on which to operate.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{space_8h_af0504055442a991f476ec24cbcb416f4}{space\-\_\-err\-\_\-ok} or $<$ 0 on error.
+\end{DoxyReturn}
+Runs through the cells of {\ttfamily s} and if a particle has stepped outside the cell bounds, moves it to the correct cell. 
+
+\subsection{Variable Documentation}
+\hypertarget{space_8c_a26550d5c282672a89c766fcb8be67c14}{\index{space.\-c@{space.\-c}!space\-\_\-err@{space\-\_\-err}}
+\index{space\-\_\-err@{space\-\_\-err}!space.c@{space.\-c}}
+\subsubsection[{space\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}int space\-\_\-err = {\bf space\-\_\-err\-\_\-ok}}}\label{space_8c_a26550d5c282672a89c766fcb8be67c14}
+I\-D of the last error \hypertarget{space_8c_a69e18d3995f28ac5a3728abcdbaafd42}{\index{space.\-c@{space.\-c}!space\-\_\-err\-\_\-msg@{space\-\_\-err\-\_\-msg}}
+\index{space\-\_\-err\-\_\-msg@{space\-\_\-err\-\_\-msg}!space.c@{space.\-c}}
+\subsubsection[{space\-\_\-err\-\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ space\-\_\-err\-\_\-msg\mbox{[}9\mbox{]}}}\label{space_8c_a69e18d3995f28ac5a3728abcdbaafd42}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= \{
+        \textcolor{stringliteral}{"Nothing bad happened."},
+    \textcolor{stringliteral}{"An unexpected NULL pointer was encountered."},
+    \textcolor{stringliteral}{"A call to malloc failed, probably due to insufficient memory."},
+    \textcolor{stringliteral}{"An error occured when calling a cell function."},
+    \textcolor{stringliteral}{"A call to a pthread routine failed."},
+    \textcolor{stringliteral}{"One or more values were outside of the allowed range."},
+    \textcolor{stringliteral}{"Too many pairs associated with a single particle in Verlet list."},
+    \textcolor{stringliteral}{"Task list too short."},
+    \textcolor{stringliteral}{"An error occured when calling a task function."},
+        \}
+\end{DoxyCode}

@@ -1,0 +1,110 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/errs.h" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/errs.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBerrs_maxstack\fP   100"
+.br
+.ti -1c
+.RI "#define \fBerrs_err_ok\fP   0"
+.br
+.ti -1c
+.RI "#define \fBerrs_err_io\fP   -1"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBerrs_register\fP (int \fBid\fP, const char *\fBmsg\fP, int \fBline\fP, const char *\fBfunc\fP, char *\fBfile\fP)"
+.br
+.RI "\fIDump an error onto the stack\&. \fP"
+.ti -1c
+.RI "int \fBerrs_dump\fP (FILE *out)"
+.br
+.RI "\fIPrint the error stack out to the given FILE pointer\&. \fP"
+.ti -1c
+.RI "void \fBerrs_clear\fP ()"
+.br
+.RI "\fIRe-set the error stack\&. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBerrs_err\fP"
+.br
+.ti -1c
+.RI "const char * \fBerrs_err_msg\fP []"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define errs_err_io   -1"
+
+.SS "#define errs_err_ok   0"
+
+.SS "#define errs_maxstack   100"
+
+.SH "Function Documentation"
+.PP 
+.SS "void errs_clear ()"
+
+.PP
+Re-set the error stack\&. 
+.SS "int errs_dump (FILE *out)"
+
+.PP
+Print the error stack out to the given FILE pointer\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIout\fP A pointer to a FILE structure\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBerrs_err_ok\fP or < 0 on failure\&. 
+.RE
+.PP
+
+.SS "int errs_register (intid, const char *msg, intline, const char *func, char *file)"
+
+.PP
+Dump an error onto the stack\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIid\fP An error identifier that will be returned\&. 
+.br
+\fImsg\fP A pointer to a string containing a descriptive error message\&. 
+.br
+\fIline\fP The line on which the error occured\&. 
+.br
+\fIfunc\fP The name of the function in which the error occured\&. 
+.br
+\fIfile\fP The name of the file in which the error occured\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The value of \fCid\fP\&. 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "int errs_err"
+
+.SS "const char* errs_err_msg[]"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

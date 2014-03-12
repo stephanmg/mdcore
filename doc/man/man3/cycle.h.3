@@ -1,0 +1,34 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/cycle.h" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/cycle.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <sys/time\&.h>\fP
+.br
+\fC#include <time\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBINLINE_ELAPSED\fP(INL)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define INLINE_ELAPSED(INL)"
+\fBValue:\fP
+.PP
+.nf
+static INL double elapsed(ticks t1, ticks t0) \
+{                                                                         \
+     return (double)t1 - (double)t0;                                      \
+}
+.fi
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

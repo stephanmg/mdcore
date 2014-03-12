@@ -1,0 +1,147 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/runner_cuda.h" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/runner_cuda.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBqueue_cuda\fP"
+.br
+.ti -1c
+.RI "struct \fBtask_cuda\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBcuda_maxparts\fP   512"
+.br
+.ti -1c
+.RI "#define \fBcuda_maxdiags\fP   352"
+.br
+.ti -1c
+.RI "#define \fBcuda_ndiags\fP   ( ( (\fBcuda_maxdiags\fP - 1) * \fBcuda_maxdiags\fP ) / 2 )"
+.br
+.ti -1c
+.RI "#define \fBcuda_frame\fP   32"
+.br
+.ti -1c
+.RI "#define \fBcuda_maxpots\fP   100"
+.br
+.ti -1c
+.RI "#define \fBmax_fingers\fP   1"
+.br
+.ti -1c
+.RI "#define \fBcuda_maxblocks\fP   64"
+.br
+.ti -1c
+.RI "#define \fBcuda_memcpy_chunk\fP   6"
+.br
+.ti -1c
+.RI "#define \fBcuda_sum_chunk\fP   3"
+.br
+.ti -1c
+.RI "#define \fBcuda_maxqueues\fP   30"
+.br
+.ti -1c
+.RI "#define \fBTIMER_TIC_ND\fP"
+.br
+.ti -1c
+.RI "#define \fBTIMER_TOC_ND\fP(tid)"
+.br
+.ti -1c
+.RI "#define \fBTIMER_TIC\fP"
+.br
+.ti -1c
+.RI "#define \fBTIMER_TOC\fP(tid)"
+.br
+.ti -1c
+.RI "#define \fBTIMER_TIC2\fP"
+.br
+.ti -1c
+.RI "#define \fBTIMER_TOC2\fP(tid)"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum { \fBtid_mutex\fP = 0, \fBtid_queue\fP, \fBtid_gettask\fP, \fBtid_memcpy\fP, \fBtid_update\fP, \fBtid_pack\fP, \fBtid_sort\fP, \fBtid_pair\fP, \fBtid_self\fP, \fBtid_potential\fP, \fBtid_potential4\fP, \fBtid_total\fP, \fBtid_count\fP }"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define cuda_frame   32"
+
+.SS "#define cuda_maxblocks   64"
+
+.SS "#define cuda_maxdiags   352"
+
+.SS "#define cuda_maxparts   512"
+
+.SS "#define cuda_maxpots   100"
+
+.SS "#define cuda_maxqueues   30"
+
+.SS "#define cuda_memcpy_chunk   6"
+
+.SS "#define cuda_ndiags   ( ( (\fBcuda_maxdiags\fP - 1) * \fBcuda_maxdiags\fP ) / 2 )"
+
+.SS "#define cuda_sum_chunk   3"
+
+.SS "#define max_fingers   1"
+
+.SS "#define TIMER_TIC"
+
+.SS "#define TIMER_TIC2"
+
+.SS "#define TIMER_TIC_ND"
+
+.SS "#define TIMER_TOC(tid)"
+
+.SS "#define TIMER_TOC2(tid)"
+
+.SS "#define TIMER_TOC_ND(tid)"
+
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "anonymous enum"
+Timers for the cuda parts\&. 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fItid_mutex \fP\fP
+.TP
+\fB\fItid_queue \fP\fP
+.TP
+\fB\fItid_gettask \fP\fP
+.TP
+\fB\fItid_memcpy \fP\fP
+.TP
+\fB\fItid_update \fP\fP
+.TP
+\fB\fItid_pack \fP\fP
+.TP
+\fB\fItid_sort \fP\fP
+.TP
+\fB\fItid_pair \fP\fP
+.TP
+\fB\fItid_self \fP\fP
+.TP
+\fB\fItid_potential \fP\fP
+.TP
+\fB\fItid_potential4 \fP\fP
+.TP
+\fB\fItid_total \fP\fP
+.TP
+\fB\fItid_count \fP\fP
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

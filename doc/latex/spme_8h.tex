@@ -1,0 +1,151 @@
+\hypertarget{spme_8h}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/spme.h File Reference}
+\label{spme_8h}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/spme.\-h@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/spme.\-h}}
+}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structspme}{spme}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{spme_8h_a930db4717cea6d6ac010dee502f859ba}{spme\-\_\-err\-\_\-ok}~0
+\item 
+\#define \hyperlink{spme_8h_ad2175bac34c73375898c2ca69f7332ae}{spme\-\_\-err\-\_\-null}~-\/1
+\item 
+\#define \hyperlink{spme_8h_a0248cd7e47004697766a2aa981f58725}{spme\-\_\-err\-\_\-malloc}~-\/2
+\item 
+\#define \hyperlink{spme_8h_a8f7a80de27c8920e55e37365836d63ea}{smpe\-\_\-err\-\_\-nofftw3}~-\/3
+\item 
+\#define \hyperlink{spme_8h_aabbee4b33ed946f42bf1939fafc5cdeb}{spme\-\_\-err\-\_\-fftw}~-\/4
+\item 
+\#define \hyperlink{spme_8h_ada5464c123a913818c4a0126e1ad2112}{spme\-\_\-order}~4
+\item 
+\#define \hyperlink{spme_8h_afc3aa4af89519cc5000da681700e4770}{spme\-\_\-gpc}~4
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{spme_8h_ae97820157f5f03965461a039724dabfe}{spme\-\_\-init} (struct \hyperlink{structspme}{spme} $\ast$s, int $\ast$dim, float $\ast$h, float \hyperlink{potential__eval_8h_a92aaed300d50590bc36b14bc871fca42}{kappa})
+\begin{DoxyCompactList}\small\item\em Sort the cell pairs in a spme according to their direction. \end{DoxyCompactList}\item 
+void \hyperlink{spme_8h_a7130fed167959b4c9621f49a01502fed}{spme\-\_\-bspline} (float $\ast$\hyperlink{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{x}, int N, float $\ast$b, float $\ast$dbdx)
+\begin{DoxyCompactList}\small\item\em Evaluate the B-\/spline and its derivatives at the given points. \end{DoxyCompactList}\item 
+int \hyperlink{spme_8h_a78871cfc7fda054dd1caf89749eddf33}{spme\-\_\-doconv} (struct \hyperlink{structspme}{spme} $\ast$s)
+\begin{DoxyCompactList}\small\item\em Do the convolution stuff. \end{DoxyCompactList}\item 
+void \hyperlink{spme_8h_a8048490d4ba6e063eaa44e5abec91a1f}{spme\-\_\-iact} (struct \hyperlink{structspme}{spme} $\ast$s, struct \hyperlink{structcell}{cell} $\ast$cp, struct \hyperlink{structcell}{cell} $\ast$cg)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{spme_8h_a59e0f46ca62391c6a515bd037211e680}{spme\-\_\-err}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{spme_8h_a8f7a80de27c8920e55e37365836d63ea}{\index{spme.\-h@{spme.\-h}!smpe\-\_\-err\-\_\-nofftw3@{smpe\-\_\-err\-\_\-nofftw3}}
+\index{smpe\-\_\-err\-\_\-nofftw3@{smpe\-\_\-err\-\_\-nofftw3}!spme.h@{spme.\-h}}
+\subsubsection[{smpe\-\_\-err\-\_\-nofftw3}]{\setlength{\rightskip}{0pt plus 5cm}\#define smpe\-\_\-err\-\_\-nofftw3~-\/3}}\label{spme_8h_a8f7a80de27c8920e55e37365836d63ea}
+\hypertarget{spme_8h_aabbee4b33ed946f42bf1939fafc5cdeb}{\index{spme.\-h@{spme.\-h}!spme\-\_\-err\-\_\-fftw@{spme\-\_\-err\-\_\-fftw}}
+\index{spme\-\_\-err\-\_\-fftw@{spme\-\_\-err\-\_\-fftw}!spme.h@{spme.\-h}}
+\subsubsection[{spme\-\_\-err\-\_\-fftw}]{\setlength{\rightskip}{0pt plus 5cm}\#define spme\-\_\-err\-\_\-fftw~-\/4}}\label{spme_8h_aabbee4b33ed946f42bf1939fafc5cdeb}
+\hypertarget{spme_8h_a0248cd7e47004697766a2aa981f58725}{\index{spme.\-h@{spme.\-h}!spme\-\_\-err\-\_\-malloc@{spme\-\_\-err\-\_\-malloc}}
+\index{spme\-\_\-err\-\_\-malloc@{spme\-\_\-err\-\_\-malloc}!spme.h@{spme.\-h}}
+\subsubsection[{spme\-\_\-err\-\_\-malloc}]{\setlength{\rightskip}{0pt plus 5cm}\#define spme\-\_\-err\-\_\-malloc~-\/2}}\label{spme_8h_a0248cd7e47004697766a2aa981f58725}
+\hypertarget{spme_8h_ad2175bac34c73375898c2ca69f7332ae}{\index{spme.\-h@{spme.\-h}!spme\-\_\-err\-\_\-null@{spme\-\_\-err\-\_\-null}}
+\index{spme\-\_\-err\-\_\-null@{spme\-\_\-err\-\_\-null}!spme.h@{spme.\-h}}
+\subsubsection[{spme\-\_\-err\-\_\-null}]{\setlength{\rightskip}{0pt plus 5cm}\#define spme\-\_\-err\-\_\-null~-\/1}}\label{spme_8h_ad2175bac34c73375898c2ca69f7332ae}
+\hypertarget{spme_8h_a930db4717cea6d6ac010dee502f859ba}{\index{spme.\-h@{spme.\-h}!spme\-\_\-err\-\_\-ok@{spme\-\_\-err\-\_\-ok}}
+\index{spme\-\_\-err\-\_\-ok@{spme\-\_\-err\-\_\-ok}!spme.h@{spme.\-h}}
+\subsubsection[{spme\-\_\-err\-\_\-ok}]{\setlength{\rightskip}{0pt plus 5cm}\#define spme\-\_\-err\-\_\-ok~0}}\label{spme_8h_a930db4717cea6d6ac010dee502f859ba}
+\hypertarget{spme_8h_afc3aa4af89519cc5000da681700e4770}{\index{spme.\-h@{spme.\-h}!spme\-\_\-gpc@{spme\-\_\-gpc}}
+\index{spme\-\_\-gpc@{spme\-\_\-gpc}!spme.h@{spme.\-h}}
+\subsubsection[{spme\-\_\-gpc}]{\setlength{\rightskip}{0pt plus 5cm}\#define spme\-\_\-gpc~4}}\label{spme_8h_afc3aa4af89519cc5000da681700e4770}
+\hypertarget{spme_8h_ada5464c123a913818c4a0126e1ad2112}{\index{spme.\-h@{spme.\-h}!spme\-\_\-order@{spme\-\_\-order}}
+\index{spme\-\_\-order@{spme\-\_\-order}!spme.h@{spme.\-h}}
+\subsubsection[{spme\-\_\-order}]{\setlength{\rightskip}{0pt plus 5cm}\#define spme\-\_\-order~4}}\label{spme_8h_ada5464c123a913818c4a0126e1ad2112}
+
+
+\subsection{Function Documentation}
+\hypertarget{spme_8h_a7130fed167959b4c9621f49a01502fed}{\index{spme.\-h@{spme.\-h}!spme\-\_\-bspline@{spme\-\_\-bspline}}
+\index{spme\-\_\-bspline@{spme\-\_\-bspline}!spme.h@{spme.\-h}}
+\subsubsection[{spme\-\_\-bspline}]{\setlength{\rightskip}{0pt plus 5cm}void spme\-\_\-bspline (
+\begin{DoxyParamCaption}
+\item[{float $\ast$}]{x, }
+\item[{int}]{N, }
+\item[{float $\ast$}]{b, }
+\item[{float $\ast$}]{dbdx}
+\end{DoxyParamCaption}
+)}}\label{spme_8h_a7130fed167959b4c9621f49a01502fed}
+
+
+Evaluate the B-\/spline and its derivatives at the given points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The distances, normalized. \\
+\hline
+{\em N} & The number of points. \\
+\hline
+{\em b} & A vector in which to store the B-\/splines. \\
+\hline
+{\em dbdx} & A vector in which to store the derivative. \\
+\hline
+\end{DoxyParams}
+\hypertarget{spme_8h_a78871cfc7fda054dd1caf89749eddf33}{\index{spme.\-h@{spme.\-h}!spme\-\_\-doconv@{spme\-\_\-doconv}}
+\index{spme\-\_\-doconv@{spme\-\_\-doconv}!spme.h@{spme.\-h}}
+\subsubsection[{spme\-\_\-doconv}]{\setlength{\rightskip}{0pt plus 5cm}int spme\-\_\-doconv (
+\begin{DoxyParamCaption}
+\item[{struct {\bf spme} $\ast$}]{s}
+\end{DoxyParamCaption}
+)}}\label{spme_8h_a78871cfc7fda054dd1caf89749eddf33}
+
+
+Do the convolution stuff. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The \hyperlink{structspme}{spme}. \\
+\hline
+\end{DoxyParams}
+\hypertarget{spme_8h_a8048490d4ba6e063eaa44e5abec91a1f}{\index{spme.\-h@{spme.\-h}!spme\-\_\-iact@{spme\-\_\-iact}}
+\index{spme\-\_\-iact@{spme\-\_\-iact}!spme.h@{spme.\-h}}
+\subsubsection[{spme\-\_\-iact}]{\setlength{\rightskip}{0pt plus 5cm}void spme\-\_\-iact (
+\begin{DoxyParamCaption}
+\item[{struct {\bf spme} $\ast$}]{s, }
+\item[{struct {\bf cell} $\ast$}]{cp, }
+\item[{struct {\bf cell} $\ast$}]{cg}
+\end{DoxyParamCaption}
+)}}\label{spme_8h_a8048490d4ba6e063eaa44e5abec91a1f}
+\hypertarget{spme_8h_ae97820157f5f03965461a039724dabfe}{\index{spme.\-h@{spme.\-h}!spme\-\_\-init@{spme\-\_\-init}}
+\index{spme\-\_\-init@{spme\-\_\-init}!spme.h@{spme.\-h}}
+\subsubsection[{spme\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}int spme\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{struct {\bf spme} $\ast$}]{s, }
+\item[{int $\ast$}]{dim, }
+\item[{float $\ast$}]{h, }
+\item[{float}]{kappa}
+\end{DoxyParamCaption}
+)}}\label{spme_8h_ae97820157f5f03965461a039724dabfe}
+
+
+Sort the cell pairs in a spme according to their direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The \hyperlink{structspme}{spme} data structure. \\
+\hline
+{\em dim} & The S\-P\-M\-E grid dimensions. \\
+\hline
+{\em h} & The grid spacing in each dimension.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{spme_8h_a930db4717cea6d6ac010dee502f859ba}{spme\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{spme_8h_a59e0f46ca62391c6a515bd037211e680}{spme\-\_\-err}). 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\hypertarget{spme_8h_a59e0f46ca62391c6a515bd037211e680}{\index{spme.\-h@{spme.\-h}!spme\-\_\-err@{spme\-\_\-err}}
+\index{spme\-\_\-err@{spme\-\_\-err}!spme.h@{spme.\-h}}
+\subsubsection[{spme\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}int spme\-\_\-err}}\label{spme_8h_a59e0f46ca62391c6a515bd037211e680}
+I\-D of the last error 

@@ -1,0 +1,130 @@
+\hypertarget{rigid_8c}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/rigid.c File Reference}
+\label{rigid_8c}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/rigid.\-c@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/rigid.\-c}}
+}
+{\ttfamily \#include \char`\"{}../config.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$pthread.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include $<$float.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$limits.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}cycle.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}errs.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fptype.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lock.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}part.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}potential.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}cell.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}space.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}engine.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}rigid.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{rigid_8c_a7673862d447029edaf3172ebd94aa28e}{error}(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})~( \hyperlink{rigid_8h_a608d035caf1cc207cc6e42f92809b3f6}{rigid\-\_\-err} = \hyperlink{errs_8h_ae37a9c0e0a0aa4a92dbe64c0f38ed95c}{errs\-\_\-register}( \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id} , \hyperlink{rigid_8c_acde53d8bbc7a83f71805251e018ba4b3}{rigid\-\_\-err\-\_\-msg}\mbox{[}-\/(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{rigid_8c_ae1738c3c899a179dc5ad5683d08fc0ed}{rigid\-\_\-eval\-\_\-shake} (struct \hyperlink{structrigid}{rigid} $\ast$rs, int N, struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Evaluate (S\-H\-A\-K\-E) a list of rigid constraints. \end{DoxyCompactList}\item 
+int \hyperlink{rigid_8c_ac7fb10ab07fec48e884d99bd5c08ad50}{rigid\-\_\-eval\-\_\-pshake} (struct \hyperlink{structrigid}{rigid} $\ast$rs, int N, struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int a\-\_\-update)
+\begin{DoxyCompactList}\small\item\em Evaluate (P-\/\-S\-H\-A\-K\-E) a list of rigid constraints. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{rigid_8c_a608d035caf1cc207cc6e42f92809b3f6}{rigid\-\_\-err} = \hyperlink{rigid_8h_a163dda7686b92ad456ed6c50348c4492}{rigid\-\_\-err\-\_\-ok}
+\item 
+unsigned int \hyperlink{rigid_8c_af33b4752dce41e8403ffbbd839019f2f}{rigid\-\_\-rcount} = 0
+\item 
+char $\ast$ \hyperlink{rigid_8c_acde53d8bbc7a83f71805251e018ba4b3}{rigid\-\_\-err\-\_\-msg} \mbox{[}3\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{rigid_8c_a7673862d447029edaf3172ebd94aa28e}{\index{rigid.\-c@{rigid.\-c}!error@{error}}
+\index{error@{error}!rigid.c@{rigid.\-c}}
+\subsubsection[{error}]{\setlength{\rightskip}{0pt plus 5cm}\#define error(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf id}}
+\end{DoxyParamCaption}
+)~( {\bf rigid\-\_\-err} = {\bf errs\-\_\-register}( {\bf id} , {\bf rigid\-\_\-err\-\_\-msg}\mbox{[}-\/({\bf id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )}}\label{rigid_8c_a7673862d447029edaf3172ebd94aa28e}
+
+
+\subsection{Function Documentation}
+\hypertarget{rigid_8c_ac7fb10ab07fec48e884d99bd5c08ad50}{\index{rigid.\-c@{rigid.\-c}!rigid\-\_\-eval\-\_\-pshake@{rigid\-\_\-eval\-\_\-pshake}}
+\index{rigid\-\_\-eval\-\_\-pshake@{rigid\-\_\-eval\-\_\-pshake}!rigid.c@{rigid.\-c}}
+\subsubsection[{rigid\-\_\-eval\-\_\-pshake}]{\setlength{\rightskip}{0pt plus 5cm}int rigid\-\_\-eval\-\_\-pshake (
+\begin{DoxyParamCaption}
+\item[{struct {\bf rigid} $\ast$}]{rs, }
+\item[{int}]{N, }
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{int}]{a\-\_\-update}
+\end{DoxyParamCaption}
+)}}\label{rigid_8c_ac7fb10ab07fec48e884d99bd5c08ad50}
+
+
+Evaluate (P-\/\-S\-H\-A\-K\-E) a list of rigid constraints. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rs} & Pointer to an array of \hyperlink{structrigid}{rigid}. \\
+\hline
+{\em N} & Nr of rigids in {\ttfamily r}. \\
+\hline
+{\em e} & Pointer to the \hyperlink{structengine}{engine} in which these rigids are evaluated. \\
+\hline
+{\em a\-\_\-update} & flag whether to force updates of the constraint coeffs.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{rigid_8h_a163dda7686b92ad456ed6c50348c4492}{rigid\-\_\-err\-\_\-ok} or $<$0 on error (see \hyperlink{rigid_8h_a608d035caf1cc207cc6e42f92809b3f6}{rigid\-\_\-err}) 
+\end{DoxyReturn}
+\hypertarget{rigid_8c_ae1738c3c899a179dc5ad5683d08fc0ed}{\index{rigid.\-c@{rigid.\-c}!rigid\-\_\-eval\-\_\-shake@{rigid\-\_\-eval\-\_\-shake}}
+\index{rigid\-\_\-eval\-\_\-shake@{rigid\-\_\-eval\-\_\-shake}!rigid.c@{rigid.\-c}}
+\subsubsection[{rigid\-\_\-eval\-\_\-shake}]{\setlength{\rightskip}{0pt plus 5cm}int rigid\-\_\-eval\-\_\-shake (
+\begin{DoxyParamCaption}
+\item[{struct {\bf rigid} $\ast$}]{rs, }
+\item[{int}]{N, }
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{rigid_8c_ae1738c3c899a179dc5ad5683d08fc0ed}
+
+
+Evaluate (S\-H\-A\-K\-E) a list of rigid constraints. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rs} & Pointer to an array of \hyperlink{structrigid}{rigid}. \\
+\hline
+{\em N} & Nr of rigids in {\ttfamily r}. \\
+\hline
+{\em e} & Pointer to the \hyperlink{structengine}{engine} in which these rigids are evaluated. \\
+\hline
+{\em epot\-\_\-out} & Pointer to a double in which to aggregate the potential energy.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{rigid_8h_a163dda7686b92ad456ed6c50348c4492}{rigid\-\_\-err\-\_\-ok} or $<$0 on error (see \hyperlink{rigid_8h_a608d035caf1cc207cc6e42f92809b3f6}{rigid\-\_\-err}) 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\hypertarget{rigid_8c_a608d035caf1cc207cc6e42f92809b3f6}{\index{rigid.\-c@{rigid.\-c}!rigid\-\_\-err@{rigid\-\_\-err}}
+\index{rigid\-\_\-err@{rigid\-\_\-err}!rigid.c@{rigid.\-c}}
+\subsubsection[{rigid\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}int rigid\-\_\-err = {\bf rigid\-\_\-err\-\_\-ok}}}\label{rigid_8c_a608d035caf1cc207cc6e42f92809b3f6}
+The I\-D of the last error. \hypertarget{rigid_8c_acde53d8bbc7a83f71805251e018ba4b3}{\index{rigid.\-c@{rigid.\-c}!rigid\-\_\-err\-\_\-msg@{rigid\-\_\-err\-\_\-msg}}
+\index{rigid\-\_\-err\-\_\-msg@{rigid\-\_\-err\-\_\-msg}!rigid.c@{rigid.\-c}}
+\subsubsection[{rigid\-\_\-err\-\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ rigid\-\_\-err\-\_\-msg\mbox{[}3\mbox{]}}}\label{rigid_8c_acde53d8bbc7a83f71805251e018ba4b3}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= \{
+        \textcolor{stringliteral}{"Nothing bad happened."},
+    \textcolor{stringliteral}{"An unexpected NULL pointer was encountered."},
+    \textcolor{stringliteral}{"A call to malloc failed, probably due to insufficient memory."}
+        \}
+\end{DoxyCode}
+\hypertarget{rigid_8c_af33b4752dce41e8403ffbbd839019f2f}{\index{rigid.\-c@{rigid.\-c}!rigid\-\_\-rcount@{rigid\-\_\-rcount}}
+\index{rigid\-\_\-rcount@{rigid\-\_\-rcount}!rigid.c@{rigid.\-c}}
+\subsubsection[{rigid\-\_\-rcount}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int rigid\-\_\-rcount = 0}}\label{rigid_8c_af33b4752dce41e8403ffbbd839019f2f}

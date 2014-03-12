@@ -1,0 +1,282 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/cell.h" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/cell.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBcell\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBcell_err_ok\fP   0"
+.br
+.ti -1c
+.RI "#define \fBcell_err_null\fP   -1"
+.br
+.ti -1c
+.RI "#define \fBcell_err_malloc\fP   -2"
+.br
+.ti -1c
+.RI "#define \fBcell_err_pthread\fP   -3"
+.br
+.ti -1c
+.RI "#define \fBcell_default_size\fP   64"
+.br
+.ti -1c
+.RI "#define \fBcell_incr\fP   10"
+.br
+.ti -1c
+.RI "#define \fBcell_partalign\fP   64"
+.br
+.ti -1c
+.RI "#define \fBcell_flag_none\fP   0"
+.br
+.ti -1c
+.RI "#define \fBcell_flag_ghost\fP   1"
+.br
+.ti -1c
+.RI "#define \fBcell_flag_wait\fP   2"
+.br
+.ti -1c
+.RI "#define \fBcell_flag_waited\fP   4"
+.br
+.ti -1c
+.RI "#define \fBcell_flag_marked\fP   8"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBcell_init\fP (struct \fBcell\fP *\fBc\fP, int *loc, double *origin, double *dim)"
+.br
+.RI "\fIInitialize the given cell\&. \fP"
+.ti -1c
+.RI "struct \fBpart\fP * \fBcell_add\fP (struct \fBcell\fP *\fBc\fP, struct \fBpart\fP *p, struct \fBpart\fP **partlist)"
+.br
+.RI "\fIAdd a particle to a cell\&. \fP"
+.ti -1c
+.RI "struct \fBpart\fP * \fBcell_add_incomming\fP (struct \fBcell\fP *\fBc\fP, struct \fBpart\fP *p)"
+.br
+.RI "\fIAdd a particle to the incomming array of a cell\&. \fP"
+.ti -1c
+.RI "int \fBcell_add_incomming_multiple\fP (struct \fBcell\fP *\fBc\fP, struct \fBpart\fP *p, int count)"
+.br
+.RI "\fIAdd one or more particles to the incomming array of a cell\&. \fP"
+.ti -1c
+.RI "int \fBcell_welcome\fP (struct \fBcell\fP *\fBc\fP, struct \fBpart\fP **partlist)"
+.br
+.RI "\fIMove particles from the incomming buffer to the cell\&. \fP"
+.ti -1c
+.RI "int \fBcell_load\fP (struct \fBcell\fP *\fBc\fP, struct \fBpart\fP *parts, int nr_parts, struct \fBpart\fP **partlist, struct \fBcell\fP **celllist)"
+.br
+.RI "\fILoad a block of particles to the cell\&. \fP"
+.ti -1c
+.RI "int \fBcell_flush\fP (struct \fBcell\fP *\fBc\fP, struct \fBpart\fP **partlist, struct \fBcell\fP **celllist)"
+.br
+.RI "\fIFlush all the parts from a \fBcell\fP\&. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "const char \fBcell_sortlistID\fP [27]"
+.br
+.ti -1c
+.RI "const \fBFPTYPE\fP \fBcell_shift\fP [13 *3]"
+.br
+.ti -1c
+.RI "const char \fBcell_flip\fP [27]"
+.br
+.ti -1c
+.RI "int \fBcell_err\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define cell_default_size   64"
+
+.SS "#define cell_err_malloc   -2"
+
+.SS "#define cell_err_null   -1"
+
+.SS "#define cell_err_ok   0"
+
+.SS "#define cell_err_pthread   -3"
+
+.SS "#define cell_flag_ghost   1"
+
+.SS "#define cell_flag_marked   8"
+
+.SS "#define cell_flag_none   0"
+Cell flags 
+.SS "#define cell_flag_wait   2"
+
+.SS "#define cell_flag_waited   4"
+
+.SS "#define cell_incr   10"
+
+.SS "#define cell_partalign   64"
+Alignment when allocating parts\&. 
+.SH "Function Documentation"
+.PP 
+.SS "struct \fBpart\fP* cell_add (struct \fBcell\fP *c, struct \fBpart\fP *p, struct \fBpart\fP **partlist)"
+
+.PP
+Add a particle to a cell\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIc\fP The \fBcell\fP to which the particle should be added\&. 
+.br
+\fIp\fP The #particle to add to the cell
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A pointer to the particle data in the cell\&.
+.RE
+.PP
+This routine assumes the particle position has already been adjusted to the cell \fCc\fP\&. 
+.SS "struct \fBpart\fP* cell_add_incomming (struct \fBcell\fP *c, struct \fBpart\fP *p)"
+
+.PP
+Add a particle to the incomming array of a cell\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIc\fP The \fBcell\fP to which the particle should be added\&. 
+.br
+\fIp\fP The #particle to add to the cell
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A pointer to the particle data in the incomming array of the cell\&.
+.RE
+.PP
+This routine assumes the particle position has already been adjusted to the cell \fCc\fP\&. 
+.SS "int cell_add_incomming_multiple (struct \fBcell\fP *c, struct \fBpart\fP *p, intcount)"
+
+.PP
+Add one or more particles to the incomming array of a cell\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIc\fP The \fBcell\fP to which the particle should be added\&. 
+.br
+\fIp\fP The #particle to add to the cell
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The number of incomming parts or < 0 on error (see \fBcell_err\fP)\&.
+.RE
+.PP
+This routine assumes the particle position have already been adjusted to the cell \fCc\fP\&. 
+.SS "int cell_flush (struct \fBcell\fP *c, struct \fBpart\fP **partlist, struct \fBcell\fP **celllist)"
+
+.PP
+Flush all the parts from a \fBcell\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIc\fP The \fBcell\fP to flush\&. 
+.br
+\fIpartlist\fP A pointer to the partlist to set the part indices\&. 
+.br
+\fIcelllist\fP A pointer to the celllist to set the part indices\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBcell_err_ok\fP or < 0 on error (see \fBcell_err\fP)\&. 
+.RE
+.PP
+
+.SS "int cell_init (struct \fBcell\fP *c, int *loc, double *origin, double *dim)"
+
+.PP
+Initialize the given cell\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIc\fP The \fBcell\fP to initialize\&. 
+.br
+\fIloc\fP Array containing the location of this cell in the space\&. 
+.br
+\fIorigin\fP The origin of the cell in global coordinates 
+.br
+\fIdim\fP The cell dimensions\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBcell_err_ok\fP or < 0 on error (see \fBcell_err\fP)\&. 
+.RE
+.PP
+
+.SS "int cell_load (struct \fBcell\fP *c, struct \fBpart\fP *parts, intnr_parts, struct \fBpart\fP **partlist, struct \fBcell\fP **celllist)"
+
+.PP
+Load a block of particles to the cell\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIc\fP The \fBcell\fP\&. 
+.br
+\fIparts\fP Pointer to a block of \fBpart\fP\&. 
+.br
+\fInr_parts\fP The number of parts to load\&. 
+.br
+\fIpartlist\fP A pointer to the partlist to set the part indices\&. 
+.br
+\fIcelllist\fP A pointer to the celllist to set the part indices\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBcell_err_ok\fP or < 0 on error (see \fBcell_err\fP)\&. 
+.RE
+.PP
+
+.SS "int cell_welcome (struct \fBcell\fP *c, struct \fBpart\fP **partlist)"
+
+.PP
+Move particles from the incomming buffer to the cell\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIc\fP The \fBcell\fP\&. 
+.br
+\fIpartlist\fP A pointer to the partlist to set the part indices\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBcell_err_ok\fP or < 0 on error (see \fBcell_err\fP)\&. 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "int cell_err"
+
+.SS "const char cell_flip[27]"
+
+.SS "const \fBFPTYPE\fP cell_shift[13 *3]"
+
+.SS "const char cell_sortlistID[27]"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

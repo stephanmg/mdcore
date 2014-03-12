@@ -1,0 +1,413 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/engine_bonded.c" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/engine_bonded.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <pthread\&.h>\fP
+.br
+\fC#include <math\&.h>\fP
+.br
+\fC#include <float\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include '\&.\&./config\&.h'\fP
+.br
+\fC#include <omp\&.h>\fP
+.br
+\fC#include 'cycle\&.h'\fP
+.br
+\fC#include 'errs\&.h'\fP
+.br
+\fC#include 'fptype\&.h'\fP
+.br
+\fC#include 'lock\&.h'\fP
+.br
+\fC#include 'part\&.h'\fP
+.br
+\fC#include 'cell\&.h'\fP
+.br
+\fC#include 'space\&.h'\fP
+.br
+\fC#include 'potential\&.h'\fP
+.br
+\fC#include 'runner\&.h'\fP
+.br
+\fC#include 'bond\&.h'\fP
+.br
+\fC#include 'rigid\&.h'\fP
+.br
+\fC#include 'angle\&.h'\fP
+.br
+\fC#include 'dihedral\&.h'\fP
+.br
+\fC#include 'exclusion\&.h'\fP
+.br
+\fC#include 'reader\&.h'\fP
+.br
+\fC#include 'engine\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBerror\fP(\fBid\fP)   ( \fBengine_err\fP = \fBerrs_register\fP( \fBid\fP , \fBengine_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBengine_bonded_eval_sets\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fICompute all bonded interactions stored in this engine\&. \fP"
+.ti -1c
+.RI "int \fBengine_bonded_sets\fP (struct \fBengine\fP *\fBe\fP, int max_sets)"
+.br
+.RI "\fIAssemble non-conflicting sets of bonded interactions\&. \fP"
+.ti -1c
+.RI "int \fBengine_dihedral_add\fP (struct \fBengine\fP *\fBe\fP, int i, int j, int k, int l, int pid)"
+.br
+.RI "\fIAdd a dihedral interaction to the engine\&. \fP"
+.ti -1c
+.RI "int \fBengine_angle_add\fP (struct \fBengine\fP *\fBe\fP, int i, int j, int k, int pid)"
+.br
+.RI "\fIAdd a angle interaction to the engine\&. \fP"
+.ti -1c
+.RI "int \fBengine_exclusion_shrink\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fIRemove duplicate exclusions\&. \fP"
+.ti -1c
+.RI "int \fBengine_exclusion_add\fP (struct \fBengine\fP *\fBe\fP, int i, int j)"
+.br
+.RI "\fIAdd a exclusioned interaction to the engine\&. \fP"
+.ti -1c
+.RI "int \fBengine_bond_add\fP (struct \fBengine\fP *\fBe\fP, int i, int j)"
+.br
+.RI "\fIAdd a bonded interaction to the engine\&. \fP"
+.ti -1c
+.RI "int \fBengine_bonded_eval\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fICompute all bonded interactions stored in this engine\&. \fP"
+.ti -1c
+.RI "int \fBengine_dihedral_eval\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fICompute the dihedral interactions stored in this engine\&. \fP"
+.ti -1c
+.RI "int \fBengine_angle_eval\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fICompute the angled interactions stored in this engine\&. \fP"
+.ti -1c
+.RI "int \fBengine_exclusion_eval\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fICompute the exclusioned interactions stored in this engine\&. \fP"
+.ti -1c
+.RI "int \fBengine_bond_eval\fP (struct \fBengine\fP *\fBe\fP)"
+.br
+.RI "\fICompute the bonded interactions stored in this engine\&. \fP"
+.ti -1c
+.RI "int \fBengine_bond_addpot\fP (struct \fBengine\fP *\fBe\fP, struct \fBpotential\fP *p, int i, int j)"
+.br
+.RI "\fIAdd a bond potential\&. \fP"
+.ti -1c
+.RI "int \fBengine_dihedral_addpot\fP (struct \fBengine\fP *\fBe\fP, struct \fBpotential\fP *p)"
+.br
+.RI "\fIAdd a dihedral potential\&. \fP"
+.ti -1c
+.RI "int \fBengine_angle_addpot\fP (struct \fBengine\fP *\fBe\fP, struct \fBpotential\fP *p)"
+.br
+.RI "\fIAdd a angle potential\&. \fP"
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define error(\fBid\fP)   ( \fBengine_err\fP = \fBerrs_register\fP( \fBid\fP , \fBengine_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+
+.SH "Function Documentation"
+.PP 
+.SS "int engine_angle_add (struct \fBengine\fP *e, inti, intj, intk, intpid)"
+
+.PP
+Add a angle interaction to the engine\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&. 
+.br
+\fIi\fP The ID of the first \fBpart\fP\&. 
+.br
+\fIj\fP The ID of the second \fBpart\fP\&. 
+.br
+\fIk\fP The ID of the third \fBpart\fP\&. 
+.br
+\fIpid\fP Index of the \fBpotential\fP for this bond\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_angle_addpot (struct \fBengine\fP *e, struct \fBpotential\fP *p)"
+
+.PP
+Add a angle potential\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&. 
+.br
+\fIp\fP The \fBpotential\fP to add to the \fBengine\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The ID of the added angle potential or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_angle_eval (struct \fBengine\fP *e)"
+
+.PP
+Compute the angled interactions stored in this engine\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_bond_add (struct \fBengine\fP *e, inti, intj)"
+
+.PP
+Add a bonded interaction to the engine\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&. 
+.br
+\fIi\fP The ID of the first \fBpart\fP\&. 
+.br
+\fIj\fP The ID of the second \fBpart\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_bond_addpot (struct \fBengine\fP *e, struct \fBpotential\fP *p, inti, intj)"
+
+.PP
+Add a bond potential\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&. 
+.br
+\fIp\fP The \fBpotential\fP to add to the \fBengine\fP\&. 
+.br
+\fIi\fP ID of particle type for this interaction\&. 
+.br
+\fIj\fP ID of second particle type for this interaction\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&.
+.RE
+.PP
+Adds the given bonded potential for pairs of particles of type \fCi\fP and \fCj\fP, where \fCi\fP and \fCj\fP may be the same type ID\&. 
+.SS "int engine_bond_eval (struct \fBengine\fP *e)"
+
+.PP
+Compute the bonded interactions stored in this engine\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_bonded_eval (struct \fBengine\fP *e)"
+
+.PP
+Compute all bonded interactions stored in this engine\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&.
+.RE
+.PP
+Does the same as \fBengine_bond_eval\fP, \fBengine_angle_eval\fP and #engine_dihedral eval, yet all in one go to avoid excessive updates of the particle forces\&. 
+.SS "int engine_bonded_eval_sets (struct \fBengine\fP *e)"
+
+.PP
+Compute all bonded interactions stored in this engine\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&.
+.RE
+.PP
+Does the same as \fBengine_bond_eval\fP, \fBengine_angle_eval\fP and #engine_dihedral eval, yet all in one go to avoid excessive updates of the particle forces\&. 
+.SS "int engine_bonded_sets (struct \fBengine\fP *e, intmax_sets)"
+
+.PP
+Assemble non-conflicting sets of bonded interactions\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_dihedral_add (struct \fBengine\fP *e, inti, intj, intk, intl, intpid)"
+
+.PP
+Add a dihedral interaction to the engine\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&. 
+.br
+\fIi\fP The ID of the first \fBpart\fP\&. 
+.br
+\fIj\fP The ID of the second \fBpart\fP\&. 
+.br
+\fIk\fP The ID of the third \fBpart\fP\&. 
+.br
+\fIl\fP The ID of the fourth \fBpart\fP\&. 
+.br
+\fIpid\fP Index of the \fBpotential\fP for this bond\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_dihedral_addpot (struct \fBengine\fP *e, struct \fBpotential\fP *p)"
+
+.PP
+Add a dihedral potential\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&. 
+.br
+\fIp\fP The \fBpotential\fP to add to the \fBengine\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The ID of the added dihedral potential or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_dihedral_eval (struct \fBengine\fP *e)"
+
+.PP
+Compute the dihedral interactions stored in this engine\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_exclusion_add (struct \fBengine\fP *e, inti, intj)"
+
+.PP
+Add a exclusioned interaction to the engine\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&. 
+.br
+\fIi\fP The ID of the first \fBpart\fP\&. 
+.br
+\fIj\fP The ID of the second \fBpart\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_exclusion_eval (struct \fBengine\fP *e)"
+
+.PP
+Compute the exclusioned interactions stored in this engine\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBengine_err_ok\fP or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SS "int engine_exclusion_shrink (struct \fBengine\fP *e)"
+
+.PP
+Remove duplicate exclusions\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP The \fBengine\fP\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The number of unique exclusions or < 0 on error (see \fBengine_err\fP)\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

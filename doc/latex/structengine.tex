@@ -1,0 +1,281 @@
+\hypertarget{structengine}{\section{engine Struct Reference}
+\label{structengine}\index{engine@{engine}}
+}
+
+
+{\ttfamily \#include $<$engine.\-h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \hyperlink{structengine_ac92588540e8c1d014a08cd8a45462b19}{flags}
+\item 
+unsigned int \hyperlink{structengine_a4669eb2b5a527db6d15e894f6a37b3d8}{flags\-\_\-cuda}
+\item 
+struct \hyperlink{structspace}{space} \hyperlink{structengine_afbf1b94acbdcbdcd57558b82d9cc649f}{s}
+\item 
+int \hyperlink{structengine_a42715f65f02da52edc5b22021d8ae670}{time}
+\item 
+double \hyperlink{structengine_a03e28be41881b703c836edbfe9b51b17}{dt}
+\item 
+int \hyperlink{structengine_ac30f9e387650c2e0c70944a5d6bd8275}{max\-\_\-type}
+\item 
+int \hyperlink{structengine_a09fc8a1fc18fd82469354adc4e5789f7}{nr\-\_\-types}
+\item 
+struct \hyperlink{structpart__type}{part\-\_\-type} $\ast$ \hyperlink{structengine_a476fc4b80594201e7819214e03a97f11}{types}
+\item 
+struct \hyperlink{structpotential}{potential} $\ast$$\ast$ \hyperlink{structengine_a55e3996f3d2d21de5ba97f68400758e2}{p}
+\item 
+struct \hyperlink{structpotential}{potential} $\ast$$\ast$ \hyperlink{structengine_a15640f6c6966c68953b63d33dea07554}{p\-\_\-bond}
+\item 
+struct \hyperlink{structpotential}{potential} $\ast$$\ast$ \hyperlink{structengine_a9101bf6094ebf4f3d00c7d8299dfbacb}{p\-\_\-angle}
+\item 
+struct \hyperlink{structpotential}{potential} $\ast$$\ast$ \hyperlink{structengine_a517a9f921afc4c34b7466a96ad8dcd08}{p\-\_\-dihedral}
+\item 
+struct \hyperlink{structpotential}{potential} $\ast$ \hyperlink{structengine_a1ca1798430902a62f1f7daf91cc6005e}{ep}
+\item 
+pthread\-\_\-mutex\-\_\-t \hyperlink{structengine_a6d51d6453171f1a276982cb1a221db18}{barrier\-\_\-mutex}
+\item 
+pthread\-\_\-cond\-\_\-t \hyperlink{structengine_a07802036197963e79daf5ec2071c6e20}{barrier\-\_\-cond}
+\item 
+pthread\-\_\-cond\-\_\-t \hyperlink{structengine_a56d090cd02519c3812dd5cfeb9639511}{done\-\_\-cond}
+\item 
+int \hyperlink{structengine_ae42edcb32fe06022c2a46a343055d7e6}{barrier\-\_\-count}
+\item 
+int \hyperlink{structengine_a37e9992e3ad384431b607bcd606b3d9f}{nr\-\_\-runners}
+\item 
+struct \hyperlink{structrunner}{runner} $\ast$ \hyperlink{structengine_a148249829cb5f9708393abbb5a339d78}{runners}
+\item 
+struct \hyperlink{structqueue}{queue} $\ast$ \hyperlink{structengine_a46d7feb8d0f2e0c63a8931e32457d9b9}{queues}
+\item 
+int \hyperlink{structengine_aa2b93d405abc03aec20fd92c64d06786}{nr\-\_\-queues}
+\item 
+int \hyperlink{structengine_a2253df22e702f6bc02a8b7d839aec819}{node\-I\-D}
+\item 
+int \hyperlink{structengine_ac3bda6f3054bb742adafe73b3589501f}{nr\-\_\-nodes}
+\item 
+struct \hyperlink{structengine__comm}{engine\-\_\-comm} $\ast$ \hyperlink{structengine_a96cd0f48e5460fa6a5ee9f646a6cc667}{send}
+\item 
+struct \hyperlink{structengine__comm}{engine\-\_\-comm} $\ast$ \hyperlink{structengine_a2dd27e1a884588070ecd396f05178efc}{recv}
+\item 
+struct \hyperlink{structbond}{bond} $\ast$ \hyperlink{structengine_a8f2e5502792ec60f60f301d61cf8375d}{bonds}
+\item 
+int \hyperlink{structengine_ad29e940869fdac422337511d82a22ae6}{nr\-\_\-bonds}
+\item 
+int \hyperlink{structengine_a0b61fadd3e9b11fa981c051f7c6d9598}{bonds\-\_\-size}
+\item 
+struct \hyperlink{structexclusion}{exclusion} $\ast$ \hyperlink{structengine_a799c04b928898b9f3f1e9e99fefc75c9}{exclusions}
+\item 
+int \hyperlink{structengine_a56befbaa94d303065a80da7bec85acea}{nr\-\_\-exclusions}
+\item 
+int \hyperlink{structengine_abee3aaf9e387b0d762789d63ce370f2e}{exclusions\-\_\-size}
+\item 
+struct \hyperlink{structrigid}{rigid} $\ast$ \hyperlink{structengine_aaaf93c1958292b3b5c88b6ac34495aad}{rigids}
+\item 
+int $\ast$ \hyperlink{structengine_a448d9f7a86161fe9934ccb854577b2ba}{part2rigid}
+\item 
+int \hyperlink{structengine_a9322f4e10554dfb5722aaab9d8b265e9}{nr\-\_\-rigids}
+\item 
+int \hyperlink{structengine_ae5cb986dfb738c34c591a315301fd893}{rigids\-\_\-size}
+\item 
+int \hyperlink{structengine_a3016fd6c2bac51bd377ee1f3c1d1928b}{nr\-\_\-constr}
+\item 
+int \hyperlink{structengine_a7f84bbfd25fea51dd4e013d3a37852bc}{rigids\-\_\-local}
+\item 
+int \hyperlink{structengine_a479a52cfdd56b4ea6b5787215382ba98}{rigids\-\_\-semilocal}
+\item 
+double \hyperlink{structengine_a5d4ff08ea8e350214c1a46663b229500}{tol\-\_\-rigid}
+\item 
+struct \hyperlink{structangle}{angle} $\ast$ \hyperlink{structengine_ab28bf1df3e6849a71e5d02f6ddfab24e}{angles}
+\item 
+int \hyperlink{structengine_a03b0ba344cd1442d3d3975774eeea3e9}{nr\-\_\-angles}
+\item 
+int \hyperlink{structengine_aa888783007ffcf01a85b0e529b081c11}{angles\-\_\-size}
+\item 
+int \hyperlink{structengine_ad4840b796f70975b11dee781cb07da7e}{nr\-\_\-anglepots}
+\item 
+int \hyperlink{structengine_a08e34a86b30f21972c7d2229b38ff042}{anglepots\-\_\-size}
+\item 
+struct \hyperlink{structdihedral}{dihedral} $\ast$ \hyperlink{structengine_a069ad44663915a13f48a413d6edacee9}{dihedrals}
+\item 
+int \hyperlink{structengine_a3ec4bdb694eae0871b24da3bc151294c}{nr\-\_\-dihedrals}
+\item 
+int \hyperlink{structengine_aa672b72c2af111a06d1f0ec88824e4ab}{dihedrals\-\_\-size}
+\item 
+int \hyperlink{structengine_acecc3256a1ab9c788c0d418686ccd14c}{nr\-\_\-dihedralpots}
+\item 
+int \hyperlink{structengine_a452fe646d97bfb1d8faf33c77c8e84a4}{dihedralpots\-\_\-size}
+\item 
+ticks \hyperlink{structengine_ab82bc5d54d6f200a605c3aace671671c}{timers} \mbox{[}\hyperlink{engine_8h_a06fc87d81c62e9abb8790b6e5713c55ba193f5be157573b064ca69240a194d5e1}{engine\-\_\-timer\-\_\-last}\mbox{]}
+\item 
+struct \hyperlink{structengine__set}{engine\-\_\-set} $\ast$ \hyperlink{structengine_a5eab4a887e3d36026b70dd4e4e372630}{sets}
+\item 
+int \hyperlink{structengine_a8c0471ad6cf64a6a06fadd14ed2629e1}{nr\-\_\-sets}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{structengine}{engine} structure. 
+
+\subsection{Field Documentation}
+\hypertarget{structengine_a08e34a86b30f21972c7d2229b38ff042}{\index{engine@{engine}!anglepots\-\_\-size@{anglepots\-\_\-size}}
+\index{anglepots\-\_\-size@{anglepots\-\_\-size}!engine@{engine}}
+\subsubsection[{anglepots\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int anglepots\-\_\-size}}\label{structengine_a08e34a86b30f21972c7d2229b38ff042}
+\hypertarget{structengine_ab28bf1df3e6849a71e5d02f6ddfab24e}{\index{engine@{engine}!angles@{angles}}
+\index{angles@{angles}!engine@{engine}}
+\subsubsection[{angles}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf angle}$\ast$ angles}}\label{structengine_ab28bf1df3e6849a71e5d02f6ddfab24e}
+List of angles. \hypertarget{structengine_aa888783007ffcf01a85b0e529b081c11}{\index{engine@{engine}!angles\-\_\-size@{angles\-\_\-size}}
+\index{angles\-\_\-size@{angles\-\_\-size}!engine@{engine}}
+\subsubsection[{angles\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int angles\-\_\-size}}\label{structengine_aa888783007ffcf01a85b0e529b081c11}
+\hypertarget{structengine_a07802036197963e79daf5ec2071c6e20}{\index{engine@{engine}!barrier\-\_\-cond@{barrier\-\_\-cond}}
+\index{barrier\-\_\-cond@{barrier\-\_\-cond}!engine@{engine}}
+\subsubsection[{barrier\-\_\-cond}]{\setlength{\rightskip}{0pt plus 5cm}pthread\-\_\-cond\-\_\-t barrier\-\_\-cond}}\label{structengine_a07802036197963e79daf5ec2071c6e20}
+\hypertarget{structengine_ae42edcb32fe06022c2a46a343055d7e6}{\index{engine@{engine}!barrier\-\_\-count@{barrier\-\_\-count}}
+\index{barrier\-\_\-count@{barrier\-\_\-count}!engine@{engine}}
+\subsubsection[{barrier\-\_\-count}]{\setlength{\rightskip}{0pt plus 5cm}int barrier\-\_\-count}}\label{structengine_ae42edcb32fe06022c2a46a343055d7e6}
+\hypertarget{structengine_a6d51d6453171f1a276982cb1a221db18}{\index{engine@{engine}!barrier\-\_\-mutex@{barrier\-\_\-mutex}}
+\index{barrier\-\_\-mutex@{barrier\-\_\-mutex}!engine@{engine}}
+\subsubsection[{barrier\-\_\-mutex}]{\setlength{\rightskip}{0pt plus 5cm}pthread\-\_\-mutex\-\_\-t barrier\-\_\-mutex}}\label{structengine_a6d51d6453171f1a276982cb1a221db18}
+Mutexes, conditions and counters for the barrier \hypertarget{structengine_a8f2e5502792ec60f60f301d61cf8375d}{\index{engine@{engine}!bonds@{bonds}}
+\index{bonds@{bonds}!engine@{engine}}
+\subsubsection[{bonds}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf bond}$\ast$ bonds}}\label{structengine_a8f2e5502792ec60f60f301d61cf8375d}
+List of bonds. \hypertarget{structengine_a0b61fadd3e9b11fa981c051f7c6d9598}{\index{engine@{engine}!bonds\-\_\-size@{bonds\-\_\-size}}
+\index{bonds\-\_\-size@{bonds\-\_\-size}!engine@{engine}}
+\subsubsection[{bonds\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int bonds\-\_\-size}}\label{structengine_a0b61fadd3e9b11fa981c051f7c6d9598}
+\hypertarget{structengine_a452fe646d97bfb1d8faf33c77c8e84a4}{\index{engine@{engine}!dihedralpots\-\_\-size@{dihedralpots\-\_\-size}}
+\index{dihedralpots\-\_\-size@{dihedralpots\-\_\-size}!engine@{engine}}
+\subsubsection[{dihedralpots\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int dihedralpots\-\_\-size}}\label{structengine_a452fe646d97bfb1d8faf33c77c8e84a4}
+\hypertarget{structengine_a069ad44663915a13f48a413d6edacee9}{\index{engine@{engine}!dihedrals@{dihedrals}}
+\index{dihedrals@{dihedrals}!engine@{engine}}
+\subsubsection[{dihedrals}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf dihedral}$\ast$ dihedrals}}\label{structengine_a069ad44663915a13f48a413d6edacee9}
+List of dihedrals. \hypertarget{structengine_aa672b72c2af111a06d1f0ec88824e4ab}{\index{engine@{engine}!dihedrals\-\_\-size@{dihedrals\-\_\-size}}
+\index{dihedrals\-\_\-size@{dihedrals\-\_\-size}!engine@{engine}}
+\subsubsection[{dihedrals\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int dihedrals\-\_\-size}}\label{structengine_aa672b72c2af111a06d1f0ec88824e4ab}
+\hypertarget{structengine_a56d090cd02519c3812dd5cfeb9639511}{\index{engine@{engine}!done\-\_\-cond@{done\-\_\-cond}}
+\index{done\-\_\-cond@{done\-\_\-cond}!engine@{engine}}
+\subsubsection[{done\-\_\-cond}]{\setlength{\rightskip}{0pt plus 5cm}pthread\-\_\-cond\-\_\-t done\-\_\-cond}}\label{structengine_a56d090cd02519c3812dd5cfeb9639511}
+\hypertarget{structengine_a03e28be41881b703c836edbfe9b51b17}{\index{engine@{engine}!dt@{dt}}
+\index{dt@{dt}!engine@{engine}}
+\subsubsection[{dt}]{\setlength{\rightskip}{0pt plus 5cm}double dt}}\label{structengine_a03e28be41881b703c836edbfe9b51b17}
+\hypertarget{structengine_a1ca1798430902a62f1f7daf91cc6005e}{\index{engine@{engine}!ep@{ep}}
+\index{ep@{ep}!engine@{engine}}
+\subsubsection[{ep}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf potential}$\ast$ ep}}\label{structengine_a1ca1798430902a62f1f7daf91cc6005e}
+The explicit electrostatic potential. \hypertarget{structengine_a799c04b928898b9f3f1e9e99fefc75c9}{\index{engine@{engine}!exclusions@{exclusions}}
+\index{exclusions@{exclusions}!engine@{engine}}
+\subsubsection[{exclusions}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf exclusion}$\ast$ exclusions}}\label{structengine_a799c04b928898b9f3f1e9e99fefc75c9}
+List of exclusions. \hypertarget{structengine_abee3aaf9e387b0d762789d63ce370f2e}{\index{engine@{engine}!exclusions\-\_\-size@{exclusions\-\_\-size}}
+\index{exclusions\-\_\-size@{exclusions\-\_\-size}!engine@{engine}}
+\subsubsection[{exclusions\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int exclusions\-\_\-size}}\label{structengine_abee3aaf9e387b0d762789d63ce370f2e}
+\hypertarget{structengine_ac92588540e8c1d014a08cd8a45462b19}{\index{engine@{engine}!flags@{flags}}
+\index{flags@{flags}!engine@{engine}}
+\subsubsection[{flags}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int flags}}\label{structengine_ac92588540e8c1d014a08cd8a45462b19}
+Some flags controlling how this engine works. \hypertarget{structengine_a4669eb2b5a527db6d15e894f6a37b3d8}{\index{engine@{engine}!flags\-\_\-cuda@{flags\-\_\-cuda}}
+\index{flags\-\_\-cuda@{flags\-\_\-cuda}!engine@{engine}}
+\subsubsection[{flags\-\_\-cuda}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int flags\-\_\-cuda}}\label{structengine_a4669eb2b5a527db6d15e894f6a37b3d8}
+Some flags controlling which cuda scheduling we use. \hypertarget{structengine_ac30f9e387650c2e0c70944a5d6bd8275}{\index{engine@{engine}!max\-\_\-type@{max\-\_\-type}}
+\index{max\-\_\-type@{max\-\_\-type}!engine@{engine}}
+\subsubsection[{max\-\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}int max\-\_\-type}}\label{structengine_ac30f9e387650c2e0c70944a5d6bd8275}
+What is the maximum nr of types? \hypertarget{structengine_a2253df22e702f6bc02a8b7d839aec819}{\index{engine@{engine}!node\-I\-D@{node\-I\-D}}
+\index{node\-I\-D@{node\-I\-D}!engine@{engine}}
+\subsubsection[{node\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}int node\-I\-D}}\label{structengine_a2253df22e702f6bc02a8b7d839aec819}
+The I\-D of the computational node we are on. \hypertarget{structengine_ad4840b796f70975b11dee781cb07da7e}{\index{engine@{engine}!nr\-\_\-anglepots@{nr\-\_\-anglepots}}
+\index{nr\-\_\-anglepots@{nr\-\_\-anglepots}!engine@{engine}}
+\subsubsection[{nr\-\_\-anglepots}]{\setlength{\rightskip}{0pt plus 5cm}int nr\-\_\-anglepots}}\label{structengine_ad4840b796f70975b11dee781cb07da7e}
+\hypertarget{structengine_a03b0ba344cd1442d3d3975774eeea3e9}{\index{engine@{engine}!nr\-\_\-angles@{nr\-\_\-angles}}
+\index{nr\-\_\-angles@{nr\-\_\-angles}!engine@{engine}}
+\subsubsection[{nr\-\_\-angles}]{\setlength{\rightskip}{0pt plus 5cm}int nr\-\_\-angles}}\label{structengine_a03b0ba344cd1442d3d3975774eeea3e9}
+Nr. of angles. \hypertarget{structengine_ad29e940869fdac422337511d82a22ae6}{\index{engine@{engine}!nr\-\_\-bonds@{nr\-\_\-bonds}}
+\index{nr\-\_\-bonds@{nr\-\_\-bonds}!engine@{engine}}
+\subsubsection[{nr\-\_\-bonds}]{\setlength{\rightskip}{0pt plus 5cm}int nr\-\_\-bonds}}\label{structengine_ad29e940869fdac422337511d82a22ae6}
+Nr. of bonds. \hypertarget{structengine_a3016fd6c2bac51bd377ee1f3c1d1928b}{\index{engine@{engine}!nr\-\_\-constr@{nr\-\_\-constr}}
+\index{nr\-\_\-constr@{nr\-\_\-constr}!engine@{engine}}
+\subsubsection[{nr\-\_\-constr}]{\setlength{\rightskip}{0pt plus 5cm}int nr\-\_\-constr}}\label{structengine_a3016fd6c2bac51bd377ee1f3c1d1928b}
+\hypertarget{structengine_acecc3256a1ab9c788c0d418686ccd14c}{\index{engine@{engine}!nr\-\_\-dihedralpots@{nr\-\_\-dihedralpots}}
+\index{nr\-\_\-dihedralpots@{nr\-\_\-dihedralpots}!engine@{engine}}
+\subsubsection[{nr\-\_\-dihedralpots}]{\setlength{\rightskip}{0pt plus 5cm}int nr\-\_\-dihedralpots}}\label{structengine_acecc3256a1ab9c788c0d418686ccd14c}
+\hypertarget{structengine_a3ec4bdb694eae0871b24da3bc151294c}{\index{engine@{engine}!nr\-\_\-dihedrals@{nr\-\_\-dihedrals}}
+\index{nr\-\_\-dihedrals@{nr\-\_\-dihedrals}!engine@{engine}}
+\subsubsection[{nr\-\_\-dihedrals}]{\setlength{\rightskip}{0pt plus 5cm}int nr\-\_\-dihedrals}}\label{structengine_a3ec4bdb694eae0871b24da3bc151294c}
+Nr. of dihedrals. \hypertarget{structengine_a56befbaa94d303065a80da7bec85acea}{\index{engine@{engine}!nr\-\_\-exclusions@{nr\-\_\-exclusions}}
+\index{nr\-\_\-exclusions@{nr\-\_\-exclusions}!engine@{engine}}
+\subsubsection[{nr\-\_\-exclusions}]{\setlength{\rightskip}{0pt plus 5cm}int nr\-\_\-exclusions}}\label{structengine_a56befbaa94d303065a80da7bec85acea}
+Nr. of exclusions. \hypertarget{structengine_ac3bda6f3054bb742adafe73b3589501f}{\index{engine@{engine}!nr\-\_\-nodes@{nr\-\_\-nodes}}
+\index{nr\-\_\-nodes@{nr\-\_\-nodes}!engine@{engine}}
+\subsubsection[{nr\-\_\-nodes}]{\setlength{\rightskip}{0pt plus 5cm}int nr\-\_\-nodes}}\label{structengine_ac3bda6f3054bb742adafe73b3589501f}
+\hypertarget{structengine_aa2b93d405abc03aec20fd92c64d06786}{\index{engine@{engine}!nr\-\_\-queues@{nr\-\_\-queues}}
+\index{nr\-\_\-queues@{nr\-\_\-queues}!engine@{engine}}
+\subsubsection[{nr\-\_\-queues}]{\setlength{\rightskip}{0pt plus 5cm}int nr\-\_\-queues}}\label{structengine_aa2b93d405abc03aec20fd92c64d06786}
+\hypertarget{structengine_a9322f4e10554dfb5722aaab9d8b265e9}{\index{engine@{engine}!nr\-\_\-rigids@{nr\-\_\-rigids}}
+\index{nr\-\_\-rigids@{nr\-\_\-rigids}!engine@{engine}}
+\subsubsection[{nr\-\_\-rigids}]{\setlength{\rightskip}{0pt plus 5cm}int nr\-\_\-rigids}}\label{structengine_a9322f4e10554dfb5722aaab9d8b265e9}
+Nr. of rigids. \hypertarget{structengine_a37e9992e3ad384431b607bcd606b3d9f}{\index{engine@{engine}!nr\-\_\-runners@{nr\-\_\-runners}}
+\index{nr\-\_\-runners@{nr\-\_\-runners}!engine@{engine}}
+\subsubsection[{nr\-\_\-runners}]{\setlength{\rightskip}{0pt plus 5cm}int nr\-\_\-runners}}\label{structengine_a37e9992e3ad384431b607bcd606b3d9f}
+Nr of runners \hypertarget{structengine_a8c0471ad6cf64a6a06fadd14ed2629e1}{\index{engine@{engine}!nr\-\_\-sets@{nr\-\_\-sets}}
+\index{nr\-\_\-sets@{nr\-\_\-sets}!engine@{engine}}
+\subsubsection[{nr\-\_\-sets}]{\setlength{\rightskip}{0pt plus 5cm}int nr\-\_\-sets}}\label{structengine_a8c0471ad6cf64a6a06fadd14ed2629e1}
+\hypertarget{structengine_a09fc8a1fc18fd82469354adc4e5789f7}{\index{engine@{engine}!nr\-\_\-types@{nr\-\_\-types}}
+\index{nr\-\_\-types@{nr\-\_\-types}!engine@{engine}}
+\subsubsection[{nr\-\_\-types}]{\setlength{\rightskip}{0pt plus 5cm}int nr\-\_\-types}}\label{structengine_a09fc8a1fc18fd82469354adc4e5789f7}
+\hypertarget{structengine_a55e3996f3d2d21de5ba97f68400758e2}{\index{engine@{engine}!p@{p}}
+\index{p@{p}!engine@{engine}}
+\subsubsection[{p}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf potential}$\ast$$\ast$ p}}\label{structengine_a55e3996f3d2d21de5ba97f68400758e2}
+The interaction matrix \hypertarget{structengine_a9101bf6094ebf4f3d00c7d8299dfbacb}{\index{engine@{engine}!p\-\_\-angle@{p\-\_\-angle}}
+\index{p\-\_\-angle@{p\-\_\-angle}!engine@{engine}}
+\subsubsection[{p\-\_\-angle}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf potential} $\ast$$\ast$ p\-\_\-angle}}\label{structengine_a9101bf6094ebf4f3d00c7d8299dfbacb}
+\hypertarget{structengine_a15640f6c6966c68953b63d33dea07554}{\index{engine@{engine}!p\-\_\-bond@{p\-\_\-bond}}
+\index{p\-\_\-bond@{p\-\_\-bond}!engine@{engine}}
+\subsubsection[{p\-\_\-bond}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf potential} $\ast$$\ast$ p\-\_\-bond}}\label{structengine_a15640f6c6966c68953b63d33dea07554}
+\hypertarget{structengine_a517a9f921afc4c34b7466a96ad8dcd08}{\index{engine@{engine}!p\-\_\-dihedral@{p\-\_\-dihedral}}
+\index{p\-\_\-dihedral@{p\-\_\-dihedral}!engine@{engine}}
+\subsubsection[{p\-\_\-dihedral}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf potential} $\ast$$\ast$ p\-\_\-dihedral}}\label{structengine_a517a9f921afc4c34b7466a96ad8dcd08}
+\hypertarget{structengine_a448d9f7a86161fe9934ccb854577b2ba}{\index{engine@{engine}!part2rigid@{part2rigid}}
+\index{part2rigid@{part2rigid}!engine@{engine}}
+\subsubsection[{part2rigid}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ part2rigid}}\label{structengine_a448d9f7a86161fe9934ccb854577b2ba}
+List linking parts to rigids. \hypertarget{structengine_a46d7feb8d0f2e0c63a8931e32457d9b9}{\index{engine@{engine}!queues@{queues}}
+\index{queues@{queues}!engine@{engine}}
+\subsubsection[{queues}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf queue}$\ast$ queues}}\label{structengine_a46d7feb8d0f2e0c63a8931e32457d9b9}
+The queues for the runners. \hypertarget{structengine_a2dd27e1a884588070ecd396f05178efc}{\index{engine@{engine}!recv@{recv}}
+\index{recv@{recv}!engine@{engine}}
+\subsubsection[{recv}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf engine\-\_\-comm} $\ast$ recv}}\label{structengine_a2dd27e1a884588070ecd396f05178efc}
+\hypertarget{structengine_aaaf93c1958292b3b5c88b6ac34495aad}{\index{engine@{engine}!rigids@{rigids}}
+\index{rigids@{rigids}!engine@{engine}}
+\subsubsection[{rigids}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf rigid}$\ast$ rigids}}\label{structengine_aaaf93c1958292b3b5c88b6ac34495aad}
+List of rigid bodies. \hypertarget{structengine_a7f84bbfd25fea51dd4e013d3a37852bc}{\index{engine@{engine}!rigids\-\_\-local@{rigids\-\_\-local}}
+\index{rigids\-\_\-local@{rigids\-\_\-local}!engine@{engine}}
+\subsubsection[{rigids\-\_\-local}]{\setlength{\rightskip}{0pt plus 5cm}int rigids\-\_\-local}}\label{structengine_a7f84bbfd25fea51dd4e013d3a37852bc}
+\hypertarget{structengine_a479a52cfdd56b4ea6b5787215382ba98}{\index{engine@{engine}!rigids\-\_\-semilocal@{rigids\-\_\-semilocal}}
+\index{rigids\-\_\-semilocal@{rigids\-\_\-semilocal}!engine@{engine}}
+\subsubsection[{rigids\-\_\-semilocal}]{\setlength{\rightskip}{0pt plus 5cm}int rigids\-\_\-semilocal}}\label{structengine_a479a52cfdd56b4ea6b5787215382ba98}
+\hypertarget{structengine_ae5cb986dfb738c34c591a315301fd893}{\index{engine@{engine}!rigids\-\_\-size@{rigids\-\_\-size}}
+\index{rigids\-\_\-size@{rigids\-\_\-size}!engine@{engine}}
+\subsubsection[{rigids\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int rigids\-\_\-size}}\label{structengine_ae5cb986dfb738c34c591a315301fd893}
+\hypertarget{structengine_a148249829cb5f9708393abbb5a339d78}{\index{engine@{engine}!runners@{runners}}
+\index{runners@{runners}!engine@{engine}}
+\subsubsection[{runners}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf runner}$\ast$ runners}}\label{structengine_a148249829cb5f9708393abbb5a339d78}
+The runners \hypertarget{structengine_afbf1b94acbdcbdcd57558b82d9cc649f}{\index{engine@{engine}!s@{s}}
+\index{s@{s}!engine@{engine}}
+\subsubsection[{s}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf space} s}}\label{structengine_afbf1b94acbdcbdcd57558b82d9cc649f}
+The space on which to work \hypertarget{structengine_a96cd0f48e5460fa6a5ee9f646a6cc667}{\index{engine@{engine}!send@{send}}
+\index{send@{send}!engine@{engine}}
+\subsubsection[{send}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf engine\-\_\-comm}$\ast$ send}}\label{structengine_a96cd0f48e5460fa6a5ee9f646a6cc667}
+Lists of cells to exchange with other nodes. \hypertarget{structengine_a5eab4a887e3d36026b70dd4e4e372630}{\index{engine@{engine}!sets@{sets}}
+\index{sets@{sets}!engine@{engine}}
+\subsubsection[{sets}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf engine\-\_\-set}$\ast$ sets}}\label{structengine_a5eab4a887e3d36026b70dd4e4e372630}
+Bonded sets. \hypertarget{structengine_a42715f65f02da52edc5b22021d8ae670}{\index{engine@{engine}!time@{time}}
+\index{time@{time}!engine@{engine}}
+\subsubsection[{time}]{\setlength{\rightskip}{0pt plus 5cm}int time}}\label{structengine_a42715f65f02da52edc5b22021d8ae670}
+Time variables \hypertarget{structengine_ab82bc5d54d6f200a605c3aace671671c}{\index{engine@{engine}!timers@{timers}}
+\index{timers@{timers}!engine@{engine}}
+\subsubsection[{timers}]{\setlength{\rightskip}{0pt plus 5cm}ticks timers\mbox{[}{\bf engine\-\_\-timer\-\_\-last}\mbox{]}}}\label{structengine_ab82bc5d54d6f200a605c3aace671671c}
+The Comm object for mpi. Pointers to device data for C\-U\-D\-A. Timers. \hypertarget{structengine_a5d4ff08ea8e350214c1a46663b229500}{\index{engine@{engine}!tol\-\_\-rigid@{tol\-\_\-rigid}}
+\index{tol\-\_\-rigid@{tol\-\_\-rigid}!engine@{engine}}
+\subsubsection[{tol\-\_\-rigid}]{\setlength{\rightskip}{0pt plus 5cm}double tol\-\_\-rigid}}\label{structengine_a5d4ff08ea8e350214c1a46663b229500}
+Rigid solver tolerance. \hypertarget{structengine_a476fc4b80594201e7819214e03a97f11}{\index{engine@{engine}!types@{types}}
+\index{types@{types}!engine@{engine}}
+\subsubsection[{types}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf part\-\_\-type}$\ast$ types}}\label{structengine_a476fc4b80594201e7819214e03a97f11}
+The particle types. 
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/\hyperlink{engine_8h}{engine.\-h}\end{DoxyCompactItemize}

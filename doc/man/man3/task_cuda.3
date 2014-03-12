@@ -1,0 +1,63 @@
+.TH "task_cuda" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+task_cuda \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <runner_cuda\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "short int \fBtype\fP"
+.br
+.ti -1c
+.RI "short int \fBsubtype\fP"
+.br
+.ti -1c
+.RI "volatile int \fBwait\fP"
+.br
+.ti -1c
+.RI "int \fBflags\fP"
+.br
+.ti -1c
+.RI "int \fBi\fP"
+.br
+.ti -1c
+.RI "int \fBj\fP"
+.br
+.ti -1c
+.RI "int \fBnr_unlock\fP"
+.br
+.ti -1c
+.RI "int \fBunlock\fP [\fBtask_max_unlock\fP]"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Struct for each task\&. 
+.SH "Field Documentation"
+.PP 
+.SS "int flags"
+Task flags\&. 
+.SS "int i"
+Indices of the cells involved\&. 
+.SS "int j"
+
+.SS "int nr_unlock"
+Nr of task that this task unlocks\&. 
+.SS "short int subtype"
+
+.SS "short int type"
+Task type and subtype\&. 
+.SS "int unlock[\fBtask_max_unlock\fP]"
+List of task that this task unlocks (dependencies)\&. 
+.SS "volatile int wait"
+Wait counters\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

@@ -1,0 +1,88 @@
+\hypertarget{task_8c}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/task.c File Reference}
+\label{task_8c}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/task.\-c@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/task.\-c}}
+}
+{\ttfamily \#include \char`\"{}../config.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$pthread.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include $<$float.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$limits.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}cycle.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}errs.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fptype.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lock.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}task.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{task_8c_a7673862d447029edaf3172ebd94aa28e}{error}(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})~( \hyperlink{task_8h_ada7601a7287e9243bcaf518060e1af74}{task\-\_\-err} = \hyperlink{errs_8h_ae37a9c0e0a0aa4a92dbe64c0f38ed95c}{errs\-\_\-register}( \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id} , \hyperlink{task_8c_a4bde0dc3da94354f103b6df23b641e0c}{task\-\_\-err\-\_\-msg}\mbox{[}-\/(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{task_8c_aae22853d268aaf7cd099910c4736762e}{task\-\_\-addunlock} (struct \hyperlink{structtask}{task} $\ast$ta, struct \hyperlink{structtask}{task} $\ast$tb)
+\begin{DoxyCompactList}\small\item\em Add a task dependency. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{task_8c_ada7601a7287e9243bcaf518060e1af74}{task\-\_\-err} = \hyperlink{task_8h_adecc766df11805aa5312456c8ef0e09b}{task\-\_\-err\-\_\-ok}
+\item 
+unsigned int \hyperlink{task_8c_acea71380f3754b7016eff2e4253bec87}{task\-\_\-rcount} = 0
+\item 
+char $\ast$ \hyperlink{task_8c_a4bde0dc3da94354f103b6df23b641e0c}{task\-\_\-err\-\_\-msg} \mbox{[}4\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{task_8c_a7673862d447029edaf3172ebd94aa28e}{\index{task.\-c@{task.\-c}!error@{error}}
+\index{error@{error}!task.c@{task.\-c}}
+\subsubsection[{error}]{\setlength{\rightskip}{0pt plus 5cm}\#define error(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf id}}
+\end{DoxyParamCaption}
+)~( {\bf task\-\_\-err} = {\bf errs\-\_\-register}( {\bf id} , {\bf task\-\_\-err\-\_\-msg}\mbox{[}-\/({\bf id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )}}\label{task_8c_a7673862d447029edaf3172ebd94aa28e}
+
+
+\subsection{Function Documentation}
+\hypertarget{task_8c_aae22853d268aaf7cd099910c4736762e}{\index{task.\-c@{task.\-c}!task\-\_\-addunlock@{task\-\_\-addunlock}}
+\index{task\-\_\-addunlock@{task\-\_\-addunlock}!task.c@{task.\-c}}
+\subsubsection[{task\-\_\-addunlock}]{\setlength{\rightskip}{0pt plus 5cm}int task\-\_\-addunlock (
+\begin{DoxyParamCaption}
+\item[{struct {\bf task} $\ast$}]{ta, }
+\item[{struct {\bf task} $\ast$}]{tb}
+\end{DoxyParamCaption}
+)}}\label{task_8c_aae22853d268aaf7cd099910c4736762e}
+
+
+Add a task dependency. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ta} & The unlocking \hyperlink{structtask}{task}. \\
+\hline
+{\em tb} & The unlocked \hyperlink{structtask}{task}. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Variable Documentation}
+\hypertarget{task_8c_ada7601a7287e9243bcaf518060e1af74}{\index{task.\-c@{task.\-c}!task\-\_\-err@{task\-\_\-err}}
+\index{task\-\_\-err@{task\-\_\-err}!task.c@{task.\-c}}
+\subsubsection[{task\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}int task\-\_\-err = {\bf task\-\_\-err\-\_\-ok}}}\label{task_8c_ada7601a7287e9243bcaf518060e1af74}
+The I\-D of the last error. \hypertarget{task_8c_a4bde0dc3da94354f103b6df23b641e0c}{\index{task.\-c@{task.\-c}!task\-\_\-err\-\_\-msg@{task\-\_\-err\-\_\-msg}}
+\index{task\-\_\-err\-\_\-msg@{task\-\_\-err\-\_\-msg}!task.c@{task.\-c}}
+\subsubsection[{task\-\_\-err\-\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ task\-\_\-err\-\_\-msg\mbox{[}4\mbox{]}}}\label{task_8c_a4bde0dc3da94354f103b6df23b641e0c}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= \{
+        \textcolor{stringliteral}{"Nothing bad happened."},
+    \textcolor{stringliteral}{"An unexpected NULL pointer was encountered."},
+    \textcolor{stringliteral}{"A call to malloc failed, probably due to insufficient memory."},
+    \textcolor{stringliteral}{"Attempted to add an unlock to a full task."},
+        \}
+\end{DoxyCode}
+\hypertarget{task_8c_acea71380f3754b7016eff2e4253bec87}{\index{task.\-c@{task.\-c}!task\-\_\-rcount@{task\-\_\-rcount}}
+\index{task\-\_\-rcount@{task\-\_\-rcount}!task.c@{task.\-c}}
+\subsubsection[{task\-\_\-rcount}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int task\-\_\-rcount = 0}}\label{task_8c_acea71380f3754b7016eff2e4253bec87}

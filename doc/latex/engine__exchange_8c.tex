@@ -1,0 +1,42 @@
+\hypertarget{engine__exchange_8c}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/engine\-\_\-exchange.c File Reference}
+\label{engine__exchange_8c}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/engine\-\_\-exchange.\-c@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/engine\-\_\-exchange.\-c}}
+}
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$pthread.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include $<$float.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}../config.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$omp.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}cycle.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}errs.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fptype.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lock.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}part.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}cell.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}space.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}potential.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}runner.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}bond.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}rigid.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}angle.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}dihedral.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}exclusion.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}reader.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}engine.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{engine__exchange_8c_a7673862d447029edaf3172ebd94aa28e}{error}(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})~( \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err} = \hyperlink{errs_8h_ae37a9c0e0a0aa4a92dbe64c0f38ed95c}{errs\-\_\-register}( \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id} , \hyperlink{engine_8h_aa489083c5e5d436bafd05a7860b21804}{engine\-\_\-err\-\_\-msg}\mbox{[}-\/(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{engine__exchange_8c_a7673862d447029edaf3172ebd94aa28e}{\index{engine\-\_\-exchange.\-c@{engine\-\_\-exchange.\-c}!error@{error}}
+\index{error@{error}!engine_exchange.c@{engine\-\_\-exchange.\-c}}
+\subsubsection[{error}]{\setlength{\rightskip}{0pt plus 5cm}\#define error(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf id}}
+\end{DoxyParamCaption}
+)~( {\bf engine\-\_\-err} = {\bf errs\-\_\-register}( {\bf id} , {\bf engine\-\_\-err\-\_\-msg}\mbox{[}-\/({\bf id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )}}\label{engine__exchange_8c_a7673862d447029edaf3172ebd94aa28e}

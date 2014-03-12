@@ -1,0 +1,273 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/fptype.h" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/fptype.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <immintrin\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBFPTYPE_EPSILON\fP   FLT_EPSILON"
+.br
+.ti -1c
+.RI "#define \fBFPTYPE_ONE\fP   1\&.0f"
+.br
+.ti -1c
+.RI "#define \fBFPTYPE_ZERO\fP   0\&.0f"
+.br
+.ti -1c
+.RI "#define \fBFPTYPE_TWO\fP   2\&.0f"
+.br
+.ti -1c
+.RI "#define \fBFPTYPE_SQRT\fP   sqrtf"
+.br
+.ti -1c
+.RI "#define \fBFPTYPE_FMAX\fP   \fBfmaxf\fP"
+.br
+.ti -1c
+.RI "#define \fBFPTYPE_FMIN\fP   \fBfminf\fP"
+.br
+.ti -1c
+.RI "#define \fBFPTYPE_FABS\fP   fabsf"
+.br
+.ti -1c
+.RI "#define \fBFPTYPE_SINGLE\fP"
+.br
+.ti -1c
+.RI "#define \fBFPTYPE_DEFINED\fP"
+.br
+.ti -1c
+.RI "#define \fBINLINE\fP   inline"
+.br
+.ti -1c
+.RI "#define \fBvector\fP(elcount, type)   \fB__attribute__\fP((vector_size((elcount)*sizeof(type)))) type"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef float \fBFPTYPE\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__attribute__\fP ((always_inline)) \fBINLINE\fP \fBFPTYPE\fP fptype_r2(\fBFPTYPE\fP *x1"
+.br
+.RI "\fIInlined function to compute the distance^2 between two vectors\&. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBFPTYPE\fP * \fBx2\fP"
+.br
+.ti -1c
+.RI "\fBFPTYPE\fP \fBFPTYPE\fP * \fBdx\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define FPTYPE_DEFINED"
+
+.SS "#define FPTYPE_EPSILON   FLT_EPSILON"
+
+.SS "#define FPTYPE_FABS   fabsf"
+
+.SS "#define FPTYPE_FMAX   \fBfmaxf\fP"
+
+.SS "#define FPTYPE_FMIN   \fBfminf\fP"
+
+.SS "#define FPTYPE_ONE   1\&.0f"
+
+.SS "#define FPTYPE_SINGLE"
+
+.SS "#define FPTYPE_SQRT   sqrtf"
+
+.SS "#define FPTYPE_TWO   2\&.0f"
+
+.SS "#define FPTYPE_ZERO   0\&.0f"
+
+.SS "#define INLINE   inline"
+
+.SS "#define vector(elcount, type)   \fB__attribute__\fP((vector_size((elcount)*sizeof(type)))) type"
+Macro to easily define vector types\&. 
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef float \fBFPTYPE\fP"
+The basic type is set to float\&. 
+.SH "Function Documentation"
+.PP 
+.SS "__attribute__ ((always_inline))"
+
+.PP
+Inlined function to compute the distance^2 between two vectors\&. Evaluates the given potential at a set of points (interpolated)\&.
+.PP
+Evaluates the given potential at the given radius explicitly\&.
+.PP
+Evaluates the given potential at the given point (interpolated)\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx1\fP The first vector\&. 
+.br
+\fIx2\fP The second vector\&. 
+.br
+\fIdx\fP An array in which \fCx1\fP - \fCx2\fP will be stored\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The Euclidian distance squared between \fCx1\fP and \fCx2\fP\&.
+.RE
+.PP
+Depending on the processor features, this function will use SSE registers and horizontal adds\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP The \fBpotential\fP to be evaluated\&. 
+.br
+\fIr\fP The radius at which it is to be evaluated\&. 
+.br
+\fIe\fP Pointer to a floating-point value in which to store the interaction energy\&. 
+.br
+\fIf\fP Pointer to a floating-point value in which to store the magnitude of the interaction force\&.
+.RE
+.PP
+Note that for efficiency reasons, this function does not check if any of the parameters are \fCNULL\fP or if \fCsqrt(r2)\fP is within the interval of the \fBpotential\fP \fCp\fP\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP The \fBpotential\fP to be evaluated\&. 
+.br
+\fIr2\fP The radius squared\&. 
+.br
+\fIe\fP A pointer to a floating point value in which to store the interaction energy\&. 
+.br
+\fIf\fP A pointer to a floating point value in which to store the magnitude of the interaction force
+.RE
+.PP
+Assumes that the parameters for the potential forms given in the value \fCflags\fP of the \fBpotential\fP \fCp\fP are stored in the array \fCalpha\fP of \fCp\fP\&.
+.PP
+This way of evaluating a potential is not extremely efficient and is intended for comparison and debugging purposes\&.
+.PP
+Note that for performance reasons, this function does not check its input arguments for \fCNULL\fP\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP Pointer to an array of pointers to the #potentials to be evaluated\&. 
+.br
+\fIr2\fP Pointer to an array of the radii at which the potentials are to be evaluated, squared\&. 
+.br
+\fIe\fP Pointer to an array of floating-point values in which to store the interaction energies\&. 
+.br
+\fIf\fP Pointer to an array of floating-point values in which to store the magnitude of the interaction forces\&.
+.RE
+.PP
+Note that for efficiency reasons, this function does not check if any of the parameters are \fCNULL\fP or if \fCsqrt(r2)\fP is within the interval of the \fBpotential\fP \fCp\fP\&.
+.PP
+Computes four single-precision interactions simultaneously using vectorized instructions\&.
+.PP
+This function is only available if mdcore was compiled with SSE or AltiVec and single precision! If \fCmdcore\fP was not compiled with SSE or AltiVec, this function simply calls #potential_eval on each entry\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP Pointer to an array of pointers to the #potentials to be evaluated\&. 
+.br
+\fIr_in\fP Pointer to an array of the radii at which the potentials are to be evaluated\&. 
+.br
+\fIe\fP Pointer to an array of floating-point values in which to store the interaction energies\&. 
+.br
+\fIf\fP Pointer to an array of floating-point values in which to store the magnitude of the interaction forces\&.
+.RE
+.PP
+Note that for efficiency reasons, this function does not check if any of the parameters are \fCNULL\fP or if \fCsqrt(r2)\fP is within the interval of the \fBpotential\fP \fCp\fP\&.
+.PP
+Computes four single-precision interactions simultaneously using vectorized instructions\&.
+.PP
+This function is only available if mdcore was compiled with SSE or AltiVec and single precision! If \fCmdcore\fP was not compiled with SSE or AltiVec, this function simply calls #potential_eval on each entry\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP Pointer to an array of pointers to the #potentials to be evaluated\&. 
+.br
+\fIr2\fP Pointer to an array of the radii at which the potentials are to be evaluated, squared\&. 
+.br
+\fIe\fP Pointer to an array of floating-point values in which to store the interaction energies\&. 
+.br
+\fIf\fP Pointer to an array of floating-point values in which to store the magnitude of the interaction forces\&.
+.RE
+.PP
+Note that for efficiency reasons, this function does not check if any of the parameters are \fCNULL\fP or if \fCsqrt(r2)\fP is within the interval of the \fBpotential\fP \fCp\fP\&.
+.PP
+Computes eight single-precision interactions simultaneously using vectorized instructions\&.
+.PP
+This function is only available if mdcore was compiled with SSE or AltiVec and single precision! If \fCmdcore\fP was not compiled with SSE or AltiVec, this function simply calls #potential_eval on each entry\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP Pointer to an array of pointers to the #potentials to be evaluated\&. 
+.br
+\fIr2\fP Pointer to an array of the radii at which the potentials are to be evaluated, squared\&. 
+.br
+\fIe\fP Pointer to an array of floating-point values in which to store the interaction energies\&. 
+.br
+\fIf\fP Pointer to an array of floating-point values in which to store the magnitude of the interaction forces\&.
+.RE
+.PP
+Note that for efficiency reasons, this function does not check if any of the parameters are \fCNULL\fP or if \fCsqrt(r2)\fP is within the interval of the \fBpotential\fP \fCp\fP\&.
+.PP
+Computes two double-precision interactions simultaneously using vectorized instructions\&.
+.PP
+This function is only available if mdcore was compiled with SSE2 and double precision! If \fCmdcore\fP was not compiled with SSE2 enabled, this function simply calls #potential_eval on each entry\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP Pointer to an array of pointers to the #potentials to be evaluated\&. 
+.br
+\fIr2\fP Pointer to an array of the radii at which the potentials are to be evaluated, squared\&. 
+.br
+\fIe\fP Pointer to an array of floating-point values in which to store the interaction energies\&. 
+.br
+\fIf\fP Pointer to an array of floating-point values in which to store the magnitude of the interaction forces\&.
+.RE
+.PP
+Note that for efficiency reasons, this function does not check if any of the parameters are \fCNULL\fP or if \fCsqrt(r2)\fP is within the interval of the \fBpotential\fP \fCp\fP\&.
+.PP
+Computes four double-precision interactions simultaneously using vectorized instructions\&.
+.PP
+This function is only available if mdcore was compiled with SSE2 and double precision! If \fCmdcore\fP was not compiled with SSE2 enabled, this function simply calls #potential_eval on each entry\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP Pointer to an array of pointers to the #potentials to be evaluated\&. 
+.br
+\fIr\fP Pointer to an array of the radii at which the potentials are to be evaluated\&. 
+.br
+\fIe\fP Pointer to an array of floating-point values in which to store the interaction energies\&. 
+.br
+\fIf\fP Pointer to an array of floating-point values in which to store the magnitude of the interaction forces\&.
+.RE
+.PP
+Note that for efficiency reasons, this function does not check if any of the parameters are \fCNULL\fP or if \fCsqrt(r2)\fP is within the interval of the \fBpotential\fP \fCp\fP\&.
+.PP
+Computes four double-precision interactions simultaneously using vectorized instructions\&.
+.PP
+This function is only available if mdcore was compiled with SSE2 and double precision! If \fCmdcore\fP was not compiled with SSE2 enabled, this function simply calls #potential_eval on each entry\&. 
+.SH "Variable Documentation"
+.PP 
+.SS "return dx* [0] dx [0] dx* [1] dx [1] dx* [2] dx[2]"
+
+.SS "\fBFPTYPE\fP* x2"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

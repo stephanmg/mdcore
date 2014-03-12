@@ -1,0 +1,133 @@
+\hypertarget{rigid_8h}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/rigid.h File Reference}
+\label{rigid_8h}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/rigid.\-h@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/rigid.\-h}}
+}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structrigid}{rigid}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{rigid_8h_a163dda7686b92ad456ed6c50348c4492}{rigid\-\_\-err\-\_\-ok}~0
+\item 
+\#define \hyperlink{rigid_8h_a2a4b520a79b129a602debe10e0bdc266}{rigid\-\_\-err\-\_\-null}~-\/1
+\item 
+\#define \hyperlink{rigid_8h_ad5b1a101154bb0b8e89cdff0572d67ca}{rigid\-\_\-err\-\_\-malloc}~-\/2
+\item 
+\#define \hyperlink{rigid_8h_ad0716c0e4d8dcbe289bbf7deac27da67}{rigid\-\_\-maxparts}~10
+\item 
+\#define \hyperlink{rigid_8h_a81f3d75b801a59389fda651d276b2f71}{rigid\-\_\-maxconstr}~(3$\ast$\hyperlink{rigid_8h_ad0716c0e4d8dcbe289bbf7deac27da67}{rigid\-\_\-maxparts})
+\item 
+\#define \hyperlink{rigid_8h_a55bd5f49e19a452820d06505321399f2}{rigid\-\_\-maxiter}~100
+\item 
+\#define \hyperlink{rigid_8h_ae8b67eefaeb945be673f145c58773c1c}{rigid\-\_\-pshake\-\_\-refine}~4
+\item 
+\#define \hyperlink{rigid_8h_a40fb0bd3c0bf04b0805b95d54d4ee7c5}{rigid\-\_\-pshake\-\_\-maxalpha}~0.\-1f
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{rigid_8h_a814824a3f897b02fb6f2c604a7ef2e81}{rigid\-\_\-eval\-\_\-shake} (struct \hyperlink{structrigid}{rigid} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, int N, struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Evaluate (S\-H\-A\-K\-E) a list of rigid constraints. \end{DoxyCompactList}\item 
+int \hyperlink{rigid_8h_aafb6192c2ffd0628ed83907ae0da8d34}{rigid\-\_\-eval\-\_\-pshake} (struct \hyperlink{structrigid}{rigid} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, int N, struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int a\-\_\-update)
+\begin{DoxyCompactList}\small\item\em Evaluate (P-\/\-S\-H\-A\-K\-E) a list of rigid constraints. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{rigid_8h_a608d035caf1cc207cc6e42f92809b3f6}{rigid\-\_\-err}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{rigid_8h_ad5b1a101154bb0b8e89cdff0572d67ca}{\index{rigid.\-h@{rigid.\-h}!rigid\-\_\-err\-\_\-malloc@{rigid\-\_\-err\-\_\-malloc}}
+\index{rigid\-\_\-err\-\_\-malloc@{rigid\-\_\-err\-\_\-malloc}!rigid.h@{rigid.\-h}}
+\subsubsection[{rigid\-\_\-err\-\_\-malloc}]{\setlength{\rightskip}{0pt plus 5cm}\#define rigid\-\_\-err\-\_\-malloc~-\/2}}\label{rigid_8h_ad5b1a101154bb0b8e89cdff0572d67ca}
+\hypertarget{rigid_8h_a2a4b520a79b129a602debe10e0bdc266}{\index{rigid.\-h@{rigid.\-h}!rigid\-\_\-err\-\_\-null@{rigid\-\_\-err\-\_\-null}}
+\index{rigid\-\_\-err\-\_\-null@{rigid\-\_\-err\-\_\-null}!rigid.h@{rigid.\-h}}
+\subsubsection[{rigid\-\_\-err\-\_\-null}]{\setlength{\rightskip}{0pt plus 5cm}\#define rigid\-\_\-err\-\_\-null~-\/1}}\label{rigid_8h_a2a4b520a79b129a602debe10e0bdc266}
+\hypertarget{rigid_8h_a163dda7686b92ad456ed6c50348c4492}{\index{rigid.\-h@{rigid.\-h}!rigid\-\_\-err\-\_\-ok@{rigid\-\_\-err\-\_\-ok}}
+\index{rigid\-\_\-err\-\_\-ok@{rigid\-\_\-err\-\_\-ok}!rigid.h@{rigid.\-h}}
+\subsubsection[{rigid\-\_\-err\-\_\-ok}]{\setlength{\rightskip}{0pt plus 5cm}\#define rigid\-\_\-err\-\_\-ok~0}}\label{rigid_8h_a163dda7686b92ad456ed6c50348c4492}
+\hypertarget{rigid_8h_a81f3d75b801a59389fda651d276b2f71}{\index{rigid.\-h@{rigid.\-h}!rigid\-\_\-maxconstr@{rigid\-\_\-maxconstr}}
+\index{rigid\-\_\-maxconstr@{rigid\-\_\-maxconstr}!rigid.h@{rigid.\-h}}
+\subsubsection[{rigid\-\_\-maxconstr}]{\setlength{\rightskip}{0pt plus 5cm}\#define rigid\-\_\-maxconstr~(3$\ast${\bf rigid\-\_\-maxparts})}}\label{rigid_8h_a81f3d75b801a59389fda651d276b2f71}
+\hypertarget{rigid_8h_a55bd5f49e19a452820d06505321399f2}{\index{rigid.\-h@{rigid.\-h}!rigid\-\_\-maxiter@{rigid\-\_\-maxiter}}
+\index{rigid\-\_\-maxiter@{rigid\-\_\-maxiter}!rigid.h@{rigid.\-h}}
+\subsubsection[{rigid\-\_\-maxiter}]{\setlength{\rightskip}{0pt plus 5cm}\#define rigid\-\_\-maxiter~100}}\label{rigid_8h_a55bd5f49e19a452820d06505321399f2}
+\hypertarget{rigid_8h_ad0716c0e4d8dcbe289bbf7deac27da67}{\index{rigid.\-h@{rigid.\-h}!rigid\-\_\-maxparts@{rigid\-\_\-maxparts}}
+\index{rigid\-\_\-maxparts@{rigid\-\_\-maxparts}!rigid.h@{rigid.\-h}}
+\subsubsection[{rigid\-\_\-maxparts}]{\setlength{\rightskip}{0pt plus 5cm}\#define rigid\-\_\-maxparts~10}}\label{rigid_8h_ad0716c0e4d8dcbe289bbf7deac27da67}
+\hypertarget{rigid_8h_a40fb0bd3c0bf04b0805b95d54d4ee7c5}{\index{rigid.\-h@{rigid.\-h}!rigid\-\_\-pshake\-\_\-maxalpha@{rigid\-\_\-pshake\-\_\-maxalpha}}
+\index{rigid\-\_\-pshake\-\_\-maxalpha@{rigid\-\_\-pshake\-\_\-maxalpha}!rigid.h@{rigid.\-h}}
+\subsubsection[{rigid\-\_\-pshake\-\_\-maxalpha}]{\setlength{\rightskip}{0pt plus 5cm}\#define rigid\-\_\-pshake\-\_\-maxalpha~0.\-1f}}\label{rigid_8h_a40fb0bd3c0bf04b0805b95d54d4ee7c5}
+\hypertarget{rigid_8h_ae8b67eefaeb945be673f145c58773c1c}{\index{rigid.\-h@{rigid.\-h}!rigid\-\_\-pshake\-\_\-refine@{rigid\-\_\-pshake\-\_\-refine}}
+\index{rigid\-\_\-pshake\-\_\-refine@{rigid\-\_\-pshake\-\_\-refine}!rigid.h@{rigid.\-h}}
+\subsubsection[{rigid\-\_\-pshake\-\_\-refine}]{\setlength{\rightskip}{0pt plus 5cm}\#define rigid\-\_\-pshake\-\_\-refine~4}}\label{rigid_8h_ae8b67eefaeb945be673f145c58773c1c}
+
+
+\subsection{Function Documentation}
+\hypertarget{rigid_8h_aafb6192c2ffd0628ed83907ae0da8d34}{\index{rigid.\-h@{rigid.\-h}!rigid\-\_\-eval\-\_\-pshake@{rigid\-\_\-eval\-\_\-pshake}}
+\index{rigid\-\_\-eval\-\_\-pshake@{rigid\-\_\-eval\-\_\-pshake}!rigid.h@{rigid.\-h}}
+\subsubsection[{rigid\-\_\-eval\-\_\-pshake}]{\setlength{\rightskip}{0pt plus 5cm}int rigid\-\_\-eval\-\_\-pshake (
+\begin{DoxyParamCaption}
+\item[{struct {\bf rigid} $\ast$}]{rs, }
+\item[{int}]{N, }
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{int}]{a\-\_\-update}
+\end{DoxyParamCaption}
+)}}\label{rigid_8h_aafb6192c2ffd0628ed83907ae0da8d34}
+
+
+Evaluate (P-\/\-S\-H\-A\-K\-E) a list of rigid constraints. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rs} & Pointer to an array of \hyperlink{structrigid}{rigid}. \\
+\hline
+{\em N} & Nr of rigids in {\ttfamily r}. \\
+\hline
+{\em e} & Pointer to the \hyperlink{structengine}{engine} in which these rigids are evaluated. \\
+\hline
+{\em a\-\_\-update} & flag whether to force updates of the constraint coeffs.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{rigid_8h_a163dda7686b92ad456ed6c50348c4492}{rigid\-\_\-err\-\_\-ok} or $<$0 on error (see \hyperlink{rigid_8h_a608d035caf1cc207cc6e42f92809b3f6}{rigid\-\_\-err}) 
+\end{DoxyReturn}
+\hypertarget{rigid_8h_a814824a3f897b02fb6f2c604a7ef2e81}{\index{rigid.\-h@{rigid.\-h}!rigid\-\_\-eval\-\_\-shake@{rigid\-\_\-eval\-\_\-shake}}
+\index{rigid\-\_\-eval\-\_\-shake@{rigid\-\_\-eval\-\_\-shake}!rigid.h@{rigid.\-h}}
+\subsubsection[{rigid\-\_\-eval\-\_\-shake}]{\setlength{\rightskip}{0pt plus 5cm}int rigid\-\_\-eval\-\_\-shake (
+\begin{DoxyParamCaption}
+\item[{struct {\bf rigid} $\ast$}]{rs, }
+\item[{int}]{N, }
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{rigid_8h_a814824a3f897b02fb6f2c604a7ef2e81}
+
+
+Evaluate (S\-H\-A\-K\-E) a list of rigid constraints. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rs} & Pointer to an array of \hyperlink{structrigid}{rigid}. \\
+\hline
+{\em N} & Nr of rigids in {\ttfamily r}. \\
+\hline
+{\em e} & Pointer to the \hyperlink{structengine}{engine} in which these rigids are evaluated. \\
+\hline
+{\em epot\-\_\-out} & Pointer to a double in which to aggregate the potential energy.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{rigid_8h_a163dda7686b92ad456ed6c50348c4492}{rigid\-\_\-err\-\_\-ok} or $<$0 on error (see \hyperlink{rigid_8h_a608d035caf1cc207cc6e42f92809b3f6}{rigid\-\_\-err}) 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\hypertarget{rigid_8h_a608d035caf1cc207cc6e42f92809b3f6}{\index{rigid.\-h@{rigid.\-h}!rigid\-\_\-err@{rigid\-\_\-err}}
+\index{rigid\-\_\-err@{rigid\-\_\-err}!rigid.h@{rigid.\-h}}
+\subsubsection[{rigid\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}int rigid\-\_\-err}}\label{rigid_8h_a608d035caf1cc207cc6e42f92809b3f6}
+I\-D of the last error
+
+The I\-D of the last error. 

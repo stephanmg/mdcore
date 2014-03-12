@@ -1,0 +1,213 @@
+.TH "space" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+space \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <space\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "double \fBdim\fP [3]"
+.br
+.ti -1c
+.RI "double \fBorigin\fP [3]"
+.br
+.ti -1c
+.RI "int \fBcdim\fP [3]"
+.br
+.ti -1c
+.RI "int \fBspan\fP [3]"
+.br
+.ti -1c
+.RI "double \fBh\fP [3]"
+.br
+.ti -1c
+.RI "double \fBih\fP [3]"
+.br
+.ti -1c
+.RI "double \fBcutoff\fP"
+.br
+.ti -1c
+.RI "double \fBcutoff2\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBperiod\fP"
+.br
+.ti -1c
+.RI "int \fBnr_cells\fP"
+.br
+.ti -1c
+.RI "int * \fBcid_real\fP"
+.br
+.ti -1c
+.RI "int * \fBcid_ghost\fP"
+.br
+.ti -1c
+.RI "int * \fBcid_marked\fP"
+.br
+.ti -1c
+.RI "int \fBnr_real\fP"
+.br
+.ti -1c
+.RI "int \fBnr_ghost\fP"
+.br
+.ti -1c
+.RI "int \fBnr_marked\fP"
+.br
+.ti -1c
+.RI "struct \fBcell\fP * \fBcells\fP"
+.br
+.ti -1c
+.RI "int \fBnr_tasks\fP"
+.br
+.ti -1c
+.RI "int \fBtasks_size\fP"
+.br
+.ti -1c
+.RI "struct \fBtask\fP * \fBtasks\fP"
+.br
+.ti -1c
+.RI "pthread_mutex_t \fBtasks_mutex\fP"
+.br
+.ti -1c
+.RI "pthread_cond_t \fBtasks_avail\fP"
+.br
+.ti -1c
+.RI "char * \fBcells_taboo\fP"
+.br
+.ti -1c
+.RI "char * \fBcells_owner\fP"
+.br
+.ti -1c
+.RI "int \fBnr_swaps\fP"
+.br
+.ti -1c
+.RI "int \fBnr_stalls\fP"
+.br
+.ti -1c
+.RI "struct \fBpart\fP ** \fBpartlist\fP"
+.br
+.ti -1c
+.RI "struct \fBcell\fP ** \fBcelllist\fP"
+.br
+.ti -1c
+.RI "int \fBnr_parts\fP"
+.br
+.ti -1c
+.RI "int \fBsize_parts\fP"
+.br
+.ti -1c
+.RI "int \fBverlet_rebuild\fP"
+.br
+.ti -1c
+.RI "\fBFPTYPE\fP \fBmaxdx\fP"
+.br
+.ti -1c
+.RI "double \fBepot\fP"
+.br
+.ti -1c
+.RI "double \fBepot_nonbond\fP"
+.br
+.ti -1c
+.RI "double \fBepot_bond\fP"
+.br
+.ti -1c
+.RI "double \fBepot_angle\fP"
+.br
+.ti -1c
+.RI "double \fBepot_dihedral\fP"
+.br
+.ti -1c
+.RI "double \fBepot_exclusion\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The space structure 
+.SH "Field Documentation"
+.PP 
+.SS "int cdim[3]"
+Space dimension in cells\&. 
+.SS "struct \fBcell\fP** celllist"
+Array of pointers to the \fBcell\fP of individual parts, sorted by their ID\&. 
+.SS "struct \fBcell\fP* cells"
+Array of cells spanning the space\&. 
+.SS "char* cells_owner"
+Id of \fBrunner\fP owning each cell\&. 
+.SS "char* cells_taboo"
+Taboo-list for collision avoidance 
+.SS "int * cid_ghost"
+
+.SS "int * cid_marked"
+
+.SS "int* cid_real"
+IDs of real, ghost and marked cells\&. 
+.SS "double cutoff"
+The cutoff and the cutoff squared\&. 
+.SS "double cutoff2"
+
+.SS "double dim[3]"
+Real dimensions\&. 
+.SS "double epot"
+Potential energy collected by the space itself\&. 
+.SS "double epot_angle"
+
+.SS "double epot_bond"
+
+.SS "double epot_dihedral"
+
+.SS "double epot_exclusion"
+
+.SS "double epot_nonbond"
+
+.SS "double h[3]"
+Cell edge lengths and their inverse\&. 
+.SS "double ih[3]"
+
+.SS "\fBFPTYPE\fP maxdx"
+The maximum particle displacement over all cells\&. 
+.SS "int nr_cells"
+Total nr of cells in this space\&. 
+.SS "int nr_ghost"
+
+.SS "int nr_marked"
+
+.SS "int nr_parts"
+Number of parts in this space and size of the buffers partlist and celllist\&. 
+.SS "int nr_real"
+
+.SS "int nr_stalls"
+
+.SS "int nr_swaps"
+Counter for the number of swaps in every step\&. 
+.SS "int nr_tasks"
+The total number of tasks\&. 
+.SS "double origin[3]"
+Location of origin\&. 
+.SS "struct \fBpart\fP** partlist"
+Array of pointers to the individual parts, sorted by their ID\&. 
+.SS "unsigned int period"
+Periodicities\&. 
+.SS "int size_parts"
+
+.SS "int span[3]"
+Number of cells within cutoff in each dimension\&. 
+.SS "struct \fBtask\fP* tasks"
+Array of tasks\&. 
+.SS "pthread_cond_t tasks_avail"
+
+.SS "pthread_mutex_t tasks_mutex"
+Condition/mutex to signal task availability\&. 
+.SS "int tasks_size"
+
+.SS "int verlet_rebuild"
+Trigger re-building the cells/sorts\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

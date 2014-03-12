@@ -1,0 +1,141 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/spme.h" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/spme.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBspme\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBspme_err_ok\fP   0"
+.br
+.ti -1c
+.RI "#define \fBspme_err_null\fP   -1"
+.br
+.ti -1c
+.RI "#define \fBspme_err_malloc\fP   -2"
+.br
+.ti -1c
+.RI "#define \fBsmpe_err_nofftw3\fP   -3"
+.br
+.ti -1c
+.RI "#define \fBspme_err_fftw\fP   -4"
+.br
+.ti -1c
+.RI "#define \fBspme_order\fP   4"
+.br
+.ti -1c
+.RI "#define \fBspme_gpc\fP   4"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBspme_init\fP (struct \fBspme\fP *s, int *dim, float *h, float \fBkappa\fP)"
+.br
+.RI "\fISort the cell pairs in a spme according to their direction\&. \fP"
+.ti -1c
+.RI "void \fBspme_bspline\fP (float *\fBx\fP, int N, float *b, float *dbdx)"
+.br
+.RI "\fIEvaluate the B-spline and its derivatives at the given points\&. \fP"
+.ti -1c
+.RI "int \fBspme_doconv\fP (struct \fBspme\fP *s)"
+.br
+.RI "\fIDo the convolution stuff\&. \fP"
+.ti -1c
+.RI "void \fBspme_iact\fP (struct \fBspme\fP *s, struct \fBcell\fP *cp, struct \fBcell\fP *cg)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBspme_err\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define smpe_err_nofftw3   -3"
+
+.SS "#define spme_err_fftw   -4"
+
+.SS "#define spme_err_malloc   -2"
+
+.SS "#define spme_err_null   -1"
+
+.SS "#define spme_err_ok   0"
+
+.SS "#define spme_gpc   4"
+
+.SS "#define spme_order   4"
+
+.SH "Function Documentation"
+.PP 
+.SS "void spme_bspline (float *x, intN, float *b, float *dbdx)"
+
+.PP
+Evaluate the B-spline and its derivatives at the given points\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP The distances, normalized\&. 
+.br
+\fIN\fP The number of points\&. 
+.br
+\fIb\fP A vector in which to store the B-splines\&. 
+.br
+\fIdbdx\fP A vector in which to store the derivative\&. 
+.RE
+.PP
+
+.SS "int spme_doconv (struct \fBspme\fP *s)"
+
+.PP
+Do the convolution stuff\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIs\fP The \fBspme\fP\&. 
+.RE
+.PP
+
+.SS "void spme_iact (struct \fBspme\fP *s, struct \fBcell\fP *cp, struct \fBcell\fP *cg)"
+
+.SS "int spme_init (struct \fBspme\fP *s, int *dim, float *h, floatkappa)"
+
+.PP
+Sort the cell pairs in a spme according to their direction\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIs\fP The \fBspme\fP data structure\&. 
+.br
+\fIdim\fP The SPME grid dimensions\&. 
+.br
+\fIh\fP The grid spacing in each dimension\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBspme_err_ok\fP or < 0 on error (see \fBspme_err\fP)\&. 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "int spme_err"
+ID of the last error 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

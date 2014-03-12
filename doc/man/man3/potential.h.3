@@ -1,0 +1,767 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/potential.h" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/potential.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBpotential\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBpotential_err_ok\fP   0"
+.br
+.ti -1c
+.RI "#define \fBpotential_err_null\fP   -1"
+.br
+.ti -1c
+.RI "#define \fBpotential_err_malloc\fP   -2"
+.br
+.ti -1c
+.RI "#define \fBpotential_err_bounds\fP   -3"
+.br
+.ti -1c
+.RI "#define \fBpotential_err_nyi\fP   -4"
+.br
+.ti -1c
+.RI "#define \fBpotential_err_ivalsmax\fP   -5"
+.br
+.ti -1c
+.RI "#define \fBpotential_degree\fP   5"
+.br
+.ti -1c
+.RI "#define \fBpotential_chunk\fP   (\fBpotential_degree\fP+3)"
+.br
+.ti -1c
+.RI "#define \fBpotential_ivalsa\fP   1"
+.br
+.ti -1c
+.RI "#define \fBpotential_ivalsb\fP   10"
+.br
+.ti -1c
+.RI "#define \fBpotential_N\fP   100"
+.br
+.ti -1c
+.RI "#define \fBpotential_align\fP   64"
+.br
+.ti -1c
+.RI "#define \fBpotential_align\fP   64"
+.br
+.ti -1c
+.RI "#define \fBpotential_ivalsmax\fP   320"
+.br
+.ti -1c
+.RI "#define \fBpotential_escale\fP   (0\&.079577471545947667882)"
+.br
+.ti -1c
+.RI "#define \fBpotential_flag_none\fP   0"
+.br
+.ti -1c
+.RI "#define \fBpotential_flag_LJ126\fP   1"
+.br
+.ti -1c
+.RI "#define \fBpotential_flag_Ewald\fP   2"
+.br
+.ti -1c
+.RI "#define \fBpotential_flag_Coulomb\fP   4"
+.br
+.ti -1c
+.RI "#define \fBpotential_flag_single\fP   6"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBpotential_clear\fP (struct \fBpotential\fP *p)"
+.br
+.RI "\fIFree the memory associated with the given potential\&. \fP"
+.ti -1c
+.RI "int \fBpotential_init\fP (struct \fBpotential\fP *p, double(*\fBf\fP)(double), double(*fp)(double), double(*f6p)(double), \fBFPTYPE\fP a, \fBFPTYPE\fP b, \fBFPTYPE\fP tol)"
+.br
+.RI "\fIConstruct a \fBpotential\fP from the given function\&. \fP"
+.ti -1c
+.RI "int \fBpotential_getcoeffs\fP (double(*\fBf\fP)(double), double(*fp)(double), \fBFPTYPE\fP *xi, int n, \fBFPTYPE\fP *\fBc\fP, \fBFPTYPE\fP *err)"
+.br
+.RI "\fICompute the interpolation coefficients over a given set of nodes\&. \fP"
+.ti -1c
+.RI "double \fBpotential_getalpha\fP (double(*f6p)(double), double a, double b)"
+.br
+.RI "\fICompute the parameter $\alpha$ for the optimal node distribution\&. \fP"
+.ti -1c
+.RI "struct \fBpotential\fP * \fBpotential_create_LJ126\fP (double a, double b, double A, double B, double tol)"
+.br
+.RI "\fICreates a \fBpotential\fP representing a 12-6 Lennard-Jones potential\&. \fP"
+.ti -1c
+.RI "struct \fBpotential\fP * \fBpotential_create_LJ126_switch\fP (double a, double b, double A, double B, double s, double tol)"
+.br
+.RI "\fICreates a \fBpotential\fP representing a switched 12-6 Lennard-Jones potential\&. \fP"
+.ti -1c
+.RI "struct \fBpotential\fP * \fBpotential_create_LJ126_Ewald\fP (double a, double b, double A, double B, double q, double \fBkappa\fP, double tol)"
+.br
+.RI "\fICreates a \fBpotential\fP representing the sum of a 12-6 Lennard-Jones potential and the real-space part of an Ewald potential\&. \fP"
+.ti -1c
+.RI "struct \fBpotential\fP * \fBpotential_create_LJ126_Ewald_switch\fP (double a, double b, double A, double B, double q, double \fBkappa\fP, double s, double tol)"
+.br
+.RI "\fICreates a \fBpotential\fP representing the sum of a 12-6 Lennard-Jones potential with a switching distance and the real-space part of an Ewald potential\&. \fP"
+.ti -1c
+.RI "struct \fBpotential\fP * \fBpotential_create_LJ126_Coulomb\fP (double a, double b, double A, double B, double q, double tol)"
+.br
+.RI "\fICreates a \fBpotential\fP representing the sum of a 12-6 Lennard-Jones potential and a shifted Coulomb potential\&. \fP"
+.ti -1c
+.RI "struct \fBpotential\fP * \fBpotential_create_Ewald\fP (double a, double b, double q, double \fBkappa\fP, double tol)"
+.br
+.RI "\fICreates a \fBpotential\fP representing the real-space part of an Ewald potential\&. \fP"
+.ti -1c
+.RI "struct \fBpotential\fP * \fBpotential_create_Coulomb\fP (double a, double b, double q, double tol)"
+.br
+.RI "\fICreates a \fBpotential\fP representing a shifted Coulomb potential\&. \fP"
+.ti -1c
+.RI "struct \fBpotential\fP * \fBpotential_create_harmonic\fP (double a, double b, double K, double r0, double tol)"
+.br
+.RI "\fICreates a harmonic bond \fBpotential\fP\&. \fP"
+.ti -1c
+.RI "struct \fBpotential\fP * \fBpotential_create_harmonic_angle\fP (double a, double b, double K, double theta0, double tol)"
+.br
+.RI "\fICreates a harmonic angle \fBpotential\fP\&. \fP"
+.ti -1c
+.RI "struct \fBpotential\fP * \fBpotential_create_harmonic_dihedral\fP (double K, int n, double delta, double tol)"
+.br
+.RI "\fICreates a harmonic dihedral \fBpotential\fP\&. \fP"
+.ti -1c
+.RI "double \fBpotential_LJ126\fP (double \fBr\fP, double A, double B)"
+.br
+.RI "\fIA basic 12-6 Lennard-Jones potential\&. \fP"
+.ti -1c
+.RI "double \fBpotential_LJ126_p\fP (double \fBr\fP, double A, double B)"
+.br
+.RI "\fIA basic 12-6 Lennard-Jones potential (first derivative)\&. \fP"
+.ti -1c
+.RI "double \fBpotential_LJ126_6p\fP (double \fBr\fP, double A, double B)"
+.br
+.RI "\fIA basic 12-6 Lennard-Jones potential (sixth derivative)\&. \fP"
+.ti -1c
+.RI "double \fBpotential_Ewald\fP (double \fBr\fP, double \fBkappa\fP)"
+.br
+.RI "\fIThe short-range part of an Ewald summation\&. \fP"
+.ti -1c
+.RI "double \fBpotential_Ewald_p\fP (double \fBr\fP, double \fBkappa\fP)"
+.br
+.RI "\fIThe short-range part of an Ewald summation (first derivative)\&. \fP"
+.ti -1c
+.RI "double \fBpotential_Ewald_6p\fP (double \fBr\fP, double \fBkappa\fP)"
+.br
+.RI "\fIThe short-range part of an Ewald summation (sixth derivative)\&. \fP"
+.ti -1c
+.RI "double \fBpotential_Coulomb\fP (double \fBr\fP)"
+.br
+.RI "\fIThe Coulomb potential\&. \fP"
+.ti -1c
+.RI "double \fBpotential_Coulomb_p\fP (double \fBr\fP)"
+.br
+.RI "\fIThe Coulomb potential (first derivative)\&. \fP"
+.ti -1c
+.RI "double \fBpotential_Coulomb_6p\fP (double \fBr\fP)"
+.br
+.RI "\fITheCoulomb potential (sixth derivative)\&. \fP"
+.ti -1c
+.RI "double \fBpotential_switch\fP (double \fBr\fP, double A, double B)"
+.br
+.RI "\fISwitching function\&. \fP"
+.ti -1c
+.RI "double \fBpotential_switch_p\fP (double \fBr\fP, double A, double B)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBpotential_err\fP"
+.br
+.ti -1c
+.RI "struct \fBpotential\fP \fBpotential_null\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define potential_align   64"
+
+.SS "#define potential_align   64"
+
+.SS "#define potential_chunk   (\fBpotential_degree\fP+3)"
+
+.SS "#define potential_degree   5"
+
+.SS "#define potential_err_bounds   -3"
+
+.SS "#define potential_err_ivalsmax   -5"
+
+.SS "#define potential_err_malloc   -2"
+
+.SS "#define potential_err_null   -1"
+
+.SS "#define potential_err_nyi   -4"
+
+.SS "#define potential_err_ok   0"
+
+.SS "#define potential_escale   (0\&.079577471545947667882)"
+
+.SS "#define potential_flag_Coulomb   4"
+
+.SS "#define potential_flag_Ewald   2"
+
+.SS "#define potential_flag_LJ126   1"
+
+.SS "#define potential_flag_none   0"
+
+.SS "#define potential_flag_single   6"
+
+.SS "#define potential_ivalsa   1"
+
+.SS "#define potential_ivalsb   10"
+
+.SS "#define potential_ivalsmax   320"
+
+.SS "#define potential_N   100"
+
+.SH "Function Documentation"
+.PP 
+.SS "void potential_clear (struct \fBpotential\fP *p)"
+
+.PP
+Free the memory associated with the given potential\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP Pointer to the \fBpotential\fP to clear\&. 
+.RE
+.PP
+
+.SS "double potential_Coulomb (doubler)\fC [inline]\fP"
+
+.PP
+The Coulomb potential\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The interaction radius\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The potential $ \frac{1}{4\pi r} $ evaluated at \fCr\fP\&. 
+.RE
+.PP
+
+.SS "double potential_Coulomb_6p (doubler)\fC [inline]\fP"
+
+.PP
+TheCoulomb potential (sixth derivative)\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The interaction radius\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The sixth derivative of the potential $ \frac{1}{4\pi r} $ evaluated at \fCr\fP\&. 
+.RE
+.PP
+
+.SS "double potential_Coulomb_p (doubler)\fC [inline]\fP"
+
+.PP
+The Coulomb potential (first derivative)\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The interaction radius\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The first derivative of the potential $ \frac{1}{4\pi r} $ evaluated at \fCr\fP\&. 
+.RE
+.PP
+
+.SS "struct \fBpotential\fP* potential_create_Coulomb (doublea, doubleb, doubleq, doubletol)"
+
+.PP
+Creates a \fBpotential\fP representing a shifted Coulomb potential\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP The smallest radius for which the potential will be constructed\&. 
+.br
+\fIb\fP The largest radius for which the potential will be constructed\&. 
+.br
+\fIq\fP The charge scaling of the potential\&. 
+.br
+\fItol\fP The tolerance to which the interpolation should match the exact potential\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A newly-allocated \fBpotential\fP representing the potential $ \frac{1}{4\pi r} $ in $[a,b]$ or \fCNULL\fP on error (see \fBpotential_err\fP)\&. 
+.RE
+.PP
+
+.SS "struct \fBpotential\fP* potential_create_Ewald (doublea, doubleb, doubleq, doublekappa, doubletol)"
+
+.PP
+Creates a \fBpotential\fP representing the real-space part of an Ewald potential\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP The smallest radius for which the potential will be constructed\&. 
+.br
+\fIb\fP The largest radius for which the potential will be constructed\&. 
+.br
+\fIq\fP The charge scaling of the potential\&. 
+.br
+\fIkappa\fP The screening distance of the Ewald potential\&. 
+.br
+\fItol\fP The tolerance to which the interpolation should match the exact potential\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A newly-allocated \fBpotential\fP representing the potential $ q\frac{\mbox{erfc}(\kappa r}{r} $ in $[a,b]$ or \fCNULL\fP on error (see \fBpotential_err\fP)\&. 
+.RE
+.PP
+
+.SS "struct \fBpotential\fP* potential_create_harmonic (doublea, doubleb, doubleK, doubler0, doubletol)"
+
+.PP
+Creates a harmonic bond \fBpotential\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP The smallest radius for which the potential will be constructed\&. 
+.br
+\fIb\fP The largest radius for which the potential will be constructed\&. 
+.br
+\fIK\fP The energy of the bond\&. 
+.br
+\fIr0\fP The minimum energy distance\&. 
+.br
+\fItol\fP The tolerance to which the interpolation should match the exact potential\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A newly-allocated \fBpotential\fP representing the potential $ K(r-r_0)^2 $ in $[a,b]$ or \fCNULL\fP on error (see \fBpotential_err\fP)\&. 
+.RE
+.PP
+
+.SS "struct \fBpotential\fP* potential_create_harmonic_angle (doublea, doubleb, doubleK, doubletheta0, doubletol)"
+
+.PP
+Creates a harmonic angle \fBpotential\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP The smallest angle for which the potential will be constructed\&. 
+.br
+\fIb\fP The largest angle for which the potential will be constructed\&. 
+.br
+\fIK\fP The energy of the angle\&. 
+.br
+\fItheta0\fP The minimum energy angle\&. 
+.br
+\fItol\fP The tolerance to which the interpolation should match the exact potential\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A newly-allocated \fBpotential\fP representing the potential $ K(\arccos(r)-r_0)^2 $ in $[a,b]$ or \fCNULL\fP on error (see \fBpotential_err\fP)\&. 
+.RE
+.PP
+
+.SS "struct \fBpotential\fP* potential_create_harmonic_dihedral (doubleK, intn, doubledelta, doubletol)"
+
+.PP
+Creates a harmonic dihedral \fBpotential\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIK\fP The energy of the dihedral\&. 
+.br
+\fIn\fP The multiplicity of the dihedral\&. 
+.br
+\fIdelta\fP The minimum energy dihedral\&. 
+.br
+\fItol\fP The tolerance to which the interpolation should match the exact potential\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A newly-allocated \fBpotential\fP representing the potential $ K(1 + \cos(n\arccos(r)-delta) $ in $[-1,1]$ or \fCNULL\fP on error (see \fBpotential_err\fP)\&. 
+.RE
+.PP
+
+.SS "struct \fBpotential\fP* potential_create_LJ126 (doublea, doubleb, doubleA, doubleB, doubletol)"
+
+.PP
+Creates a \fBpotential\fP representing a 12-6 Lennard-Jones potential\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP The smallest radius for which the potential will be constructed\&. 
+.br
+\fIb\fP The largest radius for which the potential will be constructed\&. 
+.br
+\fIA\fP The first parameter of the Lennard-Jones potential\&. 
+.br
+\fIB\fP The second parameter of the Lennard-Jones potential\&. 
+.br
+\fItol\fP The tolerance to which the interpolation should match the exact potential\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A newly-allocated \fBpotential\fP representing the potential $ \left( \frac{A}{r^{12}} - \frac{B}{r^6} \right) $ in $[a,b]$ or \fCNULL\fP on error (see \fBpotential_err\fP)\&. 
+.RE
+.PP
+
+.SS "struct \fBpotential\fP* potential_create_LJ126_Coulomb (doublea, doubleb, doubleA, doubleB, doubleq, doubletol)"
+
+.PP
+Creates a \fBpotential\fP representing the sum of a 12-6 Lennard-Jones potential and a shifted Coulomb potential\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP The smallest radius for which the potential will be constructed\&. 
+.br
+\fIb\fP The largest radius for which the potential will be constructed\&. 
+.br
+\fIA\fP The first parameter of the Lennard-Jones potential\&. 
+.br
+\fIB\fP The second parameter of the Lennard-Jones potential\&. 
+.br
+\fIq\fP The charge scaling of the potential\&. 
+.br
+\fItol\fP The tolerance to which the interpolation should match the exact potential\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A newly-allocated \fBpotential\fP representing the potential $ \left( \frac{A}{r^{12}} - \frac{B}{r^6} \right) $ in $[a,b]$ or \fCNULL\fP on error (see \fBpotential_err\fP)\&. 
+.RE
+.PP
+
+.SS "struct \fBpotential\fP* potential_create_LJ126_Ewald (doublea, doubleb, doubleA, doubleB, doubleq, doublekappa, doubletol)"
+
+.PP
+Creates a \fBpotential\fP representing the sum of a 12-6 Lennard-Jones potential and the real-space part of an Ewald potential\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP The smallest radius for which the potential will be constructed\&. 
+.br
+\fIb\fP The largest radius for which the potential will be constructed\&. 
+.br
+\fIA\fP The first parameter of the Lennard-Jones potential\&. 
+.br
+\fIB\fP The second parameter of the Lennard-Jones potential\&. 
+.br
+\fIq\fP The charge scaling of the potential\&. 
+.br
+\fIkappa\fP The screening distance of the Ewald potential\&. 
+.br
+\fItol\fP The tolerance to which the interpolation should match the exact potential\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A newly-allocated \fBpotential\fP representing the potential $ \left( \frac{A}{r^{12}} - \frac{B}{r^6} \right) $ in $[a,b]$ or \fCNULL\fP on error (see \fBpotential_err\fP)\&. 
+.RE
+.PP
+
+.SS "struct \fBpotential\fP* potential_create_LJ126_Ewald_switch (doublea, doubleb, doubleA, doubleB, doubleq, doublekappa, doubles, doubletol)"
+
+.PP
+Creates a \fBpotential\fP representing the sum of a 12-6 Lennard-Jones potential with a switching distance and the real-space part of an Ewald potential\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP The smallest radius for which the potential will be constructed\&. 
+.br
+\fIb\fP The largest radius for which the potential will be constructed\&. 
+.br
+\fIA\fP The first parameter of the Lennard-Jones potential\&. 
+.br
+\fIB\fP The second parameter of the Lennard-Jones potential\&. 
+.br
+\fIq\fP The charge scaling of the potential\&. 
+.br
+\fIs\fP The switching distance\&. 
+.br
+\fIkappa\fP The screening distance of the Ewald potential\&. 
+.br
+\fItol\fP The tolerance to which the interpolation should match the exact potential\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A newly-allocated \fBpotential\fP representing the potential $ \left( \frac{A}{r^{12}} - \frac{B}{r^6} \right) $ in $[a,b]$ or \fCNULL\fP on error (see \fBpotential_err\fP)\&. 
+.RE
+.PP
+
+.SS "struct \fBpotential\fP* potential_create_LJ126_switch (doublea, doubleb, doubleA, doubleB, doubles, doubletol)"
+
+.PP
+Creates a \fBpotential\fP representing a switched 12-6 Lennard-Jones potential\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP The smallest radius for which the potential will be constructed\&. 
+.br
+\fIb\fP The largest radius for which the potential will be constructed\&. 
+.br
+\fIA\fP The first parameter of the Lennard-Jones potential\&. 
+.br
+\fIB\fP The second parameter of the Lennard-Jones potential\&. 
+.br
+\fIs\fP The switchting length 
+.br
+\fItol\fP The tolerance to which the interpolation should match the exact potential\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A newly-allocated \fBpotential\fP representing the potential $ \left( \frac{A}{r^{12}} - \frac{B}{r^6} \right) $ in $[a,b]$ or \fCNULL\fP on error (see \fBpotential_err\fP)\&. 
+.RE
+.PP
+
+.SS "double potential_Ewald (doubler, doublekappa)\fC [inline]\fP"
+
+.PP
+The short-range part of an Ewald summation\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The interaction radius\&. 
+.br
+\fIkappa\fP The screening length of the Ewald summation\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The potential $ \frac{\mbox{erfc}( \kappa r )}{r} $ evaluated at \fCr\fP\&. 
+.RE
+.PP
+
+.SS "double potential_Ewald_6p (doubler, doublekappa)\fC [inline]\fP"
+
+.PP
+The short-range part of an Ewald summation (sixth derivative)\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The interaction radius\&. 
+.br
+\fIkappa\fP The screening length of the Ewald summation\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The sixth derivative of the potential $ \frac{\mbox{erfc}( \kappa r )}{r} $ evaluated at \fCr\fP\&. 
+.RE
+.PP
+
+.SS "double potential_Ewald_p (doubler, doublekappa)\fC [inline]\fP"
+
+.PP
+The short-range part of an Ewald summation (first derivative)\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The interaction radius\&. 
+.br
+\fIkappa\fP The screening length of the Ewald summation\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The first derivative of the potential $ \frac{\mbox{erfc}( \kappa r )}{r} $ evaluated at \fCr\fP\&. 
+.RE
+.PP
+
+.SS "double potential_getalpha (double(*)(double)f6p, doublea, doubleb)"
+
+.PP
+Compute the parameter $\alpha$ for the optimal node distribution\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIf6p\fP Pointer to a function representing the 6th derivative of the interpoland\&. 
+.br
+\fIa\fP Left limit of the interpolation\&. 
+.br
+\fIb\fP Right limit of the interpolation\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The computed value for $\alpha$\&.
+.RE
+.PP
+The value $\alpha$ is computed using Brent's algortihm to 4 decimal digits\&. 
+.SS "int potential_getcoeffs (double(*)(double)f, double(*)(double)fp, \fBFPTYPE\fP *xi, intn, \fBFPTYPE\fP *c, \fBFPTYPE\fP *err)"
+
+.PP
+Compute the interpolation coefficients over a given set of nodes\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIf\fP Pointer to the function to be interpolated\&. 
+.br
+\fIfp\fP Pointer to the first derivative of \fCf\fP\&. 
+.br
+\fIxi\fP Pointer to an array of nodes between whicht the function \fCf\fP will be interpolated\&. 
+.br
+\fIn\fP Number of nodes in \fCxi\fP\&. 
+.br
+\fIc\fP Pointer to an array in which to store the interpolation coefficients\&. 
+.br
+\fIerr\fP Pointer to a floating-point value in which an approximation of the interpolation error, relative to the maximum of f in each interval, is stored\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBpotential_err_ok\fP or < 0 on error (see \fBpotential_err\fP)\&.
+.RE
+.PP
+Compute the coefficients of the function \fCf\fP with derivative \fCfp\fP over the \fCn\fP intervals between the \fCxi\fP and store an estimate of the maximum locally relative interpolation error in \fCerr\fP\&.
+.PP
+The array to which \fCc\fP points must be large enough to hold at least \fBpotential_degree\fP x \fCn\fP values of type \fBFPTYPE\fP\&. 
+.SS "int potential_init (struct \fBpotential\fP *p, double(*)(double)f, double(*)(double)fp, double(*)(double)f6p, \fBFPTYPE\fPa, \fBFPTYPE\fPb, \fBFPTYPE\fPtol)"
+
+.PP
+Construct a \fBpotential\fP from the given function\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP A pointer to an empty \fBpotential\fP\&. 
+.br
+\fIf\fP A pointer to the potential function to be interpolated\&. 
+.br
+\fIfp\fP A pointer to the first derivative of \fCf\fP\&. 
+.br
+\fIf6p\fP A pointer to the sixth derivative of \fCf\fP\&. 
+.br
+\fIa\fP The smallest radius for which the potential will be constructed\&. 
+.br
+\fIb\fP The largest radius for which the potential will be constructed\&. 
+.br
+\fItol\fP The absolute tolerance to which the interpolation should match the exact potential\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBpotential_err_ok\fP or <0 on error (see \fBpotential_err\fP)\&.
+.RE
+.PP
+Computes an interpolated potential function from \fCf\fP in \fC\fP[a,b] to the locally relative tolerance \fCtol\fP\&.
+.PP
+The sixth derivative \fCf6p\fP is used to compute the optimal node distribution\&. If \fCf6p\fP is \fCNULL\fP, the derivative is approximated numerically\&.
+.PP
+The zeroth interval contains a linear extension of \fCf\fP for values < a\&. 
+.SS "double potential_LJ126 (doubler, doubleA, doubleB)\fC [inline]\fP"
+
+.PP
+A basic 12-6 Lennard-Jones potential\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The interaction radius\&. 
+.br
+\fIA\fP First parameter of the potential\&. 
+.br
+\fIB\fP Second parameter of the potential\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The potential $ \left( \frac{A}{r^{12}} - \frac{B}{r^6} \right) $ evaluated at \fCr\fP\&. 
+.RE
+.PP
+
+.SS "double potential_LJ126_6p (doubler, doubleA, doubleB)\fC [inline]\fP"
+
+.PP
+A basic 12-6 Lennard-Jones potential (sixth derivative)\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The interaction radius\&. 
+.br
+\fIA\fP First parameter of the potential\&. 
+.br
+\fIB\fP Second parameter of the potential\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The sixth derivative of the potential $ \left( \frac{A}{r^{12}} - \frac{B}{r^6} \right) $ evaluated at \fCr\fP\&. 
+.RE
+.PP
+
+.SS "double potential_LJ126_p (doubler, doubleA, doubleB)\fC [inline]\fP"
+
+.PP
+A basic 12-6 Lennard-Jones potential (first derivative)\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The interaction radius\&. 
+.br
+\fIA\fP First parameter of the potential\&. 
+.br
+\fIB\fP Second parameter of the potential\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The first derivative of the potential $ \left( \frac{A}{r^{12}} - \frac{B}{r^6} \right) $ evaluated at \fCr\fP\&. 
+.RE
+.PP
+
+.SS "double potential_switch (doubler, doubleA, doubleB)\fC [inline]\fP"
+
+.PP
+Switching function\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The radius\&. 
+.br
+\fIA\fP The start of the switching region\&. 
+.br
+\fIB\fP The end of the switching region\&. 
+.RE
+.PP
+
+.SS "double potential_switch_p (doubler, doubleA, doubleB)\fC [inline]\fP"
+
+.SH "Variable Documentation"
+.PP 
+.SS "int potential_err"
+ID of the last error\&.
+.PP
+The last error 
+.SS "struct \fBpotential\fP potential_null"
+Fictitious null potential\&. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

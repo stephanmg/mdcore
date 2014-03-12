@@ -1,0 +1,109 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/runner_dosort.c" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/runner_dosort.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include '\&.\&./config\&.h'\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <pthread\&.h>\fP
+.br
+\fC#include <math\&.h>\fP
+.br
+\fC#include <float\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <limits\&.h>\fP
+.br
+\fC#include <sched\&.h>\fP
+.br
+\fC#include 'cycle\&.h'\fP
+.br
+\fC#include 'errs\&.h'\fP
+.br
+\fC#include 'fptype\&.h'\fP
+.br
+\fC#include 'lock\&.h'\fP
+.br
+\fC#include 'part\&.h'\fP
+.br
+\fC#include 'cell\&.h'\fP
+.br
+\fC#include 'space\&.h'\fP
+.br
+\fC#include 'potential\&.h'\fP
+.br
+\fC#include 'potential_eval\&.h'\fP
+.br
+\fC#include 'engine\&.h'\fP
+.br
+\fC#include 'runner\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBerror\fP(\fBid\fP)   ( \fBrunner_err\fP = \fBerrs_register\fP( \fBid\fP , \fBrunner_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__attribute__\fP ((flatten))"
+.br
+.RI "\fIFill in the pairwise Verlet list entries for the given cell pair if needed and compute the interactions\&. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "char * \fBrunner_err_msg\fP []"
+.br
+.ti -1c
+.RI "unsigned int \fBrunner_rcount\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define error(\fBid\fP)   ( \fBrunner_err\fP = \fBerrs_register\fP( \fBid\fP , \fBrunner_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+
+.SH "Function Documentation"
+.PP 
+.SS "__attribute__ ((flatten))"
+
+.PP
+Fill in the pairwise Verlet list entries for the given cell pair if needed and compute the interactions\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The \fBrunner\fP computing the pair\&. 
+.br
+\fIc\fP The cell\&. 
+.br
+\fIflags\fP Bitmask for the sorting directions\&.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBrunner_err_ok\fP or <0 on error (see \fBrunner_err\fP)
+.RE
+.PP
+This routine differs from #runner_dopair_verlet in that instead of storing a Verlet table, the sorted particle ids are stored\&. This requires only (size_i + size_j) entries as opposed to size_i*size_j for the Verlet table, yet may be less efficient since particles within the skin along the cell-pair axis are inspected, as opposed to particles simply within the skin of each other\&. 
+.SH "Variable Documentation"
+.PP 
+.SS "char* runner_err_msg[]"
+
+.SS "unsigned int runner_rcount"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

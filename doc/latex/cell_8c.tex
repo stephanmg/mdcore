@@ -1,0 +1,325 @@
+\hypertarget{cell_8c}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/cell.c File Reference}
+\label{cell_8c}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/cell.\-c@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/cell.\-c}}
+}
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$pthread.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}errs.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fptype.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}part.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}cell.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{cell_8c_a4435050e609070990173418da6c991d1}{align\-\_\-ceil}(v)~(((v) + (\hyperlink{cell_8h_a91331f0f8aa5b78cab7537decee720c5}{cell\-\_\-partalign}-\/1) ) \& $\sim$(\hyperlink{cell_8h_a91331f0f8aa5b78cab7537decee720c5}{cell\-\_\-partalign}-\/1))
+\item 
+\#define \hyperlink{cell_8c_a7673862d447029edaf3172ebd94aa28e}{error}(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})~( \hyperlink{cell_8h_a97e82fdce04a0c032c90b3e3a1464a67}{cell\-\_\-err} = \hyperlink{errs_8h_ae37a9c0e0a0aa4a92dbe64c0f38ed95c}{errs\-\_\-register}( \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id} , \hyperlink{cell_8c_a2b1395cc460022ae57bc4202971c7184}{cell\-\_\-err\-\_\-msg}\mbox{[}-\/(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{cell_8c_a591c58e1a323a8bf9b8bedcdd690abf7}{cell\-\_\-flush} (struct \hyperlink{structcell}{cell} $\ast$\hyperlink{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{c}, struct \hyperlink{structpart}{part} $\ast$$\ast$partlist, struct \hyperlink{structcell}{cell} $\ast$$\ast$celllist)
+\begin{DoxyCompactList}\small\item\em Flush all the parts from a \hyperlink{structcell}{cell}. \end{DoxyCompactList}\item 
+int \hyperlink{cell_8c_a9de857a761ac2b9e566c9ad58bc7c225}{cell\-\_\-load} (struct \hyperlink{structcell}{cell} $\ast$\hyperlink{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{c}, struct \hyperlink{structpart}{part} $\ast$parts, int nr\-\_\-parts, struct \hyperlink{structpart}{part} $\ast$$\ast$partlist, struct \hyperlink{structcell}{cell} $\ast$$\ast$celllist)
+\begin{DoxyCompactList}\small\item\em Load a block of particles to the cell. \end{DoxyCompactList}\item 
+int \hyperlink{cell_8c_a7b9ff240746a465f37cdcd8d42d38141}{cell\-\_\-welcome} (struct \hyperlink{structcell}{cell} $\ast$\hyperlink{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{c}, struct \hyperlink{structpart}{part} $\ast$$\ast$partlist)
+\begin{DoxyCompactList}\small\item\em Move particles from the incomming buffer to the cell. \end{DoxyCompactList}\item 
+struct \hyperlink{structpart}{part} $\ast$ \hyperlink{cell_8c_a1462df5ca8b2baf31d2a12fe85f8c1fd}{cell\-\_\-add\-\_\-incomming} (struct \hyperlink{structcell}{cell} $\ast$\hyperlink{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{c}, struct \hyperlink{structpart}{part} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Add a particle to the incomming array of a cell. \end{DoxyCompactList}\item 
+int \hyperlink{cell_8c_a3ae8a3b6e4bf2902e6aa15b3ebfa3834}{cell\-\_\-add\-\_\-incomming\-\_\-multiple} (struct \hyperlink{structcell}{cell} $\ast$\hyperlink{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{c}, struct \hyperlink{structpart}{part} $\ast$p, int count)
+\begin{DoxyCompactList}\small\item\em Add one or more particles to the incomming array of a cell. \end{DoxyCompactList}\item 
+struct \hyperlink{structpart}{part} $\ast$ \hyperlink{cell_8c_a1e7615bc50d34f2ed8ef5da84ae846a0}{cell\-\_\-add} (struct \hyperlink{structcell}{cell} $\ast$\hyperlink{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{c}, struct \hyperlink{structpart}{part} $\ast$p, struct \hyperlink{structpart}{part} $\ast$$\ast$partlist)
+\begin{DoxyCompactList}\small\item\em Add a particle to a cell. \end{DoxyCompactList}\item 
+int \hyperlink{cell_8c_a3ebcf1857875d8410be2c27fbf2c7fc4}{cell\-\_\-init} (struct \hyperlink{structcell}{cell} $\ast$\hyperlink{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{c}, int $\ast$loc, double $\ast$origin, double $\ast$dim)
+\begin{DoxyCompactList}\small\item\em Initialize the given cell. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{cell_8c_a2b1395cc460022ae57bc4202971c7184}{cell\-\_\-err\-\_\-msg} \mbox{[}$\,$\mbox{]}
+\item 
+const char \hyperlink{cell_8c_a55b8b95034c0b61da2766f2bf53beee0}{cell\-\_\-sortlist\-I\-D} \mbox{[}27\mbox{]}
+\item 
+const \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{cell_8c_a5d2e61b0cb2d6b4547a69d4bdaae1272}{cell\-\_\-shift} \mbox{[}13 $\ast$3\mbox{]}
+\item 
+const char \hyperlink{cell_8c_aa4ce5c02d61c9adb26f6e102cee43f3c}{cell\-\_\-flip} \mbox{[}27\mbox{]}
+\item 
+int \hyperlink{cell_8c_a97e82fdce04a0c032c90b3e3a1464a67}{cell\-\_\-err} = \hyperlink{cell_8h_ad8312b83775961cd7518212ae5ebfced}{cell\-\_\-err\-\_\-ok}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{cell_8c_a4435050e609070990173418da6c991d1}{\index{cell.\-c@{cell.\-c}!align\-\_\-ceil@{align\-\_\-ceil}}
+\index{align\-\_\-ceil@{align\-\_\-ceil}!cell.c@{cell.\-c}}
+\subsubsection[{align\-\_\-ceil}]{\setlength{\rightskip}{0pt plus 5cm}\#define align\-\_\-ceil(
+\begin{DoxyParamCaption}
+\item[{}]{v}
+\end{DoxyParamCaption}
+)~(((v) + ({\bf cell\-\_\-partalign}-\/1) ) \& $\sim$({\bf cell\-\_\-partalign}-\/1))}}\label{cell_8c_a4435050e609070990173418da6c991d1}
+\hypertarget{cell_8c_a7673862d447029edaf3172ebd94aa28e}{\index{cell.\-c@{cell.\-c}!error@{error}}
+\index{error@{error}!cell.c@{cell.\-c}}
+\subsubsection[{error}]{\setlength{\rightskip}{0pt plus 5cm}\#define error(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf id}}
+\end{DoxyParamCaption}
+)~( {\bf cell\-\_\-err} = {\bf errs\-\_\-register}( {\bf id} , {\bf cell\-\_\-err\-\_\-msg}\mbox{[}-\/({\bf id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )}}\label{cell_8c_a7673862d447029edaf3172ebd94aa28e}
+
+
+\subsection{Function Documentation}
+\hypertarget{cell_8c_a1e7615bc50d34f2ed8ef5da84ae846a0}{\index{cell.\-c@{cell.\-c}!cell\-\_\-add@{cell\-\_\-add}}
+\index{cell\-\_\-add@{cell\-\_\-add}!cell.c@{cell.\-c}}
+\subsubsection[{cell\-\_\-add}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf part}$\ast$ cell\-\_\-add (
+\begin{DoxyParamCaption}
+\item[{struct {\bf cell} $\ast$}]{c, }
+\item[{struct {\bf part} $\ast$}]{p, }
+\item[{struct {\bf part} $\ast$$\ast$}]{partlist}
+\end{DoxyParamCaption}
+)}}\label{cell_8c_a1e7615bc50d34f2ed8ef5da84ae846a0}
+
+
+Add a particle to a cell. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & The \hyperlink{structcell}{cell} to which the particle should be added. \\
+\hline
+{\em p} & The \#particle to add to the cell\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the particle data in the cell.
+\end{DoxyReturn}
+This routine assumes the particle position has already been adjusted to the cell {\ttfamily c}. \hypertarget{cell_8c_a1462df5ca8b2baf31d2a12fe85f8c1fd}{\index{cell.\-c@{cell.\-c}!cell\-\_\-add\-\_\-incomming@{cell\-\_\-add\-\_\-incomming}}
+\index{cell\-\_\-add\-\_\-incomming@{cell\-\_\-add\-\_\-incomming}!cell.c@{cell.\-c}}
+\subsubsection[{cell\-\_\-add\-\_\-incomming}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf part}$\ast$ cell\-\_\-add\-\_\-incomming (
+\begin{DoxyParamCaption}
+\item[{struct {\bf cell} $\ast$}]{c, }
+\item[{struct {\bf part} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{cell_8c_a1462df5ca8b2baf31d2a12fe85f8c1fd}
+
+
+Add a particle to the incomming array of a cell. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & The \hyperlink{structcell}{cell} to which the particle should be added. \\
+\hline
+{\em p} & The \#particle to add to the cell\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the particle data in the incomming array of the cell.
+\end{DoxyReturn}
+This routine assumes the particle position has already been adjusted to the cell {\ttfamily c}. \hypertarget{cell_8c_a3ae8a3b6e4bf2902e6aa15b3ebfa3834}{\index{cell.\-c@{cell.\-c}!cell\-\_\-add\-\_\-incomming\-\_\-multiple@{cell\-\_\-add\-\_\-incomming\-\_\-multiple}}
+\index{cell\-\_\-add\-\_\-incomming\-\_\-multiple@{cell\-\_\-add\-\_\-incomming\-\_\-multiple}!cell.c@{cell.\-c}}
+\subsubsection[{cell\-\_\-add\-\_\-incomming\-\_\-multiple}]{\setlength{\rightskip}{0pt plus 5cm}int cell\-\_\-add\-\_\-incomming\-\_\-multiple (
+\begin{DoxyParamCaption}
+\item[{struct {\bf cell} $\ast$}]{c, }
+\item[{struct {\bf part} $\ast$}]{p, }
+\item[{int}]{count}
+\end{DoxyParamCaption}
+)}}\label{cell_8c_a3ae8a3b6e4bf2902e6aa15b3ebfa3834}
+
+
+Add one or more particles to the incomming array of a cell. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & The \hyperlink{structcell}{cell} to which the particle should be added. \\
+\hline
+{\em p} & The \#particle to add to the cell\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of incomming parts or $<$ 0 on error (see \hyperlink{cell_8h_a97e82fdce04a0c032c90b3e3a1464a67}{cell\-\_\-err}).
+\end{DoxyReturn}
+This routine assumes the particle position have already been adjusted to the cell {\ttfamily c}. \hypertarget{cell_8c_a591c58e1a323a8bf9b8bedcdd690abf7}{\index{cell.\-c@{cell.\-c}!cell\-\_\-flush@{cell\-\_\-flush}}
+\index{cell\-\_\-flush@{cell\-\_\-flush}!cell.c@{cell.\-c}}
+\subsubsection[{cell\-\_\-flush}]{\setlength{\rightskip}{0pt plus 5cm}int cell\-\_\-flush (
+\begin{DoxyParamCaption}
+\item[{struct {\bf cell} $\ast$}]{c, }
+\item[{struct {\bf part} $\ast$$\ast$}]{partlist, }
+\item[{struct {\bf cell} $\ast$$\ast$}]{celllist}
+\end{DoxyParamCaption}
+)}}\label{cell_8c_a591c58e1a323a8bf9b8bedcdd690abf7}
+
+
+Flush all the parts from a \hyperlink{structcell}{cell}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & The \hyperlink{structcell}{cell} to flush. \\
+\hline
+{\em partlist} & A pointer to the partlist to set the part indices. \\
+\hline
+{\em celllist} & A pointer to the celllist to set the part indices.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{cell_8h_ad8312b83775961cd7518212ae5ebfced}{cell\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{cell_8h_a97e82fdce04a0c032c90b3e3a1464a67}{cell\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{cell_8c_a3ebcf1857875d8410be2c27fbf2c7fc4}{\index{cell.\-c@{cell.\-c}!cell\-\_\-init@{cell\-\_\-init}}
+\index{cell\-\_\-init@{cell\-\_\-init}!cell.c@{cell.\-c}}
+\subsubsection[{cell\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}int cell\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{struct {\bf cell} $\ast$}]{c, }
+\item[{int $\ast$}]{loc, }
+\item[{double $\ast$}]{origin, }
+\item[{double $\ast$}]{dim}
+\end{DoxyParamCaption}
+)}}\label{cell_8c_a3ebcf1857875d8410be2c27fbf2c7fc4}
+
+
+Initialize the given cell. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & The \hyperlink{structcell}{cell} to initialize. \\
+\hline
+{\em loc} & Array containing the location of this cell in the space. \\
+\hline
+{\em origin} & The origin of the cell in global coordinates \\
+\hline
+{\em dim} & The cell dimensions.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{cell_8h_ad8312b83775961cd7518212ae5ebfced}{cell\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{cell_8h_a97e82fdce04a0c032c90b3e3a1464a67}{cell\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{cell_8c_a9de857a761ac2b9e566c9ad58bc7c225}{\index{cell.\-c@{cell.\-c}!cell\-\_\-load@{cell\-\_\-load}}
+\index{cell\-\_\-load@{cell\-\_\-load}!cell.c@{cell.\-c}}
+\subsubsection[{cell\-\_\-load}]{\setlength{\rightskip}{0pt plus 5cm}int cell\-\_\-load (
+\begin{DoxyParamCaption}
+\item[{struct {\bf cell} $\ast$}]{c, }
+\item[{struct {\bf part} $\ast$}]{parts, }
+\item[{int}]{nr\-\_\-parts, }
+\item[{struct {\bf part} $\ast$$\ast$}]{partlist, }
+\item[{struct {\bf cell} $\ast$$\ast$}]{celllist}
+\end{DoxyParamCaption}
+)}}\label{cell_8c_a9de857a761ac2b9e566c9ad58bc7c225}
+
+
+Load a block of particles to the cell. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & The \hyperlink{structcell}{cell}. \\
+\hline
+{\em parts} & Pointer to a block of \hyperlink{structpart}{part}. \\
+\hline
+{\em nr\-\_\-parts} & The number of parts to load. \\
+\hline
+{\em partlist} & A pointer to the partlist to set the part indices. \\
+\hline
+{\em celllist} & A pointer to the celllist to set the part indices.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{cell_8h_ad8312b83775961cd7518212ae5ebfced}{cell\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{cell_8h_a97e82fdce04a0c032c90b3e3a1464a67}{cell\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{cell_8c_a7b9ff240746a465f37cdcd8d42d38141}{\index{cell.\-c@{cell.\-c}!cell\-\_\-welcome@{cell\-\_\-welcome}}
+\index{cell\-\_\-welcome@{cell\-\_\-welcome}!cell.c@{cell.\-c}}
+\subsubsection[{cell\-\_\-welcome}]{\setlength{\rightskip}{0pt plus 5cm}int cell\-\_\-welcome (
+\begin{DoxyParamCaption}
+\item[{struct {\bf cell} $\ast$}]{c, }
+\item[{struct {\bf part} $\ast$$\ast$}]{partlist}
+\end{DoxyParamCaption}
+)}}\label{cell_8c_a7b9ff240746a465f37cdcd8d42d38141}
+
+
+Move particles from the incomming buffer to the cell. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & The \hyperlink{structcell}{cell}. \\
+\hline
+{\em partlist} & A pointer to the partlist to set the part indices.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{cell_8h_ad8312b83775961cd7518212ae5ebfced}{cell\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{cell_8h_a97e82fdce04a0c032c90b3e3a1464a67}{cell\-\_\-err}). 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\hypertarget{cell_8c_a97e82fdce04a0c032c90b3e3a1464a67}{\index{cell.\-c@{cell.\-c}!cell\-\_\-err@{cell\-\_\-err}}
+\index{cell\-\_\-err@{cell\-\_\-err}!cell.c@{cell.\-c}}
+\subsubsection[{cell\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}int cell\-\_\-err = {\bf cell\-\_\-err\-\_\-ok}}}\label{cell_8c_a97e82fdce04a0c032c90b3e3a1464a67}
+\hypertarget{cell_8c_a2b1395cc460022ae57bc4202971c7184}{\index{cell.\-c@{cell.\-c}!cell\-\_\-err\-\_\-msg@{cell\-\_\-err\-\_\-msg}}
+\index{cell\-\_\-err\-\_\-msg@{cell\-\_\-err\-\_\-msg}!cell.c@{cell.\-c}}
+\subsubsection[{cell\-\_\-err\-\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ cell\-\_\-err\-\_\-msg\mbox{[}$\,$\mbox{]}}}\label{cell_8c_a2b1395cc460022ae57bc4202971c7184}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= \{
+        \textcolor{stringliteral}{"Nothing bad happened."},
+    \textcolor{stringliteral}{"An unexpected NULL pointer was encountered."},
+    \textcolor{stringliteral}{"A call to malloc failed, probably due to insufficient memory."},
+    \textcolor{stringliteral}{"A call to a pthread routine failed."}
+        \}
+\end{DoxyCode}
+\hypertarget{cell_8c_aa4ce5c02d61c9adb26f6e102cee43f3c}{\index{cell.\-c@{cell.\-c}!cell\-\_\-flip@{cell\-\_\-flip}}
+\index{cell\-\_\-flip@{cell\-\_\-flip}!cell.c@{cell.\-c}}
+\subsubsection[{cell\-\_\-flip}]{\setlength{\rightskip}{0pt plus 5cm}const char cell\-\_\-flip\mbox{[}27\mbox{]}}}\label{cell_8c_aa4ce5c02d61c9adb26f6e102cee43f3c}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= \{ 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 0 ,
+                             0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 \}
+\end{DoxyCode}
+\hypertarget{cell_8c_a5d2e61b0cb2d6b4547a69d4bdaae1272}{\index{cell.\-c@{cell.\-c}!cell\-\_\-shift@{cell\-\_\-shift}}
+\index{cell\-\_\-shift@{cell\-\_\-shift}!cell.c@{cell.\-c}}
+\subsubsection[{cell\-\_\-shift}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf F\-P\-T\-Y\-P\-E} cell\-\_\-shift\mbox{[}13 $\ast$3\mbox{]}}}\label{cell_8c_a5d2e61b0cb2d6b4547a69d4bdaae1272}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= \{
+     5.773502691896258e-01 ,  5.773502691896258e-01 ,  5.773502691896258e-01 ,
+     7.071067811865475e-01 ,  7.071067811865475e-01 ,  0.0                   ,
+     5.773502691896258e-01 ,  5.773502691896258e-01 , -5.773502691896258e-01 ,
+     7.071067811865475e-01 ,  0.0                   ,  7.071067811865475e-01 ,
+     1.0                   ,  0.0                   ,  0.0                   ,
+     7.071067811865475e-01 ,  0.0                   , -7.071067811865475e-01 ,
+     5.773502691896258e-01 , -5.773502691896258e-01 ,  5.773502691896258e-01 ,
+     7.071067811865475e-01 , -7.071067811865475e-01 ,  0.0                   ,
+     5.773502691896258e-01 , -5.773502691896258e-01 , -5.773502691896258e-01 ,
+     0.0                   ,  7.071067811865475e-01 ,  7.071067811865475e-01 ,
+     0.0                   ,  1.0                   ,  0.0                   ,
+     0.0                   ,  7.071067811865475e-01 , -7.071067811865475e-01 ,
+     0.0                   ,  0.0                   ,  1.0                   ,
+    \}
+\end{DoxyCode}
+\hypertarget{cell_8c_a55b8b95034c0b61da2766f2bf53beee0}{\index{cell.\-c@{cell.\-c}!cell\-\_\-sortlist\-I\-D@{cell\-\_\-sortlist\-I\-D}}
+\index{cell\-\_\-sortlist\-I\-D@{cell\-\_\-sortlist\-I\-D}!cell.c@{cell.\-c}}
+\subsubsection[{cell\-\_\-sortlist\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}const char cell\-\_\-sortlist\-I\-D\mbox{[}27\mbox{]}}}\label{cell_8c_a55b8b95034c0b61da2766f2bf53beee0}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= \{
+       0 ,
+       1 , 
+       2 ,
+       3 ,
+       4 , 
+       5 ,
+       6 ,
+       7 , 
+       8 ,
+       9 ,
+       10 , 
+       11 ,
+       12 ,
+       0 , 
+       12 ,
+       11 ,
+       10 , 
+       9 ,
+       8 ,
+       7 , 
+       6 ,
+       5 ,
+       4 , 
+       3 ,
+       2 ,
+       1 , 
+       0 
+    \}
+\end{DoxyCode}

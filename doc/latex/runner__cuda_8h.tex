@@ -1,0 +1,165 @@
+\hypertarget{runner__cuda_8h}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/runner\-\_\-cuda.h File Reference}
+\label{runner__cuda_8h}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/runner\-\_\-cuda.\-h@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/runner\-\_\-cuda.\-h}}
+}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structqueue__cuda}{queue\-\_\-cuda}
+\item 
+struct \hyperlink{structtask__cuda}{task\-\_\-cuda}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{runner__cuda_8h_a74a96731339237809afeb31e7134c474}{cuda\-\_\-maxparts}~512
+\item 
+\#define \hyperlink{runner__cuda_8h_a34d9acd4daa6b80a710ece82d892ef06}{cuda\-\_\-maxdiags}~352
+\item 
+\#define \hyperlink{runner__cuda_8h_a5e0094edf670288f1c7cd308acbf6d8f}{cuda\-\_\-ndiags}~( ( (\hyperlink{runner__cuda_8h_a34d9acd4daa6b80a710ece82d892ef06}{cuda\-\_\-maxdiags} -\/ 1) $\ast$ \hyperlink{runner__cuda_8h_a34d9acd4daa6b80a710ece82d892ef06}{cuda\-\_\-maxdiags} ) / 2 )
+\item 
+\#define \hyperlink{runner__cuda_8h_a2e8ccd5fc81299ca1368e3713ec8cb72}{cuda\-\_\-frame}~32
+\item 
+\#define \hyperlink{runner__cuda_8h_a9f6564b97ab4e05735f8926e78933772}{cuda\-\_\-maxpots}~100
+\item 
+\#define \hyperlink{runner__cuda_8h_a575f0cf10b4512a61051d043c16391a4}{max\-\_\-fingers}~1
+\item 
+\#define \hyperlink{runner__cuda_8h_a176bba1c74da995adea06e8c9c1e65c6}{cuda\-\_\-maxblocks}~64
+\item 
+\#define \hyperlink{runner__cuda_8h_ac5861d6da95b6eedeff0a3c1039185b7}{cuda\-\_\-memcpy\-\_\-chunk}~6
+\item 
+\#define \hyperlink{runner__cuda_8h_a1d23faf1dca05675be6911efae6c8033}{cuda\-\_\-sum\-\_\-chunk}~3
+\item 
+\#define \hyperlink{runner__cuda_8h_aee6e4ee4eb535be4b539353983efdef6}{cuda\-\_\-maxqueues}~30
+\item 
+\#define \hyperlink{runner__cuda_8h_a0a1ed8bbd23944c40f5f813faf646d4a}{T\-I\-M\-E\-R\-\_\-\-T\-I\-C\-\_\-\-N\-D}
+\item 
+\#define \hyperlink{runner__cuda_8h_a4645a08ed89c93f752df5907ccd35701}{T\-I\-M\-E\-R\-\_\-\-T\-O\-C\-\_\-\-N\-D}(tid)
+\item 
+\#define \hyperlink{runner__cuda_8h_a79362ec45b12b285fb1d32aa8cb2c0ef}{T\-I\-M\-E\-R\-\_\-\-T\-I\-C}
+\item 
+\#define \hyperlink{runner__cuda_8h_ad10408271b2a2a3a6f0c4b4b494d2a71}{T\-I\-M\-E\-R\-\_\-\-T\-O\-C}(tid)
+\item 
+\#define \hyperlink{runner__cuda_8h_a15f4a210b08dde5a51316ae4b6fef297}{T\-I\-M\-E\-R\-\_\-\-T\-I\-C2}
+\item 
+\#define \hyperlink{runner__cuda_8h_a5f528e752e3015db0ebd9b4e8fd424e9}{T\-I\-M\-E\-R\-\_\-\-T\-O\-C2}(tid)
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \\*
+\hyperlink{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06cac30532a0ab1b93b2019fbd65a797c8bf}{tid\-\_\-mutex} = 0, 
+\hyperlink{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06cacaf8c965cf9870ccd01688668f460509}{tid\-\_\-queue}, 
+\hyperlink{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06ca7707d07ba80575e3096c782594709fe4}{tid\-\_\-gettask}, 
+\hyperlink{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06caea5b5256697b0d0629213b40a59b3d28}{tid\-\_\-memcpy}, 
+\\*
+\hyperlink{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06ca57ffa9919fa5441608be427e0d5d2064}{tid\-\_\-update}, 
+\hyperlink{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06ca38364a78c2a5fe5262c1134850d2e264}{tid\-\_\-pack}, 
+\hyperlink{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06ca583a53a693a32c6f1be22eaec3227fda}{tid\-\_\-sort}, 
+\hyperlink{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06ca0baa6dbbccf28c74936ef61031624a84}{tid\-\_\-pair}, 
+\\*
+\hyperlink{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06ca81ff30f3e4d413f9a444bc99939d0abb}{tid\-\_\-self}, 
+\hyperlink{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06cad4a524e9f17391295c84c24384e42d7c}{tid\-\_\-potential}, 
+\hyperlink{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06ca16ada26fbe496dcaae6713a344341bf0}{tid\-\_\-potential4}, 
+\hyperlink{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06ca379dcfe346b332b500393510d3c4731f}{tid\-\_\-total}, 
+\\*
+\hyperlink{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06cac82444847af0e0bd0c65ecd886252dfc}{tid\-\_\-count}
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{runner__cuda_8h_a2e8ccd5fc81299ca1368e3713ec8cb72}{\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!cuda\-\_\-frame@{cuda\-\_\-frame}}
+\index{cuda\-\_\-frame@{cuda\-\_\-frame}!runner_cuda.h@{runner\-\_\-cuda.\-h}}
+\subsubsection[{cuda\-\_\-frame}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-frame~32}}\label{runner__cuda_8h_a2e8ccd5fc81299ca1368e3713ec8cb72}
+\hypertarget{runner__cuda_8h_a176bba1c74da995adea06e8c9c1e65c6}{\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!cuda\-\_\-maxblocks@{cuda\-\_\-maxblocks}}
+\index{cuda\-\_\-maxblocks@{cuda\-\_\-maxblocks}!runner_cuda.h@{runner\-\_\-cuda.\-h}}
+\subsubsection[{cuda\-\_\-maxblocks}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-maxblocks~64}}\label{runner__cuda_8h_a176bba1c74da995adea06e8c9c1e65c6}
+\hypertarget{runner__cuda_8h_a34d9acd4daa6b80a710ece82d892ef06}{\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!cuda\-\_\-maxdiags@{cuda\-\_\-maxdiags}}
+\index{cuda\-\_\-maxdiags@{cuda\-\_\-maxdiags}!runner_cuda.h@{runner\-\_\-cuda.\-h}}
+\subsubsection[{cuda\-\_\-maxdiags}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-maxdiags~352}}\label{runner__cuda_8h_a34d9acd4daa6b80a710ece82d892ef06}
+\hypertarget{runner__cuda_8h_a74a96731339237809afeb31e7134c474}{\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!cuda\-\_\-maxparts@{cuda\-\_\-maxparts}}
+\index{cuda\-\_\-maxparts@{cuda\-\_\-maxparts}!runner_cuda.h@{runner\-\_\-cuda.\-h}}
+\subsubsection[{cuda\-\_\-maxparts}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-maxparts~512}}\label{runner__cuda_8h_a74a96731339237809afeb31e7134c474}
+\hypertarget{runner__cuda_8h_a9f6564b97ab4e05735f8926e78933772}{\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!cuda\-\_\-maxpots@{cuda\-\_\-maxpots}}
+\index{cuda\-\_\-maxpots@{cuda\-\_\-maxpots}!runner_cuda.h@{runner\-\_\-cuda.\-h}}
+\subsubsection[{cuda\-\_\-maxpots}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-maxpots~100}}\label{runner__cuda_8h_a9f6564b97ab4e05735f8926e78933772}
+\hypertarget{runner__cuda_8h_aee6e4ee4eb535be4b539353983efdef6}{\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!cuda\-\_\-maxqueues@{cuda\-\_\-maxqueues}}
+\index{cuda\-\_\-maxqueues@{cuda\-\_\-maxqueues}!runner_cuda.h@{runner\-\_\-cuda.\-h}}
+\subsubsection[{cuda\-\_\-maxqueues}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-maxqueues~30}}\label{runner__cuda_8h_aee6e4ee4eb535be4b539353983efdef6}
+\hypertarget{runner__cuda_8h_ac5861d6da95b6eedeff0a3c1039185b7}{\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!cuda\-\_\-memcpy\-\_\-chunk@{cuda\-\_\-memcpy\-\_\-chunk}}
+\index{cuda\-\_\-memcpy\-\_\-chunk@{cuda\-\_\-memcpy\-\_\-chunk}!runner_cuda.h@{runner\-\_\-cuda.\-h}}
+\subsubsection[{cuda\-\_\-memcpy\-\_\-chunk}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-memcpy\-\_\-chunk~6}}\label{runner__cuda_8h_ac5861d6da95b6eedeff0a3c1039185b7}
+\hypertarget{runner__cuda_8h_a5e0094edf670288f1c7cd308acbf6d8f}{\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!cuda\-\_\-ndiags@{cuda\-\_\-ndiags}}
+\index{cuda\-\_\-ndiags@{cuda\-\_\-ndiags}!runner_cuda.h@{runner\-\_\-cuda.\-h}}
+\subsubsection[{cuda\-\_\-ndiags}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-ndiags~( ( ({\bf cuda\-\_\-maxdiags} -\/ 1) $\ast$ {\bf cuda\-\_\-maxdiags} ) / 2 )}}\label{runner__cuda_8h_a5e0094edf670288f1c7cd308acbf6d8f}
+\hypertarget{runner__cuda_8h_a1d23faf1dca05675be6911efae6c8033}{\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!cuda\-\_\-sum\-\_\-chunk@{cuda\-\_\-sum\-\_\-chunk}}
+\index{cuda\-\_\-sum\-\_\-chunk@{cuda\-\_\-sum\-\_\-chunk}!runner_cuda.h@{runner\-\_\-cuda.\-h}}
+\subsubsection[{cuda\-\_\-sum\-\_\-chunk}]{\setlength{\rightskip}{0pt plus 5cm}\#define cuda\-\_\-sum\-\_\-chunk~3}}\label{runner__cuda_8h_a1d23faf1dca05675be6911efae6c8033}
+\hypertarget{runner__cuda_8h_a575f0cf10b4512a61051d043c16391a4}{\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!max\-\_\-fingers@{max\-\_\-fingers}}
+\index{max\-\_\-fingers@{max\-\_\-fingers}!runner_cuda.h@{runner\-\_\-cuda.\-h}}
+\subsubsection[{max\-\_\-fingers}]{\setlength{\rightskip}{0pt plus 5cm}\#define max\-\_\-fingers~1}}\label{runner__cuda_8h_a575f0cf10b4512a61051d043c16391a4}
+\hypertarget{runner__cuda_8h_a79362ec45b12b285fb1d32aa8cb2c0ef}{\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!T\-I\-M\-E\-R\-\_\-\-T\-I\-C@{T\-I\-M\-E\-R\-\_\-\-T\-I\-C}}
+\index{T\-I\-M\-E\-R\-\_\-\-T\-I\-C@{T\-I\-M\-E\-R\-\_\-\-T\-I\-C}!runner_cuda.h@{runner\-\_\-cuda.\-h}}
+\subsubsection[{T\-I\-M\-E\-R\-\_\-\-T\-I\-C}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-I\-M\-E\-R\-\_\-\-T\-I\-C}}\label{runner__cuda_8h_a79362ec45b12b285fb1d32aa8cb2c0ef}
+\hypertarget{runner__cuda_8h_a15f4a210b08dde5a51316ae4b6fef297}{\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!T\-I\-M\-E\-R\-\_\-\-T\-I\-C2@{T\-I\-M\-E\-R\-\_\-\-T\-I\-C2}}
+\index{T\-I\-M\-E\-R\-\_\-\-T\-I\-C2@{T\-I\-M\-E\-R\-\_\-\-T\-I\-C2}!runner_cuda.h@{runner\-\_\-cuda.\-h}}
+\subsubsection[{T\-I\-M\-E\-R\-\_\-\-T\-I\-C2}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-I\-M\-E\-R\-\_\-\-T\-I\-C2}}\label{runner__cuda_8h_a15f4a210b08dde5a51316ae4b6fef297}
+\hypertarget{runner__cuda_8h_a0a1ed8bbd23944c40f5f813faf646d4a}{\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!T\-I\-M\-E\-R\-\_\-\-T\-I\-C\-\_\-\-N\-D@{T\-I\-M\-E\-R\-\_\-\-T\-I\-C\-\_\-\-N\-D}}
+\index{T\-I\-M\-E\-R\-\_\-\-T\-I\-C\-\_\-\-N\-D@{T\-I\-M\-E\-R\-\_\-\-T\-I\-C\-\_\-\-N\-D}!runner_cuda.h@{runner\-\_\-cuda.\-h}}
+\subsubsection[{T\-I\-M\-E\-R\-\_\-\-T\-I\-C\-\_\-\-N\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-I\-M\-E\-R\-\_\-\-T\-I\-C\-\_\-\-N\-D}}\label{runner__cuda_8h_a0a1ed8bbd23944c40f5f813faf646d4a}
+\hypertarget{runner__cuda_8h_ad10408271b2a2a3a6f0c4b4b494d2a71}{\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!T\-I\-M\-E\-R\-\_\-\-T\-O\-C@{T\-I\-M\-E\-R\-\_\-\-T\-O\-C}}
+\index{T\-I\-M\-E\-R\-\_\-\-T\-O\-C@{T\-I\-M\-E\-R\-\_\-\-T\-O\-C}!runner_cuda.h@{runner\-\_\-cuda.\-h}}
+\subsubsection[{T\-I\-M\-E\-R\-\_\-\-T\-O\-C}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-I\-M\-E\-R\-\_\-\-T\-O\-C(
+\begin{DoxyParamCaption}
+\item[{}]{tid}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8h_ad10408271b2a2a3a6f0c4b4b494d2a71}
+\hypertarget{runner__cuda_8h_a5f528e752e3015db0ebd9b4e8fd424e9}{\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!T\-I\-M\-E\-R\-\_\-\-T\-O\-C2@{T\-I\-M\-E\-R\-\_\-\-T\-O\-C2}}
+\index{T\-I\-M\-E\-R\-\_\-\-T\-O\-C2@{T\-I\-M\-E\-R\-\_\-\-T\-O\-C2}!runner_cuda.h@{runner\-\_\-cuda.\-h}}
+\subsubsection[{T\-I\-M\-E\-R\-\_\-\-T\-O\-C2}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-I\-M\-E\-R\-\_\-\-T\-O\-C2(
+\begin{DoxyParamCaption}
+\item[{}]{tid}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8h_a5f528e752e3015db0ebd9b4e8fd424e9}
+\hypertarget{runner__cuda_8h_a4645a08ed89c93f752df5907ccd35701}{\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!T\-I\-M\-E\-R\-\_\-\-T\-O\-C\-\_\-\-N\-D@{T\-I\-M\-E\-R\-\_\-\-T\-O\-C\-\_\-\-N\-D}}
+\index{T\-I\-M\-E\-R\-\_\-\-T\-O\-C\-\_\-\-N\-D@{T\-I\-M\-E\-R\-\_\-\-T\-O\-C\-\_\-\-N\-D}!runner_cuda.h@{runner\-\_\-cuda.\-h}}
+\subsubsection[{T\-I\-M\-E\-R\-\_\-\-T\-O\-C\-\_\-\-N\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-I\-M\-E\-R\-\_\-\-T\-O\-C\-\_\-\-N\-D(
+\begin{DoxyParamCaption}
+\item[{}]{tid}
+\end{DoxyParamCaption}
+)}}\label{runner__cuda_8h_a4645a08ed89c93f752df5907ccd35701}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06c}{\subsubsection[{anonymous enum}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}}\label{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06c}
+Timers for the cuda parts. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{tid\-\_\-mutex@{tid\-\_\-mutex}!runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}}\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!tid\-\_\-mutex@{tid\-\_\-mutex}}\item[{\em 
+\hypertarget{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06cac30532a0ab1b93b2019fbd65a797c8bf}{tid\-\_\-mutex}\label{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06cac30532a0ab1b93b2019fbd65a797c8bf}
+}]\index{tid\-\_\-queue@{tid\-\_\-queue}!runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}}\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!tid\-\_\-queue@{tid\-\_\-queue}}\item[{\em 
+\hypertarget{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06cacaf8c965cf9870ccd01688668f460509}{tid\-\_\-queue}\label{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06cacaf8c965cf9870ccd01688668f460509}
+}]\index{tid\-\_\-gettask@{tid\-\_\-gettask}!runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}}\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!tid\-\_\-gettask@{tid\-\_\-gettask}}\item[{\em 
+\hypertarget{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06ca7707d07ba80575e3096c782594709fe4}{tid\-\_\-gettask}\label{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06ca7707d07ba80575e3096c782594709fe4}
+}]\index{tid\-\_\-memcpy@{tid\-\_\-memcpy}!runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}}\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!tid\-\_\-memcpy@{tid\-\_\-memcpy}}\item[{\em 
+\hypertarget{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06caea5b5256697b0d0629213b40a59b3d28}{tid\-\_\-memcpy}\label{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06caea5b5256697b0d0629213b40a59b3d28}
+}]\index{tid\-\_\-update@{tid\-\_\-update}!runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}}\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!tid\-\_\-update@{tid\-\_\-update}}\item[{\em 
+\hypertarget{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06ca57ffa9919fa5441608be427e0d5d2064}{tid\-\_\-update}\label{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06ca57ffa9919fa5441608be427e0d5d2064}
+}]\index{tid\-\_\-pack@{tid\-\_\-pack}!runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}}\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!tid\-\_\-pack@{tid\-\_\-pack}}\item[{\em 
+\hypertarget{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06ca38364a78c2a5fe5262c1134850d2e264}{tid\-\_\-pack}\label{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06ca38364a78c2a5fe5262c1134850d2e264}
+}]\index{tid\-\_\-sort@{tid\-\_\-sort}!runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}}\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!tid\-\_\-sort@{tid\-\_\-sort}}\item[{\em 
+\hypertarget{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06ca583a53a693a32c6f1be22eaec3227fda}{tid\-\_\-sort}\label{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06ca583a53a693a32c6f1be22eaec3227fda}
+}]\index{tid\-\_\-pair@{tid\-\_\-pair}!runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}}\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!tid\-\_\-pair@{tid\-\_\-pair}}\item[{\em 
+\hypertarget{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06ca0baa6dbbccf28c74936ef61031624a84}{tid\-\_\-pair}\label{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06ca0baa6dbbccf28c74936ef61031624a84}
+}]\index{tid\-\_\-self@{tid\-\_\-self}!runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}}\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!tid\-\_\-self@{tid\-\_\-self}}\item[{\em 
+\hypertarget{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06ca81ff30f3e4d413f9a444bc99939d0abb}{tid\-\_\-self}\label{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06ca81ff30f3e4d413f9a444bc99939d0abb}
+}]\index{tid\-\_\-potential@{tid\-\_\-potential}!runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}}\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!tid\-\_\-potential@{tid\-\_\-potential}}\item[{\em 
+\hypertarget{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06cad4a524e9f17391295c84c24384e42d7c}{tid\-\_\-potential}\label{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06cad4a524e9f17391295c84c24384e42d7c}
+}]\index{tid\-\_\-potential4@{tid\-\_\-potential4}!runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}}\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!tid\-\_\-potential4@{tid\-\_\-potential4}}\item[{\em 
+\hypertarget{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06ca16ada26fbe496dcaae6713a344341bf0}{tid\-\_\-potential4}\label{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06ca16ada26fbe496dcaae6713a344341bf0}
+}]\index{tid\-\_\-total@{tid\-\_\-total}!runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}}\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!tid\-\_\-total@{tid\-\_\-total}}\item[{\em 
+\hypertarget{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06ca379dcfe346b332b500393510d3c4731f}{tid\-\_\-total}\label{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06ca379dcfe346b332b500393510d3c4731f}
+}]\index{tid\-\_\-count@{tid\-\_\-count}!runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}}\index{runner\-\_\-cuda.\-h@{runner\-\_\-cuda.\-h}!tid\-\_\-count@{tid\-\_\-count}}\item[{\em 
+\hypertarget{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06cac82444847af0e0bd0c65ecd886252dfc}{tid\-\_\-count}\label{runner__cuda_8h_adc29c2ff13d900c2f185ee95427fb06cac82444847af0e0bd0c65ecd886252dfc}
+}]\end{description}
+\end{Desc}

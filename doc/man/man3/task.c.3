@@ -1,0 +1,102 @@
+.TH "/home/stephan/code/unversioned/mdcore-0.1.7/src/task.c" 3 "Mon Jan 6 2014" "Version 0.1.5" "mdcore" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/stephan/code/unversioned/mdcore-0.1.7/src/task.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include '\&.\&./config\&.h'\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <pthread\&.h>\fP
+.br
+\fC#include <math\&.h>\fP
+.br
+\fC#include <float\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <limits\&.h>\fP
+.br
+\fC#include 'cycle\&.h'\fP
+.br
+\fC#include 'errs\&.h'\fP
+.br
+\fC#include 'fptype\&.h'\fP
+.br
+\fC#include 'lock\&.h'\fP
+.br
+\fC#include 'task\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBerror\fP(\fBid\fP)   ( \fBtask_err\fP = \fBerrs_register\fP( \fBid\fP , \fBtask_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBtask_addunlock\fP (struct \fBtask\fP *ta, struct \fBtask\fP *tb)"
+.br
+.RI "\fIAdd a task dependency\&. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBtask_err\fP = \fBtask_err_ok\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBtask_rcount\fP = 0"
+.br
+.ti -1c
+.RI "char * \fBtask_err_msg\fP [4]"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define error(\fBid\fP)   ( \fBtask_err\fP = \fBerrs_register\fP( \fBid\fP , \fBtask_err_msg\fP[-(\fBid\fP)] , __LINE__ , __FUNCTION__ , __FILE__ ) )"
+
+.SH "Function Documentation"
+.PP 
+.SS "int task_addunlock (struct \fBtask\fP *ta, struct \fBtask\fP *tb)"
+
+.PP
+Add a task dependency\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIta\fP The unlocking \fBtask\fP\&. 
+.br
+\fItb\fP The unlocked \fBtask\fP\&. 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "int task_err = \fBtask_err_ok\fP"
+The ID of the last error\&. 
+.SS "char* task_err_msg[4]"
+\fBInitial value:\fP
+.PP
+.nf
+= {
+        "Nothing bad happened\&.",
+    "An unexpected NULL pointer was encountered\&.",
+    "A call to malloc failed, probably due to insufficient memory\&.",
+    "Attempted to add an unlock to a full task\&.",
+        }
+.fi
+.SS "unsigned int task_rcount = 0"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mdcore from the source code\&.

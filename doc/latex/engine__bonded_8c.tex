@@ -1,0 +1,418 @@
+\hypertarget{engine__bonded_8c}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/engine\-\_\-bonded.c File Reference}
+\label{engine__bonded_8c}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/engine\-\_\-bonded.\-c@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/engine\-\_\-bonded.\-c}}
+}
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$pthread.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include $<$float.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}../config.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$omp.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}cycle.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}errs.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fptype.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lock.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}part.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}cell.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}space.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}potential.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}runner.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}bond.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}rigid.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}angle.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}dihedral.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}exclusion.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}reader.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}engine.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{engine__bonded_8c_a7673862d447029edaf3172ebd94aa28e}{error}(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})~( \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err} = \hyperlink{errs_8h_ae37a9c0e0a0aa4a92dbe64c0f38ed95c}{errs\-\_\-register}( \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id} , \hyperlink{engine_8h_aa489083c5e5d436bafd05a7860b21804}{engine\-\_\-err\-\_\-msg}\mbox{[}-\/(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{engine__bonded_8c_a283869cb42958585b07d8da489560d38}{engine\-\_\-bonded\-\_\-eval\-\_\-sets} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Compute all bonded interactions stored in this engine. \end{DoxyCompactList}\item 
+int \hyperlink{engine__bonded_8c_a1f2a4097ab35dec39a77ccad1e212596}{engine\-\_\-bonded\-\_\-sets} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int max\-\_\-sets)
+\begin{DoxyCompactList}\small\item\em Assemble non-\/conflicting sets of bonded interactions. \end{DoxyCompactList}\item 
+int \hyperlink{engine__bonded_8c_a0a1196791936f88ca5d6bbf5363fb78f}{engine\-\_\-dihedral\-\_\-add} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int i, int j, int k, int l, int pid)
+\begin{DoxyCompactList}\small\item\em Add a dihedral interaction to the engine. \end{DoxyCompactList}\item 
+int \hyperlink{engine__bonded_8c_a9233c5ae9b841e227922260c1747df9a}{engine\-\_\-angle\-\_\-add} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int i, int j, int k, int pid)
+\begin{DoxyCompactList}\small\item\em Add a angle interaction to the engine. \end{DoxyCompactList}\item 
+int \hyperlink{engine__bonded_8c_a7f4a778e88593837c2fb2d7b61894f5c}{engine\-\_\-exclusion\-\_\-shrink} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Remove duplicate exclusions. \end{DoxyCompactList}\item 
+int \hyperlink{engine__bonded_8c_a8c09326908e15e1509f495c33619e761}{engine\-\_\-exclusion\-\_\-add} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int i, int j)
+\begin{DoxyCompactList}\small\item\em Add a exclusioned interaction to the engine. \end{DoxyCompactList}\item 
+int \hyperlink{engine__bonded_8c_a9bfc2c0c4d6a22191424ee0a1a428202}{engine\-\_\-bond\-\_\-add} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int i, int j)
+\begin{DoxyCompactList}\small\item\em Add a bonded interaction to the engine. \end{DoxyCompactList}\item 
+int \hyperlink{engine__bonded_8c_af7db4a2e3357cd92cdda4e17b111b43b}{engine\-\_\-bonded\-\_\-eval} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Compute all bonded interactions stored in this engine. \end{DoxyCompactList}\item 
+int \hyperlink{engine__bonded_8c_ab36c8e8f6eba5ad7d7a134c157505de4}{engine\-\_\-dihedral\-\_\-eval} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Compute the dihedral interactions stored in this engine. \end{DoxyCompactList}\item 
+int \hyperlink{engine__bonded_8c_a4b50a370eff915c24f435206adc9e69a}{engine\-\_\-angle\-\_\-eval} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Compute the angled interactions stored in this engine. \end{DoxyCompactList}\item 
+int \hyperlink{engine__bonded_8c_a40f43733856ad7022c172be2b7946246}{engine\-\_\-exclusion\-\_\-eval} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Compute the exclusioned interactions stored in this engine. \end{DoxyCompactList}\item 
+int \hyperlink{engine__bonded_8c_a933e8a837ef1b6c6b8b7cd1853911f90}{engine\-\_\-bond\-\_\-eval} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+\begin{DoxyCompactList}\small\item\em Compute the bonded interactions stored in this engine. \end{DoxyCompactList}\item 
+int \hyperlink{engine__bonded_8c_ae71d4fc7b237c821f4d6303f6518d369}{engine\-\_\-bond\-\_\-addpot} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, struct \hyperlink{structpotential}{potential} $\ast$p, int i, int j)
+\begin{DoxyCompactList}\small\item\em Add a bond potential. \end{DoxyCompactList}\item 
+int \hyperlink{engine__bonded_8c_ad01a436b55b2214e91fb7229faa64a4e}{engine\-\_\-dihedral\-\_\-addpot} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, struct \hyperlink{structpotential}{potential} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Add a dihedral potential. \end{DoxyCompactList}\item 
+int \hyperlink{engine__bonded_8c_ae9e8ee413a8c582a7e7605bf93a7466e}{engine\-\_\-angle\-\_\-addpot} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, struct \hyperlink{structpotential}{potential} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Add a angle potential. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{engine__bonded_8c_a7673862d447029edaf3172ebd94aa28e}{\index{engine\-\_\-bonded.\-c@{engine\-\_\-bonded.\-c}!error@{error}}
+\index{error@{error}!engine_bonded.c@{engine\-\_\-bonded.\-c}}
+\subsubsection[{error}]{\setlength{\rightskip}{0pt plus 5cm}\#define error(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf id}}
+\end{DoxyParamCaption}
+)~( {\bf engine\-\_\-err} = {\bf errs\-\_\-register}( {\bf id} , {\bf engine\-\_\-err\-\_\-msg}\mbox{[}-\/({\bf id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )}}\label{engine__bonded_8c_a7673862d447029edaf3172ebd94aa28e}
+
+
+\subsection{Function Documentation}
+\hypertarget{engine__bonded_8c_a9233c5ae9b841e227922260c1747df9a}{\index{engine\-\_\-bonded.\-c@{engine\-\_\-bonded.\-c}!engine\-\_\-angle\-\_\-add@{engine\-\_\-angle\-\_\-add}}
+\index{engine\-\_\-angle\-\_\-add@{engine\-\_\-angle\-\_\-add}!engine_bonded.c@{engine\-\_\-bonded.\-c}}
+\subsubsection[{engine\-\_\-angle\-\_\-add}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-angle\-\_\-add (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{int}]{k, }
+\item[{int}]{pid}
+\end{DoxyParamCaption}
+)}}\label{engine__bonded_8c_a9233c5ae9b841e227922260c1747df9a}
+
+
+Add a angle interaction to the engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em i} & The I\-D of the first \hyperlink{structpart}{part}. \\
+\hline
+{\em j} & The I\-D of the second \hyperlink{structpart}{part}. \\
+\hline
+{\em k} & The I\-D of the third \hyperlink{structpart}{part}. \\
+\hline
+{\em pid} & Index of the \hyperlink{structpotential}{potential} for this bond.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine__bonded_8c_ae9e8ee413a8c582a7e7605bf93a7466e}{\index{engine\-\_\-bonded.\-c@{engine\-\_\-bonded.\-c}!engine\-\_\-angle\-\_\-addpot@{engine\-\_\-angle\-\_\-addpot}}
+\index{engine\-\_\-angle\-\_\-addpot@{engine\-\_\-angle\-\_\-addpot}!engine_bonded.c@{engine\-\_\-bonded.\-c}}
+\subsubsection[{engine\-\_\-angle\-\_\-addpot}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-angle\-\_\-addpot (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{struct {\bf potential} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{engine__bonded_8c_ae9e8ee413a8c582a7e7605bf93a7466e}
+
+
+Add a angle potential. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em p} & The \hyperlink{structpotential}{potential} to add to the \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The I\-D of the added angle potential or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine__bonded_8c_a4b50a370eff915c24f435206adc9e69a}{\index{engine\-\_\-bonded.\-c@{engine\-\_\-bonded.\-c}!engine\-\_\-angle\-\_\-eval@{engine\-\_\-angle\-\_\-eval}}
+\index{engine\-\_\-angle\-\_\-eval@{engine\-\_\-angle\-\_\-eval}!engine_bonded.c@{engine\-\_\-bonded.\-c}}
+\subsubsection[{engine\-\_\-angle\-\_\-eval}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-angle\-\_\-eval (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine__bonded_8c_a4b50a370eff915c24f435206adc9e69a}
+
+
+Compute the angled interactions stored in this engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine__bonded_8c_a9bfc2c0c4d6a22191424ee0a1a428202}{\index{engine\-\_\-bonded.\-c@{engine\-\_\-bonded.\-c}!engine\-\_\-bond\-\_\-add@{engine\-\_\-bond\-\_\-add}}
+\index{engine\-\_\-bond\-\_\-add@{engine\-\_\-bond\-\_\-add}!engine_bonded.c@{engine\-\_\-bonded.\-c}}
+\subsubsection[{engine\-\_\-bond\-\_\-add}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-bond\-\_\-add (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{int}]{i, }
+\item[{int}]{j}
+\end{DoxyParamCaption}
+)}}\label{engine__bonded_8c_a9bfc2c0c4d6a22191424ee0a1a428202}
+
+
+Add a bonded interaction to the engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em i} & The I\-D of the first \hyperlink{structpart}{part}. \\
+\hline
+{\em j} & The I\-D of the second \hyperlink{structpart}{part}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine__bonded_8c_ae71d4fc7b237c821f4d6303f6518d369}{\index{engine\-\_\-bonded.\-c@{engine\-\_\-bonded.\-c}!engine\-\_\-bond\-\_\-addpot@{engine\-\_\-bond\-\_\-addpot}}
+\index{engine\-\_\-bond\-\_\-addpot@{engine\-\_\-bond\-\_\-addpot}!engine_bonded.c@{engine\-\_\-bonded.\-c}}
+\subsubsection[{engine\-\_\-bond\-\_\-addpot}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-bond\-\_\-addpot (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{struct {\bf potential} $\ast$}]{p, }
+\item[{int}]{i, }
+\item[{int}]{j}
+\end{DoxyParamCaption}
+)}}\label{engine__bonded_8c_ae71d4fc7b237c821f4d6303f6518d369}
+
+
+Add a bond potential. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em p} & The \hyperlink{structpotential}{potential} to add to the \hyperlink{structengine}{engine}. \\
+\hline
+{\em i} & I\-D of particle type for this interaction. \\
+\hline
+{\em j} & I\-D of second particle type for this interaction.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}).
+\end{DoxyReturn}
+Adds the given bonded potential for pairs of particles of type {\ttfamily i} and {\ttfamily j}, where {\ttfamily i} and {\ttfamily j} may be the same type I\-D. \hypertarget{engine__bonded_8c_a933e8a837ef1b6c6b8b7cd1853911f90}{\index{engine\-\_\-bonded.\-c@{engine\-\_\-bonded.\-c}!engine\-\_\-bond\-\_\-eval@{engine\-\_\-bond\-\_\-eval}}
+\index{engine\-\_\-bond\-\_\-eval@{engine\-\_\-bond\-\_\-eval}!engine_bonded.c@{engine\-\_\-bonded.\-c}}
+\subsubsection[{engine\-\_\-bond\-\_\-eval}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-bond\-\_\-eval (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine__bonded_8c_a933e8a837ef1b6c6b8b7cd1853911f90}
+
+
+Compute the bonded interactions stored in this engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine__bonded_8c_af7db4a2e3357cd92cdda4e17b111b43b}{\index{engine\-\_\-bonded.\-c@{engine\-\_\-bonded.\-c}!engine\-\_\-bonded\-\_\-eval@{engine\-\_\-bonded\-\_\-eval}}
+\index{engine\-\_\-bonded\-\_\-eval@{engine\-\_\-bonded\-\_\-eval}!engine_bonded.c@{engine\-\_\-bonded.\-c}}
+\subsubsection[{engine\-\_\-bonded\-\_\-eval}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-bonded\-\_\-eval (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine__bonded_8c_af7db4a2e3357cd92cdda4e17b111b43b}
+
+
+Compute all bonded interactions stored in this engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}).
+\end{DoxyReturn}
+Does the same as \hyperlink{engine__bonded_8c_a933e8a837ef1b6c6b8b7cd1853911f90}{engine\-\_\-bond\-\_\-eval}, \hyperlink{engine__bonded_8c_a4b50a370eff915c24f435206adc9e69a}{engine\-\_\-angle\-\_\-eval} and \#engine\-\_\-dihedral eval, yet all in one go to avoid excessive updates of the particle forces. \hypertarget{engine__bonded_8c_a283869cb42958585b07d8da489560d38}{\index{engine\-\_\-bonded.\-c@{engine\-\_\-bonded.\-c}!engine\-\_\-bonded\-\_\-eval\-\_\-sets@{engine\-\_\-bonded\-\_\-eval\-\_\-sets}}
+\index{engine\-\_\-bonded\-\_\-eval\-\_\-sets@{engine\-\_\-bonded\-\_\-eval\-\_\-sets}!engine_bonded.c@{engine\-\_\-bonded.\-c}}
+\subsubsection[{engine\-\_\-bonded\-\_\-eval\-\_\-sets}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-bonded\-\_\-eval\-\_\-sets (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine__bonded_8c_a283869cb42958585b07d8da489560d38}
+
+
+Compute all bonded interactions stored in this engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}).
+\end{DoxyReturn}
+Does the same as \hyperlink{engine__bonded_8c_a933e8a837ef1b6c6b8b7cd1853911f90}{engine\-\_\-bond\-\_\-eval}, \hyperlink{engine__bonded_8c_a4b50a370eff915c24f435206adc9e69a}{engine\-\_\-angle\-\_\-eval} and \#engine\-\_\-dihedral eval, yet all in one go to avoid excessive updates of the particle forces. \hypertarget{engine__bonded_8c_a1f2a4097ab35dec39a77ccad1e212596}{\index{engine\-\_\-bonded.\-c@{engine\-\_\-bonded.\-c}!engine\-\_\-bonded\-\_\-sets@{engine\-\_\-bonded\-\_\-sets}}
+\index{engine\-\_\-bonded\-\_\-sets@{engine\-\_\-bonded\-\_\-sets}!engine_bonded.c@{engine\-\_\-bonded.\-c}}
+\subsubsection[{engine\-\_\-bonded\-\_\-sets}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-bonded\-\_\-sets (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{int}]{max\-\_\-sets}
+\end{DoxyParamCaption}
+)}}\label{engine__bonded_8c_a1f2a4097ab35dec39a77ccad1e212596}
+
+
+Assemble non-\/conflicting sets of bonded interactions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine__bonded_8c_a0a1196791936f88ca5d6bbf5363fb78f}{\index{engine\-\_\-bonded.\-c@{engine\-\_\-bonded.\-c}!engine\-\_\-dihedral\-\_\-add@{engine\-\_\-dihedral\-\_\-add}}
+\index{engine\-\_\-dihedral\-\_\-add@{engine\-\_\-dihedral\-\_\-add}!engine_bonded.c@{engine\-\_\-bonded.\-c}}
+\subsubsection[{engine\-\_\-dihedral\-\_\-add}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-dihedral\-\_\-add (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{int}]{k, }
+\item[{int}]{l, }
+\item[{int}]{pid}
+\end{DoxyParamCaption}
+)}}\label{engine__bonded_8c_a0a1196791936f88ca5d6bbf5363fb78f}
+
+
+Add a dihedral interaction to the engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em i} & The I\-D of the first \hyperlink{structpart}{part}. \\
+\hline
+{\em j} & The I\-D of the second \hyperlink{structpart}{part}. \\
+\hline
+{\em k} & The I\-D of the third \hyperlink{structpart}{part}. \\
+\hline
+{\em l} & The I\-D of the fourth \hyperlink{structpart}{part}. \\
+\hline
+{\em pid} & Index of the \hyperlink{structpotential}{potential} for this bond.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine__bonded_8c_ad01a436b55b2214e91fb7229faa64a4e}{\index{engine\-\_\-bonded.\-c@{engine\-\_\-bonded.\-c}!engine\-\_\-dihedral\-\_\-addpot@{engine\-\_\-dihedral\-\_\-addpot}}
+\index{engine\-\_\-dihedral\-\_\-addpot@{engine\-\_\-dihedral\-\_\-addpot}!engine_bonded.c@{engine\-\_\-bonded.\-c}}
+\subsubsection[{engine\-\_\-dihedral\-\_\-addpot}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-dihedral\-\_\-addpot (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{struct {\bf potential} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{engine__bonded_8c_ad01a436b55b2214e91fb7229faa64a4e}
+
+
+Add a dihedral potential. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em p} & The \hyperlink{structpotential}{potential} to add to the \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The I\-D of the added dihedral potential or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine__bonded_8c_ab36c8e8f6eba5ad7d7a134c157505de4}{\index{engine\-\_\-bonded.\-c@{engine\-\_\-bonded.\-c}!engine\-\_\-dihedral\-\_\-eval@{engine\-\_\-dihedral\-\_\-eval}}
+\index{engine\-\_\-dihedral\-\_\-eval@{engine\-\_\-dihedral\-\_\-eval}!engine_bonded.c@{engine\-\_\-bonded.\-c}}
+\subsubsection[{engine\-\_\-dihedral\-\_\-eval}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-dihedral\-\_\-eval (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine__bonded_8c_ab36c8e8f6eba5ad7d7a134c157505de4}
+
+
+Compute the dihedral interactions stored in this engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine__bonded_8c_a8c09326908e15e1509f495c33619e761}{\index{engine\-\_\-bonded.\-c@{engine\-\_\-bonded.\-c}!engine\-\_\-exclusion\-\_\-add@{engine\-\_\-exclusion\-\_\-add}}
+\index{engine\-\_\-exclusion\-\_\-add@{engine\-\_\-exclusion\-\_\-add}!engine_bonded.c@{engine\-\_\-bonded.\-c}}
+\subsubsection[{engine\-\_\-exclusion\-\_\-add}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-exclusion\-\_\-add (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{int}]{i, }
+\item[{int}]{j}
+\end{DoxyParamCaption}
+)}}\label{engine__bonded_8c_a8c09326908e15e1509f495c33619e761}
+
+
+Add a exclusioned interaction to the engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}. \\
+\hline
+{\em i} & The I\-D of the first \hyperlink{structpart}{part}. \\
+\hline
+{\em j} & The I\-D of the second \hyperlink{structpart}{part}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine__bonded_8c_a40f43733856ad7022c172be2b7946246}{\index{engine\-\_\-bonded.\-c@{engine\-\_\-bonded.\-c}!engine\-\_\-exclusion\-\_\-eval@{engine\-\_\-exclusion\-\_\-eval}}
+\index{engine\-\_\-exclusion\-\_\-eval@{engine\-\_\-exclusion\-\_\-eval}!engine_bonded.c@{engine\-\_\-bonded.\-c}}
+\subsubsection[{engine\-\_\-exclusion\-\_\-eval}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-exclusion\-\_\-eval (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine__bonded_8c_a40f43733856ad7022c172be2b7946246}
+
+
+Compute the exclusioned interactions stored in this engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{engine_8h_ad7d40017c544c2eb7cbf82cbbc9d45e0}{engine\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{engine__bonded_8c_a7f4a778e88593837c2fb2d7b61894f5c}{\index{engine\-\_\-bonded.\-c@{engine\-\_\-bonded.\-c}!engine\-\_\-exclusion\-\_\-shrink@{engine\-\_\-exclusion\-\_\-shrink}}
+\index{engine\-\_\-exclusion\-\_\-shrink@{engine\-\_\-exclusion\-\_\-shrink}!engine_bonded.c@{engine\-\_\-bonded.\-c}}
+\subsubsection[{engine\-\_\-exclusion\-\_\-shrink}]{\setlength{\rightskip}{0pt plus 5cm}int engine\-\_\-exclusion\-\_\-shrink (
+\begin{DoxyParamCaption}
+\item[{struct {\bf engine} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{engine__bonded_8c_a7f4a778e88593837c2fb2d7b61894f5c}
+
+
+Remove duplicate exclusions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The \hyperlink{structengine}{engine}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of unique exclusions or $<$ 0 on error (see \hyperlink{engine_8h_a3724bd1c34d31c4ff37eaff52dc0a580}{engine\-\_\-err}). 
+\end{DoxyReturn}

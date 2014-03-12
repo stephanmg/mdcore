@@ -1,0 +1,360 @@
+\hypertarget{runner_8h}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/runner.h File Reference}
+\label{runner_8h}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/runner.\-h@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/runner.\-h}}
+}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structrunner__fifo}{runner\-\_\-fifo}
+\item 
+struct \hyperlink{structrunner}{runner}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{runner_8h_a9dee8308cc82d4f6c77891cfb448790c}{runner\-\_\-err\-\_\-ok}~0
+\item 
+\#define \hyperlink{runner_8h_a1505ac68e4939d5865e59bfc0a702654}{runner\-\_\-err\-\_\-null}~-\/1
+\item 
+\#define \hyperlink{runner_8h_a208a008f574f14b0de54da23701b9a38}{runner\-\_\-err\-\_\-malloc}~-\/2
+\item 
+\#define \hyperlink{runner_8h_a13dcd6d32e9fb379625824e16b00e7f0}{runner\-\_\-err\-\_\-space}~-\/3
+\item 
+\#define \hyperlink{runner_8h_ab68f964918f2a752c65bd5ab64939644}{runner\-\_\-err\-\_\-pthread}~-\/4
+\item 
+\#define \hyperlink{runner_8h_a93f8aca329e1a5883e9fd8ea988aa376}{runner\-\_\-err\-\_\-engine}~-\/5
+\item 
+\#define \hyperlink{runner_8h_a74effa36a6ec405a2ebff75341cfd1bd}{runner\-\_\-err\-\_\-spe}~-\/6
+\item 
+\#define \hyperlink{runner_8h_a7e1bd0003fa65e142bb1df7329bfde7e}{runner\-\_\-err\-\_\-mfc}~-\/7
+\item 
+\#define \hyperlink{runner_8h_a6a9d6d09a2f903895a9360954140a7e7}{runner\-\_\-err\-\_\-unavail}~-\/8
+\item 
+\#define \hyperlink{runner_8h_aa8d0fcb376d738e22dc3bb44c2cb4d19}{runner\-\_\-err\-\_\-fifo}~-\/9
+\item 
+\#define \hyperlink{runner_8h_a749191ba018bb5d40f09d2c9f5bb9f54}{runner\-\_\-err\-\_\-verlet\-\_\-overflow}~-\/10
+\item 
+\#define \hyperlink{runner_8h_ae67316fc62b16ea9112d78712a55e001}{runner\-\_\-err\-\_\-tasktype}~-\/11
+\item 
+\#define \hyperlink{runner_8h_a78f443222719c9256c9f6468798f3ca2}{runner\-\_\-minsleep}~1000
+\item 
+\#define \hyperlink{runner_8h_adef5dc79839f88348539b876d36ebee3}{runner\-\_\-bitesize}~3
+\item 
+\#define \hyperlink{runner_8h_ab586b68dd0e31de3abbdcacf6da3f6d6}{runner\-\_\-verlet\-\_\-bitesize}~200
+\item 
+\#define \hyperlink{runner_8h_aa943149e87e7cb95236305a3506b0be8}{runner\-\_\-qlen}~8
+\item 
+\#define \hyperlink{runner_8h_a70c41be203905b08149f3452d34c0dc7}{runner\-\_\-dispatch\-\_\-stop}~0xffffffff
+\item 
+\#define \hyperlink{runner_8h_ab5194cc912bbca16562cae6e4ce047c2}{runner\-\_\-dispatch\-\_\-lookahead}~20
+\item 
+\#define \hyperlink{runner_8h_a79362ec45b12b285fb1d32aa8cb2c0ef}{T\-I\-M\-E\-R\-\_\-\-T\-I\-C}
+\item 
+\#define \hyperlink{runner_8h_a1b08d3b3ff70d4a07abfdc8e60f74848}{T\-I\-M\-E\-R\-\_\-\-T\-O\-C}(t)
+\item 
+\#define \hyperlink{runner_8h_a15f4a210b08dde5a51316ae4b6fef297}{T\-I\-M\-E\-R\-\_\-\-T\-I\-C2}
+\item 
+\#define \hyperlink{runner_8h_a1d0b89ccd9319dee32f7a92dac713709}{T\-I\-M\-E\-R\-\_\-\-T\-O\-C2}(t)
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \\*
+\hyperlink{runner_8h_abc6126af1d45847bc59afa0aa3216b04a8d1b8b3cdf6cafd10da89d28f04ef2d3}{runner\-\_\-timer\-\_\-queue} = 0, 
+\hyperlink{runner_8h_abc6126af1d45847bc59afa0aa3216b04a97dff8e3249e43052dd468b273906572}{runner\-\_\-timer\-\_\-pair}, 
+\hyperlink{runner_8h_abc6126af1d45847bc59afa0aa3216b04aa6c34ea7dc707e0a6b0084bfbe667d23}{runner\-\_\-timer\-\_\-self}, 
+\hyperlink{runner_8h_abc6126af1d45847bc59afa0aa3216b04a57c1b07484c597402d16a42efae5d59b}{runner\-\_\-timer\-\_\-sort}, 
+\\*
+\hyperlink{runner_8h_abc6126af1d45847bc59afa0aa3216b04aaf3bbf1f5bea51603f4d867f3c9fdcce}{runner\-\_\-timer\-\_\-count}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{runner_8h_a59184e77ed8510a1e8c1255cba7c7b57}{runner\-\_\-dopair\-\_\-unsorted} (struct \hyperlink{structrunner}{runner} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, struct \hyperlink{structcell}{cell} $\ast$cell\-\_\-i, struct \hyperlink{structcell}{cell} $\ast$cell\-\_\-j)
+\item 
+int \hyperlink{runner_8h_a64f3f09b5fef50a99918e1a343999b7d}{runner\-\_\-init\-\_\-\-S\-P\-U} (struct \hyperlink{structrunner}{runner} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})
+\begin{DoxyCompactList}\small\item\em Initialize the runner associated to the given engine and attach it to an S\-P\-U. \end{DoxyCompactList}\item 
+int \hyperlink{runner_8h_a574700fcf4fa0e9eaee3caf4f8d0d82d}{runner\-\_\-init} (struct \hyperlink{structrunner}{runner} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})
+\begin{DoxyCompactList}\small\item\em Initialize the runner associated to the given engine. \end{DoxyCompactList}\item 
+int \hyperlink{runner_8h_a23eafc1532ccd91d5c6d3443d25aa62b}{runner\-\_\-run} (struct \hyperlink{structrunner}{runner} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+void \hyperlink{runner_8h_a0c5ca74bcd3c74c27645c2243025a5d7}{runner\-\_\-sort\-\_\-ascending} (unsigned int $\ast$parts, int N)
+\begin{DoxyCompactList}\small\item\em Sort the particles in ascending order using Quick\-Sort. \end{DoxyCompactList}\item 
+void \hyperlink{runner_8h_adf21370458729b89d6816fd9169e200a}{runner\-\_\-sort\-\_\-descending} (unsigned int $\ast$parts, int N)
+\begin{DoxyCompactList}\small\item\em Sort the particles in descending order using Quick\-Sort. \end{DoxyCompactList}\item 
+int \hyperlink{runner_8h_a0915441be290fba424c95005e4e3e651}{runner\-\_\-verlet\-\_\-eval} (struct \hyperlink{structrunner}{runner} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, struct \hyperlink{structcell}{cell} $\ast$\hyperlink{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{c}, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$f\-\_\-out)
+\item 
+int \hyperlink{runner_8h_a616a591d5d718f9ed974a3f071ad058b}{runner\-\_\-verlet\-\_\-fill} (struct \hyperlink{structrunner}{runner} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, struct \hyperlink{structcell}{cell} $\ast$cell\-\_\-i, struct \hyperlink{structcell}{cell} $\ast$cell\-\_\-j, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$pshift)
+\item 
+int \hyperlink{runner_8h_aa55701b4c1e106429f099e0cab15458d}{runner\-\_\-dosort} (struct \hyperlink{structrunner}{runner} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, struct \hyperlink{structcell}{cell} $\ast$\hyperlink{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{c}, int flags)
+\item 
+int \hyperlink{runner_8h_a6cb13fe8af38a570bbe14b210ba323b7}{runner\-\_\-dopair} (struct \hyperlink{structrunner}{runner} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, struct \hyperlink{structcell}{cell} $\ast$cell\-\_\-i, struct \hyperlink{structcell}{cell} $\ast$cell\-\_\-j, int sid)
+\item 
+int \hyperlink{runner_8h_a566fbdd4203fcbc178a0bc54e3dc9a25}{runner\-\_\-doself} (struct \hyperlink{structrunner}{runner} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, struct \hyperlink{structcell}{cell} $\ast$cell\-\_\-i)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+ticks \hyperlink{runner_8h_a2207cb88c44be7288972a76e8b88d5cc}{runner\-\_\-timers} \mbox{[}$\,$\mbox{]}
+\item 
+int \hyperlink{runner_8h_a089c4782be93d7832449e187e5bff7fd}{runner\-\_\-err}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{runner_8h_adef5dc79839f88348539b876d36ebee3}{\index{runner.\-h@{runner.\-h}!runner\-\_\-bitesize@{runner\-\_\-bitesize}}
+\index{runner\-\_\-bitesize@{runner\-\_\-bitesize}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-bitesize}]{\setlength{\rightskip}{0pt plus 5cm}\#define runner\-\_\-bitesize~3}}\label{runner_8h_adef5dc79839f88348539b876d36ebee3}
+Maximum number of cellpairs to get from space\-\_\-getpair. \hypertarget{runner_8h_ab5194cc912bbca16562cae6e4ce047c2}{\index{runner.\-h@{runner.\-h}!runner\-\_\-dispatch\-\_\-lookahead@{runner\-\_\-dispatch\-\_\-lookahead}}
+\index{runner\-\_\-dispatch\-\_\-lookahead@{runner\-\_\-dispatch\-\_\-lookahead}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-dispatch\-\_\-lookahead}]{\setlength{\rightskip}{0pt plus 5cm}\#define runner\-\_\-dispatch\-\_\-lookahead~20}}\label{runner_8h_ab5194cc912bbca16562cae6e4ce047c2}
+\hypertarget{runner_8h_a70c41be203905b08149f3452d34c0dc7}{\index{runner.\-h@{runner.\-h}!runner\-\_\-dispatch\-\_\-stop@{runner\-\_\-dispatch\-\_\-stop}}
+\index{runner\-\_\-dispatch\-\_\-stop@{runner\-\_\-dispatch\-\_\-stop}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-dispatch\-\_\-stop}]{\setlength{\rightskip}{0pt plus 5cm}\#define runner\-\_\-dispatch\-\_\-stop~0xffffffff}}\label{runner_8h_a70c41be203905b08149f3452d34c0dc7}
+Magic word to make the dispatcher stop. \hypertarget{runner_8h_a93f8aca329e1a5883e9fd8ea988aa376}{\index{runner.\-h@{runner.\-h}!runner\-\_\-err\-\_\-engine@{runner\-\_\-err\-\_\-engine}}
+\index{runner\-\_\-err\-\_\-engine@{runner\-\_\-err\-\_\-engine}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-err\-\_\-engine}]{\setlength{\rightskip}{0pt plus 5cm}\#define runner\-\_\-err\-\_\-engine~-\/5}}\label{runner_8h_a93f8aca329e1a5883e9fd8ea988aa376}
+\hypertarget{runner_8h_aa8d0fcb376d738e22dc3bb44c2cb4d19}{\index{runner.\-h@{runner.\-h}!runner\-\_\-err\-\_\-fifo@{runner\-\_\-err\-\_\-fifo}}
+\index{runner\-\_\-err\-\_\-fifo@{runner\-\_\-err\-\_\-fifo}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-err\-\_\-fifo}]{\setlength{\rightskip}{0pt plus 5cm}\#define runner\-\_\-err\-\_\-fifo~-\/9}}\label{runner_8h_aa8d0fcb376d738e22dc3bb44c2cb4d19}
+\hypertarget{runner_8h_a208a008f574f14b0de54da23701b9a38}{\index{runner.\-h@{runner.\-h}!runner\-\_\-err\-\_\-malloc@{runner\-\_\-err\-\_\-malloc}}
+\index{runner\-\_\-err\-\_\-malloc@{runner\-\_\-err\-\_\-malloc}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-err\-\_\-malloc}]{\setlength{\rightskip}{0pt plus 5cm}\#define runner\-\_\-err\-\_\-malloc~-\/2}}\label{runner_8h_a208a008f574f14b0de54da23701b9a38}
+\hypertarget{runner_8h_a7e1bd0003fa65e142bb1df7329bfde7e}{\index{runner.\-h@{runner.\-h}!runner\-\_\-err\-\_\-mfc@{runner\-\_\-err\-\_\-mfc}}
+\index{runner\-\_\-err\-\_\-mfc@{runner\-\_\-err\-\_\-mfc}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-err\-\_\-mfc}]{\setlength{\rightskip}{0pt plus 5cm}\#define runner\-\_\-err\-\_\-mfc~-\/7}}\label{runner_8h_a7e1bd0003fa65e142bb1df7329bfde7e}
+\hypertarget{runner_8h_a1505ac68e4939d5865e59bfc0a702654}{\index{runner.\-h@{runner.\-h}!runner\-\_\-err\-\_\-null@{runner\-\_\-err\-\_\-null}}
+\index{runner\-\_\-err\-\_\-null@{runner\-\_\-err\-\_\-null}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-err\-\_\-null}]{\setlength{\rightskip}{0pt plus 5cm}\#define runner\-\_\-err\-\_\-null~-\/1}}\label{runner_8h_a1505ac68e4939d5865e59bfc0a702654}
+\hypertarget{runner_8h_a9dee8308cc82d4f6c77891cfb448790c}{\index{runner.\-h@{runner.\-h}!runner\-\_\-err\-\_\-ok@{runner\-\_\-err\-\_\-ok}}
+\index{runner\-\_\-err\-\_\-ok@{runner\-\_\-err\-\_\-ok}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-err\-\_\-ok}]{\setlength{\rightskip}{0pt plus 5cm}\#define runner\-\_\-err\-\_\-ok~0}}\label{runner_8h_a9dee8308cc82d4f6c77891cfb448790c}
+\hypertarget{runner_8h_ab68f964918f2a752c65bd5ab64939644}{\index{runner.\-h@{runner.\-h}!runner\-\_\-err\-\_\-pthread@{runner\-\_\-err\-\_\-pthread}}
+\index{runner\-\_\-err\-\_\-pthread@{runner\-\_\-err\-\_\-pthread}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-err\-\_\-pthread}]{\setlength{\rightskip}{0pt plus 5cm}\#define runner\-\_\-err\-\_\-pthread~-\/4}}\label{runner_8h_ab68f964918f2a752c65bd5ab64939644}
+\hypertarget{runner_8h_a13dcd6d32e9fb379625824e16b00e7f0}{\index{runner.\-h@{runner.\-h}!runner\-\_\-err\-\_\-space@{runner\-\_\-err\-\_\-space}}
+\index{runner\-\_\-err\-\_\-space@{runner\-\_\-err\-\_\-space}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-err\-\_\-space}]{\setlength{\rightskip}{0pt plus 5cm}\#define runner\-\_\-err\-\_\-space~-\/3}}\label{runner_8h_a13dcd6d32e9fb379625824e16b00e7f0}
+\hypertarget{runner_8h_a74effa36a6ec405a2ebff75341cfd1bd}{\index{runner.\-h@{runner.\-h}!runner\-\_\-err\-\_\-spe@{runner\-\_\-err\-\_\-spe}}
+\index{runner\-\_\-err\-\_\-spe@{runner\-\_\-err\-\_\-spe}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-err\-\_\-spe}]{\setlength{\rightskip}{0pt plus 5cm}\#define runner\-\_\-err\-\_\-spe~-\/6}}\label{runner_8h_a74effa36a6ec405a2ebff75341cfd1bd}
+\hypertarget{runner_8h_ae67316fc62b16ea9112d78712a55e001}{\index{runner.\-h@{runner.\-h}!runner\-\_\-err\-\_\-tasktype@{runner\-\_\-err\-\_\-tasktype}}
+\index{runner\-\_\-err\-\_\-tasktype@{runner\-\_\-err\-\_\-tasktype}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-err\-\_\-tasktype}]{\setlength{\rightskip}{0pt plus 5cm}\#define runner\-\_\-err\-\_\-tasktype~-\/11}}\label{runner_8h_ae67316fc62b16ea9112d78712a55e001}
+\hypertarget{runner_8h_a6a9d6d09a2f903895a9360954140a7e7}{\index{runner.\-h@{runner.\-h}!runner\-\_\-err\-\_\-unavail@{runner\-\_\-err\-\_\-unavail}}
+\index{runner\-\_\-err\-\_\-unavail@{runner\-\_\-err\-\_\-unavail}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-err\-\_\-unavail}]{\setlength{\rightskip}{0pt plus 5cm}\#define runner\-\_\-err\-\_\-unavail~-\/8}}\label{runner_8h_a6a9d6d09a2f903895a9360954140a7e7}
+\hypertarget{runner_8h_a749191ba018bb5d40f09d2c9f5bb9f54}{\index{runner.\-h@{runner.\-h}!runner\-\_\-err\-\_\-verlet\-\_\-overflow@{runner\-\_\-err\-\_\-verlet\-\_\-overflow}}
+\index{runner\-\_\-err\-\_\-verlet\-\_\-overflow@{runner\-\_\-err\-\_\-verlet\-\_\-overflow}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-err\-\_\-verlet\-\_\-overflow}]{\setlength{\rightskip}{0pt plus 5cm}\#define runner\-\_\-err\-\_\-verlet\-\_\-overflow~-\/10}}\label{runner_8h_a749191ba018bb5d40f09d2c9f5bb9f54}
+\hypertarget{runner_8h_a78f443222719c9256c9f6468798f3ca2}{\index{runner.\-h@{runner.\-h}!runner\-\_\-minsleep@{runner\-\_\-minsleep}}
+\index{runner\-\_\-minsleep@{runner\-\_\-minsleep}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-minsleep}]{\setlength{\rightskip}{0pt plus 5cm}\#define runner\-\_\-minsleep~1000}}\label{runner_8h_a78f443222719c9256c9f6468798f3ca2}
+\hypertarget{runner_8h_aa943149e87e7cb95236305a3506b0be8}{\index{runner.\-h@{runner.\-h}!runner\-\_\-qlen@{runner\-\_\-qlen}}
+\index{runner\-\_\-qlen@{runner\-\_\-qlen}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-qlen}]{\setlength{\rightskip}{0pt plus 5cm}\#define runner\-\_\-qlen~8}}\label{runner_8h_aa943149e87e7cb95236305a3506b0be8}
+Length of the cell pair queue between the P\-P\-U and the S\-P\-U and of the fifo-\/queue in dispatch mode. \hypertarget{runner_8h_ab586b68dd0e31de3abbdcacf6da3f6d6}{\index{runner.\-h@{runner.\-h}!runner\-\_\-verlet\-\_\-bitesize@{runner\-\_\-verlet\-\_\-bitesize}}
+\index{runner\-\_\-verlet\-\_\-bitesize@{runner\-\_\-verlet\-\_\-bitesize}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-verlet\-\_\-bitesize}]{\setlength{\rightskip}{0pt plus 5cm}\#define runner\-\_\-verlet\-\_\-bitesize~200}}\label{runner_8h_ab586b68dd0e31de3abbdcacf6da3f6d6}
+Number of particles to request per call to space\-\_\-getverlet. \hypertarget{runner_8h_a79362ec45b12b285fb1d32aa8cb2c0ef}{\index{runner.\-h@{runner.\-h}!T\-I\-M\-E\-R\-\_\-\-T\-I\-C@{T\-I\-M\-E\-R\-\_\-\-T\-I\-C}}
+\index{T\-I\-M\-E\-R\-\_\-\-T\-I\-C@{T\-I\-M\-E\-R\-\_\-\-T\-I\-C}!runner.h@{runner.\-h}}
+\subsubsection[{T\-I\-M\-E\-R\-\_\-\-T\-I\-C}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-I\-M\-E\-R\-\_\-\-T\-I\-C}}\label{runner_8h_a79362ec45b12b285fb1d32aa8cb2c0ef}
+\hypertarget{runner_8h_a15f4a210b08dde5a51316ae4b6fef297}{\index{runner.\-h@{runner.\-h}!T\-I\-M\-E\-R\-\_\-\-T\-I\-C2@{T\-I\-M\-E\-R\-\_\-\-T\-I\-C2}}
+\index{T\-I\-M\-E\-R\-\_\-\-T\-I\-C2@{T\-I\-M\-E\-R\-\_\-\-T\-I\-C2}!runner.h@{runner.\-h}}
+\subsubsection[{T\-I\-M\-E\-R\-\_\-\-T\-I\-C2}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-I\-M\-E\-R\-\_\-\-T\-I\-C2}}\label{runner_8h_a15f4a210b08dde5a51316ae4b6fef297}
+\hypertarget{runner_8h_a1b08d3b3ff70d4a07abfdc8e60f74848}{\index{runner.\-h@{runner.\-h}!T\-I\-M\-E\-R\-\_\-\-T\-O\-C@{T\-I\-M\-E\-R\-\_\-\-T\-O\-C}}
+\index{T\-I\-M\-E\-R\-\_\-\-T\-O\-C@{T\-I\-M\-E\-R\-\_\-\-T\-O\-C}!runner.h@{runner.\-h}}
+\subsubsection[{T\-I\-M\-E\-R\-\_\-\-T\-O\-C}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-I\-M\-E\-R\-\_\-\-T\-O\-C(
+\begin{DoxyParamCaption}
+\item[{}]{t}
+\end{DoxyParamCaption}
+)}}\label{runner_8h_a1b08d3b3ff70d4a07abfdc8e60f74848}
+\hypertarget{runner_8h_a1d0b89ccd9319dee32f7a92dac713709}{\index{runner.\-h@{runner.\-h}!T\-I\-M\-E\-R\-\_\-\-T\-O\-C2@{T\-I\-M\-E\-R\-\_\-\-T\-O\-C2}}
+\index{T\-I\-M\-E\-R\-\_\-\-T\-O\-C2@{T\-I\-M\-E\-R\-\_\-\-T\-O\-C2}!runner.h@{runner.\-h}}
+\subsubsection[{T\-I\-M\-E\-R\-\_\-\-T\-O\-C2}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-I\-M\-E\-R\-\_\-\-T\-O\-C2(
+\begin{DoxyParamCaption}
+\item[{}]{t}
+\end{DoxyParamCaption}
+)}}\label{runner_8h_a1d0b89ccd9319dee32f7a92dac713709}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{runner_8h_abc6126af1d45847bc59afa0aa3216b04}{\subsubsection[{anonymous enum}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}}\label{runner_8h_abc6126af1d45847bc59afa0aa3216b04}
+Timers. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{runner\-\_\-timer\-\_\-queue@{runner\-\_\-timer\-\_\-queue}!runner.\-h@{runner.\-h}}\index{runner.\-h@{runner.\-h}!runner\-\_\-timer\-\_\-queue@{runner\-\_\-timer\-\_\-queue}}\item[{\em 
+\hypertarget{runner_8h_abc6126af1d45847bc59afa0aa3216b04a8d1b8b3cdf6cafd10da89d28f04ef2d3}{runner\-\_\-timer\-\_\-queue}\label{runner_8h_abc6126af1d45847bc59afa0aa3216b04a8d1b8b3cdf6cafd10da89d28f04ef2d3}
+}]\index{runner\-\_\-timer\-\_\-pair@{runner\-\_\-timer\-\_\-pair}!runner.\-h@{runner.\-h}}\index{runner.\-h@{runner.\-h}!runner\-\_\-timer\-\_\-pair@{runner\-\_\-timer\-\_\-pair}}\item[{\em 
+\hypertarget{runner_8h_abc6126af1d45847bc59afa0aa3216b04a97dff8e3249e43052dd468b273906572}{runner\-\_\-timer\-\_\-pair}\label{runner_8h_abc6126af1d45847bc59afa0aa3216b04a97dff8e3249e43052dd468b273906572}
+}]\index{runner\-\_\-timer\-\_\-self@{runner\-\_\-timer\-\_\-self}!runner.\-h@{runner.\-h}}\index{runner.\-h@{runner.\-h}!runner\-\_\-timer\-\_\-self@{runner\-\_\-timer\-\_\-self}}\item[{\em 
+\hypertarget{runner_8h_abc6126af1d45847bc59afa0aa3216b04aa6c34ea7dc707e0a6b0084bfbe667d23}{runner\-\_\-timer\-\_\-self}\label{runner_8h_abc6126af1d45847bc59afa0aa3216b04aa6c34ea7dc707e0a6b0084bfbe667d23}
+}]\index{runner\-\_\-timer\-\_\-sort@{runner\-\_\-timer\-\_\-sort}!runner.\-h@{runner.\-h}}\index{runner.\-h@{runner.\-h}!runner\-\_\-timer\-\_\-sort@{runner\-\_\-timer\-\_\-sort}}\item[{\em 
+\hypertarget{runner_8h_abc6126af1d45847bc59afa0aa3216b04a57c1b07484c597402d16a42efae5d59b}{runner\-\_\-timer\-\_\-sort}\label{runner_8h_abc6126af1d45847bc59afa0aa3216b04a57c1b07484c597402d16a42efae5d59b}
+}]\index{runner\-\_\-timer\-\_\-count@{runner\-\_\-timer\-\_\-count}!runner.\-h@{runner.\-h}}\index{runner.\-h@{runner.\-h}!runner\-\_\-timer\-\_\-count@{runner\-\_\-timer\-\_\-count}}\item[{\em 
+\hypertarget{runner_8h_abc6126af1d45847bc59afa0aa3216b04aaf3bbf1f5bea51603f4d867f3c9fdcce}{runner\-\_\-timer\-\_\-count}\label{runner_8h_abc6126af1d45847bc59afa0aa3216b04aaf3bbf1f5bea51603f4d867f3c9fdcce}
+}]\end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\hypertarget{runner_8h_a6cb13fe8af38a570bbe14b210ba323b7}{\index{runner.\-h@{runner.\-h}!runner\-\_\-dopair@{runner\-\_\-dopair}}
+\index{runner\-\_\-dopair@{runner\-\_\-dopair}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-dopair}]{\setlength{\rightskip}{0pt plus 5cm}int runner\-\_\-dopair (
+\begin{DoxyParamCaption}
+\item[{struct {\bf runner} $\ast$}]{r, }
+\item[{struct {\bf cell} $\ast$}]{cell\-\_\-i, }
+\item[{struct {\bf cell} $\ast$}]{cell\-\_\-j, }
+\item[{int}]{sid}
+\end{DoxyParamCaption}
+)}}\label{runner_8h_a6cb13fe8af38a570bbe14b210ba323b7}
+\hypertarget{runner_8h_a59184e77ed8510a1e8c1255cba7c7b57}{\index{runner.\-h@{runner.\-h}!runner\-\_\-dopair\-\_\-unsorted@{runner\-\_\-dopair\-\_\-unsorted}}
+\index{runner\-\_\-dopair\-\_\-unsorted@{runner\-\_\-dopair\-\_\-unsorted}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-dopair\-\_\-unsorted}]{\setlength{\rightskip}{0pt plus 5cm}int runner\-\_\-dopair\-\_\-unsorted (
+\begin{DoxyParamCaption}
+\item[{struct {\bf runner} $\ast$}]{r, }
+\item[{struct {\bf cell} $\ast$}]{cell\-\_\-i, }
+\item[{struct {\bf cell} $\ast$}]{cell\-\_\-j}
+\end{DoxyParamCaption}
+)}}\label{runner_8h_a59184e77ed8510a1e8c1255cba7c7b57}
+\hypertarget{runner_8h_a566fbdd4203fcbc178a0bc54e3dc9a25}{\index{runner.\-h@{runner.\-h}!runner\-\_\-doself@{runner\-\_\-doself}}
+\index{runner\-\_\-doself@{runner\-\_\-doself}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-doself}]{\setlength{\rightskip}{0pt plus 5cm}int runner\-\_\-doself (
+\begin{DoxyParamCaption}
+\item[{struct {\bf runner} $\ast$}]{r, }
+\item[{struct {\bf cell} $\ast$}]{cell\-\_\-i}
+\end{DoxyParamCaption}
+)}}\label{runner_8h_a566fbdd4203fcbc178a0bc54e3dc9a25}
+\hypertarget{runner_8h_aa55701b4c1e106429f099e0cab15458d}{\index{runner.\-h@{runner.\-h}!runner\-\_\-dosort@{runner\-\_\-dosort}}
+\index{runner\-\_\-dosort@{runner\-\_\-dosort}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-dosort}]{\setlength{\rightskip}{0pt plus 5cm}int runner\-\_\-dosort (
+\begin{DoxyParamCaption}
+\item[{struct {\bf runner} $\ast$}]{r, }
+\item[{struct {\bf cell} $\ast$}]{c, }
+\item[{int}]{flags}
+\end{DoxyParamCaption}
+)}}\label{runner_8h_aa55701b4c1e106429f099e0cab15458d}
+\hypertarget{runner_8h_a574700fcf4fa0e9eaee3caf4f8d0d82d}{\index{runner.\-h@{runner.\-h}!runner\-\_\-init@{runner\-\_\-init}}
+\index{runner\-\_\-init@{runner\-\_\-init}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}int runner\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{struct {\bf runner} $\ast$}]{r, }
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}}\label{runner_8h_a574700fcf4fa0e9eaee3caf4f8d0d82d}
+
+
+Initialize the runner associated to the given engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The \hyperlink{structrunner}{runner} to be initialized. \\
+\hline
+{\em e} & The \hyperlink{structengine}{engine} with which it is associated. \\
+\hline
+{\em id} & The I\-D of this \hyperlink{structrunner}{runner}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{runner_8h_a9dee8308cc82d4f6c77891cfb448790c}{runner\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{runner_8h_a089c4782be93d7832449e187e5bff7fd}{runner\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{runner_8h_a64f3f09b5fef50a99918e1a343999b7d}{\index{runner.\-h@{runner.\-h}!runner\-\_\-init\-\_\-\-S\-P\-U@{runner\-\_\-init\-\_\-\-S\-P\-U}}
+\index{runner\-\_\-init\-\_\-\-S\-P\-U@{runner\-\_\-init\-\_\-\-S\-P\-U}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-init\-\_\-\-S\-P\-U}]{\setlength{\rightskip}{0pt plus 5cm}int runner\-\_\-init\-\_\-\-S\-P\-U (
+\begin{DoxyParamCaption}
+\item[{struct {\bf runner} $\ast$}]{r, }
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}}\label{runner_8h_a64f3f09b5fef50a99918e1a343999b7d}
+
+
+Initialize the runner associated to the given engine and attach it to an S\-P\-U. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The \hyperlink{structrunner}{runner} to be initialized. \\
+\hline
+{\em e} & The \hyperlink{structengine}{engine} with which it is associated. \\
+\hline
+{\em id} & The I\-D of this \hyperlink{structrunner}{runner}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{runner_8h_a9dee8308cc82d4f6c77891cfb448790c}{runner\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{runner_8h_a089c4782be93d7832449e187e5bff7fd}{runner\-\_\-err}).
+\end{DoxyReturn}
+If {\ttfamily C\-E\-L\-L} is not defined, this routine will fail! \hypertarget{runner_8h_a23eafc1532ccd91d5c6d3443d25aa62b}{\index{runner.\-h@{runner.\-h}!runner\-\_\-run@{runner\-\_\-run}}
+\index{runner\-\_\-run@{runner\-\_\-run}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-run}]{\setlength{\rightskip}{0pt plus 5cm}int runner\-\_\-run (
+\begin{DoxyParamCaption}
+\item[{struct {\bf runner} $\ast$}]{r}
+\end{DoxyParamCaption}
+)}}\label{runner_8h_a23eafc1532ccd91d5c6d3443d25aa62b}
+\hypertarget{runner_8h_a0c5ca74bcd3c74c27645c2243025a5d7}{\index{runner.\-h@{runner.\-h}!runner\-\_\-sort\-\_\-ascending@{runner\-\_\-sort\-\_\-ascending}}
+\index{runner\-\_\-sort\-\_\-ascending@{runner\-\_\-sort\-\_\-ascending}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-sort\-\_\-ascending}]{\setlength{\rightskip}{0pt plus 5cm}void runner\-\_\-sort\-\_\-ascending (
+\begin{DoxyParamCaption}
+\item[{unsigned int $\ast$}]{parts, }
+\item[{int}]{N}
+\end{DoxyParamCaption}
+)}}\label{runner_8h_a0c5ca74bcd3c74c27645c2243025a5d7}
+
+
+Sort the particles in ascending order using Quick\-Sort. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parts} & The particle I\-Ds and distances in compact form \\
+\hline
+{\em N} & The number of particles.\\
+\hline
+\end{DoxyParams}
+The particle data is assumed to contain the distance in the lower 16 bits and the particle I\-D in the upper 16 bits. \hypertarget{runner_8h_adf21370458729b89d6816fd9169e200a}{\index{runner.\-h@{runner.\-h}!runner\-\_\-sort\-\_\-descending@{runner\-\_\-sort\-\_\-descending}}
+\index{runner\-\_\-sort\-\_\-descending@{runner\-\_\-sort\-\_\-descending}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-sort\-\_\-descending}]{\setlength{\rightskip}{0pt plus 5cm}void runner\-\_\-sort\-\_\-descending (
+\begin{DoxyParamCaption}
+\item[{unsigned int $\ast$}]{parts, }
+\item[{int}]{N}
+\end{DoxyParamCaption}
+)}}\label{runner_8h_adf21370458729b89d6816fd9169e200a}
+
+
+Sort the particles in descending order using Quick\-Sort. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parts} & The particle I\-Ds and distances in compact form \\
+\hline
+{\em N} & The number of particles.\\
+\hline
+\end{DoxyParams}
+The particle data is assumed to contain the distance in the lower 16 bits and the particle I\-D in the upper 16 bits. \hypertarget{runner_8h_a0915441be290fba424c95005e4e3e651}{\index{runner.\-h@{runner.\-h}!runner\-\_\-verlet\-\_\-eval@{runner\-\_\-verlet\-\_\-eval}}
+\index{runner\-\_\-verlet\-\_\-eval@{runner\-\_\-verlet\-\_\-eval}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-verlet\-\_\-eval}]{\setlength{\rightskip}{0pt plus 5cm}int runner\-\_\-verlet\-\_\-eval (
+\begin{DoxyParamCaption}
+\item[{struct {\bf runner} $\ast$}]{r, }
+\item[{struct {\bf cell} $\ast$}]{c, }
+\item[{{\bf F\-P\-T\-Y\-P\-E} $\ast$}]{f\-\_\-out}
+\end{DoxyParamCaption}
+)}}\label{runner_8h_a0915441be290fba424c95005e4e3e651}
+\hypertarget{runner_8h_a616a591d5d718f9ed974a3f071ad058b}{\index{runner.\-h@{runner.\-h}!runner\-\_\-verlet\-\_\-fill@{runner\-\_\-verlet\-\_\-fill}}
+\index{runner\-\_\-verlet\-\_\-fill@{runner\-\_\-verlet\-\_\-fill}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-verlet\-\_\-fill}]{\setlength{\rightskip}{0pt plus 5cm}int runner\-\_\-verlet\-\_\-fill (
+\begin{DoxyParamCaption}
+\item[{struct {\bf runner} $\ast$}]{r, }
+\item[{struct {\bf cell} $\ast$}]{cell\-\_\-i, }
+\item[{struct {\bf cell} $\ast$}]{cell\-\_\-j, }
+\item[{{\bf F\-P\-T\-Y\-P\-E} $\ast$}]{pshift}
+\end{DoxyParamCaption}
+)}}\label{runner_8h_a616a591d5d718f9ed974a3f071ad058b}
+
+
+\subsection{Variable Documentation}
+\hypertarget{runner_8h_a089c4782be93d7832449e187e5bff7fd}{\index{runner.\-h@{runner.\-h}!runner\-\_\-err@{runner\-\_\-err}}
+\index{runner\-\_\-err@{runner\-\_\-err}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}int runner\-\_\-err}}\label{runner_8h_a089c4782be93d7832449e187e5bff7fd}
+The I\-D of the last error. \hypertarget{runner_8h_a2207cb88c44be7288972a76e8b88d5cc}{\index{runner.\-h@{runner.\-h}!runner\-\_\-timers@{runner\-\_\-timers}}
+\index{runner\-\_\-timers@{runner\-\_\-timers}!runner.h@{runner.\-h}}
+\subsubsection[{runner\-\_\-timers}]{\setlength{\rightskip}{0pt plus 5cm}ticks runner\-\_\-timers\mbox{[}$\,$\mbox{]}}}\label{runner_8h_a2207cb88c44be7288972a76e8b88d5cc}
+Timers. 

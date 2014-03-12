@@ -1,0 +1,363 @@
+\hypertarget{reader_8h}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/reader.h File Reference}
+\label{reader_8h}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/reader.\-h@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/reader.\-h}}
+}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structreader}{reader}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{reader_8h_aa9ad2a77f3b92f20f4945a4650e37085}{reader\-\_\-err\-\_\-ok}~0
+\item 
+\#define \hyperlink{reader_8h_ae15c2447d062f5bfaea15d639d3b16bd}{reader\-\_\-err\-\_\-null}~-\/1
+\item 
+\#define \hyperlink{reader_8h_ac35d7093896c75cb57a47e95cbe94fbc}{reader\-\_\-err\-\_\-malloc}~-\/2
+\item 
+\#define \hyperlink{reader_8h_a0a635ae3a4302e15749dbeb3ad82559e}{reader\-\_\-err\-\_\-io}~-\/3
+\item 
+\#define \hyperlink{reader_8h_a61bf388579f2ffe0106e0127016c8ead}{reader\-\_\-err\-\_\-buff}~-\/4
+\item 
+\#define \hyperlink{reader_8h_a1228ee855ade17a16828061377d18401}{reader\-\_\-err\-\_\-eof}~-\/5
+\item 
+\#define \hyperlink{reader_8h_a0ae1c1d84c2ab0efc548f8ddc14b20c6}{reader\-\_\-flag\-\_\-none}~0
+\item 
+\#define \hyperlink{reader_8h_a7f254cc26caf6cb793a11b3b5fbd3b1d}{reader\-\_\-flag\-\_\-ready}~1
+\item 
+\#define \hyperlink{reader_8h_ae2ef5c654021c431b2743cdd35a353ba}{reader\-\_\-flag\-\_\-eof}~2
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{reader_8h_acda662ccc58fa7f753134c60917d1525}{reader\-\_\-close} (struct \hyperlink{structreader}{reader} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\begin{DoxyCompactList}\small\item\em wrap-\/up a reader. \end{DoxyCompactList}\item 
+int \hyperlink{reader_8h_a27c130e60a666f3ea691acda20e37227}{reader\-\_\-getc} (struct \hyperlink{structreader}{reader} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\begin{DoxyCompactList}\small\item\em Read the next char. \end{DoxyCompactList}\item 
+int \hyperlink{reader_8h_aadc42b75f1a814a935e76d99c7503a25}{reader\-\_\-init} (struct \hyperlink{structreader}{reader} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, int fd, char $\ast$ws, char $\ast$comm\-\_\-start, char $\ast$comm\-\_\-stop, int buffsize)
+\begin{DoxyCompactList}\small\item\em Initialize the reader. \end{DoxyCompactList}\item 
+int \hyperlink{reader_8h_a148893626007aab9f010db5476892ef2}{reader\-\_\-gettoken} (struct \hyperlink{structreader}{reader} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, char $\ast$buff, int buff\-\_\-size)
+\begin{DoxyCompactList}\small\item\em Read a token from the given reader. \end{DoxyCompactList}\item 
+int \hyperlink{reader_8h_a818437e74a7d805dd1c43d8d9f5115cc}{reader\-\_\-getcomment} (struct \hyperlink{structreader}{reader} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, char $\ast$buff, int buff\-\_\-size)
+\begin{DoxyCompactList}\small\item\em Read the next comment from the given reader. \end{DoxyCompactList}\item 
+int \hyperlink{reader_8h_acf2e0f092e5992aa4d5fea877e03a061}{reader\-\_\-getline} (struct \hyperlink{structreader}{reader} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, char $\ast$buff, int buff\-\_\-size)
+\begin{DoxyCompactList}\small\item\em Read until a newline. \end{DoxyCompactList}\item 
+int \hyperlink{reader_8h_aa3fdc127aebc21f3d2f23574bd89777c}{reader\-\_\-skiptoken} (struct \hyperlink{structreader}{reader} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\begin{DoxyCompactList}\small\item\em Skip a token from the given reader. \end{DoxyCompactList}\item 
+int \hyperlink{reader_8h_a826eed2ad4fd1eb476a8cbfb4cd6db15}{reader\-\_\-skipcomment} (struct \hyperlink{structreader}{reader} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\begin{DoxyCompactList}\small\item\em Skip the next comment from the given reader. \end{DoxyCompactList}\item 
+int \hyperlink{reader_8h_a4f67db191ff67a06a489ea42d7c59558}{reader\-\_\-skipline} (struct \hyperlink{structreader}{reader} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\begin{DoxyCompactList}\small\item\em Skip until a newline. \end{DoxyCompactList}\item 
+int \hyperlink{reader_8h_ac8bb7cc8061cc34210e987edc198fca2}{reader\-\_\-isws} (struct \hyperlink{structreader}{reader} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, int \hyperlink{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{c})
+\begin{DoxyCompactList}\small\item\em Check if a character is whitespace. \end{DoxyCompactList}\item 
+int \hyperlink{reader_8h_af32e4a3b9c70b9ee1896902e75235f7c}{reader\-\_\-iscomm\-\_\-start} (struct \hyperlink{structreader}{reader} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, int \hyperlink{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{c})
+\begin{DoxyCompactList}\small\item\em Check if a character is a comment start. \end{DoxyCompactList}\item 
+int \hyperlink{reader_8h_abbd2b6af8e20ca8978f4203670783463}{reader\-\_\-iscomm\-\_\-stop} (struct \hyperlink{structreader}{reader} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, int \hyperlink{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{c})
+\begin{DoxyCompactList}\small\item\em Check if a character is a comment stop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{reader_8h_a650137cfc79308abc4c016ae7020463a}{reader\-\_\-err}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{reader_8h_a61bf388579f2ffe0106e0127016c8ead}{\index{reader.\-h@{reader.\-h}!reader\-\_\-err\-\_\-buff@{reader\-\_\-err\-\_\-buff}}
+\index{reader\-\_\-err\-\_\-buff@{reader\-\_\-err\-\_\-buff}!reader.h@{reader.\-h}}
+\subsubsection[{reader\-\_\-err\-\_\-buff}]{\setlength{\rightskip}{0pt plus 5cm}\#define reader\-\_\-err\-\_\-buff~-\/4}}\label{reader_8h_a61bf388579f2ffe0106e0127016c8ead}
+\hypertarget{reader_8h_a1228ee855ade17a16828061377d18401}{\index{reader.\-h@{reader.\-h}!reader\-\_\-err\-\_\-eof@{reader\-\_\-err\-\_\-eof}}
+\index{reader\-\_\-err\-\_\-eof@{reader\-\_\-err\-\_\-eof}!reader.h@{reader.\-h}}
+\subsubsection[{reader\-\_\-err\-\_\-eof}]{\setlength{\rightskip}{0pt plus 5cm}\#define reader\-\_\-err\-\_\-eof~-\/5}}\label{reader_8h_a1228ee855ade17a16828061377d18401}
+\hypertarget{reader_8h_a0a635ae3a4302e15749dbeb3ad82559e}{\index{reader.\-h@{reader.\-h}!reader\-\_\-err\-\_\-io@{reader\-\_\-err\-\_\-io}}
+\index{reader\-\_\-err\-\_\-io@{reader\-\_\-err\-\_\-io}!reader.h@{reader.\-h}}
+\subsubsection[{reader\-\_\-err\-\_\-io}]{\setlength{\rightskip}{0pt plus 5cm}\#define reader\-\_\-err\-\_\-io~-\/3}}\label{reader_8h_a0a635ae3a4302e15749dbeb3ad82559e}
+\hypertarget{reader_8h_ac35d7093896c75cb57a47e95cbe94fbc}{\index{reader.\-h@{reader.\-h}!reader\-\_\-err\-\_\-malloc@{reader\-\_\-err\-\_\-malloc}}
+\index{reader\-\_\-err\-\_\-malloc@{reader\-\_\-err\-\_\-malloc}!reader.h@{reader.\-h}}
+\subsubsection[{reader\-\_\-err\-\_\-malloc}]{\setlength{\rightskip}{0pt plus 5cm}\#define reader\-\_\-err\-\_\-malloc~-\/2}}\label{reader_8h_ac35d7093896c75cb57a47e95cbe94fbc}
+\hypertarget{reader_8h_ae15c2447d062f5bfaea15d639d3b16bd}{\index{reader.\-h@{reader.\-h}!reader\-\_\-err\-\_\-null@{reader\-\_\-err\-\_\-null}}
+\index{reader\-\_\-err\-\_\-null@{reader\-\_\-err\-\_\-null}!reader.h@{reader.\-h}}
+\subsubsection[{reader\-\_\-err\-\_\-null}]{\setlength{\rightskip}{0pt plus 5cm}\#define reader\-\_\-err\-\_\-null~-\/1}}\label{reader_8h_ae15c2447d062f5bfaea15d639d3b16bd}
+\hypertarget{reader_8h_aa9ad2a77f3b92f20f4945a4650e37085}{\index{reader.\-h@{reader.\-h}!reader\-\_\-err\-\_\-ok@{reader\-\_\-err\-\_\-ok}}
+\index{reader\-\_\-err\-\_\-ok@{reader\-\_\-err\-\_\-ok}!reader.h@{reader.\-h}}
+\subsubsection[{reader\-\_\-err\-\_\-ok}]{\setlength{\rightskip}{0pt plus 5cm}\#define reader\-\_\-err\-\_\-ok~0}}\label{reader_8h_aa9ad2a77f3b92f20f4945a4650e37085}
+\hypertarget{reader_8h_ae2ef5c654021c431b2743cdd35a353ba}{\index{reader.\-h@{reader.\-h}!reader\-\_\-flag\-\_\-eof@{reader\-\_\-flag\-\_\-eof}}
+\index{reader\-\_\-flag\-\_\-eof@{reader\-\_\-flag\-\_\-eof}!reader.h@{reader.\-h}}
+\subsubsection[{reader\-\_\-flag\-\_\-eof}]{\setlength{\rightskip}{0pt plus 5cm}\#define reader\-\_\-flag\-\_\-eof~2}}\label{reader_8h_ae2ef5c654021c431b2743cdd35a353ba}
+\hypertarget{reader_8h_a0ae1c1d84c2ab0efc548f8ddc14b20c6}{\index{reader.\-h@{reader.\-h}!reader\-\_\-flag\-\_\-none@{reader\-\_\-flag\-\_\-none}}
+\index{reader\-\_\-flag\-\_\-none@{reader\-\_\-flag\-\_\-none}!reader.h@{reader.\-h}}
+\subsubsection[{reader\-\_\-flag\-\_\-none}]{\setlength{\rightskip}{0pt plus 5cm}\#define reader\-\_\-flag\-\_\-none~0}}\label{reader_8h_a0ae1c1d84c2ab0efc548f8ddc14b20c6}
+Flags. \hypertarget{reader_8h_a7f254cc26caf6cb793a11b3b5fbd3b1d}{\index{reader.\-h@{reader.\-h}!reader\-\_\-flag\-\_\-ready@{reader\-\_\-flag\-\_\-ready}}
+\index{reader\-\_\-flag\-\_\-ready@{reader\-\_\-flag\-\_\-ready}!reader.h@{reader.\-h}}
+\subsubsection[{reader\-\_\-flag\-\_\-ready}]{\setlength{\rightskip}{0pt plus 5cm}\#define reader\-\_\-flag\-\_\-ready~1}}\label{reader_8h_a7f254cc26caf6cb793a11b3b5fbd3b1d}
+
+
+\subsection{Function Documentation}
+\hypertarget{reader_8h_acda662ccc58fa7f753134c60917d1525}{\index{reader.\-h@{reader.\-h}!reader\-\_\-close@{reader\-\_\-close}}
+\index{reader\-\_\-close@{reader\-\_\-close}!reader.h@{reader.\-h}}
+\subsubsection[{reader\-\_\-close}]{\setlength{\rightskip}{0pt plus 5cm}void reader\-\_\-close (
+\begin{DoxyParamCaption}
+\item[{struct {\bf reader} $\ast$}]{r}
+\end{DoxyParamCaption}
+)}}\label{reader_8h_acda662ccc58fa7f753134c60917d1525}
+
+
+wrap-\/up a reader. 
+
+\hypertarget{reader_8h_a27c130e60a666f3ea691acda20e37227}{\index{reader.\-h@{reader.\-h}!reader\-\_\-getc@{reader\-\_\-getc}}
+\index{reader\-\_\-getc@{reader\-\_\-getc}!reader.h@{reader.\-h}}
+\subsubsection[{reader\-\_\-getc}]{\setlength{\rightskip}{0pt plus 5cm}int reader\-\_\-getc (
+\begin{DoxyParamCaption}
+\item[{struct {\bf reader} $\ast$}]{r}
+\end{DoxyParamCaption}
+)}}\label{reader_8h_a27c130e60a666f3ea691acda20e37227}
+
+
+Read the next char. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The \hyperlink{structreader}{reader}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The next character or $<$ 0 on error (see \hyperlink{reader_8h_a650137cfc79308abc4c016ae7020463a}{reader\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{reader_8h_a818437e74a7d805dd1c43d8d9f5115cc}{\index{reader.\-h@{reader.\-h}!reader\-\_\-getcomment@{reader\-\_\-getcomment}}
+\index{reader\-\_\-getcomment@{reader\-\_\-getcomment}!reader.h@{reader.\-h}}
+\subsubsection[{reader\-\_\-getcomment}]{\setlength{\rightskip}{0pt plus 5cm}int reader\-\_\-getcomment (
+\begin{DoxyParamCaption}
+\item[{struct {\bf reader} $\ast$}]{r, }
+\item[{char $\ast$}]{buff, }
+\item[{int}]{buff\-\_\-size}
+\end{DoxyParamCaption}
+)}}\label{reader_8h_a818437e74a7d805dd1c43d8d9f5115cc}
+
+
+Read the next comment from the given reader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & the \hyperlink{structreader}{reader}. \\
+\hline
+{\em buff} & Pointer to {\ttfamily char} at which to store the token. \\
+\hline
+{\em buff\-\_\-size} & Size of the {\ttfamily buff}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of read characters or $<$ 0 on error (see \hyperlink{reader_8h_a650137cfc79308abc4c016ae7020463a}{reader\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{reader_8h_acf2e0f092e5992aa4d5fea877e03a061}{\index{reader.\-h@{reader.\-h}!reader\-\_\-getline@{reader\-\_\-getline}}
+\index{reader\-\_\-getline@{reader\-\_\-getline}!reader.h@{reader.\-h}}
+\subsubsection[{reader\-\_\-getline}]{\setlength{\rightskip}{0pt plus 5cm}int reader\-\_\-getline (
+\begin{DoxyParamCaption}
+\item[{struct {\bf reader} $\ast$}]{r, }
+\item[{char $\ast$}]{buff, }
+\item[{int}]{buff\-\_\-size}
+\end{DoxyParamCaption}
+)}}\label{reader_8h_acf2e0f092e5992aa4d5fea877e03a061}
+
+
+Read until a newline. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The \hyperlink{structreader}{reader}. \\
+\hline
+{\em buff} & Pointer to {\ttfamily char} at which to store the token. \\
+\hline
+{\em buff\-\_\-size} & Size of the {\ttfamily buff}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of read characters or $<$ 0 on error (see \hyperlink{reader_8h_a650137cfc79308abc4c016ae7020463a}{reader\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{reader_8h_a148893626007aab9f010db5476892ef2}{\index{reader.\-h@{reader.\-h}!reader\-\_\-gettoken@{reader\-\_\-gettoken}}
+\index{reader\-\_\-gettoken@{reader\-\_\-gettoken}!reader.h@{reader.\-h}}
+\subsubsection[{reader\-\_\-gettoken}]{\setlength{\rightskip}{0pt plus 5cm}int reader\-\_\-gettoken (
+\begin{DoxyParamCaption}
+\item[{struct {\bf reader} $\ast$}]{r, }
+\item[{char $\ast$}]{buff, }
+\item[{int}]{buff\-\_\-size}
+\end{DoxyParamCaption}
+)}}\label{reader_8h_a148893626007aab9f010db5476892ef2}
+
+
+Read a token from the given reader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The \hyperlink{structreader}{reader}. \\
+\hline
+{\em buff} & Pointer to {\ttfamily char} at which to store the token. \\
+\hline
+{\em buff\-\_\-size} & Size of the {\ttfamily buff}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of read characters or $<$ 0 on error (see \hyperlink{reader_8h_a650137cfc79308abc4c016ae7020463a}{reader\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{reader_8h_aadc42b75f1a814a935e76d99c7503a25}{\index{reader.\-h@{reader.\-h}!reader\-\_\-init@{reader\-\_\-init}}
+\index{reader\-\_\-init@{reader\-\_\-init}!reader.h@{reader.\-h}}
+\subsubsection[{reader\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}int reader\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{struct {\bf reader} $\ast$}]{r, }
+\item[{int}]{fd, }
+\item[{char $\ast$}]{ws, }
+\item[{char $\ast$}]{comm\-\_\-start, }
+\item[{char $\ast$}]{comm\-\_\-stop, }
+\item[{int}]{buffsize}
+\end{DoxyParamCaption}
+)}}\label{reader_8h_aadc42b75f1a814a935e76d99c7503a25}
+
+
+Initialize the reader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The \hyperlink{structreader}{reader} structure. \\
+\hline
+{\em file} & The {\ttfamily F\-I\-L\-E} with which the \hyperlink{structreader}{reader} should be associated. \\
+\hline
+{\em ws} & String containing the accepted whitespace characters. \\
+\hline
+{\em comm\-\_\-start} & String containing characters indicating the start of a comment. \\
+\hline
+{\em comm\-\_\-stop} & String containing characters indicating the end of a comment.\\
+\hline
+\end{DoxyParams}
+The {\ttfamily F\-I\-L\-E} supplied should be open and will be read as of its current position.
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{reader_8h_aa9ad2a77f3b92f20f4945a4650e37085}{reader\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{reader_8h_a650137cfc79308abc4c016ae7020463a}{reader\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{reader_8h_af32e4a3b9c70b9ee1896902e75235f7c}{\index{reader.\-h@{reader.\-h}!reader\-\_\-iscomm\-\_\-start@{reader\-\_\-iscomm\-\_\-start}}
+\index{reader\-\_\-iscomm\-\_\-start@{reader\-\_\-iscomm\-\_\-start}!reader.h@{reader.\-h}}
+\subsubsection[{reader\-\_\-iscomm\-\_\-start}]{\setlength{\rightskip}{0pt plus 5cm}int reader\-\_\-iscomm\-\_\-start (
+\begin{DoxyParamCaption}
+\item[{struct {\bf reader} $\ast$}]{r, }
+\item[{int}]{c}
+\end{DoxyParamCaption}
+)}}\label{reader_8h_af32e4a3b9c70b9ee1896902e75235f7c}
+
+
+Check if a character is a comment start. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The \hyperlink{structreader}{reader}. \\
+\hline
+{\em c} & The character to verify.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if {\ttfamily c} is in the comm\-\_\-start of the \hyperlink{structreader}{reader} {\ttfamily r} or 0 otherwise. 
+\end{DoxyReturn}
+\hypertarget{reader_8h_abbd2b6af8e20ca8978f4203670783463}{\index{reader.\-h@{reader.\-h}!reader\-\_\-iscomm\-\_\-stop@{reader\-\_\-iscomm\-\_\-stop}}
+\index{reader\-\_\-iscomm\-\_\-stop@{reader\-\_\-iscomm\-\_\-stop}!reader.h@{reader.\-h}}
+\subsubsection[{reader\-\_\-iscomm\-\_\-stop}]{\setlength{\rightskip}{0pt plus 5cm}int reader\-\_\-iscomm\-\_\-stop (
+\begin{DoxyParamCaption}
+\item[{struct {\bf reader} $\ast$}]{r, }
+\item[{int}]{c}
+\end{DoxyParamCaption}
+)}}\label{reader_8h_abbd2b6af8e20ca8978f4203670783463}
+
+
+Check if a character is a comment stop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The \hyperlink{structreader}{reader}. \\
+\hline
+{\em c} & The character to verify.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if {\ttfamily c} is in the comm\-\_\-stop of the \hyperlink{structreader}{reader} {\ttfamily r} or 0 otherwise. 
+\end{DoxyReturn}
+\hypertarget{reader_8h_ac8bb7cc8061cc34210e987edc198fca2}{\index{reader.\-h@{reader.\-h}!reader\-\_\-isws@{reader\-\_\-isws}}
+\index{reader\-\_\-isws@{reader\-\_\-isws}!reader.h@{reader.\-h}}
+\subsubsection[{reader\-\_\-isws}]{\setlength{\rightskip}{0pt plus 5cm}int reader\-\_\-isws (
+\begin{DoxyParamCaption}
+\item[{struct {\bf reader} $\ast$}]{r, }
+\item[{int}]{c}
+\end{DoxyParamCaption}
+)}}\label{reader_8h_ac8bb7cc8061cc34210e987edc198fca2}
+
+
+Check if a character is whitespace. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The \hyperlink{structreader}{reader}. \\
+\hline
+{\em c} & The character to verify.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if {\ttfamily c} is in the comm\-\_\-stop of the \hyperlink{structreader}{reader} {\ttfamily r} or 0 otherwise. 
+\end{DoxyReturn}
+\hypertarget{reader_8h_a826eed2ad4fd1eb476a8cbfb4cd6db15}{\index{reader.\-h@{reader.\-h}!reader\-\_\-skipcomment@{reader\-\_\-skipcomment}}
+\index{reader\-\_\-skipcomment@{reader\-\_\-skipcomment}!reader.h@{reader.\-h}}
+\subsubsection[{reader\-\_\-skipcomment}]{\setlength{\rightskip}{0pt plus 5cm}int reader\-\_\-skipcomment (
+\begin{DoxyParamCaption}
+\item[{struct {\bf reader} $\ast$}]{r}
+\end{DoxyParamCaption}
+)}}\label{reader_8h_a826eed2ad4fd1eb476a8cbfb4cd6db15}
+
+
+Skip the next comment from the given reader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & the \hyperlink{structreader}{reader}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of read characters or $<$ 0 on error (see \hyperlink{reader_8h_a650137cfc79308abc4c016ae7020463a}{reader\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{reader_8h_a4f67db191ff67a06a489ea42d7c59558}{\index{reader.\-h@{reader.\-h}!reader\-\_\-skipline@{reader\-\_\-skipline}}
+\index{reader\-\_\-skipline@{reader\-\_\-skipline}!reader.h@{reader.\-h}}
+\subsubsection[{reader\-\_\-skipline}]{\setlength{\rightskip}{0pt plus 5cm}int reader\-\_\-skipline (
+\begin{DoxyParamCaption}
+\item[{struct {\bf reader} $\ast$}]{r}
+\end{DoxyParamCaption}
+)}}\label{reader_8h_a4f67db191ff67a06a489ea42d7c59558}
+
+
+Skip until a newline. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The \hyperlink{structreader}{reader}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of read characters or $<$ 0 on error (see \hyperlink{reader_8h_a650137cfc79308abc4c016ae7020463a}{reader\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{reader_8h_aa3fdc127aebc21f3d2f23574bd89777c}{\index{reader.\-h@{reader.\-h}!reader\-\_\-skiptoken@{reader\-\_\-skiptoken}}
+\index{reader\-\_\-skiptoken@{reader\-\_\-skiptoken}!reader.h@{reader.\-h}}
+\subsubsection[{reader\-\_\-skiptoken}]{\setlength{\rightskip}{0pt plus 5cm}int reader\-\_\-skiptoken (
+\begin{DoxyParamCaption}
+\item[{struct {\bf reader} $\ast$}]{r}
+\end{DoxyParamCaption}
+)}}\label{reader_8h_aa3fdc127aebc21f3d2f23574bd89777c}
+
+
+Skip a token from the given reader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The \hyperlink{structreader}{reader}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of read characters or $<$ 0 on error (see \hyperlink{reader_8h_a650137cfc79308abc4c016ae7020463a}{reader\-\_\-err}). 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\hypertarget{reader_8h_a650137cfc79308abc4c016ae7020463a}{\index{reader.\-h@{reader.\-h}!reader\-\_\-err@{reader\-\_\-err}}
+\index{reader\-\_\-err@{reader\-\_\-err}!reader.h@{reader.\-h}}
+\subsubsection[{reader\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}int reader\-\_\-err}}\label{reader_8h_a650137cfc79308abc4c016ae7020463a}
+I\-D of the last error 

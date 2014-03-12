@@ -1,0 +1,240 @@
+\hypertarget{runner_8c}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/runner.c File Reference}
+\label{runner_8c}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/runner.\-c@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/runner.\-c}}
+}
+{\ttfamily \#include \char`\"{}../config.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$pthread.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include $<$float.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$limits.\-h$>$}\\*
+{\ttfamily \#include $<$sched.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}cycle.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}errs.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fptype.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lock.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}part.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}queue.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}cell.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}task.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}space.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}potential.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}engine.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}runner.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{runner_8c_a7673862d447029edaf3172ebd94aa28e}{error}(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})~( \hyperlink{runner_8h_a089c4782be93d7832449e187e5bff7fd}{runner\-\_\-err} = \hyperlink{errs_8h_ae37a9c0e0a0aa4a92dbe64c0f38ed95c}{errs\-\_\-register}( \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id} , \hyperlink{runner__dosort_8c_abc364fce0ce2786068ca9c910aa3bd86}{runner\-\_\-err\-\_\-msg}\mbox{[}-\/(\hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{runner_8c_adf21370458729b89d6816fd9169e200a}{runner\-\_\-sort\-\_\-descending} (unsigned int $\ast$parts, int N)
+\begin{DoxyCompactList}\small\item\em Sort the particles in descending order using Quick\-Sort. \end{DoxyCompactList}\item 
+void \hyperlink{runner_8c_a0c5ca74bcd3c74c27645c2243025a5d7}{runner\-\_\-sort\-\_\-ascending} (unsigned int $\ast$parts, int N)
+\begin{DoxyCompactList}\small\item\em Sort the particles in ascending order using Quick\-Sort. \end{DoxyCompactList}\item 
+int \hyperlink{runner_8c_af428a054500832cb183d5fffadda727c}{runner\-\_\-run\-\_\-cell} (struct \hyperlink{structrunner}{runner} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\begin{DoxyCompactList}\small\item\em The \hyperlink{structrunner}{runner}'s main routine (for the Cell/\-B\-E S\-P\-U). \end{DoxyCompactList}\item 
+int \hyperlink{runner_8c_a0b707df22eed7593da4be06d282fbce1}{runner\-\_\-run\-\_\-cell\-\_\-tuples} (struct \hyperlink{structrunner}{runner} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\begin{DoxyCompactList}\small\item\em The \hyperlink{structrunner}{runner}'s main routine (for the Cell/\-B\-E S\-P\-U, using tuples). \end{DoxyCompactList}\item 
+int \hyperlink{runner_8c_a23eafc1532ccd91d5c6d3443d25aa62b}{runner\-\_\-run} (struct \hyperlink{structrunner}{runner} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
+\item 
+int \hyperlink{runner_8c_a64f3f09b5fef50a99918e1a343999b7d}{runner\-\_\-init\-\_\-\-S\-P\-U} (struct \hyperlink{structrunner}{runner} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})
+\begin{DoxyCompactList}\small\item\em Initialize the runner associated to the given engine and attach it to an S\-P\-U. \end{DoxyCompactList}\item 
+int \hyperlink{runner_8c_a574700fcf4fa0e9eaee3caf4f8d0d82d}{runner\-\_\-init} (struct \hyperlink{structrunner}{runner} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})
+\begin{DoxyCompactList}\small\item\em Initialize the runner associated to the given engine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{runner_8c_a089c4782be93d7832449e187e5bff7fd}{runner\-\_\-err} = \hyperlink{runner_8h_a9dee8308cc82d4f6c77891cfb448790c}{runner\-\_\-err\-\_\-ok}
+\item 
+unsigned int \hyperlink{runner_8c_a27d7ea9069ba02bd4df2a48cc1093376}{runner\-\_\-rcount} = 0
+\item 
+ticks \hyperlink{runner_8c_abeccfdff91716ba3302745d940c4beab}{runner\-\_\-timers} \mbox{[}\hyperlink{runner_8h_abc6126af1d45847bc59afa0aa3216b04aaf3bbf1f5bea51603f4d867f3c9fdcce}{runner\-\_\-timer\-\_\-count}\mbox{]}
+\item 
+char $\ast$ \hyperlink{runner_8c_ace29d7282f72f6599f609212b1429a0a}{runner\-\_\-err\-\_\-msg} \mbox{[}12\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{runner_8c_a7673862d447029edaf3172ebd94aa28e}{\index{runner.\-c@{runner.\-c}!error@{error}}
+\index{error@{error}!runner.c@{runner.\-c}}
+\subsubsection[{error}]{\setlength{\rightskip}{0pt plus 5cm}\#define error(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf id}}
+\end{DoxyParamCaption}
+)~( {\bf runner\-\_\-err} = {\bf errs\-\_\-register}( {\bf id} , {\bf runner\-\_\-err\-\_\-msg}\mbox{[}-\/({\bf id})\mbox{]} , \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-\_\-\-\_\- , \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\- ) )}}\label{runner_8c_a7673862d447029edaf3172ebd94aa28e}
+
+
+\subsection{Function Documentation}
+\hypertarget{runner_8c_a574700fcf4fa0e9eaee3caf4f8d0d82d}{\index{runner.\-c@{runner.\-c}!runner\-\_\-init@{runner\-\_\-init}}
+\index{runner\-\_\-init@{runner\-\_\-init}!runner.c@{runner.\-c}}
+\subsubsection[{runner\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}int runner\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{struct {\bf runner} $\ast$}]{r, }
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}}\label{runner_8c_a574700fcf4fa0e9eaee3caf4f8d0d82d}
+
+
+Initialize the runner associated to the given engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The \hyperlink{structrunner}{runner} to be initialized. \\
+\hline
+{\em e} & The \hyperlink{structengine}{engine} with which it is associated. \\
+\hline
+{\em id} & The I\-D of this \hyperlink{structrunner}{runner}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{runner_8h_a9dee8308cc82d4f6c77891cfb448790c}{runner\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{runner_8h_a089c4782be93d7832449e187e5bff7fd}{runner\-\_\-err}). 
+\end{DoxyReturn}
+\hypertarget{runner_8c_a64f3f09b5fef50a99918e1a343999b7d}{\index{runner.\-c@{runner.\-c}!runner\-\_\-init\-\_\-\-S\-P\-U@{runner\-\_\-init\-\_\-\-S\-P\-U}}
+\index{runner\-\_\-init\-\_\-\-S\-P\-U@{runner\-\_\-init\-\_\-\-S\-P\-U}!runner.c@{runner.\-c}}
+\subsubsection[{runner\-\_\-init\-\_\-\-S\-P\-U}]{\setlength{\rightskip}{0pt plus 5cm}int runner\-\_\-init\-\_\-\-S\-P\-U (
+\begin{DoxyParamCaption}
+\item[{struct {\bf runner} $\ast$}]{r, }
+\item[{struct {\bf engine} $\ast$}]{e, }
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}}\label{runner_8c_a64f3f09b5fef50a99918e1a343999b7d}
+
+
+Initialize the runner associated to the given engine and attach it to an S\-P\-U. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The \hyperlink{structrunner}{runner} to be initialized. \\
+\hline
+{\em e} & The \hyperlink{structengine}{engine} with which it is associated. \\
+\hline
+{\em id} & The I\-D of this \hyperlink{structrunner}{runner}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{runner_8h_a9dee8308cc82d4f6c77891cfb448790c}{runner\-\_\-err\-\_\-ok} or $<$ 0 on error (see \hyperlink{runner_8h_a089c4782be93d7832449e187e5bff7fd}{runner\-\_\-err}).
+\end{DoxyReturn}
+If {\ttfamily C\-E\-L\-L} is not defined, this routine will fail! \hypertarget{runner_8c_a23eafc1532ccd91d5c6d3443d25aa62b}{\index{runner.\-c@{runner.\-c}!runner\-\_\-run@{runner\-\_\-run}}
+\index{runner\-\_\-run@{runner\-\_\-run}!runner.c@{runner.\-c}}
+\subsubsection[{runner\-\_\-run}]{\setlength{\rightskip}{0pt plus 5cm}int runner\-\_\-run (
+\begin{DoxyParamCaption}
+\item[{struct {\bf runner} $\ast$}]{r}
+\end{DoxyParamCaption}
+)}}\label{runner_8c_a23eafc1532ccd91d5c6d3443d25aa62b}
+\hypertarget{runner_8c_af428a054500832cb183d5fffadda727c}{\index{runner.\-c@{runner.\-c}!runner\-\_\-run\-\_\-cell@{runner\-\_\-run\-\_\-cell}}
+\index{runner\-\_\-run\-\_\-cell@{runner\-\_\-run\-\_\-cell}!runner.c@{runner.\-c}}
+\subsubsection[{runner\-\_\-run\-\_\-cell}]{\setlength{\rightskip}{0pt plus 5cm}int runner\-\_\-run\-\_\-cell (
+\begin{DoxyParamCaption}
+\item[{struct {\bf runner} $\ast$}]{r}
+\end{DoxyParamCaption}
+)}}\label{runner_8c_af428a054500832cb183d5fffadda727c}
+
+
+The \hyperlink{structrunner}{runner}'s main routine (for the Cell/\-B\-E S\-P\-U). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & Pointer to the \hyperlink{structrunner}{runner} to run.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{runner_8h_a9dee8308cc82d4f6c77891cfb448790c}{runner\-\_\-err\-\_\-ok} or $<$0 on error (see \hyperlink{runner_8h_a089c4782be93d7832449e187e5bff7fd}{runner\-\_\-err}).
+\end{DoxyReturn}
+This is the main routine for the \hyperlink{structrunner}{runner}. When called, it enters an infinite loop in which it waits at the \hyperlink{structengine}{engine} {\ttfamily r-\/$>$e} barrier and, once having pa\-S\-S\-Ed, calls \#space\-\_\-getpair until there are no pairs available.
+
+Note that this routine is only compiled if {\ttfamily C\-E\-L\-L} has been defined. \hypertarget{runner_8c_a0b707df22eed7593da4be06d282fbce1}{\index{runner.\-c@{runner.\-c}!runner\-\_\-run\-\_\-cell\-\_\-tuples@{runner\-\_\-run\-\_\-cell\-\_\-tuples}}
+\index{runner\-\_\-run\-\_\-cell\-\_\-tuples@{runner\-\_\-run\-\_\-cell\-\_\-tuples}!runner.c@{runner.\-c}}
+\subsubsection[{runner\-\_\-run\-\_\-cell\-\_\-tuples}]{\setlength{\rightskip}{0pt plus 5cm}int runner\-\_\-run\-\_\-cell\-\_\-tuples (
+\begin{DoxyParamCaption}
+\item[{struct {\bf runner} $\ast$}]{r}
+\end{DoxyParamCaption}
+)}}\label{runner_8c_a0b707df22eed7593da4be06d282fbce1}
+
+
+The \hyperlink{structrunner}{runner}'s main routine (for the Cell/\-B\-E S\-P\-U, using tuples). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & Pointer to the \hyperlink{structrunner}{runner} to run.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{runner_8h_a9dee8308cc82d4f6c77891cfb448790c}{runner\-\_\-err\-\_\-ok} or $<$0 on error (see \hyperlink{runner_8h_a089c4782be93d7832449e187e5bff7fd}{runner\-\_\-err}).
+\end{DoxyReturn}
+This is the main routine for the \hyperlink{structrunner}{runner}. When called, it enters an infinite loop in which it waits at the \hyperlink{structengine}{engine} {\ttfamily r-\/$>$e} barrier and, once having pa\-S\-S\-Ed, calls \#space\-\_\-gettuple until there are no tuples available.
+
+Note that this routine is only compiled if {\ttfamily C\-E\-L\-L} has been defined. \hypertarget{runner_8c_a0c5ca74bcd3c74c27645c2243025a5d7}{\index{runner.\-c@{runner.\-c}!runner\-\_\-sort\-\_\-ascending@{runner\-\_\-sort\-\_\-ascending}}
+\index{runner\-\_\-sort\-\_\-ascending@{runner\-\_\-sort\-\_\-ascending}!runner.c@{runner.\-c}}
+\subsubsection[{runner\-\_\-sort\-\_\-ascending}]{\setlength{\rightskip}{0pt plus 5cm}void runner\-\_\-sort\-\_\-ascending (
+\begin{DoxyParamCaption}
+\item[{unsigned int $\ast$}]{parts, }
+\item[{int}]{N}
+\end{DoxyParamCaption}
+)}}\label{runner_8c_a0c5ca74bcd3c74c27645c2243025a5d7}
+
+
+Sort the particles in ascending order using Quick\-Sort. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parts} & The particle I\-Ds and distances in compact form \\
+\hline
+{\em N} & The number of particles.\\
+\hline
+\end{DoxyParams}
+The particle data is assumed to contain the distance in the lower 16 bits and the particle I\-D in the upper 16 bits. \hypertarget{runner_8c_adf21370458729b89d6816fd9169e200a}{\index{runner.\-c@{runner.\-c}!runner\-\_\-sort\-\_\-descending@{runner\-\_\-sort\-\_\-descending}}
+\index{runner\-\_\-sort\-\_\-descending@{runner\-\_\-sort\-\_\-descending}!runner.c@{runner.\-c}}
+\subsubsection[{runner\-\_\-sort\-\_\-descending}]{\setlength{\rightskip}{0pt plus 5cm}void runner\-\_\-sort\-\_\-descending (
+\begin{DoxyParamCaption}
+\item[{unsigned int $\ast$}]{parts, }
+\item[{int}]{N}
+\end{DoxyParamCaption}
+)}}\label{runner_8c_adf21370458729b89d6816fd9169e200a}
+
+
+Sort the particles in descending order using Quick\-Sort. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parts} & The particle I\-Ds and distances in compact form \\
+\hline
+{\em N} & The number of particles.\\
+\hline
+\end{DoxyParams}
+The particle data is assumed to contain the distance in the lower 16 bits and the particle I\-D in the upper 16 bits. 
+
+\subsection{Variable Documentation}
+\hypertarget{runner_8c_a089c4782be93d7832449e187e5bff7fd}{\index{runner.\-c@{runner.\-c}!runner\-\_\-err@{runner\-\_\-err}}
+\index{runner\-\_\-err@{runner\-\_\-err}!runner.c@{runner.\-c}}
+\subsubsection[{runner\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}int runner\-\_\-err = {\bf runner\-\_\-err\-\_\-ok}}}\label{runner_8c_a089c4782be93d7832449e187e5bff7fd}
+The I\-D of the last error. \hypertarget{runner_8c_ace29d7282f72f6599f609212b1429a0a}{\index{runner.\-c@{runner.\-c}!runner\-\_\-err\-\_\-msg@{runner\-\_\-err\-\_\-msg}}
+\index{runner\-\_\-err\-\_\-msg@{runner\-\_\-err\-\_\-msg}!runner.c@{runner.\-c}}
+\subsubsection[{runner\-\_\-err\-\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ runner\-\_\-err\-\_\-msg\mbox{[}12\mbox{]}}}\label{runner_8c_ace29d7282f72f6599f609212b1429a0a}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= \{
+        \textcolor{stringliteral}{"Nothing bad happened."},
+    \textcolor{stringliteral}{"An unexpected NULL pointer was encountered."},
+    \textcolor{stringliteral}{"A call to malloc failed, probably due to insufficient memory."},
+    \textcolor{stringliteral}{"An error occured when calling a space function."},
+    \textcolor{stringliteral}{"A call to a pthread routine failed."},
+    \textcolor{stringliteral}{"An error occured when calling an engine function."},
+    \textcolor{stringliteral}{"An error occured when calling an SPE function."},
+    \textcolor{stringliteral}{"An error occured with the memory flow controler."},
+    \textcolor{stringliteral}{"The requested functionality is not available."} ,
+    \textcolor{stringliteral}{"An error occured when calling an fifo function."} ,
+    \textcolor{stringliteral}{"Error filling Verlet list: too many neighbours."} , 
+    \textcolor{stringliteral}{"Unknown task type."} , 
+        \}
+\end{DoxyCode}
+\hypertarget{runner_8c_a27d7ea9069ba02bd4df2a48cc1093376}{\index{runner.\-c@{runner.\-c}!runner\-\_\-rcount@{runner\-\_\-rcount}}
+\index{runner\-\_\-rcount@{runner\-\_\-rcount}!runner.c@{runner.\-c}}
+\subsubsection[{runner\-\_\-rcount}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int runner\-\_\-rcount = 0}}\label{runner_8c_a27d7ea9069ba02bd4df2a48cc1093376}
+\hypertarget{runner_8c_abeccfdff91716ba3302745d940c4beab}{\index{runner.\-c@{runner.\-c}!runner\-\_\-timers@{runner\-\_\-timers}}
+\index{runner\-\_\-timers@{runner\-\_\-timers}!runner.c@{runner.\-c}}
+\subsubsection[{runner\-\_\-timers}]{\setlength{\rightskip}{0pt plus 5cm}ticks runner\-\_\-timers\mbox{[}{\bf runner\-\_\-timer\-\_\-count}\mbox{]}}}\label{runner_8c_abeccfdff91716ba3302745d940c4beab}
+Timers. 
