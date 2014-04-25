@@ -1,5 +1,5 @@
-\hypertarget{runner__cuda_8cu}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/runner\-\_\-cuda.cu File Reference}
-\label{runner__cuda_8cu}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/runner\-\_\-cuda.\-cu@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/runner\-\_\-cuda.\-cu}}
+\hypertarget{runner__cuda_8cu}{\section{/\-Users/stephan/\-Code/git/mdcore/src/runner\-\_\-cuda.cu File Reference}
+\label{runner__cuda_8cu}\index{/\-Users/stephan/\-Code/git/mdcore/src/runner\-\_\-cuda.\-cu@{/\-Users/stephan/\-Code/git/mdcore/src/runner\-\_\-cuda.\-cu}}
 }
 {\ttfamily \#include \char`\"{}../config.\-h\char`\"{}}\\*
 {\ttfamily \#include $<$stdlib.\-h$>$}\\*
@@ -93,11 +93,11 @@
 \begin{DoxyCompactList}\small\item\em Sort the given data w.\-r.\-t. the lowest 16 bits in decending order. \end{DoxyCompactList}\item 
 \-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_a01c8032e5d4495edadcc8540a36bba7e}{cuda\-\_\-sort\-\_\-ascending} (unsigned int $\ast$a, int count)
 \begin{DoxyCompactList}\small\item\em Sort the given data w.\-r.\-t. the lowest 16 bits in ascending order. \end{DoxyCompactList}\item 
-\-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_a4f847a3ee804e94e33154c1b0b3c1d26}{potential\-\_\-eval\-\_\-cuda\-\_\-tex} (int pid, float \hyperlink{potential__eval_8h_aaa7f6ac275af5eb6de39bc858a218035}{r2}, float $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, float $\ast$\hyperlink{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}{f})
+\-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_a4f847a3ee804e94e33154c1b0b3c1d26}{potential\-\_\-eval\-\_\-cuda\-\_\-tex} (int pid, float \hyperlink{potential__eval_8h_aaa7f6ac275af5eb6de39bc858a218035}{r2}, float $\ast$\hyperlink{potential__eval_8h_ad93203f13cbfb07bd361e3b37b092fff}{e}, float $\ast$\hyperlink{potential__eval_8h_a1f01162d8c9ffd5a2c09c3c61cc8ef43}{f})
 \begin{DoxyCompactList}\small\item\em Evaluates the given potential at the given point (interpolated) using texture memory on the device. \end{DoxyCompactList}\item 
-\-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_ad7ac64705f23cc0ce5d9d73369162309}{potential\-\_\-eval4\-\_\-cuda\-\_\-tex} (int4 pid, float4 \hyperlink{potential__eval_8h_aaa7f6ac275af5eb6de39bc858a218035}{r2}, float4 $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, float4 $\ast$\hyperlink{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}{f})
+\-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_ad7ac64705f23cc0ce5d9d73369162309}{potential\-\_\-eval4\-\_\-cuda\-\_\-tex} (int4 pid, float4 \hyperlink{potential__eval_8h_aaa7f6ac275af5eb6de39bc858a218035}{r2}, float4 $\ast$\hyperlink{potential__eval_8h_ad93203f13cbfb07bd361e3b37b092fff}{e}, float4 $\ast$\hyperlink{potential__eval_8h_a1f01162d8c9ffd5a2c09c3c61cc8ef43}{f})
 \begin{DoxyCompactList}\small\item\em Evaluates the given potential at the given point (interpolated) using texture memory on the device. \end{DoxyCompactList}\item 
-\-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_a84663dbc518d6061f158eee8652d1c45}{potential\-\_\-eval\-\_\-cuda} (struct \hyperlink{structpotential}{potential} $\ast$p, float \hyperlink{potential__eval_8h_aaa7f6ac275af5eb6de39bc858a218035}{r2}, float $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, float $\ast$\hyperlink{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}{f})
+\-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_a84663dbc518d6061f158eee8652d1c45}{potential\-\_\-eval\-\_\-cuda} (struct \hyperlink{structpotential}{potential} $\ast$p, float \hyperlink{potential__eval_8h_aaa7f6ac275af5eb6de39bc858a218035}{r2}, float $\ast$\hyperlink{potential__eval_8h_ad93203f13cbfb07bd361e3b37b092fff}{e}, float $\ast$\hyperlink{potential__eval_8h_a1f01162d8c9ffd5a2c09c3c61cc8ef43}{f})
 \begin{DoxyCompactList}\small\item\em Evaluates the given potential at the given point (interpolated). \end{DoxyCompactList}\item 
 \-\_\-\-\_\-device\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_a45e0ea4d8e8da106e1a963bc453ab8be}{runner\-\_\-dopair\-\_\-unsorted\-\_\-cuda} (float4 $\ast$parts\-\_\-i, int count\-\_\-i, float4 $\ast$parts\-\_\-j, int count\-\_\-j, float $\ast$forces\-\_\-i, float $\ast$forces\-\_\-j, float $\ast$shift, float $\ast$epot\-\_\-global)
 \begin{DoxyCompactList}\small\item\em Compute the pairwise interactions for the given pair on a C\-U\-D\-A device. \end{DoxyCompactList}\item 
@@ -115,15 +115,15 @@
 \begin{DoxyCompactList}\small\item\em Compute the self interactions for the given cell on a C\-U\-D\-A device. \end{DoxyCompactList}\item 
 \-\_\-\-\_\-global\-\_\-\-\_\- void \hyperlink{runner__cuda_8cu_a3e3d193762e74ec5046ce21883c869ca}{cuda\-\_\-memset\-\_\-float} (float $\ast$data, float val, int N)
 \begin{DoxyCompactList}\small\item\em Our very own memset for the particle forces as cuda\-Memset\-Async requires a device switch when using streams on different devices. \end{DoxyCompactList}\item 
-int \hyperlink{runner__cuda_8cu_abdd3e423279f5335dea30af84aa539a1}{engine\-\_\-nonbond\-\_\-cuda} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+int \hyperlink{runner__cuda_8cu_abdd3e423279f5335dea30af84aa539a1}{engine\-\_\-nonbond\-\_\-cuda} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ad93203f13cbfb07bd361e3b37b092fff}{e})
 \begin{DoxyCompactList}\small\item\em Offload and compute the nonbonded interactions on a C\-U\-D\-A device. \end{DoxyCompactList}\item 
-int \hyperlink{runner__cuda_8cu_ab0d9b84f18b2171f13e7b563f3f023f9}{engine\-\_\-cuda\-\_\-load\-\_\-parts} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+int \hyperlink{runner__cuda_8cu_ab0d9b84f18b2171f13e7b563f3f023f9}{engine\-\_\-cuda\-\_\-load\-\_\-parts} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ad93203f13cbfb07bd361e3b37b092fff}{e})
 \begin{DoxyCompactList}\small\item\em Load the cell data onto the C\-U\-D\-A device. \end{DoxyCompactList}\item 
-int \hyperlink{runner__cuda_8cu_a24fe668d11a9f02087983cacebacc005}{engine\-\_\-cuda\-\_\-unload\-\_\-parts} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+int \hyperlink{runner__cuda_8cu_a24fe668d11a9f02087983cacebacc005}{engine\-\_\-cuda\-\_\-unload\-\_\-parts} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ad93203f13cbfb07bd361e3b37b092fff}{e})
 \begin{DoxyCompactList}\small\item\em Load the cell data from the C\-U\-D\-A device. \end{DoxyCompactList}\item 
-int \hyperlink{runner__cuda_8cu_a350f16fa3cd8830b375ea6a35d4f6628}{engine\-\_\-cuda\-\_\-queues\-\_\-load} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+int \hyperlink{runner__cuda_8cu_a350f16fa3cd8830b375ea6a35d4f6628}{engine\-\_\-cuda\-\_\-queues\-\_\-load} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ad93203f13cbfb07bd361e3b37b092fff}{e})
 \begin{DoxyCompactList}\small\item\em Load the queues onto the C\-U\-D\-A device. \end{DoxyCompactList}\item 
-int \hyperlink{runner__cuda_8cu_a9c7e994c307502452bdb87b0e60fb9cc}{engine\-\_\-cuda\-\_\-load} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e})
+int \hyperlink{runner__cuda_8cu_a9c7e994c307502452bdb87b0e60fb9cc}{engine\-\_\-cuda\-\_\-load} (struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ad93203f13cbfb07bd361e3b37b092fff}{e})
 \begin{DoxyCompactList}\small\item\em Load the potentials and cell pairs onto the C\-U\-D\-A device. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}

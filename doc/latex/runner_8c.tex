@@ -1,5 +1,5 @@
-\hypertarget{runner_8c}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/runner.c File Reference}
-\label{runner_8c}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/runner.\-c@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/runner.\-c}}
+\hypertarget{runner_8c}{\section{/\-Users/stephan/\-Code/git/mdcore/src/runner.c File Reference}
+\label{runner_8c}\index{/\-Users/stephan/\-Code/git/mdcore/src/runner.\-c@{/\-Users/stephan/\-Code/git/mdcore/src/runner.\-c}}
 }
 {\ttfamily \#include \char`\"{}../config.\-h\char`\"{}}\\*
 {\ttfamily \#include $<$stdlib.\-h$>$}\\*
@@ -9,7 +9,6 @@
 {\ttfamily \#include $<$float.\-h$>$}\\*
 {\ttfamily \#include $<$string.\-h$>$}\\*
 {\ttfamily \#include $<$limits.\-h$>$}\\*
-{\ttfamily \#include $<$sched.\-h$>$}\\*
 {\ttfamily \#include \char`\"{}cycle.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}errs.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}fptype.\-h\char`\"{}}\\*
@@ -40,9 +39,9 @@ int \hyperlink{runner_8c_a0b707df22eed7593da4be06d282fbce1}{runner\-\_\-run\-\_\
 \begin{DoxyCompactList}\small\item\em The \hyperlink{structrunner}{runner}'s main routine (for the Cell/\-B\-E S\-P\-U, using tuples). \end{DoxyCompactList}\item 
 int \hyperlink{runner_8c_a23eafc1532ccd91d5c6d3443d25aa62b}{runner\-\_\-run} (struct \hyperlink{structrunner}{runner} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r})
 \item 
-int \hyperlink{runner_8c_a64f3f09b5fef50a99918e1a343999b7d}{runner\-\_\-init\-\_\-\-S\-P\-U} (struct \hyperlink{structrunner}{runner} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})
+int \hyperlink{runner_8c_a64f3f09b5fef50a99918e1a343999b7d}{runner\-\_\-init\-\_\-\-S\-P\-U} (struct \hyperlink{structrunner}{runner} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ad93203f13cbfb07bd361e3b37b092fff}{e}, int \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})
 \begin{DoxyCompactList}\small\item\em Initialize the runner associated to the given engine and attach it to an S\-P\-U. \end{DoxyCompactList}\item 
-int \hyperlink{runner_8c_a574700fcf4fa0e9eaee3caf4f8d0d82d}{runner\-\_\-init} (struct \hyperlink{structrunner}{runner} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e}, int \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})
+int \hyperlink{runner_8c_a574700fcf4fa0e9eaee3caf4f8d0d82d}{runner\-\_\-init} (struct \hyperlink{structrunner}{runner} $\ast$\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r}, struct \hyperlink{structengine}{engine} $\ast$\hyperlink{potential__eval_8h_ad93203f13cbfb07bd361e3b37b092fff}{e}, int \hyperlink{errs_8c_a7441ef0865bcb3db9b8064dd7375c1ea}{id})
 \begin{DoxyCompactList}\small\item\em Initialize the runner associated to the given engine. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}

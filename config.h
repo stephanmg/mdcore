@@ -2,13 +2,13 @@
 /* config.h.in.  Generated from configure.in by autoheader.  */
 
 /* Support AVX (Advanced Vector Extensions) instructions */
-/* #undef HAVE_AVX */
+#define HAVE_AVX /**/
 
 /* The Cell/BE Toolchain appears to be present. */
 /* #undef HAVE_CELL */
 
 /* Define to 1 if you have the `clock_gettime' function. */
-#define HAVE_CLOCK_GETTIME 1
+/* #undef HAVE_CLOCK_GETTIME */
 
 /* The cuda compiler is installed. */
 /* #undef HAVE_CUDA */
@@ -20,7 +20,7 @@
 #define HAVE_DLFCN_H 1
 
 /* The fftw3 library appears to be present. */
-/* #undef HAVE_FFTW3 */
+#define HAVE_FFTW3 true
 
 /* Define to 1 if you have the `gethrtime' function. */
 /* #undef HAVE_GETHRTIME */
@@ -35,7 +35,7 @@
 #define HAVE_INTTYPES_H 1
 
 /* Define to 1 if you have the `fftw3f' library (-lfftw3f). */
-/* #undef HAVE_LIBFFTW3F */
+#define HAVE_LIBFFTW3F 1
 
 /* Define to 1 if you have the `m' library (-lm). */
 #define HAVE_LIBM 1
@@ -44,10 +44,10 @@
 /* #undef HAVE_LIBMETIS */
 
 /* Define to 1 if you have the `mach_absolute_time' function. */
-/* #undef HAVE_MACH_ABSOLUTE_TIME */
+#define HAVE_MACH_ABSOLUTE_TIME 1
 
 /* Define to 1 if you have the <mach/mach_time.h> header file. */
-/* #undef HAVE_MACH_MACH_TIME_H */
+#define HAVE_MACH_MACH_TIME_H 1
 
 /* Define to 1 if you have the <memory.h> header file. */
 #define HAVE_MEMORY_H 1
@@ -74,7 +74,7 @@
 /* #undef HAVE_READ_REAL_TIME */
 
 /* Defined if pthread_setaffinity_np exists. */
-#define HAVE_SETAFFINITY true
+/* #undef HAVE_SETAFFINITY */
 
 /* Support SSE (Streaming SIMD Extensions) instructions */
 #define HAVE_SSE /**/
@@ -86,10 +86,10 @@
 #define HAVE_SSE3 /**/
 
 /* Support SSE4.1 (Streaming SIMD Extensions 4.1) instructions */
-/* #undef HAVE_SSE41 */
+#define HAVE_SSE41 /**/
 
 /* Support SSE4.2 (Streaming SIMD Extensions 4.2) instructions */
-/* #undef HAVE_SSE42 */
+#define HAVE_SSE42 1
 
 /* Support SSSE3 (Supplemental Streaming SIMD Extensions 3) instructions */
 #define HAVE_SSSE3 /**/

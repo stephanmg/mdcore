@@ -1,5 +1,5 @@
-\hypertarget{potential__eval_8h}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/potential\-\_\-eval.h File Reference}
-\label{potential__eval_8h}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/potential\-\_\-eval.\-h@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/potential\-\_\-eval.\-h}}
+\hypertarget{potential__eval_8h}{\section{/\-Users/stephan/\-Code/git/mdcore/src/potential\-\_\-eval.h File Reference}
+\label{potential__eval_8h}\index{/\-Users/stephan/\-Code/git/mdcore/src/potential\-\_\-eval.\-h@{/\-Users/stephan/\-Code/git/mdcore/src/potential\-\_\-eval.\-h}}
 }
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
@@ -9,20 +9,24 @@
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{potential__eval_8h_acadbf02d75421a2721269c08a393e650}{\-\_\-\-\_\-attribute\-\_\-\-\_\-} ((always\-\_\-inline)) \hyperlink{potential__eval_8h_a2eb6f9e0395b47b8d5e3eeae4fe0c116}{I\-N\-L\-I\-N\-E} void potential\-\_\-eval(struct \hyperlink{structpotential}{potential} $\ast$p
+\hyperlink{potential__eval_8h_acadbf02d75421a2721269c08a393e650}{\-\_\-\-\_\-attribute\-\_\-\-\_\-} ((always\-\_\-inline)) \hyperlink{potential__eval_8h_a2eb6f9e0395b47b8d5e3eeae4fe0c116}{I\-N\-L\-I\-N\-E} void \hyperlink{potential__eval_8h_a0299bf557d028ef32f7949462ea502ce}{potential\-\_\-eval}(struct \hyperlink{structpotential}{potential} $\ast$p
 \begin{DoxyCompactList}\small\item\em Evaluates the given potential at the given point (interpolated). \end{DoxyCompactList}\item 
 \hyperlink{potential__eval_8h_a76e9c4e9a6df22827932d310ea22ab51}{for} (k=4;k$<$ \hyperlink{potential_8h_af27f5e9b27b6bd801b5146b817a21be1}{potential\-\_\-chunk};k++)
 \item 
 \hyperlink{potential__eval_8h_a590d2a745ebd0df4813f76613f576440}{if} (p-\/$>$flags \&\hyperlink{potential_8h_a6bbed82d7124d87e7a2391e91c11314a}{potential\-\_\-flag\-\_\-\-L\-J126})
+\item 
+\hyperlink{potential__eval_8h_a0299bf557d028ef32f7949462ea502ce}{potential\-\_\-eval} (p\mbox{[}k\mbox{]}, \hyperlink{potential__eval_8h_aaa7f6ac275af5eb6de39bc858a218035}{r2}\mbox{[}k\mbox{]},\&\hyperlink{potential__eval_8h_ad93203f13cbfb07bd361e3b37b092fff}{e}\mbox{[}k\mbox{]},\&\hyperlink{potential__eval_8h_a1f01162d8c9ffd5a2c09c3c61cc8ef43}{f}\mbox{[}k\mbox{]})
+\item 
+\hyperlink{potential__eval_8h_ad40eaa6288a0d4a5715754ee26383447}{potential\-\_\-eval\-\_\-r} (p\mbox{[}k\mbox{]}, \hyperlink{potential__eval_8h_adc70e74963b96026291476dfda93d244}{r\-\_\-in}\mbox{[}k\mbox{]},\&\hyperlink{potential__eval_8h_ad93203f13cbfb07bd361e3b37b092fff}{e}\mbox{[}k\mbox{]},\&\hyperlink{potential__eval_8h_a1f01162d8c9ffd5a2c09c3c61cc8ef43}{f}\mbox{[}k\mbox{]})
 \end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{potential__eval_8h_aaa7f6ac275af5eb6de39bc858a218035}{r2}
 \item 
-\hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$ \hyperlink{potential__eval_8h_ac54d1391e6657558123088943f721021}{e} = \hyperlink{potential__eval_8h_a943e2493231a18a517a97b313f79fb79}{ee}
+\hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$ \hyperlink{potential__eval_8h_ad93203f13cbfb07bd361e3b37b092fff}{e} = \hyperlink{potential__eval_8h_a943e2493231a18a517a97b313f79fb79}{ee}
 \item 
-\hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$ \hyperlink{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}{f}
+\hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$ \hyperlink{potential__eval_8h_a1f01162d8c9ffd5a2c09c3c61cc8ef43}{f}
 \item 
 \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} \hyperlink{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{x} = (\hyperlink{potential__eval_8h_a80ae89be706d1129e4d012e12a9f5221}{r} -\/ \hyperlink{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{c}\mbox{[}0\mbox{]}) $\ast$ \hyperlink{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{c}\mbox{[}1\mbox{]}
 \item 
@@ -136,7 +140,7 @@ Note that for efficiency reasons, this function does not check if any of the par
 
 Computes four single-\/precision interactions simultaneously using vectorized instructions.
 
-This function is only available if mdcore was compiled with S\-S\-E or Alti\-Vec and single precision! If {\ttfamily mdcore} was not compiled with S\-S\-E or Alti\-Vec, this function simply calls \#potential\-\_\-eval on each entry.
+This function is only available if mdcore was compiled with S\-S\-E or Alti\-Vec and single precision! If {\ttfamily mdcore} was not compiled with S\-S\-E or Alti\-Vec, this function simply calls \hyperlink{potential__eval_8h_a0299bf557d028ef32f7949462ea502ce}{potential\-\_\-eval} on each entry.
 
 
 \begin{DoxyParams}{Parameters}
@@ -153,7 +157,7 @@ Note that for efficiency reasons, this function does not check if any of the par
 
 Computes four single-\/precision interactions simultaneously using vectorized instructions.
 
-This function is only available if mdcore was compiled with S\-S\-E or Alti\-Vec and single precision! If {\ttfamily mdcore} was not compiled with S\-S\-E or Alti\-Vec, this function simply calls \#potential\-\_\-eval on each entry.
+This function is only available if mdcore was compiled with S\-S\-E or Alti\-Vec and single precision! If {\ttfamily mdcore} was not compiled with S\-S\-E or Alti\-Vec, this function simply calls \hyperlink{potential__eval_8h_a0299bf557d028ef32f7949462ea502ce}{potential\-\_\-eval} on each entry.
 
 
 \begin{DoxyParams}{Parameters}
@@ -170,7 +174,7 @@ Note that for efficiency reasons, this function does not check if any of the par
 
 Computes eight single-\/precision interactions simultaneously using vectorized instructions.
 
-This function is only available if mdcore was compiled with S\-S\-E or Alti\-Vec and single precision! If {\ttfamily mdcore} was not compiled with S\-S\-E or Alti\-Vec, this function simply calls \#potential\-\_\-eval on each entry.
+This function is only available if mdcore was compiled with S\-S\-E or Alti\-Vec and single precision! If {\ttfamily mdcore} was not compiled with S\-S\-E or Alti\-Vec, this function simply calls \hyperlink{potential__eval_8h_a0299bf557d028ef32f7949462ea502ce}{potential\-\_\-eval} on each entry.
 
 
 \begin{DoxyParams}{Parameters}
@@ -187,7 +191,7 @@ Note that for efficiency reasons, this function does not check if any of the par
 
 Computes two double-\/precision interactions simultaneously using vectorized instructions.
 
-This function is only available if mdcore was compiled with S\-S\-E2 and double precision! If {\ttfamily mdcore} was not compiled with S\-S\-E2 enabled, this function simply calls \#potential\-\_\-eval on each entry.
+This function is only available if mdcore was compiled with S\-S\-E2 and double precision! If {\ttfamily mdcore} was not compiled with S\-S\-E2 enabled, this function simply calls \hyperlink{potential__eval_8h_a0299bf557d028ef32f7949462ea502ce}{potential\-\_\-eval} on each entry.
 
 
 \begin{DoxyParams}{Parameters}
@@ -204,7 +208,7 @@ Note that for efficiency reasons, this function does not check if any of the par
 
 Computes four double-\/precision interactions simultaneously using vectorized instructions.
 
-This function is only available if mdcore was compiled with S\-S\-E2 and double precision! If {\ttfamily mdcore} was not compiled with S\-S\-E2 enabled, this function simply calls \#potential\-\_\-eval on each entry.
+This function is only available if mdcore was compiled with S\-S\-E2 and double precision! If {\ttfamily mdcore} was not compiled with S\-S\-E2 enabled, this function simply calls \hyperlink{potential__eval_8h_a0299bf557d028ef32f7949462ea502ce}{potential\-\_\-eval} on each entry.
 
 
 \begin{DoxyParams}{Parameters}
@@ -221,7 +225,7 @@ Note that for efficiency reasons, this function does not check if any of the par
 
 Computes four double-\/precision interactions simultaneously using vectorized instructions.
 
-This function is only available if mdcore was compiled with S\-S\-E2 and double precision! If {\ttfamily mdcore} was not compiled with S\-S\-E2 enabled, this function simply calls \#potential\-\_\-eval on each entry. \hypertarget{potential__eval_8h_a76e9c4e9a6df22827932d310ea22ab51}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!for@{for}}
+This function is only available if mdcore was compiled with S\-S\-E2 and double precision! If {\ttfamily mdcore} was not compiled with S\-S\-E2 enabled, this function simply calls \hyperlink{potential__eval_8h_a0299bf557d028ef32f7949462ea502ce}{potential\-\_\-eval} on each entry. \hypertarget{potential__eval_8h_a76e9c4e9a6df22827932d310ea22ab51}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!for@{for}}
 \index{for@{for}!potential_eval.h@{potential\-\_\-eval.\-h}}
 \subsubsection[{for}]{\setlength{\rightskip}{0pt plus 5cm}for (
 \begin{DoxyParamCaption}
@@ -235,24 +239,44 @@ This function is only available if mdcore was compiled with S\-S\-E2 and double 
 \item[{p-\/$>$flags \&}]{potential\-\_\-flag\-\_\-\-L\-J126}
 \end{DoxyParamCaption}
 )}}\label{potential__eval_8h_a590d2a745ebd0df4813f76613f576440}
+\hypertarget{potential__eval_8h_a0299bf557d028ef32f7949462ea502ce}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!potential\-\_\-eval@{potential\-\_\-eval}}
+\index{potential\-\_\-eval@{potential\-\_\-eval}!potential_eval.h@{potential\-\_\-eval.\-h}}
+\subsubsection[{potential\-\_\-eval}]{\setlength{\rightskip}{0pt plus 5cm}potential\-\_\-eval (
+\begin{DoxyParamCaption}
+\item[{p}]{\mbox{[}k\mbox{]}, }
+\item[{{\bf r2}}]{\mbox{[}k\mbox{]}, }
+\item[{\&}]{e\mbox{[}k\mbox{]}, }
+\item[{\&}]{f\mbox{[}k\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{potential__eval_8h_a0299bf557d028ef32f7949462ea502ce}
+\hypertarget{potential__eval_8h_ad40eaa6288a0d4a5715754ee26383447}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!potential\-\_\-eval\-\_\-r@{potential\-\_\-eval\-\_\-r}}
+\index{potential\-\_\-eval\-\_\-r@{potential\-\_\-eval\-\_\-r}!potential_eval.h@{potential\-\_\-eval.\-h}}
+\subsubsection[{potential\-\_\-eval\-\_\-r}]{\setlength{\rightskip}{0pt plus 5cm}potential\-\_\-eval\-\_\-r (
+\begin{DoxyParamCaption}
+\item[{p}]{\mbox{[}k\mbox{]}, }
+\item[{{\bf r\-\_\-in}}]{\mbox{[}k\mbox{]}, }
+\item[{\&}]{e\mbox{[}k\mbox{]}, }
+\item[{\&}]{f\mbox{[}k\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{potential__eval_8h_ad40eaa6288a0d4a5715754ee26383447}
 
 
 \subsection{Variable Documentation}
 \hypertarget{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!c@{c}}
 \index{c@{c}!potential_eval.h@{potential\-\_\-eval.\-h}}
 \subsubsection[{c}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-P\-T\-Y\-P\-E} $\ast$ c = \&(p-\/$>$c\mbox{[}{\bf ind} $\ast$ {\bf potential\-\_\-chunk}\mbox{]})}}\label{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}
-\hypertarget{potential__eval_8h_ac54d1391e6657558123088943f721021}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!e@{e}}
+\hypertarget{potential__eval_8h_ad93203f13cbfb07bd361e3b37b092fff}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!e@{e}}
 \index{e@{e}!potential_eval.h@{potential\-\_\-eval.\-h}}
-\subsubsection[{e}]{\setlength{\rightskip}{0pt plus 5cm}\& e = {\bf ee}}}\label{potential__eval_8h_ac54d1391e6657558123088943f721021}
+\subsubsection[{e}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-P\-T\-Y\-P\-E} {\bf F\-P\-T\-Y\-P\-E} $\ast$ e = {\bf ee}}}\label{potential__eval_8h_ad93203f13cbfb07bd361e3b37b092fff}
 \hypertarget{potential__eval_8h_a943e2493231a18a517a97b313f79fb79}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!ee@{ee}}
 \index{ee@{ee}!potential_eval.h@{potential\-\_\-eval.\-h}}
 \subsubsection[{ee}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-P\-T\-Y\-P\-E} ee = {\bf c}\mbox{[}2\mbox{]} $\ast$ {\bf x} + {\bf c}\mbox{[}3\mbox{]}}}\label{potential__eval_8h_a943e2493231a18a517a97b313f79fb79}
 \hypertarget{potential__eval_8h_a07e4e7506998350394e25dcc524f4cc6}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!eff@{eff}}
 \index{eff@{eff}!potential_eval.h@{potential\-\_\-eval.\-h}}
 \subsubsection[{eff}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-P\-T\-Y\-P\-E} eff = {\bf c}\mbox{[}2\mbox{]}}}\label{potential__eval_8h_a07e4e7506998350394e25dcc524f4cc6}
-\hypertarget{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!f@{f}}
+\hypertarget{potential__eval_8h_a1f01162d8c9ffd5a2c09c3c61cc8ef43}{\index{potential\-\_\-eval.\-h@{potential\-\_\-eval.\-h}!f@{f}}
 \index{f@{f}!potential_eval.h@{potential\-\_\-eval.\-h}}
-\subsubsection[{f}]{\setlength{\rightskip}{0pt plus 5cm}\& f}}\label{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}
+\subsubsection[{f}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-P\-T\-Y\-P\-E} {\bf F\-P\-T\-Y\-P\-E} {\bf F\-P\-T\-Y\-P\-E} $\ast$ f}}\label{potential__eval_8h_a1f01162d8c9ffd5a2c09c3c61cc8ef43}
 {\bfseries Initial value\-:}
 \begin{DoxyCode}
 \{

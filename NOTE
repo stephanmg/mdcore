@@ -1,0 +1,2 @@
+Compile with:
+CFLAGS="-mno-avx -L/opt/local/lib/ -Wno-maybe-uninitialized" LDFLAGS="-L/opt/local/lib/" MPICC=/opt/local/bin/mpicc-openmpi-gcc47 CC=/opt/local/bin/mpicc-openmpi-gcc47 ./configure --with-fftw3=/opt/local/lib/ --prefix=/Users/stephan/Code/git/mdcore/bin/

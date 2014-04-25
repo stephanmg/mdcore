@@ -5,19 +5,19 @@
 # It is necessary for linking the library.
 
 # The name that we can dlopen(3).
-dlname='libmdcore.so.0'
+dlname='libmdcore.0.dylib'
 
 # Names of this library.
-library_names='libmdcore.so.0.0.0 libmdcore.so.0 libmdcore.so'
+library_names='libmdcore.0.dylib libmdcore.dylib'
 
 # The name of the static archive.
 old_library='libmdcore.a'
 
 # Linker flags that can not go in dependency_libs.
-inherited_linker_flags=' -pthread'
+inherited_linker_flags=' '
 
 # Libraries that this one depends upon.
-dependency_libs=' -lm'
+dependency_libs=' -L/opt/local/lib/ -lfftw3f -lm'
 
 # Names of additional weak libraries provided by this library
 weak_library_names=''

@@ -1,9 +1,9 @@
-\hypertarget{potential_8c}{\section{/home/stephan/code/unversioned/mdcore-\/0.1.7/src/potential.c File Reference}
-\label{potential_8c}\index{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/potential.\-c@{/home/stephan/code/unversioned/mdcore-\/0.\-1.\-7/src/potential.\-c}}
+\hypertarget{potential_8c}{\section{/\-Users/stephan/\-Code/git/mdcore/src/potential.c File Reference}
+\label{potential_8c}\index{/\-Users/stephan/\-Code/git/mdcore/src/potential.\-c@{/\-Users/stephan/\-Code/git/mdcore/src/potential.\-c}}
 }
 {\ttfamily \#include $<$stdlib.\-h$>$}\\*
 {\ttfamily \#include $<$stdio.\-h$>$}\\*
-{\ttfamily \#include $<$malloc.\-h$>$}\\*
+{\ttfamily \#include $<$malloc/malloc.\-h$>$}\\*
 {\ttfamily \#include $<$math.\-h$>$}\\*
 {\ttfamily \#include $<$float.\-h$>$}\\*
 {\ttfamily \#include $<$string.\-h$>$}\\*
@@ -125,13 +125,13 @@ struct \hyperlink{structpotential}{potential} $\ast$ \hyperlink{potential_8c_a09
 \begin{DoxyCompactList}\small\item\em Creates a \hyperlink{structpotential}{potential} representing a switched 12-\/6 Lennard-\/\-Jones potential. \end{DoxyCompactList}\item 
 void \hyperlink{potential_8c_ae75ae7741689fc1a320787219440cc78}{potential\-\_\-clear} (struct \hyperlink{structpotential}{potential} $\ast$p)
 \begin{DoxyCompactList}\small\item\em Free the memory associated with the given potential. \end{DoxyCompactList}\item 
-int \hyperlink{potential_8c_aafb424271f0b16b0ac6470780ad363cd}{potential\-\_\-init} (struct \hyperlink{structpotential}{potential} $\ast$p, double($\ast$\hyperlink{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}{f})(double), double($\ast$fp)(double), double($\ast$f6p)(double), \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} a, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} b, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} tol)
+int \hyperlink{potential_8c_aafb424271f0b16b0ac6470780ad363cd}{potential\-\_\-init} (struct \hyperlink{structpotential}{potential} $\ast$p, double($\ast$\hyperlink{potential__eval_8h_a1f01162d8c9ffd5a2c09c3c61cc8ef43}{f})(double), double($\ast$fp)(double), double($\ast$f6p)(double), \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} a, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} b, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} tol)
 \begin{DoxyCompactList}\small\item\em Construct a \hyperlink{structpotential}{potential} from the given function. \end{DoxyCompactList}\item 
-int \hyperlink{potential_8c_acf8e8a5ed6ab3f5d05604e1aff5558f2}{potential\-\_\-getfp} (double($\ast$\hyperlink{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}{f})(double), int n, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$\hyperlink{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{x}, double $\ast$fp)
+int \hyperlink{potential_8c_acf8e8a5ed6ab3f5d05604e1aff5558f2}{potential\-\_\-getfp} (double($\ast$\hyperlink{potential__eval_8h_a1f01162d8c9ffd5a2c09c3c61cc8ef43}{f})(double), int n, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$\hyperlink{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{x}, double $\ast$fp)
 \begin{DoxyCompactList}\small\item\em Compute the optimal first derivatives for the given set of nodes. \end{DoxyCompactList}\item 
-int \hyperlink{potential_8c_a391ca420c225848212d6ff31dd869186}{potential\-\_\-getfp\-\_\-fixend} (double($\ast$\hyperlink{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}{f})(double), double fpa, double fpb, int n, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$\hyperlink{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{x}, double $\ast$fp)
+int \hyperlink{potential_8c_a391ca420c225848212d6ff31dd869186}{potential\-\_\-getfp\-\_\-fixend} (double($\ast$\hyperlink{potential__eval_8h_a1f01162d8c9ffd5a2c09c3c61cc8ef43}{f})(double), double fpa, double fpb, int n, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$\hyperlink{potential__eval_8h_a83e62476eec76311df9cccc0496c8e95}{x}, double $\ast$fp)
 \item 
-int \hyperlink{potential_8c_ae5e983626322c87c83ffbd4332c6a407}{potential\-\_\-getcoeffs} (double($\ast$\hyperlink{potential__eval_8h_a750f2e921706f49e7b9a819b8405f6c1}{f})(double), double($\ast$fp)(double), \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$xi, int n, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$\hyperlink{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{c}, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$err)
+int \hyperlink{potential_8c_ae5e983626322c87c83ffbd4332c6a407}{potential\-\_\-getcoeffs} (double($\ast$\hyperlink{potential__eval_8h_a1f01162d8c9ffd5a2c09c3c61cc8ef43}{f})(double), double($\ast$fp)(double), \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$xi, int n, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$\hyperlink{potential__eval_8h_ad31d5daa8211ce879a18991ef555f2f3}{c}, \hyperlink{fptype_8h_a78f09a67f3e652a3b25e085a0082a835}{F\-P\-T\-Y\-P\-E} $\ast$err)
 \begin{DoxyCompactList}\small\item\em Compute the interpolation coefficients over a given set of nodes. \end{DoxyCompactList}\item 
 double \hyperlink{potential_8c_ab99189d6e15db64748ab304a3506df79}{potential\-\_\-getalpha} (double($\ast$f6p)(double), double a, double b)
 \begin{DoxyCompactList}\small\item\em Compute the parameter $\alpha$ for the optimal node distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}

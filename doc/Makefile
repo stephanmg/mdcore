@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 all: Doxyfile
-	 SRCDIR='.' PROJECT='mdcore' DOCDIR='doc/' VERSION='' PERL_PATH='/usr/bin/perl' HAVE_DOT='NO' GENERATE_MAN='NO' GENERATE_RTF='NO' GENERATE_XML='NO' GENERATE_HTMLHELP='NO' GENERATE_CHI='NO' GENERATE_HTML='YES' GENERATE_LATEX='YES' /usr/bin/doxygen Doxyfile
+	 SRCDIR='.' PROJECT='mdcore' DOCDIR='doc/' VERSION='' PERL_PATH='/usr/bin/perl' HAVE_DOT='NO' GENERATE_MAN='NO' GENERATE_RTF='NO' GENERATE_XML='NO' GENERATE_HTMLHELP='NO' GENERATE_CHI='NO' GENERATE_HTML='YES' GENERATE_LATEX='YES' /opt/local/bin//doxygen Doxyfile
 
 clean:
 	rm -rf html/ latex/ man/
